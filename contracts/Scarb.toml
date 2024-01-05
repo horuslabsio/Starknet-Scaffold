@@ -6,13 +6,18 @@ version = "0.1.0"
 
 [dependencies]
 snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry", tag = "v0.11.0" }
-alexandria_math = { git = "https://github.com/keep-starknet-strange/alexandria.git" }
 openzeppelin = { git = "https://github.com/OpenZeppelin/cairo-contracts.git" }
+alexandria_math = { git = "https://github.com/keep-starknet-strange/alexandria.git" }
+cairo_lib = { git = "https://github.com/HerodotusDev/cairo-lib.git" }
+pragma_lib = { git = "https://github.com/astraly-labs/pragma-lib.git" }
 starknet = "2.3.1"
 
 [[target.starknet-contract]]
 sierra = true
 casm = true
+
+[tool.snforge]
+exit_first = false
 
 [tool.fmt]
 sort-module-level-items = true

@@ -35,11 +35,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "cairo_lib"
+version = "0.2.0"
+source = "git+https://github.com/HerodotusDev/cairo-lib.git#a0c0ee4feeb4edb61e7a35d29595ad8647c3d469"
+
+[[package]]
 name = "contracts"
 version = "0.1.0"
 dependencies = [
  "alexandria_math",
+ "cairo_lib",
  "openzeppelin",
+ "pragma_lib",
  "snforge_std",
 ]
 
@@ -47,6 +54,11 @@ dependencies = [
 name = "openzeppelin"
 version = "0.8.0"
 source = "git+https://github.com/OpenZeppelin/cairo-contracts.git#441e6ce76ade91817068e4d4c5168dbd3ed20375"
+
+[[package]]
+name = "pragma_lib"
+version = "1.0.0"
+source = "git+https://github.com/astraly-labs/pragma-lib.git#24bb4da111ae7eb00e7cf40d4f1767c86d6447cd"
 
 [[package]]
 name = "snforge_std"

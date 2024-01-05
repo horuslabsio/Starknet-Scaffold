@@ -4,7 +4,12 @@
   "description": "An open-source starknet development stack",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-contracts": "cd contracts && scarb build",
+    "test-contracts": "cd contracts && snforge test",
+    "format-contracts": "cd contracts && scarb fmt",
+    "generate-interface": "cd contracts && src5_rs parse",
+    "ui": "cd frontend && npm run dev",
+    "build-ui": "cd frontend && npm run build"
   },
   "repository": {
     "type": "git",
