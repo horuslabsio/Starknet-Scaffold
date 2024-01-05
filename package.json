@@ -8,6 +8,11 @@
     "test-contracts": "cd contracts && snforge test",
     "format-contracts": "cd contracts && scarb fmt",
     "generate-interface": "cd contracts && src5_rs parse",
+    "prepare-account": "cd contracts && sncast --url ${npm_config_url} account create --name ${npm_config_name} --add-profile",
+    "deploy-account": "cd contracts && sncast  --profile ${npm_config_profile} account deploy --name ${npm_config_name} --max-fee ${npm_config_maxfee}",
+    "delete-account": "cd contracts && sncast --url ${npm_config_url} account delete --name ${npm_config_name} --network ${npm_config_network}",
+    "declare-contract": "",
+    "deploy-contract": "",
     "ui": "cd frontend && npm run dev",
     "build-ui": "cd frontend && npm run build"
   },

@@ -1,23 +1,37 @@
+[dependencies]
+starknet = "2.3.1"
+
+[dependencies.alexandria_math]
+git = "https://github.com/keep-starknet-strange/alexandria.git"
+
+[dependencies.cairo_lib]
+git = "https://github.com/HerodotusDev/cairo-lib.git"
+
+[dependencies.openzeppelin]
+git = "https://github.com/OpenZeppelin/cairo-contracts.git"
+
+[dependencies.pragma_lib]
+git = "https://github.com/astraly-labs/pragma-lib.git"
+
+[dependencies.snforge_std]
+git = "https://github.com/foundry-rs/starknet-foundry"
+tag = "v0.11.0"
+
 [package]
 name = "contracts"
 version = "0.1.0"
 
-# See more keys and their definitions at https://docs.swmansion.com/scarb/docs/reference/manifest.html
-
-[dependencies]
-snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry", tag = "v0.11.0" }
-openzeppelin = { git = "https://github.com/OpenZeppelin/cairo-contracts.git" }
-alexandria_math = { git = "https://github.com/keep-starknet-strange/alexandria.git" }
-cairo_lib = { git = "https://github.com/HerodotusDev/cairo-lib.git" }
-pragma_lib = { git = "https://github.com/astraly-labs/pragma-lib.git" }
-starknet = "2.3.1"
-
 [[target.starknet-contract]]
-sierra = true
 casm = true
-
-[tool.snforge]
-exit_first = false
+sierra = true
 
 [tool.fmt]
 sort-module-level-items = true
+
+[tool.sncast.deployer]
+account = "deployer"
+accounts-file = "/Users/darlingtonnnam/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "https://starknet-mainnet.infura.io/v3/b19d3eeaef24491ea6536fd4a48fbd20"
+
+[tool.snforge]
+exit_first = false
