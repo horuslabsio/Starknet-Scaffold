@@ -1,0 +1,25 @@
+{
+  "name": "my-dapp",
+  "version": "1.0.0",
+  "description": "An open-source starknet development stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/argentlabs/Starknet-Scaffold.git"
+  },
+  "keywords": [
+    "Starknet",
+    "Starknet-frontend",
+    "Starknet-react",
+    "Starknetkit"
+  ],
+  "author": "Darlington Nnam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/argentlabs/Starknet-Scaffold/issues"
+  },
+  "homepage": "https://github.com/argentlabs/Starknet-Scaffold#readme"
+}
