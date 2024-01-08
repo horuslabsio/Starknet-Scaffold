@@ -1,6 +1,6 @@
 {
   "name": "create-starknet-app",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An open-source starknet development stack",
   "bin": "./bin/cli.mjs",
   "scripts": {
@@ -32,8 +32,5 @@
   "bugs": {
     "url": "https://github.com/argentlabs/Starknet-Scaffold/issues"
   },
-  "homepage": "https://github.com/argentlabs/Starknet-Scaffold#readme",
-  "devDependencies": {
-    "ora": "^8.0.1"
-  }
+  "homepage": "https://github.com/argentlabs/Starknet-Scaffold#readme"
 }

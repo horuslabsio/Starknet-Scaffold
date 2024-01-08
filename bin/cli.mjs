@@ -2,7 +2,7 @@
 import { promisify } from "util";
 import cp from "child_process";
 import path from "path";
-import fs from "fs";
+import fs, { existsSync, mkdirSync} from "fs";
 // cli spinners
 import ora from "ora";
 
@@ -10,12 +10,19 @@ import ora from "ora";
 const exec = promisify(cp.exec);
 const rm = promisify(fs.rm);
 
+if (process.argv.length < 2) {
+  console.log("You have to provide an app name!");
+  console.log("For example :");
+  console.log("    npx create-starknet-app my-app");
+  process.exit(1);
+}
+
 const projectName = process.argv[2];
 const currentPath = process.cwd();
 const projectPath = path.join(currentPath, projectName);
 
 // get github repo
-const git_repo = "git@github.com:argentlabs/Starknet-Scaffold.git";
+const git_repo = "https://github.com/argentlabs/Starknet-Scaffold.git";
 
 // create project directory
 if (fs.existsSync(projectPath)) {
