@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
+import { Connector, useConnect, useAccount } from "@starknet-react/core";
 
 const loader = ({ src }: { src: string }) => {
   return src;
@@ -10,22 +11,35 @@ const Wallet = ({
   name,
   alt,
   src,
+  connector
 }: {
   name: string;
   alt: string;
   src: string;
+  connector: Connector;
 }) => {
+  const { connect } = useConnect()
+  const isSvg = src?.startsWith('<svg')
+
   return (
-    <button className="flex gap-4 items-center text-start p-[.2rem] hover:bg-outline-grey hover:rounded-[10px] transition-all cursor-pointer">
+    <button className="flex gap-4 items-center text-start p-[.2rem] hover:bg-outline-grey hover:rounded-[10px] transition-all cursor-pointer" onClick={() => connect({ connector })}>
       <div className="h-[2.2rem] w-[2.2rem] rounded-[5px]">
-        <Image
-          alt={alt}
-          loader={loader}
-          src={src}
-          width={100}
-          height={100}
-          className="h-full w-full object-cover rounded-[5px]"
-        />
+        {
+            isSvg ? (
+                <div className="h-full w-full object-cover rounded-[5px]" dangerouslySetInnerHTML={{ __html: src ?? '' }} />
+            )
+            :
+            (
+                <Image
+                    alt={alt}
+                    loader={loader}
+                    src={src}
+                    width={70}
+                    height={70}
+                    className="h-full w-full object-cover rounded-[5px]"
+                />
+            )
+        }
       </div>
       <p className="flex-1">{name}</p>
     </button>
@@ -52,16 +66,18 @@ const Modal = ({
     }, 400);
   };
 
+  const { connectors } = useConnect()
+
   return (
     <section
       onClick={(e) => {
         setOpenModal(false);
         e.stopPropagation();
       }}
-      className="fixed h-screen w-screen grid justify-center items-center z-[99] backdrop-blur "
+      className="fixed h-screen w-screen grid justify-center items-center z-[99] backdrop-blur"
     >
       <div
-        className={`bg-[#1c1b1f] rounded-[25px] flex flex-col h-[clamp(350px,40vmax,468px)] w-[50vmax] border-[1px] border-solid border-outline-grey lg:h-[clamp(504px,35vmax,520px)] lg:min-w-[620px] lg:w-[50vmax] transition-[opacity,transform] duration-500 ease-in-out ${
+        className={`bg-[#1c1b1f] rounded-[25px] flex flex-col h-[clamp(600px,40vmax,468px)] w-[50vmax] border-[1px] border-solid border-outline-grey lg:h-[clamp(504px,35vmax,520px)] lg:min-w-[620px] lg:w-[50vmax] transition-[opacity,transform] duration-500 ease-in-out ${
           animate ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         }  `}
       >
@@ -98,22 +114,18 @@ const Modal = ({
             <h4 className="mb-[1rem] text-text-grey">Popular</h4>
 
             <div className="flex flex-col gap-4">
-              <Wallet
-                src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                alt="alt"
-                name="name"
-              />
-              <Wallet
-                src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                alt="alt"
-                name="name"
-              />
-              <Wallet
-                src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                alt="alt"
-                name="name"
-              />
+              {
+                connectors.map((connector) => (
+                    <Wallet
+                    src={connector.icon.light!}
+                    name={connector.name}
+                    connector={connector}
+                    alt="alt"
+                />
+                ))
+              }
             </div>
+            
           </div>
           <div className="p-4 border-t-[.5px] border-solid  border-red h-fit lg:h-full lg:border-none lg:col-span-3 lg:px-8 lg:py-0 lg:flex lg:flex-col">
             <h2 className="lg:text-center lg:mb-[3rem] lg:text-[1.125em]  font-bold">
@@ -126,7 +138,7 @@ const Modal = ({
                     alt="text"
                     loader={loader}
                     src={
-                      "https://plus.unsplash.com/premium_photo-1675497583737-c559d97e7512?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcwNDY1ODc2OQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=200"
+                      "https://media.istockphoto.com/id/1084096262/vector/concept-of-mobile-payments-wallet-connected-with-mobile-phone.jpg?s=612x612&w=0&k=20&c=noILf6rTUyxN41JnmeFhUmqQWiCWoXlg0zCLtcrabD4="
                     }
                     width={100}
                     height={100}
@@ -134,10 +146,9 @@ const Modal = ({
                   />
                 </div>
                 <div className="col-span-8 flex flex-col gap-2 ">
-                  <h4 className="text-[1.14em] font-bold">Lorem ispum dear</h4>
+                  <h4 className="text-[1.14em] font-bold">A home for your digital assets</h4>
                   <p className="text-text-grey">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Praesentium quidem ab saepe mollitia vel ducimus consectetur
+                    Wallets are used to send, receive, store, and display digital assets like Ethereum and NFTs.
                   </p>
                 </div>
               </div>
@@ -147,7 +158,7 @@ const Modal = ({
                     alt="text"
                     loader={loader}
                     src={
-                      "https://plus.unsplash.com/premium_photo-1675497583737-c559d97e7512?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcwNDY1ODc2OQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=200"
+                      "https://media.licdn.com/dms/image/D4E12AQFyWdLwXcJu3Q/article-cover_image-shrink_720_1280/0/1687854784940?e=2147483647&v=beta&t=nNDH-9XEcVYcb1PAc3S78ndQze0126KPOSZmnmMERNg"
                     }
                     width={100}
                     height={100}
@@ -155,10 +166,9 @@ const Modal = ({
                   />
                 </div>
                 <div className="col-span-8 flex flex-col gap-2 ">
-                  <h4 className="text-[1.14em] font-bold">Lorem ispum dear</h4>
+                  <h4 className="text-[1.14em] font-bold">A new way to sign-in</h4>
                   <p className="text-text-grey">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Praesentium quidem ab saepe mollitia vel ducimus consectetur
+                    Instead of creating new accounts and passwords on every website, just connect your wallet.
                   </p>
                 </div>
               </div>
@@ -171,6 +181,7 @@ const Modal = ({
 };
 
 const Header = () => {
+  const { address } = useAccount()
   const [openModal, setOpenModal] = useState(false);
   const toggleModal = () => {
     setOpenModal((prev) => !prev);
@@ -206,9 +217,17 @@ const Header = () => {
                 <text x="10" y="30" font-family="Cursive, sans-serif" font-size="22" fill="white">starknet-scaffold</text>
             </svg>
         </span>
-        <button onClick={toggleModal} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
-          Connect
-        </button>
+        {
+            address ? (
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
+                    {address?.slice(0, 5)}...{address?.slice(60, 66)}
+                </button>
+            ) : (
+                <button onClick={toggleModal} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
+                    Connect
+                </button>
+            )
+        }
       </header>
       {openModal && <Modal setOpenModal={setOpenModal} />}
     </>
