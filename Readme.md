@@ -21,6 +21,11 @@ git clone git@github.com:argentlabs/Starknet-Scaffold.git
 cd Starknet-Scaffold
 ```
 
+Or to install using create-starknet-app:
+
+```
+npx create-starknet-app
+```
 
 ## Contract Section
 The `contract` folder contains all the tools needed to write, build, test and deploy your Starknet smart contracts. It is built with Scarb and Starknet Foundry. Here are common operations you can perform on your contracts:

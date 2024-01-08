@@ -1,6 +1,6 @@
 {
-  "name": "starknet-scaffold",
-  "version": "1.0.0",
+  "name": "create-starknet-app",
+  "version": "0.1.1",
   "description": "An open-source starknet development stack",
   "bin": "./bin/cli.mjs",
   "scripts": {

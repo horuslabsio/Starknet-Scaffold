@@ -32,12 +32,13 @@ try {
   await exec(`git clone --depth 1 ${git_repo} ${projectPath} --quiet`);
   gitSpinner.succeed();
 
+  // remove useless files
   const cleanSpinner = ora("Removing useless files").start();
-  // remove my git history
   const rmGit = rm(path.join(projectPath, ".git"), { recursive: true, force: true });
-  // remove the installation file
+  const rmGithub = rm(path.join(projectPath, ".github"), { recursive: true, force: true });
+  const rmContributing = rm(path.join(projectPath, "CONTRIBUTING.md"), { recursive: true, force: true });
   const rmBin = rm(path.join(projectPath, "bin"), { recursive: true, force: true });
-  await Promise.all([rmGit, rmBin]);
+  await Promise.all([rmGit, rmBin, rmGithub, rmContributing]);
 
   process.chdir(projectPath);
   // remove the packages needed for cli
