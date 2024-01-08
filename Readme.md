@@ -74,7 +74,7 @@ npm run delete-account --url=<RPC_URL> --name=<ACCOUNT_NAME> --network=<alpha-ma
 ### Declare Contract
 To declare a contract:
 ```
-npm run declare-contract --profile=<MY_PROFILE> contract=<CONTRACT_NAME>
+npm run declare-contract --profile=<MY_PROFILE> --contract=<CONTRACT_NAME>
 ```
 
 ### Deploy Contract

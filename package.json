@@ -1,8 +1,8 @@
 {
-  "name": "my-dapp",
+  "name": "starknet-scaffold",
   "version": "1.0.0",
   "description": "An open-source starknet development stack",
-  "main": "index.js",
+  "bin": "./bin/cli.mjs",
   "scripts": {
     "build-contracts": "cd contracts && scarb build",
     "test-contracts": "cd contracts && snforge test",
@@ -14,6 +14,7 @@
     "declare-contract": "cd contracts && sncast --profile ${npm_config_profile} declare --contract-name ${npm_config_contract}",
     "deploy-contract": "cd contracts && sncast --profile ${npm_config_profile} deploy --class-hash ${npm_config_classhash}",
     "start": "cd frontend && npm run dev",
+    "install": "cd frontend && npm install",
     "build-ui": "cd frontend && npm run build"
   },
   "repository": {
@@ -31,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/argentlabs/Starknet-Scaffold/issues"
   },
-  "homepage": "https://github.com/argentlabs/Starknet-Scaffold#readme"
+  "homepage": "https://github.com/argentlabs/Starknet-Scaffold#readme",
+  "devDependencies": {
+    "ora": "^8.0.1"
+  }
 }
