@@ -10,7 +10,7 @@ import ora from "ora";
 const exec = promisify(cp.exec);
 const rm = promisify(fs.rm);
 
-if (process.argv.length < 2) {
+if (process.argv.length < 3) {
   console.log("You have to provide an app name!");
   console.log("For example :");
   console.log("    npx create-starknet-app my-app");
