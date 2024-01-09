@@ -80,7 +80,7 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, smart bundling, and more. No config needed.
+            Starknet.js a Javascript Library used to interact with Starknet.
           </p>
         </a>
 
