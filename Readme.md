@@ -11,6 +11,8 @@ Before you begin, you need to install the following tools:
 - [Node (v18 LTS)](https://nodejs.org/en/download/)
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Git](https://git-scm.com/downloads)
+- [Scarb](https://docs.swmansion.com/scarb/docs.html)
+- [Starknet Foundry](https://foundry-rs.github.io/starknet-foundry/)
 
 ## QUICKSTART
 
