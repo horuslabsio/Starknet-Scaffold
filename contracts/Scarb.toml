@@ -13,6 +13,7 @@ git = "https://github.com/HerodotusDev/cairo-lib.git"
 
 [dependencies.openzeppelin]
 git = "https://github.com/OpenZeppelin/cairo-contracts.git"
+tag = "v0.8.0"
 
 [dependencies.pragma_lib]
 git = "https://github.com/astraly-labs/pragma-lib.git"
