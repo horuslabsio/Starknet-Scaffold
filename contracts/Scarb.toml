@@ -29,10 +29,5 @@ sierra = true
 [tool.fmt]
 sort-module-level-items = false
 
-[tool.sncast.deployer]
-account = "deployer"
-accounts-file = "/Users/darlingtonnnam/.starknet_accounts/starknet_open_zeppelin_accounts.json"
-url = "https://starknet-mainnet.infura.io/v3/b19d3eeaef24491ea6536fd4a48fbd20"
-
 [tool.snforge]
 exit_first = false
