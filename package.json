@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/argentlabs/Starknet-Scaffold#readme",
   "dependencies": {
-    "ora": "^8.0.1"
+    "ora": "^8.0.1",
+    "next": "14.0.1"
   }
 }
