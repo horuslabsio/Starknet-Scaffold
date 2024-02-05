@@ -29,10 +29,12 @@ sierra = true
 [tool.fmt]
 sort-module-level-items = false
 
-[tool.sncast.deployer]
-account = "deployer"
-accounts-file = "/Users/darlingtonnnam/.starknet_accounts/starknet_open_zeppelin_accounts.json"
-url = "https://starknet-mainnet.infura.io/v3/b19d3eeaef24491ea6536fd4a48fbd20"
+# uncomment this section if you have either created or added an account with sncast
+# for more information see: https://foundry-rs.github.io/starknet-foundry/appendix/sncast/account/account.html
+# [tool.sncast.deployer]
+# account = "deployer"
+# accounts-file = "~/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+# url = "https://starknet-mainnet.infura.io/v3/apikey"
 
 [tool.snforge]
 exit_first = false
