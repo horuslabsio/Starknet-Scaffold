@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
-import { Connector, useConnect, useAccount } from "@starknet-react/core";
+import { Connector, useConnect, useAccount, useBalance } from "@starknet-react/core";
 
 const loader = ({ src }: { src: string }) => {
   return src;
@@ -182,6 +182,10 @@ const Modal = ({
 
 const Header = () => {
   const { address } = useAccount()
+  const { data:balance } = useBalance({
+    address,
+    watch: true
+})
   const [openModal, setOpenModal] = useState(false);
   const toggleModal = () => {
     setOpenModal((prev) => !prev);
@@ -217,7 +221,13 @@ const Header = () => {
                 <text x="10" y="30" font-family="Cursive, sans-serif" font-size="22" fill="white">starknet-scaffold</text>
             </svg>
         </span>
-        {
+        <div className="flex items-center gap-4">
+          {address && (
+            <span className="text-white font-bold">
+              Balance: {balance ? `${balance.value.toString()}${balance.symbol}` : "Loading.."}
+            </span>
+          )}
+          {
             address ? (
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
                     {address?.slice(0, 5)}...{address?.slice(60, 66)}
@@ -228,6 +238,7 @@ const Header = () => {
                 </button>
             )
         }
+        </div>
       </header>
       {openModal && <Modal setOpenModal={setOpenModal} />}
     </>
