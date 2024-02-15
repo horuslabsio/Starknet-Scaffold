@@ -182,10 +182,10 @@ const Modal = ({
 
 const Header = () => {
   const { address } = useAccount()
-  const { data:balance } = useBalance({
+  const { isLoading, isError, error, data:balance } = useBalance({
     address,
     watch: true
-})
+  })
   const [openModal, setOpenModal] = useState(false);
   const toggleModal = () => {
     setOpenModal((prev) => !prev);
@@ -224,7 +224,7 @@ const Header = () => {
         <div className="flex items-center gap-4">
           {address && (
             <span className="text-white font-bold">
-              Balance: {balance ? `${balance.value.toString()}${balance.symbol}` : "Loading.."}
+              Balance: {isLoading ? "Loading.." : balance ? `${balance.value?.toString()}${balance.symbol}` : "CORS Issue"}
             </span>
           )}
           {
