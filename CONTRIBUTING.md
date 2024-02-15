@@ -38,6 +38,8 @@ Contributions are made via Issues and Pull Requests (PRs). A few general guideli
 - Please use the same formatting in the code repository. You can configure your IDE to do it by using the prettier / linting config files included in each package.
 - If applicable, please edit the README.md file to reflect the changes.
 
+Please join our [Telegram group for contributors](https://t.me/+sH0ug1mZ_WtjNmM0)
+
 ### Issues
 
 Issues should be used to report problems, request a new feature, or discuss potential changes before a PR is created.
