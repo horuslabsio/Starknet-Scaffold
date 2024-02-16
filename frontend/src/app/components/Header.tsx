@@ -11,35 +11,37 @@ const Wallet = ({
   name,
   alt,
   src,
-  connector
+  connector,
 }: {
   name: string;
   alt: string;
   src: string;
   connector: Connector;
 }) => {
-  const { connect } = useConnect()
-  const isSvg = src?.startsWith('<svg')
+  const { connect } = useConnect();
+  const isSvg = src?.startsWith("<svg");
 
   return (
-    <button className="flex gap-4 items-center text-start p-[.2rem] hover:bg-outline-grey hover:rounded-[10px] transition-all cursor-pointer" onClick={() => connect({ connector })}>
+    <button
+      className="flex gap-4 items-center text-start p-[.2rem] hover:bg-outline-grey hover:rounded-[10px] transition-all cursor-pointer"
+      onClick={() => connect({ connector })}
+    >
       <div className="h-[2.2rem] w-[2.2rem] rounded-[5px]">
-        {
-            isSvg ? (
-                <div className="h-full w-full object-cover rounded-[5px]" dangerouslySetInnerHTML={{ __html: src ?? '' }} />
-            )
-            :
-            (
-                <Image
-                    alt={alt}
-                    loader={loader}
-                    src={src}
-                    width={70}
-                    height={70}
-                    className="h-full w-full object-cover rounded-[5px]"
-                />
-            )
-        }
+        {isSvg ? (
+          <div
+            className="h-full w-full object-cover rounded-[5px]"
+            dangerouslySetInnerHTML={{ __html: src ?? "" }}
+          />
+        ) : (
+          <Image
+            alt={alt}
+            loader={loader}
+            src={src}
+            width={70}
+            height={70}
+            className="h-full w-full object-cover rounded-[5px]"
+          />
+        )}
       </div>
       <p className="flex-1">{name}</p>
     </button>
@@ -66,7 +68,7 @@ const Modal = ({
     }, 400);
   };
 
-  const { connectors } = useConnect()
+  const { connectors } = useConnect();
 
   return (
     <section
@@ -114,18 +116,16 @@ const Modal = ({
             <h4 className="mb-[1rem] text-text-grey">Popular</h4>
 
             <div className="flex flex-col gap-4">
-              {
-                connectors.map((connector) => (
-                    <Wallet
-                    src={connector.icon.light!}
-                    name={connector.name}
-                    connector={connector}
-                    alt="alt"
+              {connectors.map((connector, index) => (
+                <Wallet
+                  key={connector.id || index}
+                  src={connector.icon.light!}
+                  name={connector.name}
+                  connector={connector}
+                  alt="alt"
                 />
-                ))
-              }
+              ))}
             </div>
-            
           </div>
           <div className="p-4 border-t-[.5px] border-solid  border-red h-fit lg:h-full lg:border-none lg:col-span-3 lg:px-8 lg:py-0 lg:flex lg:flex-col">
             <h2 className="lg:text-center lg:mb-[3rem] lg:text-[1.125em]  font-bold">
@@ -146,9 +146,12 @@ const Modal = ({
                   />
                 </div>
                 <div className="col-span-8 flex flex-col gap-2 ">
-                  <h4 className="text-[1.14em] font-bold">A home for your digital assets</h4>
+                  <h4 className="text-[1.14em] font-bold">
+                    A home for your digital assets
+                  </h4>
                   <p className="text-text-grey">
-                    Wallets are used to send, receive, store, and display digital assets like Ethereum and NFTs.
+                    Wallets are used to send, receive, store, and display
+                    digital assets like Ethereum and NFTs.
                   </p>
                 </div>
               </div>
@@ -166,9 +169,12 @@ const Modal = ({
                   />
                 </div>
                 <div className="col-span-8 flex flex-col gap-2 ">
-                  <h4 className="text-[1.14em] font-bold">A new way to sign-in</h4>
+                  <h4 className="text-[1.14em] font-bold">
+                    A new way to sign-in
+                  </h4>
                   <p className="text-text-grey">
-                    Instead of creating new accounts and passwords on every website, just connect your wallet.
+                    Instead of creating new accounts and passwords on every
+                    website, just connect your wallet.
                   </p>
                 </div>
               </div>
@@ -181,7 +187,7 @@ const Modal = ({
 };
 
 const Header = () => {
-  const { address } = useAccount()
+  const { address } = useAccount();
   const [openModal, setOpenModal] = useState(false);
   const toggleModal = () => {
     setOpenModal((prev) => !prev);
@@ -213,21 +219,35 @@ const Header = () => {
     <>
       <header className="w-full fixed backdrop-blur-2xl dark:border-neutral-800 lg:bg-gray-200 lg:dark:bg-zinc-800/50 left-0 top-0 lg:p-4 z-10 flex justify-between py-4 px-8">
         <span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40">
-                <text x="10" y="30" font-family="Cursive, sans-serif" font-size="22" fill="white">starknet-scaffold</text>
-            </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 200 40"
+            width="200"
+            height="40"
+          >
+            <text
+              x="10"
+              y="30"
+              fontFamily="Cursive, sans-serif"
+              fontSize="22"
+              fill="white"
+            >
+              starknet-scaffold
+            </text>
+          </svg>
         </span>
-        {
-            address ? (
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
-                    {address?.slice(0, 5)}...{address?.slice(60, 66)}
-                </button>
-            ) : (
-                <button onClick={toggleModal} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
-                    Connect
-                </button>
-            )
-        }
+        {address ? (
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
+            {address?.slice(0, 5)}...{address?.slice(60, 66)}
+          </button>
+        ) : (
+          <button
+            onClick={toggleModal}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+          >
+            Connect
+          </button>
+        )}
       </header>
       {openModal && <Modal setOpenModal={setOpenModal} />}
     </>
