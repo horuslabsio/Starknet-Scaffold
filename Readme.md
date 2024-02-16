@@ -199,7 +199,7 @@ If you're ready to contribute and create your PR, it will help to set up a local
 If this is your first time forking our repo, this is all you need to do for this step:
 
 ```sh
-git clone git@github.com:[your_github_handle]/argentlabs/Starknet-Scaffold.git && cd Starknet-Scaffold
+git clone git@github.com:[your_github_handle]/Starknet-Scaffold.git && cd Starknet-Scaffold
 ```
 
 If you've already forked the repo, you'll want to ensure your fork is configured and that it's up to date. This will save you the headache of potential merge conflicts.
@@ -213,9 +213,9 @@ git remote add upstream https://github.com/argentlabs/Starknet-Scaffold.git
 To [sync your fork with the latest changes](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork):
 
 ```sh
-git checkout dev
+git checkout main
 git fetch upstream
-git merge upstream/dev
+git merge upstream/main
 ```
 
 3. Install dependencies
@@ -241,7 +241,7 @@ npm run start
 3. Commit and prepare for pull request (PR). In your PR commit message, reference the issue it resolves (see [how to link a commit message to an issue using a keyword](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)).
 
 ```sh
-git commit -m "brief description of changes [Fixes #1234]"
+git commit -m "brief description of changes [Fixes #123]"
 ```
 
 4. Push to your GitHub account
