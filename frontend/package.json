@@ -14,6 +14,8 @@
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^5.0.1",
+    "starknet": "^5.24.3",
     "starknetkit": "^1.0.29"
   },
   "devDependencies": {
