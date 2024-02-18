@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/argentlabs/Starknet-Scaffold#readme",
   "dependencies": {
+    "lucide-react": "^0.331.0",
     "ora": "^8.0.1"
   }
 }
