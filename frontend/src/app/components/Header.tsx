@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import AddressBar from "./AddressBar";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Connector, useConnect, useAccount } from "@starknet-react/core";
 import useTheme from "../hooks/useTheme"
@@ -129,7 +130,6 @@ const Modal = ({
                 ))
               }
             </div>
-
           </div>
           <div className="p-4 border-t-[.5px] border-solid  border-red h-fit lg:h-full lg:border-none lg:col-span-3 lg:px-8 lg:py-0 lg:flex lg:flex-col">
             <h2 className="lg:text-center lg:mb-[3rem] lg:text-[1.125em]  font-bold">
