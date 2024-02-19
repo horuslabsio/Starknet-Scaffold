@@ -56,7 +56,7 @@ Good with Typescript and Tailwind? We've got missing UI components we'll love to
 | modal to copy/disconnect/view account | ❌ |
 | Display account balance | ❌ |
 | Switch/display network | ❌ |
-| App Light/Dark mode | ❌ |
+| App Light/Dark mode | ✅ |
 
 ## USAGE
 

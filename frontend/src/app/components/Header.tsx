@@ -1,10 +1,13 @@
 "use client";
 import Image from "next/image";
+import AddressBar from "./AddressBar";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Connector, useConnect, useAccount } from "@starknet-react/core";
 import { LibraryBig } from "lucide-react";
 import TransactionModal from "./TransactionList/TransactionModal";
 import GenericModal from "./GenericModal";
+import useTheme from "../hooks/useTheme";
+import ThemeSwitch from "./Theme";
 
 const loader = ({ src }: { src: string }) => {
   return src;
@@ -220,6 +223,8 @@ const Header = () => {
     };
   }, [openConectModal]);
 
+  const { theme, changeTheme } = useTheme();
+
   return (
     <>
       <header className="w-full fixed backdrop-blur-2xl dark:border-neutral-800 lg:bg-gray-200 lg:dark:bg-zinc-800/50 left-0 top-0 lg:p-4 z-10 flex justify-between py-4 px-8">
@@ -233,19 +238,17 @@ const Header = () => {
             <text
               x="10"
               y="30"
-              fontFamily="Cursive, sans-serif"
-              fontSize="22"
-              fill="white"
+              font-family="Cursive, sans-serif"
+              font-size="22"
+              fill={`${theme === "dark" ? "white" : "black"}`}
             >
               starknet-scaffold
             </text>
           </svg>
         </span>
         {address ? (
-          <div className="flex items-center">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
-              {address?.slice(0, 5)}...{address?.slice(60, 66)}
-            </button>
+          <div className="flex">
+            <AddressBar />
             <button
               className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
               onClick={handleOpenTransactionListClick}
@@ -261,6 +264,13 @@ const Header = () => {
             Connect
           </button>
         )}
+        <div className="flex items-center ml-4">
+          <ThemeSwitch
+            className="dark:transform-none transform translate-x-6 dark:translate-none"
+            action={changeTheme}
+            theme={theme}
+          />
+        </div>
       </header>
       <ConnectModal isOpen={openConectModal} onClose={toggleModal} />
       <TransactionModal
