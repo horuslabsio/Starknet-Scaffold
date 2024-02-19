@@ -21,8 +21,13 @@ const TransactionModal = ({
   }, [isOpen]);
 
   return (
-    <GenericModal isOpen={isOpen} onClose={onClose} animate={animate}>
-      <div className="m-2">
+    <GenericModal
+      isOpen={isOpen}
+      onClose={onClose}
+      animate={animate}
+      className="fixed top-0 right-10 w-1/4"
+    >
+      <div className="m-4">
         <TransactionList />
       </div>
     </GenericModal>

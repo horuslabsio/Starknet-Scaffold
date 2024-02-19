@@ -34,19 +34,20 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
           <p className="text-gray-700 text-sm">{transaction.text}</p>
         </div>
       </div>
-      <div className="flex justify-between items-center my-3">
+      <div className="flex w-full justify-between items-center my-3">
         <p className="text-gray-500 text-xs">
           {formatDate(transaction.createdAt)}
         </p>
-        <a
-          href={`https://starkscan.co/tx/${transaction.txHash}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button className="text-blue-600 hover:text-blue-800 text-xs font-semibold ml-4">
+
+        <button className="text-blue-600 hover:text-blue-800 text-xs font-semibold">
+          <a
+            href={`https://starkscan.co/tx/${transaction.txHash}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             See transaction
-          </button>
-        </a>
+          </a>
+        </button>
       </div>
     </div>
   );
