@@ -227,7 +227,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full fixed backdrop-blur-2xl dark:border-neutral-800 lg:bg-gray-200 lg:dark:bg-zinc-800/50 left-0 top-0 lg:p-4 z-10 flex justify-between py-4 px-8">
+      <header className="w-full fixed backdrop-blur-2xl dark:border-neutral-800 lg:bg-gray-200 lg:dark:bg-zinc-800/50 left-0 top-0 lg:p-4 z-10 flex py-4 px-8 justify-between">
         <span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -246,30 +246,32 @@ const Header = () => {
             </text>
           </svg>
         </span>
-        {address ? (
-          <div className="flex">
-            <AddressBar />
+        <div className="flex justify-end ml-4">
+          {address ? (
+            <div className="flex justify-end">
+              <AddressBar />
+              <button
+                className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+                onClick={handleOpenTransactionListClick}
+              >
+                <LibraryBig className="h-full w-full" />
+              </button>
+            </div>
+          ) : (
             <button
-              className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
-              onClick={handleOpenTransactionListClick}
+              onClick={toggleModal}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
             >
-              <LibraryBig className="h-full w-full" />
+              Connect
             </button>
+          )}
+          <div className="flex items-center ml-4">
+            <ThemeSwitch
+              className="dark:transform-none transform translate-x-6 dark:translate-none"
+              action={changeTheme}
+              theme={theme}
+            />
           </div>
-        ) : (
-          <button
-            onClick={toggleModal}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
-          >
-            Connect
-          </button>
-        )}
-        <div className="flex items-center ml-4">
-          <ThemeSwitch
-            className="dark:transform-none transform translate-x-6 dark:translate-none"
-            action={changeTheme}
-            theme={theme}
-          />
         </div>
       </header>
       <ConnectModal isOpen={openConectModal} onClose={toggleModal} />
