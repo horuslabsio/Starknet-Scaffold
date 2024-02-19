@@ -1,5 +1,10 @@
 "use client";
-import { useAccount, useStarkName } from "@starknet-react/core";
+import {
+  Connector,
+  useAccount,
+  useDisconnect,
+  useStarkName,
+} from "@starknet-react/core";
 import Blockies from "react-blockies";
 import Image from "next/image";
 import {
@@ -35,6 +40,8 @@ const UserModal = ({
       setOpenConnectedModal(false);
     }, 400);
   };
+
+  const { disconnect } = useDisconnect();
 
   return (
     <section
@@ -75,6 +82,7 @@ const UserModal = ({
             <button
               onClick={(e) => {
                 removeConnectedModal();
+                disconnect();
                 e.stopPropagation();
               }}
               className="p-3 w-full rounded-lg bg-blue-500  "
@@ -129,24 +137,12 @@ const AddressBar = () => {
           <span className="flex items-center gap-x-3">
             <Blockies seed={address} className="rounded-full h-3 w-3" />
             {address?.slice(0, 6).concat("...").concat(address?.slice(-5))}
-            {/* <Image
-            src={isCopied ? "/assets/tick.svg" : "/assets/copy.svg"}
-            width={20}
-            height={20}
-            alt="#"
-          /> */}
           </span>
         )}
         {data && (
           <span className="flex items-center gap-x-3">
             <Blockies seed={address} className="rounded-full h-3 w-3" />
             {data}
-            {/* <Image onClick={handleCopyClick}
-            src={isCopied ? "/assets/tick.svg" : "/assets/copy.svg"}
-            width={20}
-            height={20}
-            alt="#"
-          /> */}
           </span>
         )}
       </button>
