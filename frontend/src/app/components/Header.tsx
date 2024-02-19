@@ -8,6 +8,7 @@ import TransactionModal from "./TransactionList/TransactionModal";
 import GenericModal from "./GenericModal";
 import useTheme from "../hooks/useTheme";
 import ThemeSwitch from "./Theme";
+import NetworkSwitcher from "./NetworkSwitcher";
 
 const loader = ({ src }: { src: string }) => {
   return src;
@@ -265,12 +266,13 @@ const Header = () => {
               Connect
             </button>
           )}
-          <div className="flex items-center ml-4">
+          <div className="flex items-center ml-4 space-x-2">
             <ThemeSwitch
               className="dark:transform-none transform translate-x-6 dark:translate-none"
               action={changeTheme}
               theme={theme}
             />
+            <NetworkSwitcher />
           </div>
         </div>
       </header>
