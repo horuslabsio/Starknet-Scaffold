@@ -1,10 +1,5 @@
 "use client";
-import {
-  Connector,
-  useAccount,
-  useDisconnect,
-  useStarkName,
-} from "@starknet-react/core";
+import { useAccount, useDisconnect, useStarkName } from "@starknet-react/core";
 import Blockies from "react-blockies";
 import Image from "next/image";
 import {
