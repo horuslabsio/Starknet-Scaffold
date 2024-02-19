@@ -27,16 +27,24 @@ const Wallet = ({
 }) => {
   const { connect } = useConnect();
   const isSvg = src?.startsWith("<svg");
+
+  function handleConnectWallet(): void {
+    connect({ connector });
+    localStorage.setItem("lastUsedConnector", connector.name);
+  }
+
   return (
     <button
       className="flex gap-4 items-center text-start p-[.2rem] hover:bg-outline-grey hover:rounded-[10px] transition-all cursor-pointer"
-      onClick={() => connect({ connector })}
+      onClick={() => handleConnectWallet()}
     >
       <div className="h-[2.2rem] w-[2.2rem] rounded-[5px]">
         {isSvg ? (
           <div
             className="h-full w-full object-cover rounded-[5px]"
-            dangerouslySetInnerHTML={{ __html: src ?? "" }}
+            dangerouslySetInnerHTML={{
+              __html: src ?? "",
+            }}
           />
         ) : (
           <Image
@@ -191,6 +199,7 @@ const ConnectModal = ({
 
 const Header = () => {
   const { address } = useAccount();
+  const { connect, connectors } = useConnect();
   const [openConectModal, setOpenConnectModal] = useState(false);
   const toggleModal = () => {
     setOpenConnectModal((prev) => !prev);
@@ -219,6 +228,17 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    const lastUsedConnector = localStorage.getItem("lastUsedConnector");
+    if (lastUsedConnector) {
+      connect({
+        connector: connectors.find(
+          (connector) => connector.name === lastUsedConnector
+        ),
+      });
+    }
+  }, [connectors]);
+
+  useEffect(() => {
     if (openConectModal) {
       document.body.style.overflow = "hidden";
     } else {
@@ -244,8 +264,8 @@ const Header = () => {
             <text
               x="10"
               y="30"
-              font-family="Cursive, sans-serif"
-              font-size="22"
+              fontFamily="Cursive, sans-serif"
+              fontSize="22"
               fill={`${theme === "dark" ? "white" : "black"}`}
             >
               starknet-scaffold
