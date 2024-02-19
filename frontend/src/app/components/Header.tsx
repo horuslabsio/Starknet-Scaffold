@@ -3,7 +3,7 @@ import Image from "next/image";
 import AddressBar from "./AddressBar";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Connector, useConnect, useAccount } from "@starknet-react/core";
-import useTheme from "../hooks/useTheme"
+import useTheme from "../hooks/useTheme";
 import ThemeSwitch from "./Theme";
 
 const loader = ({ src }: { src: string }) => {
@@ -30,22 +30,21 @@ const Wallet = ({
       onClick={() => connect({ connector })}
     >
       <div className="h-[2.2rem] w-[2.2rem] rounded-[5px]">
-        {
-          isSvg ? (
-            <div className="h-full w-full object-cover rounded-[5px]" dangerouslySetInnerHTML={{ __html: src ?? '' }} />
-          )
-            :
-            (
-              <Image
-                alt={alt}
-                loader={loader}
-                src={src}
-                width={70}
-                height={70}
-                className="h-full w-full object-cover rounded-[5px]"
-              />
-            )
-        }
+        {isSvg ? (
+          <div
+            className="h-full w-full object-cover rounded-[5px]"
+            dangerouslySetInnerHTML={{ __html: src ?? "" }}
+          />
+        ) : (
+          <Image
+            alt={alt}
+            loader={loader}
+            src={src}
+            width={70}
+            height={70}
+            className="h-full w-full object-cover rounded-[5px]"
+          />
+        )}
       </div>
       <p className="flex-1">{name}</p>
     </button>
@@ -83,8 +82,9 @@ const Modal = ({
       className="fixed h-screen w-screen grid justify-center items-center z-[99] backdrop-blur"
     >
       <div
-        className={`bg-[#1c1b1f] rounded-[25px] flex flex-col h-[clamp(600px,40vmax,468px)] w-[50vmax] border-[1px] border-solid border-outline-grey lg:h-[clamp(504px,35vmax,520px)] lg:min-w-[620px] lg:w-[50vmax] transition-[opacity,transform] duration-500 ease-in-out ${animate ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-          }  `}
+        className={`bg-[#1c1b1f] rounded-[25px] flex flex-col h-[clamp(600px,40vmax,468px)] w-[50vmax] border-[1px] border-solid border-outline-grey lg:h-[clamp(504px,35vmax,520px)] lg:min-w-[620px] lg:w-[50vmax] transition-[opacity,transform] duration-500 ease-in-out ${
+          animate ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+        }  `}
       >
         <div className="flex p-4 w-full lg:p-0 lg:grid lg:grid-cols-5">
           <div className="basis-5/6 lg:col-span-2  lg:border-r-[1px] lg:border-solid lg:border-outline-grey lg:py-4 lg:pl-8">
@@ -119,16 +119,15 @@ const Modal = ({
             <h4 className="mb-[1rem] text-text-grey">Popular</h4>
 
             <div className="flex flex-col gap-4">
-              {
-                connectors.map((connector) => (
-                  <Wallet key={connector.id}
-                    src={connector.icon.light!}
-                    name={connector.name}
-                    connector={connector}
-                    alt="alt"
-                  />
-                ))
-              }
+              {connectors.map((connector) => (
+                <Wallet
+                  key={connector.id}
+                  src={connector.icon.light!}
+                  name={connector.name}
+                  connector={connector}
+                  alt="alt"
+                />
+              ))}
             </div>
           </div>
           <div className="p-4 border-t-[.5px] border-solid  border-red h-fit lg:h-full lg:border-none lg:col-span-3 lg:px-8 lg:py-0 lg:flex lg:flex-col">
@@ -193,6 +192,7 @@ const Modal = ({
 const Header = () => {
   const { address } = useAccount();
   const [openModal, setOpenModal] = useState(false);
+
   const toggleModal = () => {
     setOpenModal((prev) => !prev);
   };
@@ -221,25 +221,38 @@ const Header = () => {
 
   const { theme, changeTheme } = useTheme();
 
-
   return (
     <>
       <header className="w-full fixed backdrop-blur-2xl dark:border-neutral-800 lg:bg-gray-200 lg:dark:bg-zinc-800/50 left-0 top-0 lg:p-4 z-10 flex justify-between py-4 px-8">
         <span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40">
-            <text x="10" y="30" font-family="Cursive, sans-serif" font-size="22" fill={`${theme === 'dark' ? 'white' : 'black'}`}>starknet-scaffold</text>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 200 40"
+            width="200"
+            height="40"
+          >
+            <text
+              x="10"
+              y="30"
+              font-family="Cursive, sans-serif"
+              font-size="22"
+              fill={`${theme === "dark" ? "white" : "black"}`}
+            >
+              starknet-scaffold
+            </text>
           </svg>
         </span>
         <div className="flex">
-          {
-            address ? (
-              <AddressBar />
-            ) : (
-              <button onClick={toggleModal} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
-                Connect
-              </button>
-            )
-          }
+          {address ? (
+            <AddressBar />
+          ) : (
+            <button
+              onClick={toggleModal}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+            >
+              Connect
+            </button>
+          )}
 
           <div className="flex items-center ml-4">
             <ThemeSwitch
@@ -247,13 +260,10 @@ const Header = () => {
               action={changeTheme}
               theme={theme}
             />
-
           </div>
         </div>
       </header>
       {openModal && <Modal setOpenModal={setOpenModal} />}
-
-
     </>
   );
 };
