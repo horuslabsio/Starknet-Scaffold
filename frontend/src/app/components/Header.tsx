@@ -120,7 +120,7 @@ const Modal = ({
             <div className="flex flex-col gap-4">
               {
                 connectors.map((connector) => (
-                  <Wallet
+                  <Wallet key={connector.id}
                     src={connector.icon.light!}
                     name={connector.name}
                     connector={connector}
