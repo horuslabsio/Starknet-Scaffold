@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Connector, useConnect, useAccount } from "@starknet-react/core";
+import { LibraryBig } from "lucide-react";
+import TransactionList from "./TransactionList/TransactionList";
 
 const loader = ({ src }: { src: string }) => {
   return src;
@@ -20,7 +22,6 @@ const Wallet = ({
 }) => {
   const { connect } = useConnect();
   const isSvg = src?.startsWith("<svg");
-
   return (
     <button
       className="flex gap-4 items-center text-start p-[.2rem] hover:bg-outline-grey hover:rounded-[10px] transition-all cursor-pointer"
@@ -48,7 +49,7 @@ const Wallet = ({
   );
 };
 
-const Modal = ({
+const ConnectModal = ({
   setOpenModal,
 }: {
   setOpenModal: Dispatch<SetStateAction<boolean>>;
@@ -188,10 +189,21 @@ const Modal = ({
 
 const Header = () => {
   const { address } = useAccount();
-  const [openModal, setOpenModal] = useState(false);
+  const [openConectModal, setOpenConnectModal] = useState(false);
   const toggleModal = () => {
-    setOpenModal((prev) => !prev);
+    setOpenConnectModal((prev) => !prev);
   };
+
+  const [isTransactionModalOpen, setIsModalTransactionOpen] = useState(false);
+
+  const handleOpenTransactionListClick = () => {
+    setIsModalTransactionOpen(true);
+  };
+
+  const handleCloseTransactionListClick = () => {
+    setIsModalTransactionOpen(false);
+  };
+
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -205,7 +217,7 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    if (openModal) {
+    if (openConectModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -213,7 +225,7 @@ const Header = () => {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [openModal]);
+  }, [openConectModal]);
 
   return (
     <>
@@ -237,9 +249,17 @@ const Header = () => {
           </svg>
         </span>
         {address ? (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
-            {address?.slice(0, 5)}...{address?.slice(60, 66)}
-          </button>
+          <div className="flex items-center">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
+              {address?.slice(0, 5)}...{address?.slice(60, 66)}
+            </button>
+            <button
+              className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+              onClick={handleOpenTransactionListClick}
+            >
+              <LibraryBig className="h-full w-full" />
+            </button>
+          </div>
         ) : (
           <button
             onClick={toggleModal}
@@ -249,7 +269,8 @@ const Header = () => {
           </button>
         )}
       </header>
-      {openModal && <Modal setOpenModal={setOpenModal} />}
+      {openConectModal && <ConnectModal setOpenModal={setOpenConnectModal} />}
+      {isTransactionModalOpen && <TransactionList />}
     </>
   );
 };
