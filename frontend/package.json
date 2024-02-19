@@ -12,6 +12,7 @@
     "@starknet-react/chains": "^0.1.4",
     "@starknet-react/core": "^2.2.0",
     "next": "14.0.4",
+    "lucide-react": "^0.331.0",
     "react": "^18",
     "react-dom": "^18",
     "starknetkit": "^1.0.29"
