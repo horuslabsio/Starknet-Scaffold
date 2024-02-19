@@ -80,7 +80,12 @@ const ConnectModal = ({
   const { connectors } = useConnect();
 
   return (
-    <GenericModal isOpen={isOpen} onClose={closeModal} animate={animate}>
+    <GenericModal
+      isOpen={isOpen}
+      onClose={closeModal}
+      animate={animate}
+      className="w-1/2 mx-auto"
+    >
       <div className="flex p-4 w-full lg:p-0 lg:grid lg:grid-cols-5">
         <div className="basis-5/6 lg:col-span-2  lg:border-r-[1px] lg:border-solid lg:border-outline-grey lg:py-4 lg:pl-8">
           <h2 className="text-center lg:text-start font-bold text-white text-[1.125em]">
@@ -170,7 +175,7 @@ const ConnectModal = ({
                 <h4 className="text-[1.14em] font-bold">
                   A new way to sign-in
                 </h4>
-                <p className="text-text-grey">
+                <p className="text-text-grey pb-2">
                   Instead of creating new accounts and passwords on every
                   website, just connect your wallet.
                 </p>
