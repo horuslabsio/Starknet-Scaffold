@@ -3,20 +3,20 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useNetwork } from "@starknet-react/core";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "@/components/ui/command";
+} from "@/app/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
+} from "@/app/components/ui/popover";
+import { cn } from "@/app/lib/utils";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",

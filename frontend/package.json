@@ -20,6 +20,7 @@
     "cmdk": "^0.2.1",
     "lucide-react": "^0.331.0",
     "next": "14.0.4",
+    "lucide-react": "^0.331.0",
     "react": "^18",
     "react-blockies": "^1.4.1",
     "react-dom": "^18",
