@@ -51,11 +51,11 @@ Good with Typescript and Tailwind? We've got missing UI components we'll love to
 | Feature | Available |
 | :---: | :---: |
 | Connect button & Custom Wallet Modal | ✅ |
-| Address bar (Displays StarknetID) | ❌ |
-| Transactions List | ❌ |
+| Address bar (Displays StarknetID) | ✅ |
+| Transactions List | ✅ |
 | modal to copy/disconnect/view account | ❌ |
 | Display account balance | ❌ |
-| Switch/display network | ❌ |
+| Switch/display network | ✅ |
 | App Light/Dark mode | ✅ |
 
 ## USAGE
