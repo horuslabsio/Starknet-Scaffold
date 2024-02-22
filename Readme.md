@@ -53,8 +53,8 @@ Good with Typescript and Tailwind? We've got missing UI components we'll love to
 | Connect button & Custom Wallet Modal | ✅ |
 | Address bar (Displays StarknetID) | ✅ |
 | Transactions List | ✅ |
-| modal to copy/disconnect/view account | ❌ |
-| Display account balance | ❌ |
+| modal to copy/disconnect/view account | ✅ |
+| Display account balance | ✅ |
 | Switch/display network | ✅ |
 | App Light/Dark mode | ✅ |
 
