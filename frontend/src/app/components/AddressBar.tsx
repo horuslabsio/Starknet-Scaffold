@@ -47,7 +47,7 @@ const UserModal = ({
       className="absolute left-1/2 right-1/2 grid justify-center items-center z-[99] backdrop-blur"
     >
       <div
-        className={`bg-[#1c1b1f] rounded-[25px] flex flex-col h-[clamp(300px,40vmax,468px)] w-[50vmax] border-[1px] border-solid border-outline-grey lg:h-[clamp(300px,35vmax,520px)] lg:min-w-[620px] lg:w-[50vmax] transition-[opacity,transform] duration-500 ease-in-out ${
+        className={`bg-[#1c1b1f] rounded-[25px] flex flex-col h-[400px] w-[300px] border-[1px] border-solid border-outline-grey transition-[opacity,transform] duration-500 ease-in-out ${
           animate ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         }  `}
       >
@@ -59,11 +59,8 @@ const UserModal = ({
               className="rounded-full h-24 w-24"
             />
             <span className="flex justify-between p-3 border-[1px] border-outline-gray rounded-full w-full">
-              <span className="flex md:hidden text-center">
-                {address?.slice(0, 18).concat("...").concat(address?.slice(-5))}
-              </span>
-              <span className="hidden md:flex text-center">
-                {address?.slice(0, 35).concat("...").concat(address?.slice(-5))}
+              <span className="flex justify-center">
+                {address?.slice(0, 12).concat("...").concat(address?.slice(-5))}
               </span>
               <Image
                 onClick={handleCopyClick}
