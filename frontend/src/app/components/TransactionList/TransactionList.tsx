@@ -46,7 +46,7 @@ const TransactionList = () => {
 
   return (
     <div>
-      <h1 className="mb-3">Transaction List</h1>
+      <h1 className="mb-3 font-semibold">Transaction List</h1>
       {transactions.map((transaction, index) => (
         <TransactionItem key={index} transaction={transaction} />
       ))}

@@ -3,7 +3,7 @@ import Header from "./components/Header";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between py-24 md:p-24">
       <Header />
       <Image
         className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
@@ -14,7 +14,7 @@ export default function Home() {
         priority
       />
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <div className="mb-32 grid md:grid-cols-2 md:text-start text-center  lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left lg:max-w-5xl">
         <a
           href="https://docs.swmansion.com/scarb/docs.html"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
