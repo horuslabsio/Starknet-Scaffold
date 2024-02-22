@@ -4,21 +4,23 @@ const GenericModal = ({
   animate,
   children,
   className,
+  position,
 }: {
   isOpen: boolean;
   onClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
   animate: boolean;
   children: React.ReactNode;
   className?: string;
+  position?: string;
 }) => {
   return (
     <>
       {isOpen && (
         <section
           onClick={onClose}
-          className={`fixed h-screen w-screen grid justify-center top-0 left-0 items-center z-[99] backdrop-blur ${
-            !isOpen ? "hidden" : ""
-          }`}
+          className={`fixed h-screen w-screen grid  top-0 left-0  z-[99]  backdrop-blur ${
+            position ? position : "justify-center items-center"
+          }  ${!isOpen ? "hidden" : ""}`}
         >
           <div
             onClick={(e) => e.stopPropagation()}

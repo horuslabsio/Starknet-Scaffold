@@ -1,5 +1,5 @@
 "use client";
-import AddressBar from "./AddressBar";
+import AddressBar, { UserModal } from "./AddressBar";
 import { useEffect, useRef, useState } from "react";
 import { Connector, useConnect, useAccount } from "@starknet-react/core";
 import { LibraryBig } from "lucide-react";
@@ -13,6 +13,8 @@ const Header = () => {
   const { address } = useAccount();
   const { connect, connectors } = useConnect();
   const [openConnectModal, setOpenConnectModal] = useState(false);
+  const [openConnectedModal, setOpenConnectedModal] = useState(false);
+  const [isTransactionModalOpen, setIsModalTransactionOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const toggleModal = () => {
@@ -22,7 +24,10 @@ const Header = () => {
   const toggleMenu = () => {
     setOpenMenu((prev) => !prev);
   };
-  const [isTransactionModalOpen, setIsModalTransactionOpen] = useState(false);
+
+  const toggleUserModal = () => {
+    setOpenConnectedModal((prev) => !prev);
+  };
 
   const handleOpenTransactionListClick = () => {
     setIsModalTransactionOpen(true);
@@ -83,7 +88,6 @@ const Header = () => {
   }, [openConnectModal]);
 
   const { theme, changeTheme } = useTheme();
-  console.log(theme);
 
   return (
     <>
@@ -113,7 +117,7 @@ const Header = () => {
         <div className="hidden md:flex gap-8">
           {address ? (
             <div className="flex justify-end">
-              <AddressBar />
+              <AddressBar setOpenConnectedModal={setOpenConnectedModal} />
               <button
                 className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
                 onClick={handleOpenTransactionListClick}
@@ -172,7 +176,7 @@ const Header = () => {
             <div className="flex flex-wrap gap-8">
               {address ? (
                 <div className="flex justify-end">
-                  <AddressBar />
+                  <AddressBar setOpenConnectedModal={setOpenConnectedModal} />
                   <button
                     className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
                     onClick={handleOpenTransactionListClick}
@@ -194,10 +198,16 @@ const Header = () => {
           </div>
         </div>
       </header>
+
       <ConnectModal isOpen={openConnectModal} onClose={toggleModal} />
       <TransactionModal
         isOpen={isTransactionModalOpen}
         onClose={handleCloseTransactionListClick}
+      />
+      <UserModal
+        openConnectedModal={openConnectedModal}
+        closeConnectedModal={toggleUserModal}
+        address={address ? address : ""}
       />
     </>
   );

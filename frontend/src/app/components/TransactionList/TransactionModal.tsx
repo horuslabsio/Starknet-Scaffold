@@ -25,11 +25,10 @@ const TransactionModal = ({
       isOpen={isOpen}
       onClose={onClose}
       animate={animate}
-      className="fixed top-0 right-10 w-1/4"
+      position="justify-center items-center md:justify-end"
+      className="w-[90vw] h-fit mx-auto md:w-[30rem] md:min-h-[30rem] px-4 py-8 md:p-8"
     >
-      <div className="m-4">
-        <TransactionList />
-      </div>
+      <TransactionList />
     </GenericModal>
   );
 };
