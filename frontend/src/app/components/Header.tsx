@@ -272,17 +272,9 @@ const Header = () => {
             </text>
           </svg>
         </span>
-        <div className="flex justify-end ml-4">
+        <div className="flex">
           {address ? (
-            <div className="flex justify-end">
-              <AddressBar />
-              <button
-                className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
-                onClick={handleOpenTransactionListClick}
-              >
-                <LibraryBig className="h-full w-full" />
-              </button>
-            </div>
+            <AddressBar />
           ) : (
             <button
               onClick={toggleModal}
@@ -291,13 +283,36 @@ const Header = () => {
               Connect
             </button>
           )}
-          <div className="flex items-center ml-4 space-x-2">
-            <ThemeSwitch
-              className="dark:transform-none transform translate-x-6 dark:translate-none"
-              action={changeTheme}
-              theme={theme}
-            />
-            <NetworkSwitcher />
+
+          <div className="flex items-center ml-4">
+            <div className="flex justify-end ml-4">
+              {address ? (
+                <div className="flex justify-end">
+                  <AddressBar />
+                  <button
+                    className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+                    onClick={handleOpenTransactionListClick}
+                  >
+                    <LibraryBig className="h-full w-full" />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={toggleModal}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+                >
+                  Connect
+                </button>
+              )}
+              <div className="flex items-center ml-4 space-x-2">
+                <ThemeSwitch
+                  className="dark:transform-none transform translate-x-6 dark:translate-none"
+                  action={changeTheme}
+                  theme={theme}
+                />
+                <NetworkSwitcher />
+              </div>
+            </div>
           </div>
         </div>
       </header>
