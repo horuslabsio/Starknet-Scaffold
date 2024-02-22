@@ -122,17 +122,17 @@ const AddressBar = () => {
     <>
       <button
         onClick={toggleModal}
-        className="fixed bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
       >
         {isLoading && <span>Loading...</span>}
         {isError && (
-          <span className="flex items-center gap-x-3">
-            <Blockies seed={address} className="rounded-full h-3 w-3" />
+          <span className="flex items-center">
+            <Blockies seed={address} className="rounded-full h-3 w-3 mr-2" />
             {address?.slice(0, 6).concat("...").concat(address?.slice(-5))}
           </span>
         )}
         {data && (
-          <span className="flex items-center gap-x-3">
+          <span className="flex items-center">
             <Blockies seed={address} className="rounded-full h-3 w-3" />
             {data}
           </span>
