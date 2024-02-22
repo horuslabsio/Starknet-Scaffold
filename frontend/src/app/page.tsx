@@ -3,7 +3,7 @@ import Header from "./components/Header";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between py-24 md:p-24">
       <Header />
       <Image
         className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
