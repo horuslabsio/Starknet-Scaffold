@@ -10,7 +10,7 @@ interface ThemeSwitchProps {
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ theme, action, className }) => {
     return (
         <div
-            className={`md:w-14 md:h-7 w-12 h-6 flex items-center dark:bg-black bg-white-1  rounded-full p-1 cursor-pointer`}
+            className={`md:w-14 md:h-7 w-12 h-6 flex items-center dark:bg-black bg-white-1 rounded-full p-1 cursor-pointer`}
             onClick={action}
         >
             <div
