@@ -2,7 +2,6 @@ import Image from "next/image";
 import GenericModal from "./GenericModal";
 import { Connector, useConnect } from "@starknet-react/core";
 import { useEffect, useState } from "react";
-import useTheme from "../hooks/useTheme";
 
 type Props = {
   isOpen: boolean;
@@ -18,24 +17,27 @@ const Wallet = ({
   alt,
   src,
   connector,
+  closeModal,
 }: {
   name: string;
   alt: string;
   src: string;
   connector: Connector;
+  closeModal: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }) => {
   const { connect } = useConnect();
   const isSvg = src?.startsWith("<svg");
 
-  function handleConnectWallet(): void {
+  function handleConnectWallet(e: React.MouseEvent<HTMLButtonElement>): void {
     connect({ connector });
+    closeModal(e);
     localStorage.setItem("lastUsedConnector", connector.name);
   }
 
   return (
     <button
       className="flex gap-4 items-center text-start p-[.2rem] hover:bg-outline-grey hover:rounded-[10px] transition-all cursor-pointer"
-      onClick={() => handleConnectWallet()}
+      onClick={(e) => handleConnectWallet(e)}
     >
       <div className="h-[2.2rem] w-[2.2rem] rounded-[5px]">
         {isSvg ? (
@@ -63,7 +65,6 @@ const Wallet = ({
 
 const ConnectModal = ({ isOpen, onClose }: Props) => {
   const [animate, setAnimate] = useState(false);
-  const { theme } = useTheme();
   const closeModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setAnimate(false);
@@ -122,6 +123,7 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
           <div className="flex flex-col gap-4 py-8">
             {connectors.map((connector, index) => (
               <Wallet
+                closeModal={closeModal}
                 key={connector.id || index}
                 src={connector.icon.light!}
                 name={connector.name}
