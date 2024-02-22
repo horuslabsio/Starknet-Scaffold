@@ -16,113 +16,74 @@ export default function Home() {
 
       <div className="mb-32 grid md:grid-cols-2 md:text-start text-center  lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left lg:max-w-5xl">
         <a
-          href="https://docs.swmansion.com/scarb/docs.html"
+          href="#"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Scarb{" "}
+            Scaffold Deployer{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Scarb is a build toolchain and package manager for Cairo and
-            Starknet. Used to compile contracts, install dependencies and so
-            many more.
+            A simple tool for seamlessly deploying smart contracts to Starknet testnet and mainnet <br /><br />
+            <b>coming soon...</b>
           </p>
         </a>
 
         <a
-          href="https://foundry-rs.github.io/starknet-foundry/index.html"
+          href="#"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Starknet Foundry{" "}
+            Scaffold Local Faucet{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Blazingly fast toolkit for developing Starknet contracts designed &
-            developed by ex Protostar team from Software Mansion based on native
-            Cairo test runner and Blockifier, written in Rust.
+            A sepETH/sepSTRK faucet for claiming ETH/STRK sepolia testnet tokens <br /><br />
+            <b>coming soon...</b>
           </p>
         </a>
 
         <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="#"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Next.js{" "}
+            Scaffold Block Explorer{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Next.js gives you the best developer experience with all the
-            features you need for production: hybrid static & server rendering,
-            smart bundling, and more. No config needed.
+            A simple block explorer for Starknet devnet <br /><br />
+            <b>coming soon...</b>
           </p>
         </a>
 
         <a
-          href="https://www.starknetjs.com/"
+          href=""
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Starknet.js{" "}
+            Scaffold Puzzles{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Starknet.js a Javascript Library used to interact with Starknet.
-          </p>
-        </a>
-
-        <a
-          href="https://starknetkit.com"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Starknetkit{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Starknetkit is built with all kinds of users in mind. Developers,
-            crypto experts, mobile users, and complete newbies will find a way
-            to quickly connect to your dapp. For you? only one line of code.
-          </p>
-        </a>
-
-        <a
-          href="https://starknet-react.com"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Starknet-react{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Starknet React is a collection of React hooks for Starknet. It is
-            inspired by wagmi, powered by starknet.js.
+            Learn and master Cairo by playing some of our native Scaffold games/puzzles <br /><br />
+            <b>coming soon...</b>
           </p>
         </a>
       </div>
