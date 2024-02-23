@@ -13,7 +13,6 @@ Before you begin, you need to install the following tools:
 - [Git](https://git-scm.com/downloads)
 - [Scarb](https://docs.swmansion.com/scarb/docs.html)
 - [Starknet Foundry](https://foundry-rs.github.io/starknet-foundry/)
-- [Starknet Devnet](https://github.com/0xSpaceShard/starknet-devnet-rs)
 
 ## QUICKSTART
 
@@ -143,16 +142,10 @@ npm run deploy-contract --profile=<MY_PROFILE> --classhash=<CONTRACT_CLASSHASH>
 
 #### Run Starknet-Devnet
 
-To run starknet-devnet:
+Ensure to have Docker installed. To run starknet-devnet:
 
 ```
 npm run devnet
-```
-
-or specify a port:
-
-```
-npm run devnet --port=<PORT>
 ```
 
 ### UI SECTION
@@ -191,83 +184,3 @@ Documentations of tools used in this scaffold:
 We welcome contributions to Starknet-Scaffold!
 
 Please see [CONTRIBUTING.MD](https://github.com/argentlabs/Starknet-Scaffold/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Starknet-Scaffold.
-
-TL;DR:
-
-### 1. Submit an issue
-
-- Create a [new issue](https://github.com/argentlabs/Starknet-Scaffold/issues/new/choose).
-- Comment on the issue (if you'd like to be assigned to it).
-
-### 2. Fork this repository
-
-- If you're not sure, here's how to [fork the repo](https://help.github.com/en/articles/fork-a-repo).
-
-### 3. Set up your local environment (optional)
-
-If you're ready to contribute and create your PR, it will help to set up a local environment so you can see your changes.
-
-1. [Set up your development environment](https://www.gatsbyjs.com/docs/tutorial/part-zero/)
-
-2. Clone your fork
-
-If this is your first time forking our repo, this is all you need to do for this step:
-
-```sh
-git clone git@github.com:[your_github_handle]/Starknet-Scaffold.git && cd Starknet-Scaffold
-```
-
-If you've already forked the repo, you'll want to ensure your fork is configured and that it's up to date. This will save you the headache of potential merge conflicts.
-
-To [configure your fork](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork):
-
-```sh
-git remote add upstream https://github.com/argentlabs/Starknet-Scaffold.git
-```
-
-To [sync your fork with the latest changes](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork):
-
-```sh
-git checkout main
-git fetch upstream
-git merge upstream/main
-```
-
-3. Install dependencies
-
-```sh
-npm install
-```
-
-### 4. Make awesome changes!
-
-1. Create new branch for your changes
-
-```sh
-git checkout -b new_branch_name
-```
-
-2. Start developing!
-
-```sh
-npm run start
-```
-
-3. Commit and prepare for pull request (PR). In your PR commit message, reference the issue it resolves (see [how to link a commit message to an issue using a keyword](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)).
-
-```sh
-git commit -m "brief description of changes [Fixes #123]"
-```
-
-4. Push to your GitHub account
-
-```sh
-git push
-```
-
-### 5. Submit your PR
-
-- After your changes are committed to your GitHub fork, submit a pull request (PR) to the `main` branch of the `argentlabs/Starknet-Scaffold` repo
-- In your PR description, reference the issue it resolves (see [linking a pull request to an issue using a keyword](https://docs.github.com/en/free-pro-team@latest/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword))
-  - ex. `Updates out of date content [Fixes #1234]`
-- Why not say hi and draw attention to your PR in [our telegram channel](https://t.me/+5ACcxJ9RNnU4YjY0)?

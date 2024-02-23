@@ -13,10 +13,10 @@
     "delete-account": "cd contracts && sncast --url ${npm_config_url} account delete --name ${npm_config_name} --network ${npm_config_network}",
     "declare-contract": "cd contracts && sncast --profile ${npm_config_profile} declare --contract-name ${npm_config_contract}",
     "deploy-contract": "cd contracts && sncast --profile ${npm_config_profile} deploy --class-hash ${npm_config_classhash}",
+    "devnet": "sh ./devnet/start.sh",
     "start": "cd frontend && npm run dev",
     "install": "cd frontend && npm install",
-    "build-ui": "cd frontend && npm run build",
-    "devnet": "starknet-devnet --port ${npm_config_port:=5050}"
+    "build-ui": "cd frontend && npm run build"
   },
   "repository": {
     "type": "git",
