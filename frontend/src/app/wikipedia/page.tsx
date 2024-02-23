@@ -38,7 +38,7 @@ async function getData(): Promise<Resource[]> {
       id: "4",
       name: "Awesome Starknet",
       description:
-        " A curated list of awesome StarkNet resources, libraries, tools and more.",
+        "A curated list of awesome StarkNet resources, libraries, tools and more.",
       status: "Up to date",
       url: "https://github.com/keep-starknet-strange/awesome-starknet",
     },
@@ -52,14 +52,6 @@ async function getData(): Promise<Resource[]> {
     },
     {
       id: "6",
-      name: "blabla",
-      description:
-        "This resource does blablalba and shows you how to do blablablabla. This resource does blablalba and shows you how to do blablablabla. This resource does blablalba and shows you how to do blablablabla. This resource does blablalba and shows you how to do blablablabla.",
-      status: "Up to date",
-      url: "https://www.starknet-ecosystem.com/fr/academy",
-    },
-    {
-      id: "7",
       name: "OpenZeppelin Cairo Contracts",
       description:
         "OpenZeppelin Contracts written in Cairo for Starknet, a decentralized ZK Rollup ",
@@ -67,7 +59,7 @@ async function getData(): Promise<Resource[]> {
       url: "https://github.com/OpenZeppelin/cairo-contracts",
     },
     {
-      id: "8",
+      id: "7",
       name: "Cairo Goldmine",
       description:
         "A comprehensive, annotated list of repositories of the starknet ecosystem.",
@@ -75,7 +67,7 @@ async function getData(): Promise<Resource[]> {
       url: "https://github.com/beautyisourbusiness/cairo-goldmine",
     },
     {
-      id: "9",
+      id: "8",
       name: "Warp",
       description:
         "Bringing Solidity to Starknet at warp speed. Warp is a Solidity to Cairo Compiler, this allows teams to write/migrate Solidity to Cairo for easy onboarding into the StarkNet ecosystem.",
@@ -83,12 +75,19 @@ async function getData(): Promise<Resource[]> {
       url: "https://github.com/NethermindEth/warp",
     },
     {
-      id: "10",
+      id: "9",
       name: "Starknet Hardhat plugin",
       description:
         "A plugin for integrating Starknet tools into Hardhat projects.",
       status: "Up to date",
       url: "https://github.com/0xSpaceShard/starknet-hardhat-plugin",
+    },
+    {
+      id: "10",
+      name: "DappLand",
+      description: "The best Starknet Dapps. Built by Argent.",
+      status: "Up to date",
+      url: "https://www.dappland.com/",
     },
     {
       id: "11",
