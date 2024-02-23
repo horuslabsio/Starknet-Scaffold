@@ -1,0 +1,1 @@
+// burner contract goes in here
