@@ -58,13 +58,13 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Scaffold Block Explorer{" "}
+            Scaffold Burner Wallet{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A simple block explorer for Starknet devnet <br /><br />
+            Generate temporary wallets, which can be used during the course of development <br /><br />
             <b>coming soon...</b>
           </p>
         </a>
