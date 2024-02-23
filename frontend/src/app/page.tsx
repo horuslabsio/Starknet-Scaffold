@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Header from "./components/Header";
+import { Link } from "lucide-react";
 
 export default function Home() {
   return (
@@ -28,7 +29,9 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A simple tool for seamlessly deploying smart contracts to Starknet testnet and mainnet <br /><br />
+            A simple tool for seamlessly deploying smart contracts to Starknet
+            testnet and mainnet <br />
+            <br />
             <b>coming soon...</b>
           </p>
         </a>
@@ -46,7 +49,9 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A sepETH/sepSTRK faucet for claiming ETH/STRK sepolia testnet tokens <br /><br />
+            A sepETH/sepSTRK faucet for claiming ETH/STRK sepolia testnet tokens{" "}
+            <br />
+            <br />
             <b>coming soon...</b>
           </p>
         </a>
@@ -64,13 +69,15 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Generate temporary wallets, which can be used during the course of development <br /><br />
+            Generate temporary wallets, which can be used during the course of
+            development <br />
+            <br />
             <b>coming soon...</b>
           </p>
         </a>
 
         <a
-          href=""
+          href="/wikipedia"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
           rel="noopener noreferrer"
@@ -82,7 +89,9 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A collection of Starknet/Cairo learning resources in the ecosystem <br /><br />
+            A collection of Starknet/Cairo learning resources in the ecosystem{" "}
+            <br />
+            <br />
             <b>coming soon...</b>
           </p>
         </a>
