@@ -13,6 +13,7 @@ Before you begin, you need to install the following tools:
 - [Git](https://git-scm.com/downloads)
 - [Scarb](https://docs.swmansion.com/scarb/docs.html)
 - [Starknet Foundry](https://foundry-rs.github.io/starknet-foundry/)
+- [Starknet Devnet](https://github.com/0xSpaceShard/starknet-devnet-rs)
 
 ## QUICKSTART
 
@@ -138,6 +139,20 @@ To deploy a contract:
 
 ```
 npm run deploy-contract --profile=<MY_PROFILE> --classhash=<CONTRACT_CLASSHASH>
+```
+
+#### Run Starknet-Devnet
+
+To run starknet-devnet:
+
+```
+npm run devnet
+```
+
+or specify a port:
+
+```
+npm run devnet --port=<PORT>
 ```
 
 ### UI SECTION
