@@ -13,6 +13,7 @@ Before you begin, you need to install the following tools:
 - [Git](https://git-scm.com/downloads)
 - [Scarb](https://docs.swmansion.com/scarb/docs.html)
 - [Starknet Foundry](https://foundry-rs.github.io/starknet-foundry/)
+- [Starknet Devnet](https://github.com/0xSpaceShard/starknet-devnet-rs)
 
 ## QUICKSTART
 
