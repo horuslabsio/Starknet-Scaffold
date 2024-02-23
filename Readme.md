@@ -141,6 +141,20 @@ To deploy a contract:
 npm run deploy-contract --profile=<MY_PROFILE> --classhash=<CONTRACT_CLASSHASH>
 ```
 
+#### Run Starknet-Devnet
+
+To run starknet-devnet:
+
+```
+npm run devnet
+```
+
+or specify a port:
+
+```
+npm run devnet --port=<PORT>
+```
+
 ### UI SECTION
 
 The `frontend` section contains all UI components. Built using NextJS, Starknet.js, Starknet-React, Starknetkit, and Typescript.
