@@ -1,1 +1,3 @@
-// burner contract goes in here
+mod burner_deployer;
+
+mod mock;

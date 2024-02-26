@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/argentlabs/Starknet-Scaffold#readme",
   "dependencies": {
+    "inquirer": "9.2.15",
     "ora": "^8.0.1"
   }
 }
