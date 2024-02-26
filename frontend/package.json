@@ -25,7 +25,7 @@
     "react-blockies": "^1.4.1",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
-    "starknet": "^5.24.3",
+    "starknet": "^6.0.0",
     "starknetkit": "^1.0.29",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
