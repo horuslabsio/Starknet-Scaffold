@@ -62,12 +62,12 @@ try {
 
   let basicCleanupTasks = [];
   if (projectType === "basic") {
-    const FRONTEND_BASE_PATH = "frontend/src/app/components";
+    const FRONTEND_BASE_PATH = "frontend/src/app";
     const componentsToRemove = [
       "burner",
-      `${FRONTEND_BASE_PATH}/Burner`,
-      `${FRONTEND_BASE_PATH}/StarkDeployer`,
-      `${FRONTEND_BASE_PATH}/CairoWikipedia`,
+      `${FRONTEND_BASE_PATH}/components/Burner`,
+      `${FRONTEND_BASE_PATH}/components/StarkDeployer`,
+      `${FRONTEND_BASE_PATH}/wikipedia`,
     ];
     basicCleanupTasks.push(
       ...componentsToRemove.map((comp) =>
