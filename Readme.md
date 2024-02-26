@@ -23,7 +23,7 @@ git clone git@github.com:argentlabs/Starknet-Scaffold.git
 cd Starknet-Scaffold
 ```
 
-Or to install using create-starknet-app:
+Or to install using create-starknet-app (recommended):
 
 ```
 npx create-starknet-app
@@ -33,7 +33,7 @@ npx create-starknet-app
 
 ### Contract Section
 
-Scripts exists to make your life easier! A missing script you'd like to see? open a PR to update this section
+Scripts exists to make your life easier! Here are available scripts and features:
 | Feature | Available |
 | :---: | :---: |
 | Build Contract | ✅ |
@@ -44,10 +44,15 @@ Scripts exists to make your life easier! A missing script you'd like to see? ope
 | Delete Account | ✅ |
 | Declare Contract | ✅ |
 | Deploy Contract | ✅ |
+| Devnet spin up | ✅ |
+| Burner wallets for debugging | ✅ |
+| Starknet contract Deployer | ❌ |
+| sepETH/sepSTRK faucet | ❌ |
+| Cairo Wikipedia | ✅ |
 
 ### UI Section
 
-Good with Typescript and Tailwind? We've got missing UI components we'll love to see!
+UI components, to spin up faster UIs. Any missing UI component you'd like to see? please open a PR:)
 | Feature | Available |
 | :---: | :---: |
 | Connect button & Custom Wallet Modal | ✅ |
@@ -57,6 +62,7 @@ Good with Typescript and Tailwind? We've got missing UI components we'll love to
 | Display account balance | ✅ |
 | Switch/display network | ✅ |
 | App Light/Dark mode | ✅ |
+| Burner wallet UI| ✅ |
 
 ## USAGE
 
