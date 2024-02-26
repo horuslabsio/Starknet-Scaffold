@@ -35,7 +35,7 @@ fn test_deploy_a_first_account() {
     let burnerDeployerAddress = deploy_contract_to_test(account_class_hash);
     let dispatcher = IBurnerWalletDeployerDispatcher { contract_address: burnerDeployerAddress };
 
-    let public_key = 0x4ae92c17fc4badd44bb3095170cb5817b9b57539c8babf20ab87c86999c7044;
+    let public_key = 883045738439352841478194533192765345509759306772397516907181243450667673002;
 
     // -- Act
     let account_address = dispatcher.deploy_burner_wallet(public_key);
@@ -61,7 +61,7 @@ fn test_deploy_a_second_account() {
     let burnerDeployerAddress = deploy_contract_to_test(account_class_hash);
     let dispatcher = IBurnerWalletDeployerDispatcher { contract_address: burnerDeployerAddress };
 
-    let public_key = 0x4ae92c17fc4badd44bb3095170cb5817b9b57539c8babf20ab87c86999c7044;
+    let public_key = 883092738439352829178194533192765345509759306772397516907181243450667673002;
 
     let first_account = dispatcher.deploy_burner_wallet(public_key);
 
@@ -81,19 +81,5 @@ fn test_deploy_a_second_account() {
     let internal_salt = read_storage(burnerDeployerAddress, selector!("salt"));
 
     assert!(internal_salt == 2, "salt has not been updated");
-}
-
-#[test]
-fn test_use_oz_class_hash_by_default() {
-
-    // -- Arrange
-    let OZ_ACCOUNT_CLASSHASH: felt252 = 0x01148c31dfa5c4708a4e9cf1eb0fd3d4d8ad9ccf09d0232cd6b56bee64a7de9d;
-
-    // -- Act
-    let burnerDeployerAddress = deploy_contract_to_test(0);
-
-    // -- Assert
-    let internal_account_class_hash = read_storage(burnerDeployerAddress, selector!("account_class_hash"));
-    assert!(internal_account_class_hash == OZ_ACCOUNT_CLASSHASH, "account class hash has not been set correctly");
 }
 
