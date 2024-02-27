@@ -47,7 +47,7 @@ Scripts exists to make your life easier! Here are available scripts and features
 | Devnet spin up | ✅ |
 | Burner wallets for debugging | ✅ |
 | Starknet contract Deployer | ❌ |
-| sepETH/sepSTRK faucet | ❌ |
+| sepETH/sepSTRK faucet | ✅ |
 | Cairo Wikipedia | ✅ |
 
 ### UI Section
