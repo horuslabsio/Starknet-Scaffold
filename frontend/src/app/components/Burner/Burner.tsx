@@ -16,37 +16,24 @@ const Burners: React.FC = () => {
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const { account } = useAccount();
   const { chain } = useNetwork();
-  const [rpcAddress, setRpcAddress] = useState<string>("");
-  const [burnerWalletDeployer, setBurnerWalletDeployer] = useState<Contract>();
 
-  const BURNER_WALLET_ADDRESS_SEPOLIA =
-    "0x2ffc549d472164639366ad0acfbc5fde49fcc0f037fa6bc9b1702161012f5d3";
+  console.log(chain.network)
 
-  const BURNER_WALLET_ADDRESS_GOERLI =
-    "0x3341944e5ed2a72cd23cc5236754ebc5d01722fd74d84dafb367dccd1b18db3";
+  let burnerDeployerAddress
+  let rpcAddress: string
+  if (chain.network == "sepolia") {
+    burnerDeployerAddress = "0x2ffc549d472164639366ad0acfbc5fde49fcc0f037fa6bc9b1702161012f5d3"
+    rpcAddress = "https://starknet-sepolia.public.blastapi.io"
+  } 
+  else if (chain.network == "goerli") {
+    burnerDeployerAddress = "0x3341944e5ed2a72cd23cc5236754ebc5d01722fd74d84dafb367dccd1b18db3"
+    rpcAddress = "https://starknet-testnet.public.blastapi.io"
+  }
+  else {
+    console.log("burner wallets are not supported on mainnet!")
+  }
 
-  console.log("chainId", chain.network);
-
-  useEffect(() => {
-    console.log("CHANGE NETWORK");
-    if (chain.network === "sepolia") {
-      setRpcAddress("https://starknet-sepolia.public.blastapi.io");
-      setBurnerWalletDeployer(
-        new Contract(Array.from(Abi), BURNER_WALLET_ADDRESS_SEPOLIA, account)
-      );
-      console.log("sepolia");
-    } else if (chain.network === "goerli") {
-      console.log("goerli");
-      setRpcAddress("https://starknet-testnet.public.blastapi.io");
-      setBurnerWalletDeployer(
-        new Contract(Array.from(Abi), BURNER_WALLET_ADDRESS_GOERLI, account)
-      );
-    } else {
-      setRpcAddress("");
-      setBurnerWalletDeployer(undefined);
-      console.warn("Burners are not supported on the mainnet.");
-    }
-  }, [chain, account]);
+  let burnerWalletDeployer = new Contract(Array.from(Abi), burnerDeployerAddress!, account)
 
   const generateWallet = async (
     burnerWalletDeployer: Contract
@@ -108,10 +95,13 @@ const Burners: React.FC = () => {
       <Header />
       <div className="flex justify-center p-4 pt-20">
         <div className="flex flex-col items-start gap-2">
+        <h2><b className="text-red-300">NB: Please note that burner wallets are not supported on mainnet. Resolve to using a wallet provider instead! <br /><br />Also you can only generate a maximum of 5 burner wallets for each session</b></h2>
+        <br />
+
           <h3 className="font-bold text-start">Burner Wallets:</h3>
           {wallets.map((wallet, index) => (
             <div key={index} className="flex flex-col gap-2 p-2 border-2">
-              <h4>Burner {index + 1}</h4>
+              <h4><b>Burner {index + 1}</b></h4>
               <p>Private Key: {wallet.privateKey}</p>
               <p>Public Key: {wallet.publicKey}</p>
               <p>Account Address: {wallet.address}</p>

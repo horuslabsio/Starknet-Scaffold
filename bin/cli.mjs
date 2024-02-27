@@ -68,6 +68,7 @@ try {
       `${FRONTEND_BASE_PATH}/components/Burner`,
       `${FRONTEND_BASE_PATH}/components/StarkDeployer`,
       `${FRONTEND_BASE_PATH}/wikipedia`,
+      `${FRONTEND_BASE_PATH}/burner`,
     ];
     basicCleanupTasks.push(
       ...componentsToRemove.map((comp) =>

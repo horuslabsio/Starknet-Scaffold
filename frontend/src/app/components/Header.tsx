@@ -1,7 +1,7 @@
 "use client";
 import AddressBar, { UserModal } from "./AddressBar";
 import { useEffect, useRef, useState } from "react";
-import { Connector, useConnect, useAccount } from "@starknet-react/core";
+import { useConnect, useAccount } from "@starknet-react/core";
 import { LibraryBig } from "lucide-react";
 import TransactionModal from "./TransactionList/TransactionModal";
 import useTheme from "../hooks/useTheme";

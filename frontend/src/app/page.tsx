@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Header from "./components/Header";
-import { Link } from "lucide-react";
 
 export default function Home() {
   return (
@@ -50,9 +49,6 @@ export default function Home() {
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
             A sepETH/sepSTRK faucet for claiming ETH/STRK sepolia testnet tokens{" "}
-            <br />
-            <br />
-            <b>coming soon...</b>
           </p>
         </a>
 
@@ -72,7 +68,6 @@ export default function Home() {
             Generate temporary wallets, which can be used during the course of
             development <br />
             <br />
-            <b>coming soon...</b>
           </p>
         </a>
 
@@ -90,9 +85,6 @@ export default function Home() {
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
             A collection of Starknet/Cairo learning resources in the ecosystem{" "}
-            <br />
-            <br />
-            <b>coming soon...</b>
           </p>
         </a>
       </div>
