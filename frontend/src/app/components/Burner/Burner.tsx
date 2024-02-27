@@ -87,8 +87,12 @@ const Burners: React.FC = () => {
 
   const handleCreate = async () => {
     if (wallets.length < 5) {
-      const newWallet = await generateWallet(burnerWalletDeployer);
-      setWallets([...wallets, newWallet]);
+      if (burnerWalletDeployer) {
+        const newWallet = await generateWallet(burnerWalletDeployer);
+        setWallets([...wallets, newWallet]);
+      } else {
+        console.error("Burner wallet deployer is undefined.");
+      }
     } else {
       alert("Maximum of 5 burner accounts are allowed.");
     }
