@@ -21,7 +21,7 @@ import { cn } from "@/app/lib/utils";
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",
   goerli: "SN_GOERLI",
-  // sepolia: "SN_SEPOLIA",
+  sepolia: "SN_SEPOLIA",
 };
 
 const networks = [
@@ -33,10 +33,10 @@ const networks = [
     value: "SN_GOERLI",
     label: "Goerli",
   },
-  // {
-  //   value: "SN_SEPOLIA",
-  //   label: "Sepolia",
-  // },
+  {
+    value: "SN_SEPOLIA",
+    label: "Sepolia",
+  },
 ];
 
 export function NetworkSwitcher() {

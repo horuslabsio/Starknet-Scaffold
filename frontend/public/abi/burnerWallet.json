@@ -1,0 +1,45 @@
+[
+  {
+    "type": "impl",
+    "name": "BurnerWalletDeployerImpl",
+    "interface_name": "burner::burner_deployer::IBurnerWalletDeployer"
+  },
+  {
+    "type": "interface",
+    "name": "burner::burner_deployer::IBurnerWalletDeployer",
+    "items": [
+      {
+        "type": "function",
+        "name": "deploy_burner_wallet",
+        "inputs": [
+          {
+            "name": "public_key",
+            "type": "core::felt252"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "state_mutability": "external"
+      }
+    ]
+  },
+  {
+    "type": "constructor",
+    "name": "constructor",
+    "inputs": [
+      {
+        "name": "class_hash",
+        "type": "core::felt252"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "burner::burner_deployer::BurnerWalletDeployer::Event",
+    "kind": "enum",
+    "variants": []
+  }
+]
