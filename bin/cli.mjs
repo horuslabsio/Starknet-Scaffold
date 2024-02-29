@@ -26,6 +26,15 @@ const projectPath = path.join(currentPath, projectName);
 // get github repo
 const git_repo = "https://github.com/argentlabs/Starknet-Scaffold.git";
 
+// create project directory
+if (fs.existsSync(projectPath)) {
+  console.log(`The file ${projectName} already exist in the current directory, please give it another name.`);
+  process.exit(1);
+}
+else {
+  fs.mkdirSync(projectPath);
+}
+
 try {
   const gitSpinner = ora("Downloading files...").start();
   // clone the repo into the project folder -> creates the new boilerplate
