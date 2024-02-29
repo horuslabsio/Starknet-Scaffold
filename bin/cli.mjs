@@ -5,49 +5,21 @@ import path from "path";
 import fs from "fs";
 // cli spinners
 import ora from "ora";
-// cli prompts
-import inquirer from "inquirer";
 
 // convert libs to promises
 const exec = promisify(cp.exec);
 const rm = promisify(fs.rm);
+
+if (process.argv.length < 3) {
+  console.log("You have to provide an app name and optionally choose if you need a basic boilerplate or a full debugger.");
+  console.log("For example :");
+  console.log("    npx create-starknetkit-app my-app basic");
+  process.exit(1);
+}
+
+const projectName = process.argv[2];
+const projectType = process.argv[3];
 const currentPath = process.cwd();
-
-const { projectName } = await inquirer.prompt([
-  {
-    name: "projectName",
-    message: "Insert the name of the project:",
-    validate: (pickedName) => {
-      if (pickedName.length < 1) {
-        return "Project name must contain at least one character.";
-      }
-
-      const pickedProjectPath = path.join(currentPath, pickedName);
-      if (fs.existsSync(pickedProjectPath)) {
-        return `The directory "${pickedName}" already exist in the current directory, please give it another name.`;
-      }
-      return true;
-    },
-  },
-]);
-
-const { projectType } = await inquirer.prompt([
-  {
-    name: "projectType",
-    type: "list",
-    message: "What type of scaffold do you need?",
-    choices: [
-      {
-        name: "Basic (recommended for easy boilerplate to kickstart your dapp)",
-        value: "basic",
-      },
-      {
-        name: "Full Package (recommended for early development process, needing a full debug suite)",
-        value: "full",
-      },
-    ],
-  },
-]);
 
 const projectPath = path.join(currentPath, projectName);
 
@@ -108,12 +80,12 @@ try {
 
   process.chdir(projectPath);
   // remove the packages needed for cli
-  await exec("npm uninstall ora cli-spinners inquirer");
+  await exec("npm uninstall ora cli-spinners");
   cleanSpinner.succeed();
 
   // install dependencies
   const npmSpinner = ora("Installing dependencies...").start();
-  await exec("npm run install");
+  await exec("npm run install --legacy-peer-deps");
   npmSpinner.succeed();
 
   console.log("The installation is done!");
