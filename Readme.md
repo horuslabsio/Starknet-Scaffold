@@ -23,10 +23,10 @@ git clone git@github.com:argentlabs/Starknet-Scaffold.git
 cd Starknet-Scaffold
 ```
 
-Or to install using create-starknet-app (recommended):
+Or install using create-starknet-app (recommended). This takes in the name and boilerplate type. If you need a basic boilerplate with frontend UI components, use the "basic" type else for full debugging suite, use "debugger". e.g
 
 ```
-npx create-starknet-app
+npx create-starknet-app my-app debugger
 ```
 
 ## FEATURES
