@@ -103,6 +103,6 @@ try {
   console.log(`    npm run start`);
 } catch (error) {
   // clean up in case of error, so the user does not have to do it manually
-  fs.rmSync(projectPath, { recursive: true, force: true });
+  // fs.rmSync(projectPath, { recursive: true, force: true });
   console.log(error);
 }
