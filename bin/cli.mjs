@@ -94,7 +94,7 @@ try {
 
   // install dependencies
   const npmSpinner = ora("Installing dependencies...").start();
-  await exec("npm run install --legacy-peer-deps");
+  await exec("npm run install");
   npmSpinner.succeed();
 
   console.log("The installation is done!");
@@ -103,6 +103,6 @@ try {
   console.log(`    npm run start`);
 } catch (error) {
   // clean up in case of error, so the user does not have to do it manually
-  // fs.rmSync(projectPath, { recursive: true, force: true });
+  fs.rmSync(projectPath, { recursive: true, force: true });
   console.log(error);
 }

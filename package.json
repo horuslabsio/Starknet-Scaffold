@@ -1,6 +1,6 @@
 {
   "name": "create-starknet-app",
-  "version": "0.3.1",
+  "version": "0.3.6",
   "description": "An open-source starknet development stack",
   "bin": "./bin/cli.mjs",
   "scripts": {
@@ -15,7 +15,7 @@
     "deploy-contract": "cd contracts && sncast --profile ${npm_config_profile} deploy --class-hash ${npm_config_classhash}",
     "devnet": "sh ./devnet/start.sh",
     "start": "cd frontend && npm run dev",
-    "install": "cd frontend && npm install",
+    "install": "cd frontend && npm install --legacy-peer-deps",
     "build-ui": "cd frontend && npm run build"
   },
   "repository": {
