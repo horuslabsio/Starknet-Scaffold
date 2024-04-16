@@ -1,9 +1,13 @@
 "use client";
-import { goerli, mainnet } from "@starknet-react/chains";
+import { sepolia, mainnet } from "@starknet-react/chains";
 import {
+  alchemyProvider,
   argent,
   braavos,
-  publicProvider,
+  infuraProvider,
+  lavaProvider,
+  nethermindProvider,
+  reddioProvider,
   StarknetConfig,
   starkscan,
   useInjectedConnectors,
@@ -27,11 +31,31 @@ export function StarknetProvider({ children }: StarknetProviderProps) {
     new ArgentMobileConnector(),
   ];
 
+  const apiKey = process.env.NEXT_API_KEY!;
+  const nodeProvider = process.env.NEXT_PROVIDER!;
+
+  let provider
+  if (nodeProvider == "infura") {
+    provider = infuraProvider({ apiKey });
+  }
+  else if(nodeProvider == "alchemy") {
+    provider = alchemyProvider({ apiKey });
+  }
+  else if(nodeProvider == "lava") {
+    provider = lavaProvider({ apiKey });
+  }
+  else if(nodeProvider == "nethermind") {
+    provider = nethermindProvider({ apiKey });
+  }
+  else {
+    provider = reddioProvider({ apiKey });
+  }
+
   return (
     <StarknetConfig
       connectors={connectors}
-      chains={[mainnet, goerli]}
-      provider={publicProvider()}
+      chains={[mainnet, sepolia]}
+      provider={provider}
       explorer={starkscan}
       autoConnect
     >

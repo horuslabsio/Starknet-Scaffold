@@ -20,7 +20,6 @@ import { cn } from "@/app/lib/utils";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",
-  goerli: "SN_GOERLI",
   sepolia: "SN_SEPOLIA",
 };
 
@@ -28,10 +27,6 @@ const networks = [
   {
     value: "SN_MAIN",
     label: "Mainnet",
-  },
-  {
-    value: "SN_GOERLI",
-    label: "Goerli",
   },
   {
     value: "SN_SEPOLIA",

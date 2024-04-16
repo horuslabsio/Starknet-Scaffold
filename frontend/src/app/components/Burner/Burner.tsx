@@ -17,18 +17,12 @@ const Burners: React.FC = () => {
   const { account } = useAccount();
   const { chain } = useNetwork();
 
-  console.log(chain.network)
-
   let burnerDeployerAddress
   let rpcAddress: string
   if (chain.network == "sepolia") {
     burnerDeployerAddress = "0x2ffc549d472164639366ad0acfbc5fde49fcc0f037fa6bc9b1702161012f5d3"
     rpcAddress = "https://starknet-sepolia.public.blastapi.io"
   } 
-  else if (chain.network == "goerli") {
-    burnerDeployerAddress = "0x3341944e5ed2a72cd23cc5236754ebc5d01722fd74d84dafb367dccd1b18db3"
-    rpcAddress = "https://starknet-testnet.public.blastapi.io"
-  }
   else {
     console.log("burner wallets are not supported on mainnet!")
   }
@@ -89,7 +83,7 @@ const Burners: React.FC = () => {
     setWallets([]);
     localStorage.removeItem("wallets");
   };
-
+  
   return (
     <div className="flex flex-col">
       <Header />
