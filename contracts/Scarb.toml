@@ -3,24 +3,15 @@ name = "contracts"
 version = "0.1.0"
 
 [dependencies]
-starknet = "2.3.1"
-
-[dependencies.alexandria_math]
-git = "https://github.com/keep-starknet-strange/alexandria.git"
-
-[dependencies.cairo_lib]
-git = "https://github.com/HerodotusDev/cairo-lib.git"
+starknet = "2.6.3"
 
 [dependencies.openzeppelin]
 git = "https://github.com/OpenZeppelin/cairo-contracts.git"
-tag = "v0.8.0"
-
-[dependencies.pragma_lib]
-git = "https://github.com/astraly-labs/pragma-lib.git"
+tag = "v0.11.0"
 
 [dependencies.snforge_std]
 git = "https://github.com/foundry-rs/starknet-foundry"
-tag = "v0.11.0"
+tag = "v0.20.1"
 
 [[target.starknet-contract]]
 casm = true
