@@ -6,15 +6,25 @@ import { useRef, useState } from "react";
 import Header from "../Header";
 import Image from "next/image";
 
+interface FileList {
+  lastModified: number;
+  lastModifiedDate: Date;
+  name: string;
+  size: number;
+  type: string;
+  webkitRelativePath: string;
+}
+
 function ScaffoldDeployer() {
   const fileInputRef: any = useRef(null);
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState<FileList[]>([]);
 
   const handleFileSelect = (event: any) => {
     event.preventDefault();
     console.log("file upload");
     const files: any = Array.from(event.target.files);
     setSelectedFiles(files);
+    console.log(event.target.files);
     console.log(selectedFiles);
   };
 
@@ -71,13 +81,13 @@ function ScaffoldDeployer() {
               <div className="flex items-center">
                 <div className="relative flex h-[96px] w-[118px] justify-end">
                   <div className="absolute left-0 top-[40px] z-20 min-w-[70px] rounded-lg bg-[#2ECC71] px-[4.5px] py-[1.5px] text-center font-satoshi text-2xl font-medium text-white">
-                    {selectedFiles.at(0)?.name?.split(".")[1].toUpperCase()}
+                    {selectedFiles?.at(0)?.name?.split(".")[1].toUpperCase()}
                   </div>
                   <Image src={fileIcon} className="" alt="file icon" />
                 </div>
                 <div>
                   <h3 className="mb-2 text-[22px] font-medium text-black">
-                    {selectedFiles[0]?.name.split(".")[0]}
+                    {selectedFiles?.at(0)?.name.split(".")[0]}
                   </h3>
                 </div>
               </div>
