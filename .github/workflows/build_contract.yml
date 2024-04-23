@@ -1,0 +1,16 @@
+name: Build
+
+on: [push, pull_request]
+
+permissions: read-all
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: software-mansion/setup-scarb@v1
+      - name: Check cairo format
+        run: cd contracts && scarb fmt --check
+      - name: Build cairo programs
+        run: cd contracts && scarb build

@@ -1,0 +1,16 @@
+name: Test
+
+on: [push, pull_request]
+permissions: read-all
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: software-mansion/setup-scarb@v1
+      - uses: foundry-rs/setup-snfoundry@v3
+        with:
+          starknet-foundry-version: 0.20.1
+      - name: Run cairo tests
+        run: cd contracts && snforge test
