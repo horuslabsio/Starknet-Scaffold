@@ -1,6 +1,7 @@
+"use client";
 import Burners from "../components/Burner/Burner";
 
-export default async function Page() {
+export default function Page() {
   return (
     <div className="container mx-auto py-10">
       <Burners />
