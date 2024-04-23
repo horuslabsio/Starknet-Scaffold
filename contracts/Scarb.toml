@@ -1,9 +1,17 @@
+yoo
 [package]
 name = "contracts"
 version = "0.1.0"
 
 [dependencies]
 starknet = "2.6.3"
+
+[workspace]
+members = ["lib"]
+
+[workspace.scripts]
+test = "snforge"
+
 
 [dependencies.openzeppelin]
 git = "https://github.com/OpenZeppelin/cairo-contracts.git"
