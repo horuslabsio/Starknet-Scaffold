@@ -5,6 +5,7 @@ import { useAccount, useNetwork } from "@starknet-react/core";
 import { Contract, RpcProvider, ec, stark } from "starknet";
 import * as Abi from "../../../../public/abi/burnerWallet.json";
 import Header from "../Header";
+import BurnerWallet from "../BurnerWallet/BurnerWallet";
 
 type Wallet = {
   address: string;
@@ -17,17 +18,21 @@ const Burners: React.FC = () => {
   const { account } = useAccount();
   const { chain } = useNetwork();
 
-  let burnerDeployerAddress
-  let rpcAddress: string
+  let burnerDeployerAddress;
+  let rpcAddress: string;
   if (chain.network == "sepolia") {
-    burnerDeployerAddress = "0x2ffc549d472164639366ad0acfbc5fde49fcc0f037fa6bc9b1702161012f5d3"
-    rpcAddress = "https://starknet-sepolia.public.blastapi.io"
-  } 
-  else {
-    console.log("burner wallets are not supported on mainnet!")
+    burnerDeployerAddress =
+      "0x2ffc549d472164639366ad0acfbc5fde49fcc0f037fa6bc9b1702161012f5d3";
+    rpcAddress = "https://starknet-sepolia.public.blastapi.io";
+  } else {
+    console.log("burner wallets are not supported on mainnet!");
   }
 
-  let burnerWalletDeployer = new Contract(Array.from(Abi), burnerDeployerAddress!, account)
+  let burnerWalletDeployer = new Contract(
+    Array.from(Abi),
+    burnerDeployerAddress!,
+    account
+  );
 
   const generateWallet = async (
     burnerWalletDeployer: Contract
@@ -83,24 +88,35 @@ const Burners: React.FC = () => {
     setWallets([]);
     localStorage.removeItem("wallets");
   };
-  
+
   return (
     <div className="flex flex-col">
       <Header />
       <div className="flex justify-center p-4 pt-20">
         <div className="flex flex-col items-start gap-2">
-        <h2><b className="text-red-300">NB: Please note that burner wallets are not supported on mainnet. Resolve to using a wallet provider instead! <br /><br />Also you can only generate a maximum of 5 burner wallets for each session</b></h2>
-        <br />
+          <h2>
+            <b className="text-red-300">
+              NB: Please note that burner wallets are not supported on mainnet.
+              Resolve to using a wallet provider instead! <br />
+              <br />
+              Also you can only generate a maximum of 5 burner wallets for each
+              session
+            </b>
+          </h2>
+          <br />
 
           <h3 className="font-bold text-start">Burner Wallets:</h3>
           {wallets.map((wallet, index) => (
             <div key={index} className="flex flex-col gap-2 p-2 border-2">
-              <h4><b>Burner {index + 1}</b></h4>
+              <h4>
+                <b>Burner {index + 1}</b>
+              </h4>
               <p>Private Key: {wallet.privateKey}</p>
               <p>Public Key: {wallet.publicKey}</p>
               <p>Account Address: {wallet.address}</p>
             </div>
           ))}
+          <BurnerWallet />
           <button
             className="mt-4 p-2 bg-blue-500 text-white rounded"
             onClick={handleCreate}
