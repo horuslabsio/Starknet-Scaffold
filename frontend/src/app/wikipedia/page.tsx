@@ -395,6 +395,14 @@ async function getData(): Promise<Resource[]> {
       status: "Up to date",
       url: "https://www.ethereum-ecosystem.com/blockchains/starknet",
     },
+    {
+      id: "55",
+      name: "The Cairo Book",
+      description:
+        "Official Cairo documentation by the community",
+      status: "Up to date",
+      url: "https://book.cairo-lang.org/",
+    },
   ];
 }
 

@@ -104,7 +104,7 @@ const Burners: React.FC = () => {
             </b>
           </h2>
           <br />
-
+          <BurnerWallet />
           <h3 className="font-bold text-start">Burner Wallets:</h3>
           {wallets.map((wallet, index) => (
             <div key={index} className="flex flex-col gap-2 p-2 border-2">
@@ -116,7 +116,6 @@ const Burners: React.FC = () => {
               <p>Account Address: {wallet.address}</p>
             </div>
           ))}
-          <BurnerWallet />
           <button
             className="mt-4 p-2 bg-blue-500 text-white rounded"
             onClick={handleCreate}
