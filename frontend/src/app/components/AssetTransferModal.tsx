@@ -186,23 +186,6 @@ function AssetTransferModal({ isOpen, onClose }: Props) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mt-4">
-          <h5>Pay Gas Fee With</h5>
-          <div>
-            <div className="flex items-center justify-center gap-3 bg-[#1f1f1f] p-3 rounded">
-              <Image
-                src={activeToken === "strk" ? starknetLogo : ethLogo}
-                width={14}
-                height={14}
-                alt="strk"
-              />
-              <h3 className="font-medium text-sm">
-                {activeToken.toUpperCase()}
-              </h3>
-            </div>
-          </div>
-        </div>
-
         <button
           className="w-full mt-7 py-3 bg-[#3b81f6] rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
           disabled={isLoading || isError}
