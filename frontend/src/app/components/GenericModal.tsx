@@ -1,3 +1,4 @@
+"use client";
 const GenericModal = ({
   isOpen,
   onClose,

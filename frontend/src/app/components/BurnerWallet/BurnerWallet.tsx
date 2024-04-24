@@ -1,13 +1,34 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
+import AssetTransferModal from "../AssetTransferModal";
+import ConnectionModal from "../ConnectionModal";
 
 function BurnerWallet() {
   const [address, setAddress] = useState(
     "0x07483a4f6bccee24ee02479530f662a031aca58c7294f71b63a64423cb240f35"
   );
+  const [isSending, setIsSending] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
   return (
     <div className="rounded-lg border px-8 py-12 border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 w-full">
+      {isSending &&
+        createPortal(
+          <AssetTransferModal
+            isOpen={isSending}
+            onClose={() => setIsSending(false)}
+          />,
+          document.body
+        )}
+      {isConnecting &&
+        createPortal(
+          <ConnectionModal
+            isOpen={isConnecting}
+            onClose={() => setIsConnecting(false)}
+          />,
+          document.body
+        )}
       <h2 className="mb-[60px] text-2xl font-semibold">Burner Wallet</h2>
       <div className="flex gap-[100px] text-2xl font-normal">
         <div>
@@ -22,13 +43,19 @@ function BurnerWallet() {
         <h3>{address.slice(0, 12).concat("....").concat(address.slice(-6))}</h3>
       </div>
       <div className="mt-[80px] flex  gap-[60px]">
-        <button className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold">
+        <button
+          className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold"
+          onClick={() => setIsSending(true)}
+        >
           SEND
         </button>
         <button className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold">
           EXECUTE
         </button>
-        <button className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold">
+        <button
+          className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold"
+          onClick={() => setIsConnecting(true)}
+        >
           CONNECT
         </button>
       </div>
