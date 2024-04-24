@@ -110,7 +110,12 @@ function ScaffoldDeployer() {
           <input
             type="text"
             className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
-            placeholder="Input Construtor Arguments"
+            placeholder="Input Constructor Arguments"
+          />
+          <input
+            type="text"
+            className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
+            placeholder="Input Number of Constructor Arguments"
           />
           <button className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white">
             Deploy
