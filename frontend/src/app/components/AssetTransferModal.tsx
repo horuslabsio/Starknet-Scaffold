@@ -4,21 +4,41 @@ import starknetLogo from "../../../public/starknetlogo.svg";
 import Image from "next/image";
 import rightArr from "../../../public/assets/right-arr.svg";
 import { useEffect, useState } from "react";
-import { useAccount, useBalance } from "@starknet-react/core";
 import downChevron from "../../../public/assets/down-chevron.svg";
 import ethLogo from "../../../public/assets/ethereumLogo2.svg";
+import { Call, Contract, RpcProvider, Uint256, cairo } from "starknet";
+import strk_abi from "./../../../public/abi/strk_abi.json";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  strkBalance: string | undefined;
+  ethBalance: string | undefined;
+  wallet: {
+    address: string;
+    privateKey: string;
+    publicKey: string;
+  };
+  account: any;
 };
 
-function AssetTransferModal({ isOpen, onClose }: Props) {
-  const { address } = useAccount();
-  const { isLoading, isError, error, data } = useBalance({
-    address,
-    watch: true,
+function AssetTransferModal({
+  isOpen,
+  onClose,
+  strkBalance,
+  ethBalance,
+  wallet,
+  account,
+}: Props) {
+  const provider = new RpcProvider({
+    nodeUrl:
+      "https://starknet-sepolia.infura.io/v3/b935e660d34f48469cb740bfa2cfb1c0",
   });
+  const starknet_contract = new Contract(
+    strk_abi,
+    "0x4718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
+    provider
+  );
 
   // Form Data
   const [walletAddress, setWalletAddress] = useState("");
@@ -30,7 +50,6 @@ function AssetTransferModal({ isOpen, onClose }: Props) {
   const [assetDropDownIsOpen, setAssetDropDownIsOpen] = useState(false);
 
   const closeModal = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
     setAnimate(false);
     setTimeout(() => {
       onClose();
@@ -49,6 +68,27 @@ function AssetTransferModal({ isOpen, onClose }: Props) {
     e.preventDefault();
     setActiveToken(token);
     setAssetDropDownIsOpen(false);
+  }
+
+  async function handleTransfer() {
+    try {
+      if (!walletAddress.length && !amount) {
+        return;
+      }
+      const toTransferTk: Uint256 = cairo.uint256(amount);
+      const transferCallData: Call = starknet_contract.populate("transfer", {
+        recipient: walletAddress,
+        amount: toTransferTk,
+      });
+      starknet_contract.connect(account);
+      await starknet_contract.transfer(transferCallData.calldata);
+    } catch (err: any) {
+      console.log(err.message);
+    } finally {
+      setTimeout(() => {
+        onClose();
+      }, 400);
+    }
   }
 
   return (
@@ -100,15 +140,9 @@ function AssetTransferModal({ isOpen, onClose }: Props) {
                   ({activeToken === "strk" ? "StarkNetToken" : "Ether"})
                 </span>
               </h3>
-              {/* {isLoading && (
-                <Image src={miniSpinner} width={16} height={16} alt="spinner" />
-              )}
-              {data && (
-                <h5 className="text-sm">
-                  {Number(data.value).toFixed(4).toString()}
-                </h5>
-              )} */}
-              2.0000
+              {activeToken === "strk"
+                ? Number(strkBalance).toFixed(4)
+                : Number(ethBalance).toFixed(4)}
             </div>
           </div>
           <Image
@@ -188,7 +222,10 @@ function AssetTransferModal({ isOpen, onClose }: Props) {
 
         <button
           className="w-full mt-7 py-3 bg-[#3b81f6] rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
-          disabled={isLoading || isError}
+          onClick={async (e) => {
+            e.preventDefault();
+            await handleTransfer();
+          }}
         >
           Send <Image src={rightArr} alt="right arrow" height={16} width={16} />
         </button>
