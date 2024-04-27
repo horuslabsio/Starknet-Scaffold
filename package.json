@@ -7,6 +7,7 @@
     "build-contracts": "cd contracts && scarb build",
     "test-contracts": "cd contracts && snforge test",
     "format-contracts": "cd contracts && scarb fmt",
+    "contract-scripts": "cd contracts/scripts && sncast --url ${npm_config_url} --account ${npm_config_account} script run",
     "generate-interface": "cd contracts && src5_rs parse",
     "prepare-account": "cd contracts && sncast --url ${npm_config_url} account create --name ${npm_config_name} --add-profile",
     "deploy-account": "cd contracts && sncast  --profile ${npm_config_profile} account deploy --name ${npm_config_name} --max-fee ${npm_config_maxfee}",
