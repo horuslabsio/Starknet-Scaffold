@@ -1,4 +1,5 @@
 "use client";
+import CopyButton from "./CopyButton";
 import GenericModal from "./GenericModal";
 import { useEffect, useState } from "react";
 
@@ -62,10 +63,13 @@ function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
         </button>
       </div>
       <h1 className="text-[24px] mb-2 font-semibold ">Connect Account</h1>
-      <form action="">
+      <form>
         <div className="flex flex-col gap-y-5 ">
           <div className="flex flex-col gap-y-2">
-            <h2>Private Key</h2>
+            <div className="flex items-center justify-between">
+              <h2>Private Key</h2>
+              <CopyButton data={wallet.privateKey} />
+            </div>
             <input
               type="text"
               placeholder="Enter Private Key"
@@ -76,7 +80,10 @@ function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h2>Account Address</h2>
+            <div className="flex items-center justify-between">
+              <h2>Account Address</h2>
+              <CopyButton data={wallet.address} />
+            </div>
             <input
               type="text"
               placeholder="Enter Account Address"
@@ -89,6 +96,7 @@ function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
 
         <button
           className="w-full mt-7 py-3 bg-[#3b81f6] rounded font-bold flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
+          type="submit"
           onClick={handleConnect}
         >
           Connect

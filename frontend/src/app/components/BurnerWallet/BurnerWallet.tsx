@@ -5,6 +5,7 @@ import AssetTransferModal from "../AssetTransferModal";
 import ConnectionModal from "../ConnectionModal";
 import { useAccount, useBalance } from "@starknet-react/core";
 import { Account, RpcProvider } from "starknet";
+import CopyButton from "../CopyButton";
 
 interface IWallet {
   address: string;
@@ -36,11 +37,6 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
     token: "0x4718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
   });
 
-  useEffect(() => {
-    console.log("eth balance.....", ethBalance);
-    console.log("strk balance....", strkBalance);
-  }, [ethBalance, strkBalance]);
-
   function handleConnect() {
     const provider = new RpcProvider({
       nodeUrl:
@@ -54,8 +50,6 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
     setAccount(account);
     setIsConnected(true);
     setIsConnecting(false);
-
-    console.log("account connected");
   }
 
   return (
@@ -103,12 +97,15 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             </span>
           </h2>
         </div>
-        <h3>
-          {wallet.address
-            .slice(0, 12)
-            .concat("....")
-            .concat(wallet.address.slice(-6))}
-        </h3>
+        <div className="flex items-center gap-x-4">
+          <h3>
+            {wallet.address
+              .slice(0, 7)
+              .concat("....")
+              .concat(wallet.address.slice(-6))}
+          </h3>
+          <CopyButton data={wallet.address} />
+        </div>
       </div>
       <div className="mt-[80px] flex  gap-[60px] justify-center">
         {isConnected ? (
