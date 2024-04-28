@@ -60,8 +60,7 @@ function ScaffoldDeployer() {
         console.log(result, "Results of the Deployed Class Hash")
 
       } catch (e) {
-        console.error(e);
-
+        console.error("DEPLOYER ERROR", e);
       }
     };
   return (
