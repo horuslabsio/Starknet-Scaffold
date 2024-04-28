@@ -7,18 +7,13 @@ import { useEffect, useState } from "react";
 import downChevron from "../../../public/assets/down-chevron.svg";
 import ethLogo from "../../../public/assets/ethereumLogo2.svg";
 import { Call, Contract, RpcProvider, Uint256, cairo } from "starknet";
-import strk_abi from "./../../../public/abi/strk_abi.json";
+import abi from "./../../../public/abi/strk_abi.json";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
   strkBalance: number | undefined;
   ethBalance: number | undefined;
-  wallet: {
-    address: string;
-    privateKey: string;
-    publicKey: string;
-  };
   account: any;
 };
 
@@ -27,19 +22,8 @@ function AssetTransferModal({
   onClose,
   strkBalance,
   ethBalance,
-  wallet,
   account,
 }: Props) {
-  const provider = new RpcProvider({
-    nodeUrl:
-      "https://starknet-sepolia.infura.io/v3/b935e660d34f48469cb740bfa2cfb1c0",
-  });
-  const starknet_contract = new Contract(
-    strk_abi,
-    "0x4718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
-    provider
-  );
-
   // Form Data
   const [walletAddress, setWalletAddress] = useState("");
   const [amount, setAmount] = useState("");
@@ -70,18 +54,40 @@ function AssetTransferModal({
     setAssetDropDownIsOpen(false);
   }
 
+  const provider = new RpcProvider({
+    nodeUrl:
+      "https://starknet-sepolia.public.blastapi.io",
+  });
+
+  let starknet_contract: any;
+  if(activeToken == "strk") {
+    starknet_contract = new Contract(
+      abi,
+      "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
+      provider
+    );
+  }
+  else{
+    starknet_contract = new Contract(
+      abi,
+      "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
+      provider
+    );
+  }
+
   async function handleTransfer() {
     try {
       if (!walletAddress.length && !amount) {
         return;
       }
-      const toTransferTk: Uint256 = cairo.uint256(amount);
-      const transferCallData: Call = starknet_contract.populate("transfer", {
+      const toTransferTk: Uint256 = cairo.uint256(Number(amount) * 1e18);
+      const transferCall: Call = starknet_contract.populate("transfer", {
         recipient: walletAddress,
         amount: toTransferTk,
       });
-      starknet_contract.connect(account);
-      await starknet_contract.transfer(transferCallData.calldata);
+      const { transaction_hash: transferTxHash } = await account.execute(transferCall);
+      await provider.waitForTransaction(transferTxHash);
+      window.alert("Your transfer was successful!");
     } catch (err: any) {
       console.log(err.message);
     } finally {

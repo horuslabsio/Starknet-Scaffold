@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import AssetTransferModal from "../AssetTransferModal";
 import ConnectionModal from "../ConnectionModal";
@@ -24,7 +24,6 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
   const {
     data: eth,
     isLoading: ethLoading,
-    error: ethError,
   } = useContractRead({
     address: ETH_SEPOLIA,
     abi: Erc20Abi,
@@ -36,7 +35,6 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
   const {
     data: strk,
     isLoading: strkLoading,
-    error: strkError,
   } = useContractRead({
     address: STRK_SEPOLIA,
     abi: Erc20Abi,
@@ -44,7 +42,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
     args: [wallet.address!],
     watch: true,
   });
-  console.log('ethereum:',{eth})
+
 // @ts-ignore
   const ethBalance = eth?.balance.low.toString() /  1e18;
   // @ts-ignore
@@ -53,7 +51,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
   function handleConnect() {
     const provider = new RpcProvider({
       nodeUrl:
-        "https://starknet-sepolia.infura.io/v3/b935e660d34f48469cb740bfa2cfb1c0",
+        "https://starknet-sepolia.public.blastapi.io",
     });
     const account: any = new Account(
       provider,
@@ -74,7 +72,6 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             ethBalance={ethBalance}
             isOpen={isSending}
             onClose={() => setIsSending(false)}
-            wallet={wallet}
             account={account}
           />,
           document.body
@@ -125,14 +122,14 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           <>
             <button
               className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
-              disabled={!strkBalance || !ethBalance}
+              disabled={!eth || !strk}
               onClick={() => setIsSending(true)}
             >
               SEND
             </button>
             <button
               className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
-              disabled={!strkBalance || !ethBalance}
+              disabled={!eth || !strk}
             >
               EXECUTE
             </button>
@@ -141,7 +138,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           <button
             className=" px-6 py-4 bg-blue-500 disabled:cursor-not-allowed text-white rounded-[5px] w-[200px] font-semibold"
             onClick={() => setIsConnecting(true)}
-            disabled={!strkBalance || !ethBalance}
+            disabled={!eth || !strk}
           >
             CONNECT
           </button>
