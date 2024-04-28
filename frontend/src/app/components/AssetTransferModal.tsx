@@ -12,8 +12,8 @@ import strk_abi from "./../../../public/abi/strk_abi.json";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  strkBalance: string | undefined;
-  ethBalance: string | undefined;
+  strkBalance: number | undefined;
+  ethBalance: number | undefined;
   wallet: {
     address: string;
     privateKey: string;

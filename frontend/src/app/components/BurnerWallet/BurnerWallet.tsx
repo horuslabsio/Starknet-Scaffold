@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import AssetTransferModal from "../AssetTransferModal";
 import ConnectionModal from "../ConnectionModal";
-import { useAccount, useBalance } from "@starknet-react/core";
+import {useContractRead} from "@starknet-react/core";
 import { Account, RpcProvider } from "starknet";
 import CopyButton from "../CopyButton";
-
+import Erc20Abi from "../../abi/token.abi.json"
+import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utils/constant";
 interface IWallet {
   address: string;
   privateKey: string;
@@ -18,24 +19,36 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
   const [account, setAccount] = useState(undefined);
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
+
+
   const {
-    isLoading: loadingETHBalance,
-    isError,
-    error,
-    data: ethBalance,
-  } = useBalance({
-    address: wallet.address,
-  });
-  const {
-    isLoading: loadingSTRKBalance,
-    isError: isSTRKError,
-    error: strkError,
-    data: strkBalance,
-  } = useBalance({
-    address: wallet.address,
+    data: eth,
+    isLoading: ethLoading,
+    error: ethError,
+  } = useContractRead({
+    address: ETH_SEPOLIA,
+    abi: Erc20Abi,
+    functionName: "balanceOf",
+    args: [wallet.address!],
     watch: true,
-    token: "0x4718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
   });
+
+  const {
+    data: strk,
+    isLoading: strkLoading,
+    error: strkError,
+  } = useContractRead({
+    address: STRK_SEPOLIA,
+    abi: Erc20Abi,
+    functionName: "balanceOf",
+    args: [wallet.address!],
+    watch: true,
+  });
+  console.log('ethereum:',{eth})
+// @ts-ignore
+  const ethBalance = eth?.balance.low.toString() /  1e18;
+  // @ts-ignore
+  const strkBalance = strk?.balance?.low
 
   function handleConnect() {
     const provider = new RpcProvider({
@@ -57,8 +70,8 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
       {isSending &&
         createPortal(
           <AssetTransferModal
-            strkBalance={strkBalance?.formatted}
-            ethBalance={ethBalance?.formatted}
+            strkBalance={strkBalance}
+            ethBalance={ethBalance}
             isOpen={isSending}
             onClose={() => setIsSending(false)}
             wallet={wallet}
@@ -83,17 +96,17 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             ETH Balance:{" "}
             <span className="font-medium text-xl">
               {" "}
-              {loadingETHBalance
+              {ethLoading
                 ? "Loading..."
-                : `${Number(ethBalance?.formatted).toFixed(4)}ETH`}
+                : `${Number(ethBalance).toFixed(4)}ETH`}
             </span>
           </h2>
           <h2>
             STRK Balance:{" "}
             <span className="font-medium text-xl">
-              {loadingSTRKBalance
+              {strkLoading
                 ? "Loading..."
-                : `${Number(strkBalance?.formatted).toFixed(4)}STRK`}
+                : `${Number(strkBalance).toFixed(4)}STRK`}
             </span>
           </h2>
         </div>
