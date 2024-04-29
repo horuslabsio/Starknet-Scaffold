@@ -2,9 +2,15 @@
 import cloudUploadIcon from "../../../../public/assets/cloudUploadIcon.svg";
 import fileIcon from "../../../../public/assets/fileIcon.svg";
 import trash from "../../../../public/assets/deleteIcon.svg";
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import Header from "../Header";
 import Image from "next/image";
+import {
+  DeclareContractPayload,
+  hash,
+} from "starknet";
+import { readFileAsString } from "@argent/x-shared";
+import { useAccount } from "@starknet-react/core";
 
 interface FileList {
   lastModified: number;
@@ -18,14 +24,22 @@ interface FileList {
 function ScaffoldDeployer() {
   const fileInputRef: any = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList[]>([]);
+  const [classHash, setClassHash] = useState("");
+  const [contract, setContract] = useState<string | null>(null);
+  const { account, status } = useAccount();
 
-  const handleFileSelect = (event: any) => {
+  const handleFileSelect = async (event: any) => {
     event.preventDefault();
-    console.log("file upload");
     const files: any = Array.from(event.target.files);
     setSelectedFiles(files);
-    console.log(event.target.files);
-    console.log(selectedFiles);
+
+    if (!event.target.files) return;
+
+    const fileAsString = await readFileAsString(files[0]);
+    setContract(fileAsString);
+
+    const classHash = hash.computeContractClassHash(fileAsString);
+    setClassHash(classHash);
   };
 
   const handleDeleteFile = (event: any) => {
@@ -42,6 +56,37 @@ function ScaffoldDeployer() {
     const files: any = Array.from(event.dataTransfer.files);
     setSelectedFiles(files);
   };
+
+  const handleDeclare = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+
+      if (!contract) {
+        throw new Error("No contract");
+      }
+
+      if (!classHash) {
+        throw new Error("No class hash");
+      }
+
+      const payload: DeclareContractPayload = {
+        contract,
+        classHash,
+      };
+
+      let result;
+
+      if (account && status == "connected") {
+        result = await account.declare(payload);
+      } else {
+        throw new Error("Wallet not connected");
+      }
+      console.log("result: ", result);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <div className="flex flex-col dark:text-white text-black">
       <Header />
@@ -60,7 +105,7 @@ function ScaffoldDeployer() {
               </h2>
               <input
                 type="file"
-                onChange={(e) => handleFileSelect(e)}
+                onChange={async (e) => await handleFileSelect(e)}
                 multiple
                 style={{ display: "none" }}
                 ref={fileInputRef}
@@ -96,7 +141,10 @@ function ScaffoldDeployer() {
               </button>
             </div>
           )}
-          <button className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white">
+          <button
+            onClick={(e) => handleDeclare(e)}
+            className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white"
+          >
             Declare
           </button>
         </form>
