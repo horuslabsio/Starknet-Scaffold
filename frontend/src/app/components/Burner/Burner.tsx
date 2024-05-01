@@ -76,6 +76,7 @@ const Burners: React.FC = () => {
       if (burnerWalletDeployer) {
         const newWallet = await generateWallet(burnerWalletDeployer);
         setWallets([...wallets, newWallet]);
+        console.log(newWallet);
       } else {
         console.error("Burner wallet deployer is undefined.");
       }
@@ -104,17 +105,10 @@ const Burners: React.FC = () => {
             </b>
           </h2>
           <br />
-          <BurnerWallet />
+
           <h3 className="font-bold text-start">Burner Wallets:</h3>
           {wallets.map((wallet, index) => (
-            <div key={index} className="flex flex-col gap-2 p-2 border-2">
-              <h4>
-                <b>Burner {index + 1}</b>
-              </h4>
-              <p>Private Key: {wallet.privateKey}</p>
-              <p>Public Key: {wallet.publicKey}</p>
-              <p>Account Address: {wallet.address}</p>
-            </div>
+            <BurnerWallet key={index} wallet={wallet} />
           ))}
           <button
             className="mt-4 p-2 bg-blue-500 text-white rounded"

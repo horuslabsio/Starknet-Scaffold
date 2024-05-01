@@ -31,7 +31,6 @@ export default function Home() {
             A simple tool for seamlessly deploying smart contracts to Starknet
             testnet and mainnet <br />
             <br />
-            <b>coming soon...</b>
           </p>
         </a>
 

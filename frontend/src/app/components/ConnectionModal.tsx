@@ -1,17 +1,20 @@
 "use client";
+import CopyButton from "./CopyButton";
 import GenericModal from "./GenericModal";
 import { useEffect, useState } from "react";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  handleConnect: () => void;
+  wallet: {
+    privateKey: string;
+    address: string;
+    publicKey: string;
+  };
 };
 
-function ConnectionModal({ isOpen, onClose }: Props) {
-  // Form Data
-  const [accountAddress, setAccountAddress] = useState("");
-  const [privateKey, setPrivateKey] = useState("");
-
+function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
   // useState Variables
   const [animate, setAnimate] = useState(false);
 
@@ -36,7 +39,7 @@ function ConnectionModal({ isOpen, onClose }: Props) {
       isOpen={isOpen}
       onClose={closeModal}
       animate={animate}
-      className={`w-[90vw] mx-auto md:h-fit md:w-[45rem] text-white py-4 px-5 relative bg-black`}
+      className={`w-[90vw] mx-auto bg-white md:h-fit md:w-[45rem] text-white py-4 px-5 relative dark:bg-black`}
     >
       <div className="absolute right-5 top-4">
         <button
@@ -59,33 +62,43 @@ function ConnectionModal({ isOpen, onClose }: Props) {
           </svg>
         </button>
       </div>
-      <h1 className="text-[24px] mb-2 font-semibold">Connect Account</h1>
-      <form action="">
-        <div className="flex flex-col gap-y-5">
+      <h1 className="text-[24px] mb-2 font-semibold ">Connect Account</h1>
+      <form>
+        <div className="flex flex-col gap-y-5 ">
           <div className="flex flex-col gap-y-2">
-            <h2>Private Key</h2>
+            <div className="flex items-center justify-between">
+              <h2>Private Key</h2>
+              <CopyButton data={wallet.privateKey} />
+            </div>
             <input
               type="text"
               placeholder="Enter Private Key"
-              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
-              value={privateKey}
-              onChange={(e) => setPrivateKey(e.target.value)}
+              className="w-full p-2 rounded dark:text-white text-black outline-none focus:border-[#3b81f6] border-[2px] disabled:cursor-not-allowed"
+              value={wallet.privateKey}
+              disabled={true}
             />
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <h2>Account Address</h2>
+            <div className="flex items-center justify-between">
+              <h2>Account Address</h2>
+              <CopyButton data={wallet.address} />
+            </div>
             <input
               type="text"
               placeholder="Enter Account Address"
-              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
-              value={accountAddress}
-              onChange={(e) => setAccountAddress(e.target.value)}
+              className="w-full p-2 rounded dark:text-white text-black outline-none focus:border-[#3b81f6] border-[2px] disabled:cursor-not-allowed"
+              value={wallet.address}
+              disabled={true}
             />
           </div>
         </div>
 
-        <button className="w-full mt-7 py-3 bg-[#3b81f6] rounded font-bold flex items-center gap-x-2 justify-center disabled:cursor-not-allowed">
+        <button
+          className="w-full mt-7 py-3 bg-[#3b81f6] rounded font-bold flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
+          type="submit"
+          onClick={handleConnect}
+        >
           Connect
         </button>
       </form>

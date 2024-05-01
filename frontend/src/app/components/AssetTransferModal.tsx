@@ -4,22 +4,26 @@ import starknetLogo from "../../../public/starknetlogo.svg";
 import Image from "next/image";
 import rightArr from "../../../public/assets/right-arr.svg";
 import { useEffect, useState } from "react";
-import { useAccount, useBalance } from "@starknet-react/core";
 import downChevron from "../../../public/assets/down-chevron.svg";
 import ethLogo from "../../../public/assets/ethereumLogo2.svg";
+import { Call, Contract, RpcProvider, Uint256, cairo } from "starknet";
+import abi from "./../../../public/abi/strk_abi.json";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  strkBalance: number | undefined;
+  ethBalance: number | undefined;
+  account: any;
 };
 
-function AssetTransferModal({ isOpen, onClose }: Props) {
-  const { address } = useAccount();
-  const { isLoading, isError, error, data } = useBalance({
-    address,
-    watch: true,
-  });
-
+function AssetTransferModal({
+  isOpen,
+  onClose,
+  strkBalance,
+  ethBalance,
+  account,
+}: Props) {
   // Form Data
   const [walletAddress, setWalletAddress] = useState("");
   const [amount, setAmount] = useState("");
@@ -30,7 +34,6 @@ function AssetTransferModal({ isOpen, onClose }: Props) {
   const [assetDropDownIsOpen, setAssetDropDownIsOpen] = useState(false);
 
   const closeModal = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
     setAnimate(false);
     setTimeout(() => {
       onClose();
@@ -49,6 +52,49 @@ function AssetTransferModal({ isOpen, onClose }: Props) {
     e.preventDefault();
     setActiveToken(token);
     setAssetDropDownIsOpen(false);
+  }
+
+  const provider = new RpcProvider({
+    nodeUrl:
+      "https://starknet-sepolia.public.blastapi.io",
+  });
+
+  let starknet_contract: any;
+  if(activeToken == "strk") {
+    starknet_contract = new Contract(
+      abi,
+      "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
+      provider
+    );
+  }
+  else{
+    starknet_contract = new Contract(
+      abi,
+      "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
+      provider
+    );
+  }
+
+  async function handleTransfer() {
+    try {
+      if (!walletAddress.length && !amount) {
+        return;
+      }
+      const toTransferTk: Uint256 = cairo.uint256(Number(amount) * 1e18);
+      const transferCall: Call = starknet_contract.populate("transfer", {
+        recipient: walletAddress,
+        amount: toTransferTk,
+      });
+      const { transaction_hash: transferTxHash } = await account.execute(transferCall);
+      await provider.waitForTransaction(transferTxHash);
+      window.alert("Your transfer was successful!");
+    } catch (err: any) {
+      console.log(err.message);
+    } finally {
+      setTimeout(() => {
+        onClose();
+      }, 400);
+    }
   }
 
   return (
@@ -100,15 +146,9 @@ function AssetTransferModal({ isOpen, onClose }: Props) {
                   ({activeToken === "strk" ? "StarkNetToken" : "Ether"})
                 </span>
               </h3>
-              {/* {isLoading && (
-                <Image src={miniSpinner} width={16} height={16} alt="spinner" />
-              )}
-              {data && (
-                <h5 className="text-sm">
-                  {Number(data.value).toFixed(4).toString()}
-                </h5>
-              )} */}
-              2.0000
+              {activeToken === "strk"
+                ? Number(strkBalance).toFixed(4)
+                : Number(ethBalance).toFixed(4)}
             </div>
           </div>
           <Image
@@ -188,7 +228,10 @@ function AssetTransferModal({ isOpen, onClose }: Props) {
 
         <button
           className="w-full mt-7 py-3 bg-[#3b81f6] rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
-          disabled={isLoading || isError}
+          onClick={async (e) => {
+            e.preventDefault();
+            await handleTransfer();
+          }}
         >
           Send <Image src={rightArr} alt="right arrow" height={16} width={16} />
         </button>

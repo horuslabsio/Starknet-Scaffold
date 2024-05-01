@@ -38,6 +38,7 @@ Scripts exists to make your life easier! Here are available scripts and features
 | :---: | :---: |
 | Build Contract | ✅ |
 | Format Contract | ✅ |
+| Run custom scripts | ✅ |
 | Generate SRC5 Interface | ✅ |
 | Prepare Account | ✅ |
 | Deploy Account| ✅ |
@@ -92,6 +93,14 @@ To run your tests:
 
 ```
 npm run test-contracts
+```
+
+#### Run custom starknet foundry scripts
+
+To run a custom starknet foundry deploy/declare/invoke script:
+
+```
+npm run contract-scripts --url=<RPC_URL> --account=<ACCOUNT_NAME> <SCRIPT_NAME>
 ```
 
 #### Generate an SRC-5 interface ID for your contracts
