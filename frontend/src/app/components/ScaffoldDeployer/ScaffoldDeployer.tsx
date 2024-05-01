@@ -61,16 +61,19 @@ function ScaffoldDeployer() {
       if (!isConnected || !account) {
         throw new Error("Connect wallet to continue");
       }
-      if(constructorArguments === ("" || null)){
-        const payload: UniversalDeployerContractPayload ={
-          classHash: classHash
-        }
-        
-        const result = await account.deployContract(payload);
-        console.log(result.contract_address, "Contract Address of The Smart Contract")
-      }else {
+      // if(constructorArguments === ("" || null)){
 
-      }
+      // }else {
+
+      // }
+       const payload: UniversalDeployerContractPayload = {
+         classHash: classHash,
+       };
+       const result = await account.deployContract(payload);
+       console.log(
+         result.contract_address,
+         "Contract Address of The Smart Contract"
+       );
     } catch (e) {
       // throw new Error("Connect wallet to continue", e);
       console.error("DEPLOYER ERROR", e);
@@ -148,7 +151,7 @@ function ScaffoldDeployer() {
             }}
             value={classHash}
           />
-          <input
+          {/* <input
             type="text"
             className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
             placeholder="Input Constructor Arguments(optional)"
@@ -156,7 +159,7 @@ function ScaffoldDeployer() {
               setContructorArguments(e.target.value);
             }}
             value={constructorArguments}
-          />
+          /> */}
           {/* <input
             type="text"
             className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
