@@ -31,23 +31,19 @@ export function StarknetProvider({ children }: StarknetProviderProps) {
     new ArgentMobileConnector(),
   ];
 
-  const apiKey = process.env.NEXT_API_KEY!;
-  const nodeProvider = process.env.NEXT_PROVIDER!;
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY!;
+  const nodeProvider = process.env.NEXT_PUBLIC_PROVIDER!;
 
-  let provider
+  let provider;
   if (nodeProvider == "infura") {
     provider = infuraProvider({ apiKey });
-  }
-  else if(nodeProvider == "alchemy") {
+  } else if (nodeProvider == "alchemy") {
     provider = alchemyProvider({ apiKey });
-  }
-  else if(nodeProvider == "lava") {
+  } else if (nodeProvider == "lava") {
     provider = lavaProvider({ apiKey });
-  }
-  else if(nodeProvider == "nethermind") {
+  } else if (nodeProvider == "nethermind") {
     provider = nethermindProvider({ apiKey });
-  }
-  else {
+  } else {
     provider = reddioProvider({ apiKey });
   }
 
