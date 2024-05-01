@@ -5,8 +5,10 @@ import trash from "../../../../public/assets/deleteIcon.svg";
 import { useRef, useState } from "react";
 import Header from "../Header";
 import Image from "next/image";
-import { UniversalDeployerContractPayload } from "starknet";
-import { deploy } from "@/app/services/wallet.service";
+import { UniversalDeployerContractPayload, provider , CallData} from "starknet";
+import { useAccount,useProvider } from "@starknet-react/core";
+
+// import { deploy } from "@/app/services/wallet.service";
 
 interface FileList {
   lastModified: number;
@@ -17,11 +19,14 @@ interface FileList {
   webkitRelativePath: string;
 }
 
-
 function ScaffoldDeployer() {
   const fileInputRef: any = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList[]>([]);
-   const [classHash, setClassHash] = useState("");
+  const [classHash, setClassHash] = useState("");
+  const [constructorArguments, setContructorArguments] = useState("");
+
+  const { account, isConnected } = useAccount();
+  const provider = useProvider();
 
   const handleFileSelect = (event: any) => {
     event.preventDefault();
@@ -47,22 +52,33 @@ function ScaffoldDeployer() {
     setSelectedFiles(files);
   };
 
-    const handleDeploy = async (e: React.FormEvent) => {
-      try {
-        e.preventDefault();
-        if (!classHash) {
-          throw new Error("No class hash");
-        }
-        const payload: UniversalDeployerContractPayload = {
-          classHash: classHash,
-        };
-        const result = await deploy(payload);
-        console.log(result, "Results of the Deployed Class Hash")
-
-      } catch (e) {
-        console.error("DEPLOYER ERROR", e);
+  const handleDeploy = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      if (!classHash) {
+        throw new Error("No class hash");
       }
-    };
+      if (!isConnected || !account) {
+        throw new Error("Connect wallet to continue");
+      }
+      if(constructorArguments === ("" || null)){
+        const payload: UniversalDeployerContractPayload ={
+          classHash: classHash
+        }
+        
+        const result = await account.deployContract(payload);
+        console.log(result.contract_address, "Contract Address of The Smart Contract")
+      }else {
+
+      }
+    } catch (e) {
+      // throw new Error("Connect wallet to continue", e);
+      console.error("DEPLOYER ERROR", e);
+    }
+  };
+  const disableButton = !isConnected || !account || classHash === "";
+  // console.log(account?.deployContract(), "Results of the Deployed Class Hash");
+  // provider.
   return (
     <div className="flex flex-col dark:text-white text-black">
       <Header />
@@ -132,11 +148,15 @@ function ScaffoldDeployer() {
             }}
             value={classHash}
           />
-          {/* <input
+          <input
             type="text"
             className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
-            placeholder="Input Constructor Arguments"
-          /> */}
+            placeholder="Input Constructor Arguments(optional)"
+            onChange={(e) => {
+              setContructorArguments(e.target.value);
+            }}
+            value={constructorArguments}
+          />
           {/* <input
             type="text"
             className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
@@ -144,7 +164,8 @@ function ScaffoldDeployer() {
           /> */}
           <button
             type="submit"
-            className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white"
+            disabled={disableButton}
+            className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
           >
             Deploy
           </button>
