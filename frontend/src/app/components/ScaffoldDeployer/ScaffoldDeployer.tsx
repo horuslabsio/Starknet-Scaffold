@@ -5,11 +5,8 @@ import trash from "../../../../public/assets/deleteIcon.svg";
 import { useRef, useState } from "react";
 import Header from "../Header";
 import Image from "next/image";
-import { UniversalDeployerContractPayload, provider , CallData} from "starknet";
-import { useAccount,useProvider } from "@starknet-react/core";
-
-// import { deploy } from "@/app/services/wallet.service";
-
+import { UniversalDeployerContractPayload } from "starknet";
+import { useAccount } from "@starknet-react/core";
 interface FileList {
   lastModified: number;
   lastModifiedDate: Date;
@@ -23,10 +20,9 @@ function ScaffoldDeployer() {
   const fileInputRef: any = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList[]>([]);
   const [classHash, setClassHash] = useState("");
-  const [constructorArguments, setContructorArguments] = useState("");
+  const [deployedAddress, setDeployedAddress] = useState("");
 
   const { account, isConnected } = useAccount();
-  const provider = useProvider();
 
   const handleFileSelect = (event: any) => {
     event.preventDefault();
@@ -61,27 +57,22 @@ function ScaffoldDeployer() {
       if (!isConnected || !account) {
         throw new Error("Connect wallet to continue");
       }
-      // if(constructorArguments === ("" || null)){
-
-      // }else {
-
-      // }
-       const payload: UniversalDeployerContractPayload = {
-         classHash: classHash,
-       };
-       const result = await account.deployContract(payload);
-       console.log(
-         result.contract_address,
-         "Contract Address of The Smart Contract"
-       );
+      const payload: UniversalDeployerContractPayload = {
+        classHash: classHash,
+      };
+      const result = await account.deployContract(payload);
+      console.log(
+        result.contract_address,
+        "Contract Address of The Smart Contract"
+      );
+      setDeployedAddress(result.contract_address);
     } catch (e) {
-      // throw new Error("Connect wallet to continue", e);
       console.error("DEPLOYER ERROR", e);
     }
   };
+
   const disableButton = !isConnected || !account || classHash === "";
-  // console.log(account?.deployContract(), "Results of the Deployed Class Hash");
-  // provider.
+
   return (
     <div className="flex flex-col dark:text-white text-black">
       <Header />
@@ -151,20 +142,17 @@ function ScaffoldDeployer() {
             }}
             value={classHash}
           />
-          {/* <input
-            type="text"
-            className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
-            placeholder="Input Constructor Arguments(optional)"
-            onChange={(e) => {
-              setContructorArguments(e.target.value);
-            }}
-            value={constructorArguments}
-          /> */}
-          {/* <input
-            type="text"
-            className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
-            placeholder="Input Number of Constructor Arguments"
-          /> */}
+          {deployedAddress && (
+            <div>
+              <p>Deployed Address</p>
+              <input
+                type="text"
+                className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
+                value={deployedAddress}
+              />
+            </div>
+          )}
+
           <button
             type="submit"
             disabled={disableButton}
