@@ -149,6 +149,7 @@ function ScaffoldDeployer() {
                 type="text"
                 className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
                 value={deployedAddress}
+                disabled
               />
             </div>
           )}
