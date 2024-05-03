@@ -63,7 +63,10 @@ const Burners: React.FC = () => {
   useEffect(() => {
     const loadedWallets = localStorage.getItem("wallets");
     if (loadedWallets) {
-      setWallets(JSON.parse(loadedWallets));
+      setWallets((prevWallets) => [
+        ...prevWallets,
+        ...JSON.parse(loadedWallets),
+      ]);
     }
   }, []);
 
