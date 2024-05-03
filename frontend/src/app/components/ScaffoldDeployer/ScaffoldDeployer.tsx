@@ -5,7 +5,8 @@ import trash from "../../../../public/assets/deleteIcon.svg";
 import { useRef, useState } from "react";
 import Header from "../Header";
 import Image from "next/image";
-
+import { UniversalDeployerContractPayload } from "starknet";
+import { useAccount } from "@starknet-react/core";
 interface FileList {
   lastModified: number;
   lastModifiedDate: Date;
@@ -18,6 +19,10 @@ interface FileList {
 function ScaffoldDeployer() {
   const fileInputRef: any = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList[]>([]);
+  const [classHash, setClassHash] = useState("");
+  const [deployedAddress, setDeployedAddress] = useState("");
+
+  const { account, isConnected } = useAccount();
 
   const handleFileSelect = (event: any) => {
     event.preventDefault();
@@ -42,6 +47,32 @@ function ScaffoldDeployer() {
     const files: any = Array.from(event.dataTransfer.files);
     setSelectedFiles(files);
   };
+
+  const handleDeploy = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      if (!classHash) {
+        throw new Error("No class hash");
+      }
+      if (!isConnected || !account) {
+        throw new Error("Connect wallet to continue");
+      }
+      const payload: UniversalDeployerContractPayload = {
+        classHash: classHash,
+      };
+      const result = await account.deployContract(payload);
+      console.log(
+        result.contract_address,
+        "Contract Address of The Smart Contract"
+      );
+      setDeployedAddress(result.contract_address);
+    } catch (e) {
+      console.error("DEPLOYER ERROR", e);
+    }
+  };
+
+  const disableButton = !isConnected || !account || classHash === "";
+
   return (
     <div className="flex flex-col dark:text-white text-black">
       <Header />
@@ -100,24 +131,34 @@ function ScaffoldDeployer() {
             Declare
           </button>
         </form>
-        <form action="" className="flex flex-col mt-12">
+        <form onSubmit={handleDeploy} className="flex flex-col mt-12">
           <h1 className="text-2xl font-bold">Deploy</h1>
           <input
             type="text"
             className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
             placeholder="Input Class Hash"
+            onChange={(e) => {
+              setClassHash(e.target.value);
+            }}
+            value={classHash}
           />
-          <input
-            type="text"
-            className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
-            placeholder="Input Constructor Arguments"
-          />
-          <input
-            type="text"
-            className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
-            placeholder="Input Number of Constructor Arguments"
-          />
-          <button className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white">
+          {deployedAddress && (
+            <div>
+              <p>Deployed Address</p>
+              <input
+                type="text"
+                className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
+                value={deployedAddress}
+                disabled
+              />
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={disableButton}
+            className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+          >
             Deploy
           </button>
         </form>
