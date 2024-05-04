@@ -81,14 +81,14 @@ function AssetTransferModal({
         return;
       }
       setLoading(true);
+      starknet_contract.connect(account);
       const toTransferTk: Uint256 = cairo.uint256(Number(amount) * 1e18);
       const transferCall: Call = starknet_contract.populate("transfer", {
         recipient: walletAddress,
         amount: toTransferTk,
       });
-      const { transaction_hash: transferTxHash } = await account.execute(
-        transferCall
-      );
+      const { transaction_hash: transferTxHash } =
+        await starknet_contract.transfer(transferCall.calldata);
       await provider.waitForTransaction(transferTxHash);
       window.alert("Your transfer was successful!");
     } catch (err: any) {
