@@ -55,19 +55,17 @@ function AssetTransferModal({
   }
 
   const provider = new RpcProvider({
-    nodeUrl:
-      "https://starknet-sepolia.public.blastapi.io",
+    nodeUrl: "https://starknet-sepolia.public.blastapi.io",
   });
 
   let starknet_contract: any;
-  if(activeToken == "strk") {
+  if (activeToken == "strk") {
     starknet_contract = new Contract(
       abi,
       "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
       provider
     );
-  }
-  else{
+  } else {
     starknet_contract = new Contract(
       abi,
       "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
@@ -80,12 +78,13 @@ function AssetTransferModal({
       if (!walletAddress.length && !amount) {
         return;
       }
+      starknet_contract.connect(account);
       const toTransferTk: Uint256 = cairo.uint256(Number(amount) * 1e18);
       const transferCall: Call = starknet_contract.populate("transfer", {
         recipient: walletAddress,
         amount: toTransferTk,
       });
-      const { transaction_hash: transferTxHash } = await account.execute(transferCall);
+      const { transaction_hash: transferTxHash,  } = await starknet_contract.transfer(transferCall.calldata);
       await provider.waitForTransaction(transferTxHash);
       window.alert("Your transfer was successful!");
     } catch (err: any) {

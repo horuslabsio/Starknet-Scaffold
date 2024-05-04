@@ -62,16 +62,15 @@ const Burners: React.FC = () => {
 
   useEffect(() => {
     const loadedWallets = localStorage.getItem("wallets");
-    if (loadedWallets) {
-      setWallets((prevWallets) => [
-        ...prevWallets,
-        ...JSON.parse(loadedWallets),
-      ]);
+    if (loadedWallets && loadedWallets.length > 0) {
+      setWallets(JSON.parse(loadedWallets));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("wallets", JSON.stringify(wallets));
+    if (wallets.length > 0) {
+      localStorage.setItem("wallets", JSON.stringify(wallets));
+    }
   }, [wallets]);
 
   const handleCreate = async () => {
@@ -79,7 +78,6 @@ const Burners: React.FC = () => {
       if (burnerWalletDeployer) {
         const newWallet = await generateWallet(burnerWalletDeployer);
         setWallets([...wallets, newWallet]);
-        console.log(newWallet);
       } else {
         console.error("Burner wallet deployer is undefined.");
       }
