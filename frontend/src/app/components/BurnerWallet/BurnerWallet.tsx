@@ -113,13 +113,15 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
       <div className="mt-[80px] flex  gap-[60px] justify-center">
         {isConnected ? (
           <>
-            <button
-              className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
-              disabled={!eth || !strk}
-              onClick={() => setIsSending(true)}
-            >
-              SEND
-            </button>
+            {ethBalance != 0 && strkBalance != 0 && (
+              <button
+                className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
+                disabled={!eth || !strk}
+                onClick={() => setIsSending(true)}
+              >
+                SEND
+              </button>
+            )}
             <button
               className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
               disabled={!eth || !strk}
