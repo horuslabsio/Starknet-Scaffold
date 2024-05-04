@@ -144,18 +144,27 @@ const Header = () => {
           <div
             className={`w-[1.5em] h-[2px] ${
               theme === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
-            }  rounded-full transition-all duration-300 ease-in-out ${
-              openMenu ? "rotate-45 translate-y-[.5em]" : "transform-none"
-            } `}
+            } rounded-full transition-all duration-300 ease-in-out ${
+              openMenu
+                ? "rotate-45 translate-y-[0.625em]"
+                : "rotate-0 translate-y-0"
+            }`}
           ></div>
           <div
             className={`w-[1.5em] h-[2px] ${
               theme === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
-            }  rounded-full transition-all duration-300 ease-in-out ${
+            } rounded-full transition-all duration-300 ease-in-out ${
+              openMenu ? "opacity-0" : "opacity-100"
+            }`}
+          ></div>
+          <div
+            className={`w-[1.5em] h-[2px] ${
+              theme === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
+            } rounded-full transition-all duration-300 ease-in-out ${
               openMenu
-                ? "rotate-[-45deg] translate-y-[-.2em]"
-                : "transform-none"
-            } `}
+                ? "-rotate-45 translate-y-[-0.625em]"
+                : "rotate-0 translate-y-0"
+            }`}
           ></div>
         </button>
         <ThemeSwitch
