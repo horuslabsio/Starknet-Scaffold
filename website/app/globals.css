@@ -133,7 +133,7 @@ h3 {
     font-size: 3.5em;
   }
   h2 {
-    font-size: 1.8em;
+    font-size: 1.5em;
   }
   h3 {
     font-size: 1.3em;
@@ -161,18 +161,18 @@ button:hover {
 .feat-img-right {
   will-change: transform;
   transform: translateX(100%);
-  transition: transform 1.8s;
+  transition: transform 1.5s;
 }
 .feat-img-right.in-view {
   transform: translateX(0);
-  transition: transform 1.8s;
+  transition: transform 1.5s;
 }
 .feat-img-left {
   will-change: transform;
   transform: translateX(-100%);
-  transition: transform 1.8s;
+  transition: transform 1.5s;
 }
 .feat-img-left.in-view {
   transform: translateX(0);
-  transition: transform 1.8s;
+  transition: transform 1.5s;
 }
