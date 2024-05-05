@@ -2,8 +2,11 @@ import UpRightArrowIcon from "@/app/svg/UpRightArrowIcon";
 
 const Wikipedia = () => {
   return (
-    <div className="flex flex-col md:flex-row-reverse md:items-center gap-8">
-      <div className="md:p-4 grid grid-cols-1 grid-rows-1" aria-hidden>
+    <div className="flex flex-col md:flex-row-reverse md:items-center gap-8 feature">
+      <div
+        className="md:p-4 grid grid-cols-1 grid-rows-1 feat-img-right"
+        aria-hidden
+      >
         <img
           src="/wikipedia.svg"
           alt=""

@@ -157,3 +157,22 @@ button {
 button:hover {
   border-radius: 20px;
 }
+
+.feat-img-right {
+  will-change: transform;
+  transform: translateX(100%);
+  transition: transform 1.8s;
+}
+.feat-img-right.in-view {
+  transform: translateX(0);
+  transition: transform 1.8s;
+}
+.feat-img-left {
+  will-change: transform;
+  transform: translateX(-100%);
+  transition: transform 1.8s;
+}
+.feat-img-left.in-view {
+  transform: translateX(0);
+  transition: transform 1.8s;
+}

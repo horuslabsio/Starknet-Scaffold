@@ -2,8 +2,11 @@ import UpRightArrowIcon from "@/app/svg/UpRightArrowIcon";
 
 const Faucet = () => {
   return (
-    <div className="flex flex-col md:flex-row md:items-center gap-8">
-      <div className="md:p-4 grid grid-cols-1 grid-rows-1" aria-hidden>
+    <div className="flex flex-col md:flex-row md:items-center gap-8 feature">
+      <div
+        className="md:p-4 grid grid-cols-1 grid-rows-1 feat-img-left"
+        aria-hidden
+      >
         <img
           src="/faucet.svg"
           alt=""
