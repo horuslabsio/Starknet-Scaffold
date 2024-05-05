@@ -1,0 +1,178 @@
+@import url("https://fonts.cdnfonts.com/css/coolvetica-2");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 20, 25, 37;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --background-variation-rgb: 237, 235, 235;
+  --translate-sun: translateX(-2rem) translateY(1rem);
+  --translate-moon: translateX(0rem) translateY(0rem);
+  --moon-opacity: 1;
+  --sun-opacity: 0;
+  --dark-img-opacity: 0;
+  --light-img-opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 31, 31, 31;
+    --background-end-rgb: 31, 31, 31;
+    --background-variation-rgb: 45, 45, 45, 1;
+    --translate-sun: translateX(0rem) translateY(0rem);
+    --translate-moon: translateX(2rem) translateY(-1rem);
+    --moon-opacity: 0;
+    --sun-opacity: 1;
+    --dark-img-opacity: 1;
+    --light-img-opacity: 0;
+  }
+}
+
+[data-theme="light"] {
+  --foreground-rgb: 20, 25, 37;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --background-variation-rgb: 237, 235, 235;
+  --translate-sun: translateX(-2rem) translateY(1rem);
+  --translate-moon: translateX(0rem) translateY(0rem);
+  --moon-opacity: 1;
+  --sun-opacity: 0;
+  --dark-img-opacity: 0;
+  --light-img-opacity: 1;
+}
+
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 31, 31, 31;
+  --background-end-rgb: 31, 31, 31;
+  --background-variation-rgb: 45, 45, 45, 1;
+  --translate-sun: translateX(0rem) translateY(0rem);
+  --translate-moon: translateX(2rem) translateY(-1rem);
+  --moon-opacity: 0;
+  --sun-opacity: 1;
+  --dark-img-opacity: 1;
+  --light-img-opacity: 0;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: rgb(237, 235, 235);
+}
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+body {
+  font-family: "Coolvetica", sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  transition: background 0.5s;
+  font-weight: 400;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+
+#sun {
+  will-change: transform;
+  transform: var(--translate-sun);
+  opacity: var(--sun-opacity);
+  transition: transform 0.5s, opacity 0.5s 0.1s;
+}
+#moon {
+  will-change: transform;
+  transform: var(--translate-moon);
+  opacity: var(--moon-opacity);
+  transition: transform 0.5s, opacity 0.5s 0.1s;
+}
+#toggle-theme {
+  background: rgb(var(--background-end-rgb));
+  transition: background 0.5s;
+}
+.bg-varying {
+  background-color: rgb(var(--background-variation-rgb));
+  transition: background 0.5s;
+}
+.dark-img {
+  opacity: var(--dark-img-opacity);
+  transition: opacity 0.5s;
+}
+.light-img {
+  opacity: var(--light-img-opacity);
+  transition: opacity 0.5s;
+}
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+h1 {
+  font-size: 2.2em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.2em;
+}
+@media screen and (min-width: 780px) {
+  h1 {
+    font-size: 3.5em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  h3 {
+    font-size: 1.3em;
+  }
+}
+
+.glass-img {
+  -webkit-mask: linear-gradient(
+    180deg,
+    transparent,
+    white 0%,
+    white 10%,
+    transparent
+  );
+  mask: linear-gradient(180deg, transparent, white 0%, white 10%, transparent);
+  transition: mask 0.5s;
+}
+button {
+  border-radius: 12px;
+}
+button:hover {
+  border-radius: 20px;
+}
+
+.feat-img-right {
+  will-change: transform;
+  transform: translateX(100%);
+  transition: transform 1.5s;
+}
+.feat-img-right.in-view {
+  transform: translateX(0);
+  transition: transform 1.5s;
+}
+.feat-img-left {
+  will-change: transform;
+  transform: translateX(-100%);
+  transition: transform 1.5s;
+}
+.feat-img-left.in-view {
+  transform: translateX(0);
+  transition: transform 1.5s;
+}
