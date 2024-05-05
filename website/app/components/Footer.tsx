@@ -13,7 +13,7 @@ const Footer = () => {
           technology. We are over 200+ actively creating products and utility to
           foster the blockchain space.
         </p>
-        <button className="bg-white w-fit text-dark-font-color py-2 px-8 rounded-[12px]">
+        <button className="bg-white w-fit text-dark-font-color py-2 px-8 transition-all duration-400 rounded-[12px] hover:rounded-[20px] ">
           Learn more
         </button>
       </div>

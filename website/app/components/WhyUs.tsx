@@ -55,7 +55,7 @@ const WhyUs = () => {
             expedita rerum aliquam, asperiores minus repudiandae unde at saepe
             vitae dicta illo officia!
           </p>
-          <button className="border-solid border-[#B4B4B4] border-[2px] min-w-[6rem] px-2 py-1 rounded-[8px] w-fit">
+          <button className="border-solid border-[#B4B4B4] border-[2px] min-w-[6rem] px-2 py-1 rounded-[8px] w-fit hover:rounded-[20px] transition-all duration-400 ">
             Docs
           </button>
         </figure>

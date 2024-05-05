@@ -151,3 +151,9 @@ h3 {
   mask: linear-gradient(180deg, transparent, white 0%, white 10%, transparent);
   transition: mask 0.5s;
 }
+button {
+  border-radius: 12px;
+}
+button:hover {
+  border-radius: 20px;
+}
