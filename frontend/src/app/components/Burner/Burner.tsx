@@ -107,7 +107,7 @@ const Burners: React.FC = () => {
       <div className="flex justify-center p-4 pt-20">
         <div className="flex flex-col items-start gap-2">
           <h2>
-            <b className="text-red-300">
+            <b className="text-black-300">
               NB: Please note that burner wallets are not supported on mainnet.
               Resolve to using a wallet provider instead! <br />
               <br />

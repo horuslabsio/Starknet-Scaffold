@@ -126,7 +126,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           <>
             {(ethBalance > 0 || strkBalance > 0) && (
               <button
-                className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
+                className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
                 disabled={!eth || !strk}
                 onClick={() => setIsSending(true)}
               >
@@ -134,7 +134,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
               </button>
             )}
             <button
-              className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
+              className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
               disabled={!eth || !strk}
               onClick={() => setIsExecuting(true)}
             >
@@ -143,7 +143,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           </>
         ) : (
           <button
-            className=" px-6 py-4 bg-blue-500 disabled:cursor-not-allowed text-white rounded-[5px] w-[200px] font-semibold"
+            className=" px-6 py-4 bg-[#f77448] disabled:cursor-not-allowed text-white rounded-[5px] w-[200px] font-semibold"
             onClick={() => setIsConnecting(true)}
             disabled={!eth || !strk}
           >
