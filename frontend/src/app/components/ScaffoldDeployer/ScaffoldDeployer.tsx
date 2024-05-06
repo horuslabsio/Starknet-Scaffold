@@ -5,7 +5,12 @@ import trash from "../../../../public/assets/deleteIcon.svg";
 import { useRef, useState } from "react";
 import Header from "../Header";
 import Image from "next/image";
-import { UniversalDeployerContractPayload } from "starknet";
+import {
+  CallData,
+  Calldata,
+  UniversalDeployerContractPayload,
+  num,
+} from "starknet";
 import { useAccount } from "@starknet-react/core";
 interface FileList {
   lastModified: number;
@@ -21,8 +26,26 @@ function ScaffoldDeployer() {
   const [selectedFiles, setSelectedFiles] = useState<FileList[]>([]);
   const [classHash, setClassHash] = useState("");
   const [deployedAddress, setDeployedAddress] = useState("");
+  const [argumentsList, setArgumentsList] = useState([""]);
+  const [argumentError, setArgumentError] = useState("");
 
   const { account, isConnected } = useAccount();
+
+  const handleInputChange = (index: number, event: any) => {
+    const newArgumentsList = [...argumentsList];
+    newArgumentsList[index] = event.target.value;
+    setArgumentsList(newArgumentsList);
+  };
+
+  const handleAddArgument = () => {
+    if (argumentsList[argumentsList.length - 1] === "") {
+      setArgumentError(
+        "Input an argument value in the previous field before adding another!"
+      );
+      return;
+    }
+    setArgumentsList([...argumentsList, ""]);
+  };
 
   const handleFileSelect = (event: any) => {
     event.preventDefault();
@@ -57,8 +80,10 @@ function ScaffoldDeployer() {
       if (!isConnected || !account) {
         throw new Error("Connect wallet to continue");
       }
+      const contractConstructor = CallData.compile(argumentsList.filter(arg=>arg !== ''));
       const payload: UniversalDeployerContractPayload = {
         classHash: classHash,
+        constructorCalldata: contractConstructor,
       };
       const result = await account.deployContract(payload);
       console.log(
@@ -68,6 +93,9 @@ function ScaffoldDeployer() {
       setDeployedAddress(result.contract_address);
     } catch (e) {
       console.error("DEPLOYER ERROR", e);
+    } finally{
+      setClassHash("");
+      setArgumentsList([""])
     }
   };
 
@@ -127,7 +155,7 @@ function ScaffoldDeployer() {
               </button>
             </div>
           )}
-          <button className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white">
+          <button className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white">
             Declare
           </button>
         </form>
@@ -142,6 +170,28 @@ function ScaffoldDeployer() {
             }}
             value={classHash}
           />
+          <div className="mb-4">
+            <h2 className="text-lg font-bold mb-2">Constructor Arguments</h2>
+            <div className="flex flex-col gap-y-3">
+              {argumentsList.map((arg, index) => (
+                <div key={index} className="flex items-center gap-x-2">
+                  <h4 className="text-base font-medium w-[120px]">
+                    Argument {index + 1}
+                  </h4>
+                  <input
+                    type="text"
+                    value={arg}
+                    className="py-2 px-6 rounded-md w-full text-[#333]"
+                    onChange={(event) => handleInputChange(index, event)}
+                  />
+                </div>
+              ))}
+              {argumentError === "" && (
+                <h6 className=" text-red-600 text-sm">{argumentError}</h6>
+              )}
+            </div>
+          </div>
+
           {deployedAddress && (
             <div>
               <p>Deployed Address</p>
@@ -154,13 +204,23 @@ function ScaffoldDeployer() {
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={disableButton}
-            className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
-          >
-            Deploy
-          </button>
+          <div className="flex items-center gap-x-5">
+            <button
+              type="button"
+              onClick={handleAddArgument}
+              disabled={argumentsList[argumentsList.length - 1] === ""}
+              className="bg-blue-500 py-3 px-4 rounded-[5px] w-[250px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+            >
+              Add argument
+            </button>
+            <button
+              type="submit"
+              disabled={disableButton}
+              className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+            >
+              Deploy
+            </button>
+          </div>
         </form>
       </div>
     </div>
