@@ -127,7 +127,7 @@ function ScaffoldDeployer() {
               </button>
             </div>
           )}
-          <button className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white">
+          <button className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white">
             Declare
           </button>
         </form>
@@ -157,7 +157,7 @@ function ScaffoldDeployer() {
           <button
             type="submit"
             disabled={disableButton}
-            className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+            className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
           >
             Deploy
           </button>
