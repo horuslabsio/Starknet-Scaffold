@@ -68,7 +68,7 @@ const Burners: React.FC = () => {
       const parsedWallets: Wallet[] = JSON.parse(loadedWallets);
       setWallets(parsedWallets);
       setBurnerWalletLoading(false);
-    }
+    } else setBurnerWalletLoading(false);
   }, []);
 
   const handleCreate = async () => {
