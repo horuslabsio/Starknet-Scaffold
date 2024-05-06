@@ -97,7 +97,7 @@ const Burners: React.FC = () => {
       <div className="flex justify-center p-4 pt-20">
         <div className="flex flex-col items-start gap-2">
           <h2>
-            <b className="text-red-300">
+            <b className="text-black-300">
               NB: Please note that burner wallets are not supported on mainnet.
               Resolve to using a wallet provider instead! <br />
               <br />
@@ -112,13 +112,13 @@ const Burners: React.FC = () => {
             <BurnerWallet key={index} wallet={wallet} />
           ))}
           <button
-            className="mt-4 p-2 bg-blue-500 text-white rounded"
+            className="mt-4 p-2 bg-[#f77448] text-white rounded"
             onClick={handleCreate}
           >
             Generate Wallet
           </button>
           <button
-            className="mt-2 p-2 bg-red-500 text-white rounded"
+            className="mt-2 p-2 bg-blue-500 text-white rounded"
             onClick={clearWallets}
           >
             Clear Wallets

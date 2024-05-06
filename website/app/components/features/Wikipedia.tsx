@@ -26,8 +26,7 @@ const Wikipedia = () => {
           </span>
         </h2>
         <p className="text-[#BC988C]">
-          Generate temporary wallets which can be used during the course of
-          development
+          A collection of Starknet/Cairo learning resources in the ecosystem{" "}
         </p>
       </div>
     </div>

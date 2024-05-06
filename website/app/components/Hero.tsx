@@ -8,8 +8,8 @@ const Hero = () => {
   const [copiedUrl, setCopiedUrl] = useState(false);
   const [copiedCommand, setCopiedCommand] = useState(false);
   const SCAFFOLD_REPO_URL =
-    "https://github.com/scaffold-eth/scaffold-eth-2.git";
-  const CREATE_COMMAND = "npx create-eth@latest";
+    "https://github.com/argentlabs/Starknet-Scaffold.git";
+  const CREATE_COMMAND = "npx create-starknet-app@latest";
 
   const copyToClipboard = async ({
     text,
@@ -34,11 +34,12 @@ const Hero = () => {
       <div className="bg-hero-image bg-cover bg-center w-full h-full md:rounded-lg text-dark-font-color flex flex-col gap-4 justify-center items-center text-center p-4">
         <div className="lg:w-[55%] flex flex-col gap-4">
           <h1 className="font-bold">
-            Everything you need to buidl dApps on Ethereum
+            Everything you need to buidl dApps on Starknet
           </h1>
           <p className="lg:px-20">
-            A modern clean veersion of Starknet-Scaffold with NextJS,
-            Rainbowkit, Wagmi and Typescript. Supports Hardhat and Foundry
+            An open-source, up-to-date toolkit for building decentralized
+            applications (dapps) on Starknet. Move from prototyping to
+            production-grade apps seamlessly.
           </p>
         </div>
         <div className="flex flex-col gap-4 items-center overflow-hidden">
@@ -55,7 +56,7 @@ const Hero = () => {
             className="border-solid border-dark-font-color border-[2px] p-2 w-[90vw] max-w-[400px] md:w-fit rounded-full flex items-center   text-[.875em] gap-2 transition-all hover:bg-[#f98862]"
           >
             <span className="whitespace-nowrap  overflow-hidden text-ellipsis basis-[95%]">
-              git clone https://github.com/scaffold-eth/scaffold-eth-2.git
+              git clone https://github.com/argentlabs/Starknet-Scaffold.git
             </span>
             <span className=" grid grid-cols-1 grid-rows-1">
               <span
@@ -98,7 +99,7 @@ const Hero = () => {
             className="border-solid border-dark-font-color border-[2px] p-2 rounded-full flex items-center text-[.875em] gap-2 w-[90vw] max-w-[200px] md:w-fit transition-all hover:bg-[#f98862]"
           >
             <span className="whitespace-nowrap  overflow-hidden text-ellipsis basis-[90%]">
-              npx create-eth@latest
+              npx create-starknet-app@latest
             </span>
             <span className=" grid grid-cols-1 grid-rows-1">
               <span
@@ -119,15 +120,19 @@ const Hero = () => {
           </button>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="border-solid border-dark-font-color border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400">
-            Docs
-          </button>
-          <button className="bg-dark-font-color text-white min-w-[6rem] p-[.35rem] rounded-[4px] flex justify-center items-center hover:rounded-[20px] transition-all duration-400 ">
-            <span>Github</span>
-            <span>
-              <GithubIcon />
-            </span>
-          </button>
+          <a href="https://starknet-scaffold.vercel.app/">
+            <button className="border-solid border-dark-font-color border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400">
+              Try Online
+            </button>
+          </a>
+          <a href="https://github.com/argentlabs/Starknet-Scaffold">
+            <button className="bg-dark-font-color text-white min-w-[6rem] p-[.35rem] rounded-[4px] flex justify-center items-center hover:rounded-[20px] transition-all duration-400 ">
+              <span>Github</span>
+              <span>
+                <GithubIcon />
+              </span>
+            </button>
+          </a>
         </div>
       </div>
     </section>

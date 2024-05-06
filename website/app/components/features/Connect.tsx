@@ -19,7 +19,7 @@ const Connect = () => {
         />
       </div>
       <div className="px-2 md:px-8">
-        <p className="text-[#BC988C] text-[.875em]">WALLET INTEROPERABILITY</p>
+        <p className="text-[#BC988C] text-[.875em]">Powered by Starknetkit..</p>
         <h2 className="flex items-center gap-2 font-semibold">
           <span>Connect Wallet</span>
           <span>
@@ -27,7 +27,7 @@ const Connect = () => {
           </span>
         </h2>
         <p className="text-[#BC988C]">
-          Starknet-scaffold supports transactions across all crypto wallets.
+          Starknet-scaffold has default support for all wallets within the Starknet ecosystem
         </p>
       </div>
     </div>

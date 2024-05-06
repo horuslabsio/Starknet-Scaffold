@@ -1,6 +1,6 @@
 import UpRightArrowIcon from "@/app/svg/UpRightArrowIcon";
 
-const BurnerWallet = () => {
+const Deployer = () => {
   return (
     <div className="flex flex-col md:flex-row-reverse md:items-center gap-8 feature">
       <div className="grid grid-cols-1 grid-rows-1 feat-img-right" aria-hidden>
@@ -23,12 +23,12 @@ const BurnerWallet = () => {
           </span>
         </h2>
         <p className="text-[#BC988C]">
-          Generate temporary wallets which can be used during the course of
-          development
+            A simple tool for seamlessly deploying smart contracts to Starknet
+            testnet and mainnet
         </p>
       </div>
     </div>
   );
 };
 
-export default BurnerWallet;
+export default Deployer;
