@@ -80,10 +80,8 @@ function ScaffoldDeployer() {
       if (!isConnected || !account) {
         throw new Error("Connect wallet to continue");
       }
-      const contractConstructor = CallData.compile(argumentsList);
-      const payload: UniversalDeployerContractPayload = argumentsList[0] === '' ? {
-        classHash: classHash,
-      } : {
+      const contractConstructor = CallData.compile(argumentsList.filter(arg=>arg !== ''));
+      const payload: UniversalDeployerContractPayload = {
         classHash: classHash,
         constructorCalldata: contractConstructor,
       };
@@ -95,6 +93,9 @@ function ScaffoldDeployer() {
       setDeployedAddress(result.contract_address);
     } catch (e) {
       console.error("DEPLOYER ERROR", e);
+    } finally{
+      setClassHash("");
+      setArgumentsList([""])
     }
   };
 
