@@ -15,7 +15,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
       break;
     case Status.Pending:
       Icon = Clock;
-      color = "text-blue-500";
+      color = "text-[#f77448]";
       break;
     case Status.Rejected:
       Icon = AlertCircle;
@@ -30,7 +30,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
       <div className="flex items-center">
         {Icon && <Icon className={`${color} mr-2`} />}
         <div>
-          <p className="text-blue-600 font-semibold">{transaction.title}</p>
+          <p className="text-[#f77448] font-semibold">{transaction.title}</p>
           <p className="text-gray-700 text-sm">{transaction.text}</p>
         </div>
       </div>
@@ -39,7 +39,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
           {formatDate(transaction.createdAt)}
         </p>
 
-        <button className="text-blue-600 hover:text-blue-800 text-xs font-semibold">
+        <button className="text-[#f77448] hover:text-[#f77448] text-xs font-semibold">
           <a
             href={`https://starkscan.co/tx/${transaction.txHash}`}
             target="_blank"

@@ -112,7 +112,7 @@ const Burners: React.FC = () => {
             <BurnerWallet key={index} wallet={wallet} />
           ))}
           <button
-            className="mt-4 p-2 bg-blue-500 text-white rounded"
+            className="mt-4 p-2 bg-[#f77448] text-white rounded"
             onClick={handleCreate}
           >
             Generate Wallet
