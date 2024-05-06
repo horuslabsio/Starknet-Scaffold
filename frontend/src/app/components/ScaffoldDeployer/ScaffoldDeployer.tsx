@@ -155,7 +155,7 @@ function ScaffoldDeployer() {
               </button>
             </div>
           )}
-          <button className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white">
+          <button className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white">
             Declare
           </button>
         </form>
