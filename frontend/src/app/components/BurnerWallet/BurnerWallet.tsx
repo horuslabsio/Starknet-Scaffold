@@ -9,6 +9,7 @@ import CopyButton from "../CopyButton";
 import Erc20Abi from "../../abi/token.abi.json";
 import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utils/constant";
 import { formatCurrency } from "@/app/utils/currency";
+import ContractExecutionModal from "../ContractExecutionModal";
 interface IWallet {
   address: string;
   privateKey: string;
@@ -17,6 +18,7 @@ interface IWallet {
 
 function BurnerWallet({ wallet }: { wallet: IWallet }) {
   const [isSending, setIsSending] = useState(false);
+  const [isExecuting, setIsExecuting] = useState(false);
   const [account, setAccount] = useState(undefined);
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
@@ -65,6 +67,15 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             ethBalance={ethBalance}
             isOpen={isSending}
             onClose={() => setIsSending(false)}
+            account={account}
+          />,
+          document.body
+        )}
+      {isExecuting &&
+        createPortal(
+          <ContractExecutionModal
+            isOpen={isExecuting}
+            onClose={() => setIsExecuting(false)}
             account={account}
           />,
           document.body
@@ -125,6 +136,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             <button
               className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
               disabled={!eth || !strk}
+              onClick={() => setIsExecuting(true)}
             >
               EXECUTE
             </button>
