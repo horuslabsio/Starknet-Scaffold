@@ -1,5 +1,5 @@
 "use client";
-import BurnerWallet from "./BurnerWallet";
+import Deployer from "./Deployer";
 import Connect from "./Connect";
 import Faucet from "./Faucet";
 import Wikipedia from "./Wikipedia";
@@ -40,7 +40,7 @@ const Features = () => {
   }, []);
   return (
     <section className="px-4 py-16 md:py-16  md:px-20  flex flex-col gap-16 overflow-hidden">
-      <BurnerWallet />
+      <Deployer />
       <Faucet />
       <Wikipedia />
       <Connect />

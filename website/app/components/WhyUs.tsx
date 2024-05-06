@@ -48,33 +48,32 @@ const WhyUs = () => {
               />
             </svg>
           </div>
-          <h3>Scaffold Burner Wallet</h3>
+          <h3>From prototyping to production..</h3>
           <p className="text-[#BC988C] text-[.875em]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-            similique obcaecati accusamus aut debitis, esse numquam excepturi
-            expedita rerum aliquam, asperiores minus repudiandae unde at saepe
-            vitae dicta illo officia!
+          Starknet Scaffold is designed to simplify the process for developers to create, declare, and deploy smart contracts alongside build interactive user interfaces.
           </p>
-          <button className="border-solid border-[#B4B4B4] border-[2px] min-w-[6rem] px-2 py-1 rounded-[8px] w-fit hover:rounded-[20px] transition-all duration-400 ">
-            Docs
-          </button>
+          <a href="https://github.com/argentlabs/Starknet-Scaffold#readme">
+            <button className="border-solid border-[#B4B4B4] border-[2px] min-w-[6rem] px-2 py-1 rounded-[8px] w-fit hover:rounded-[20px] transition-all duration-400 ">
+              Docs
+            </button>
+          </a>
         </figure>
         <div className="w-full flex flex-col gap-4">
           <Point
-            title="Scaffold Burner Wallet"
-            desc="Generate temporary wallets which can be used during the course of development"
+            title="Out-of-the-box UI components"
+            desc="Starknet Scaffold provides you with multiple out-of-the-box UI components you can customize to suit your needs"
           />
           <Point
-            title="Scaffold Burner Wallet"
-            desc="Generate temporary wallets which can be used during the course of development"
+            title="Sripts to make your life easier"
+            desc="We've added NPM scripts to help simplify your contract development with Starknet-Foundry"
           />
           <Point
-            title="Scaffold Burner Wallet"
-            desc="Generate temporary wallets which can be used during the course of development"
+            title="Burner Wallets and debugging tools"
+            desc="Starknet Scaffold gives you the ability to deploy burner wallets, interact with other contracts using them and deploy/declare contracts for easy debugging"
           />
           <Point
-            title="Scaffold Burner Wallet"
-            desc="Generate temporary wallets which can be used during the course of development"
+            title="Starknet Wikipedia"
+            desc="First time developing on Starknet? no worries! we've compiled the best learning tools and resources for you"
           />
         </div>
       </div>

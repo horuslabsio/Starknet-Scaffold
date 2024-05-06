@@ -9,13 +9,13 @@ const Footer = () => {
           Become a part of the Community
         </h2>
         <p className="text-[#BC988C] text-center">
-          Join our community to learn and build together with the ERC-6551
-          technology. We are over 200+ actively creating products and utility to
-          foster the blockchain space.
+          Join our community to learn and build together! And please raise an issue on our Github if there's a new feature you'll like to see
         </p>
-        <button className="bg-white w-fit text-dark-font-color py-2 px-8 transition-all duration-400 rounded-[12px] hover:rounded-[20px] ">
-          Learn more
-        </button>
+        <a href="https://t.me/+sH0ug1mZ_WtjNmM0">
+          <button className="bg-white w-fit text-dark-font-color py-2 px-8 transition-all duration-400 rounded-[12px] hover:rounded-[20px] ">
+            Chat
+          </button>
+        </a>
       </div>
       <div className="p-6">
         <p className="text-center text-[#BC988C]">Built with ❤️ by Argent</p>
