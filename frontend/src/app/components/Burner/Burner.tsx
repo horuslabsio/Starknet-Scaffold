@@ -135,13 +135,13 @@ const Burners: React.FC = () => {
           )}
           <div className="flex">
             <button
-              className="mt-2 mr-5 p-2 bg-blue-500 text-white rounded"
+              className="mt-2 mr-5 p-2 bg-[#f77448] text-white rounded"
               onClick={handleCreate}
             >
               Generate Wallet
             </button>
             <button
-              className="mt-2 p-2 bg-red-500 text-white rounded"
+              className="mt-2 p-2 bg-blue-500 text-white rounded"
               onClick={clearWallets}
             >
               Clear Wallets

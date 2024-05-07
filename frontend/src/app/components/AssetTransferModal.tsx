@@ -87,7 +87,7 @@ function AssetTransferModal({
         recipient: walletAddress,
         amount: toTransferTk,
       });
-      const { transaction_hash: transferTxHash } =
+      const { transaction_hash: transferTxHash, } =
         await starknet_contract.transfer(transferCall.calldata);
       await provider.waitForTransaction(transferTxHash);
       window.alert("Your transfer was successful!");
@@ -231,7 +231,7 @@ function AssetTransferModal({
         </div>
 
         <button
-          className="w-full mt-7 py-3 bg-[#3b81f6] rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
+          className="w-full mt-7 py-3 bg-[#f77448] rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
           onClick={async (e) => {
             e.preventDefault();
             await handleTransfer();
