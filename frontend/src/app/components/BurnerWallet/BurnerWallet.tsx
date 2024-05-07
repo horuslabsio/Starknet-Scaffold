@@ -9,6 +9,7 @@ import CopyButton from "../CopyButton";
 import Erc20Abi from "../../abi/token.abi.json";
 import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utils/constant";
 import { formatCurrency } from "@/app/utils/currency";
+import ContractExecutionModal from "../ContractExecutionModal";
 interface IWallet {
   address: string;
   privateKey: string;
@@ -17,6 +18,7 @@ interface IWallet {
 
 function BurnerWallet({ wallet }: { wallet: IWallet }) {
   const [isSending, setIsSending] = useState(false);
+  const [isExecuting, setIsExecuting] = useState(false);
   const [account, setAccount] = useState(undefined);
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
@@ -69,6 +71,15 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           />,
           document.body
         )}
+      {isExecuting &&
+        createPortal(
+          <ContractExecutionModal
+            isOpen={isExecuting}
+            onClose={() => setIsExecuting(false)}
+            account={account}
+          />,
+          document.body
+        )}
       {isConnecting &&
         createPortal(
           <ConnectionModal
@@ -113,7 +124,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
       <div className="mt-[80px] flex  gap-[60px] justify-center">
         {isConnected ? (
           <>
-            {ethBalance != 0 && strkBalance != 0 && (
+            {(ethBalance > 0 || strkBalance > 0) && (
               <button
                 className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
                 disabled={!eth || !strk}
@@ -125,6 +136,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             <button
               className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
               disabled={!eth || !strk}
+              onClick={() => setIsExecuting(true)}
             >
               EXECUTE
             </button>

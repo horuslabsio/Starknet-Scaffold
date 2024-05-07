@@ -8,6 +8,7 @@ import downChevron from "../../../public/assets/down-chevron.svg";
 import ethLogo from "../../../public/assets/ethereumLogo2.svg";
 import { Call, Contract, RpcProvider, Uint256, cairo } from "starknet";
 import abi from "./../../../public/abi/strk_abi.json";
+import spinner from "../../../public/assets/spinner.svg";
 
 type Props = {
   isOpen: boolean;
@@ -32,6 +33,7 @@ function AssetTransferModal({
   const [animate, setAnimate] = useState(false);
   const [activeToken, setActiveToken] = useState("strk");
   const [assetDropDownIsOpen, setAssetDropDownIsOpen] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const closeModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAnimate(false);
@@ -78,18 +80,21 @@ function AssetTransferModal({
       if (!walletAddress.length && !amount) {
         return;
       }
+      setLoading(true);
       starknet_contract.connect(account);
       const toTransferTk: Uint256 = cairo.uint256(Number(amount) * 1e18);
       const transferCall: Call = starknet_contract.populate("transfer", {
         recipient: walletAddress,
         amount: toTransferTk,
       });
-      const { transaction_hash: transferTxHash,  } = await starknet_contract.transfer(transferCall.calldata);
+      const { transaction_hash: transferTxHash } =
+        await starknet_contract.transfer(transferCall.calldata);
       await provider.waitForTransaction(transferTxHash);
       window.alert("Your transfer was successful!");
     } catch (err: any) {
       console.log(err.message);
     } finally {
+      setLoading(false);
       setTimeout(() => {
         onClose();
       }, 400);
@@ -232,7 +237,13 @@ function AssetTransferModal({
             await handleTransfer();
           }}
         >
-          Send <Image src={rightArr} alt="right arrow" height={16} width={16} />
+          Send{" "}
+          <Image
+            src={loading ? spinner : rightArr}
+            alt={loading ? "loading" : "right arrow"}
+            height={16}
+            width={16}
+          />
         </button>
       </form>
     </GenericModal>

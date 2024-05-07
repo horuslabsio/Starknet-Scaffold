@@ -1,11 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useAccount, useNetwork } from "@starknet-react/core";
-
 import { Contract, RpcProvider, ec, stark } from "starknet";
 import * as Abi from "../../../../public/abi/burnerWallet.json";
 import Header from "../Header";
 import BurnerWallet from "../BurnerWallet/BurnerWallet";
+import spinner from "../../../../public/assets/spinner.svg";
+import Image from "next/image";
 
 type Wallet = {
   address: string;
@@ -15,6 +16,7 @@ type Wallet = {
 
 const Burners: React.FC = () => {
   const [wallets, setWallets] = useState<Wallet[]>([]);
+  const [burnerWalletLoading, setBurnerWalletLoading] = useState<boolean>(true);
   const { account } = useAccount();
   const { chain } = useNetwork();
 
@@ -62,22 +64,30 @@ const Burners: React.FC = () => {
 
   useEffect(() => {
     const loadedWallets = localStorage.getItem("wallets");
-    if (loadedWallets && loadedWallets.length > 0) {
-      setWallets(JSON.parse(loadedWallets));
-    }
+    if (loadedWallets) {
+      const parsedWallets: Wallet[] = JSON.parse(loadedWallets);
+      setWallets(parsedWallets);
+      setBurnerWalletLoading(false);
+    } else setBurnerWalletLoading(false);
   }, []);
-
-  useEffect(() => {
-    if (wallets.length > 0) {
-      localStorage.setItem("wallets", JSON.stringify(wallets));
-    }
-  }, [wallets]);
 
   const handleCreate = async () => {
     if (wallets.length < 5) {
       if (burnerWalletDeployer) {
-        const newWallet = await generateWallet(burnerWalletDeployer);
-        setWallets([...wallets, newWallet]);
+        try {
+          setBurnerWalletLoading(true);
+          const newWallet = await generateWallet(burnerWalletDeployer);
+          setWallets([...wallets, newWallet]);
+          localStorage.setItem(
+            "wallets",
+            JSON.stringify([...wallets, newWallet])
+          );
+          console.log(newWallet);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setBurnerWalletLoading(false);
+        }
       } else {
         console.error("Burner wallet deployer is undefined.");
       }
@@ -108,21 +118,35 @@ const Burners: React.FC = () => {
           <br />
 
           <h3 className="font-bold text-start">Burner Wallets:</h3>
-          {wallets.map((wallet, index) => (
-            <BurnerWallet key={index} wallet={wallet} />
-          ))}
-          <button
-            className="mt-4 p-2 bg-[#f77448] text-white rounded"
-            onClick={handleCreate}
-          >
-            Generate Wallet
-          </button>
-          <button
-            className="mt-2 p-2 bg-blue-500 text-white rounded"
-            onClick={clearWallets}
-          >
-            Clear Wallets
-          </button>
+          {!burnerWalletLoading ? (
+            wallets.length !== 0 ? (
+              wallets.map((wallet, index) => (
+                <BurnerWallet key={index} wallet={wallet} />
+              ))
+            ) : (
+              <div className="flex justify-center items-center rounded-lg border px-8 py-12 border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 w-full">
+                <div>No burner wallets found</div>
+              </div>
+            )
+          ) : (
+            <div className="flex justify-center items-center rounded-lg border px-8 py-12 border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 w-full">
+              <Image src={spinner} width={32} height={32} alt="loading" />
+            </div>
+          )}
+          <div className="flex">
+            <button
+              className="mt-2 mr-5 p-2 bg-blue-500 text-white rounded"
+              onClick={handleCreate}
+            >
+              Generate Wallet
+            </button>
+            <button
+              className="mt-2 p-2 bg-red-500 text-white rounded"
+              onClick={clearWallets}
+            >
+              Clear Wallets
+            </button>
+          </div>
         </div>
       </div>
     </div>
