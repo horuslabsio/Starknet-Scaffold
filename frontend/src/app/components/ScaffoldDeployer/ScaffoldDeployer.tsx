@@ -107,8 +107,7 @@ function ScaffoldDeployer() {
 
       if (account && status == "connected") {
         result = await account.declare(payload);
-        const txHash = useWaitForTransaction({ hash: result.class_hash });
-        console.log(txHash);
+        console.log(result);
       } else {
         throw new Error("Wallet not connected");
       }
