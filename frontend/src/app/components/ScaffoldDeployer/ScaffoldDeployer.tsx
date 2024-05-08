@@ -7,7 +7,12 @@ import Header from "../Header";
 import Image from "next/image";
 import { DeclareContractPayload, hash, json } from "starknet";
 import { useAccount, useWaitForTransaction } from "@starknet-react/core";
-
+import {
+  CallData,
+  Calldata,
+  UniversalDeployerContractPayload,
+  num,
+} from "starknet";
 interface FileList {
   lastModified: number;
   lastModifiedDate: Date;
@@ -22,10 +27,30 @@ function ScaffoldDeployer() {
   const casmRef: any = useRef(null);
   const [selectedSierra, setSelectedSierra] = useState<FileList[]>([]);
   const [selectedCasm, setSelectedCasm] = useState<FileList[]>([]);
-  const [classHash, setClassHash] = useState("");
   const [compiledClassHash, setCompiledClassHash] = useState("");
   const [contract, setContract] = useState<string | null>(null);
-  const { account, status } = useAccount();
+  const { account, status, isConnected } = useAccount();
+  const [selectedFiles, setSelectedFiles] = useState<FileList[]>([]);
+  const [classHash, setClassHash] = useState("");
+  const [deployedAddress, setDeployedAddress] = useState("");
+  const [argumentsList, setArgumentsList] = useState([""]);
+  const [argumentError, setArgumentError] = useState("");
+
+  const handleInputChange = (index: number, event: any) => {
+    const newArgumentsList = [...argumentsList];
+    newArgumentsList[index] = event.target.value;
+    setArgumentsList(newArgumentsList);
+  };
+
+  const handleAddArgument = () => {
+    if (argumentsList[argumentsList.length - 1] === "") {
+      setArgumentError(
+        "Input an argument value in the previous field before adding another!"
+      );
+      return;
+    }
+    setArgumentsList([...argumentsList, ""]);
+  };
 
   const handleContractClassSelect = async (event: any) => {
     event.preventDefault();
@@ -116,6 +141,36 @@ function ScaffoldDeployer() {
       console.error(e);
     }
   };
+
+  const handleDeploy = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      if (!classHash) {
+        throw new Error("No class hash");
+      }
+      if (!isConnected || !account) {
+        throw new Error("Connect wallet to continue");
+      }
+      const contractConstructor = CallData.compile(argumentsList.filter(arg=>arg !== ''));
+      const payload: UniversalDeployerContractPayload = {
+        classHash: classHash,
+        constructorCalldata: contractConstructor,
+      };
+      const result = await account.deployContract(payload);
+      console.log(
+        result.contract_address,
+        "Contract Address of The Smart Contract"
+      );
+      setDeployedAddress(result.contract_address);
+    } catch (e) {
+      console.error("DEPLOYER ERROR", e);
+    } finally{
+      setClassHash("");
+      setArgumentsList([""])
+    }
+  };
+
+  const disableButton = !isConnected || !account || classHash === "";
 
   return (
     <div className="flex flex-col dark:text-white text-black">
@@ -232,26 +287,68 @@ function ScaffoldDeployer() {
             Declare
           </button>
         </form>
-        <form action="" className="flex flex-col mt-12">
+        <form onSubmit={handleDeploy} className="flex flex-col mt-12">
           <h1 className="text-2xl font-bold">Deploy</h1>
           <input
             type="text"
             className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
             placeholder="Input Class Hash"
+            onChange={(e) => {
+              setClassHash(e.target.value);
+            }}
+            value={classHash}
           />
-          <input
-            type="text"
-            className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
-            placeholder="Input Constructor Arguments"
-          />
-          <input
-            type="text"
-            className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
-            placeholder="Input Number of Constructor Arguments"
-          />
-          <button className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white">
-            Deploy
-          </button>
+          <div className="mb-4">
+            <h2 className="text-lg font-bold mb-2">Constructor Arguments</h2>
+            <div className="flex flex-col gap-y-3">
+              {argumentsList.map((arg, index) => (
+                <div key={index} className="flex items-center gap-x-2">
+                  <h4 className="text-base font-medium w-[120px]">
+                    Argument {index + 1}
+                  </h4>
+                  <input
+                    type="text"
+                    value={arg}
+                    className="py-2 px-6 rounded-md w-full text-[#333]"
+                    onChange={(event) => handleInputChange(index, event)}
+                  />
+                </div>
+              ))}
+              {argumentError === "" && (
+                <h6 className=" text-red-600 text-sm">{argumentError}</h6>
+              )}
+            </div>
+          </div>
+
+          {deployedAddress && (
+            <div>
+              <p>Deployed Address</p>
+              <input
+                type="text"
+                className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
+                value={deployedAddress}
+                disabled
+              />
+            </div>
+          )}
+
+          <div className="flex items-center gap-x-5">
+            <button
+              type="button"
+              onClick={handleAddArgument}
+              disabled={argumentsList[argumentsList.length - 1] === ""}
+              className="bg-blue-500 py-3 px-4 rounded-[5px] w-[250px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+            >
+              Add argument
+            </button>
+            <button
+              type="submit"
+              disabled={disableButton}
+              className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+            >
+              Deploy
+            </button>
+          </div>
         </form>
       </div>
     </div>

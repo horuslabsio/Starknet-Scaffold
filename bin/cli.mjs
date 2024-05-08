@@ -46,10 +46,13 @@ try {
     const FRONTEND_BASE_PATH = "frontend/src/app";
     const componentsToRemove = [
       "burner",
-      `${FRONTEND_BASE_PATH}/components/Burner`,
-      `${FRONTEND_BASE_PATH}/components/StarkDeployer`,
-      `${FRONTEND_BASE_PATH}/wikipedia`,
+      "website",
       `${FRONTEND_BASE_PATH}/burner`,
+      `${FRONTEND_BASE_PATH}/wikipedia`,
+      `${FRONTEND_BASE_PATH}/scaffold-deployer`,
+      `${FRONTEND_BASE_PATH}/components/Burner`,
+      `${FRONTEND_BASE_PATH}/components/BurnerWallet`,
+      `${FRONTEND_BASE_PATH}/components/ScaffoldDeployer`
     ];
     basicCleanupTasks.push(
       ...componentsToRemove.map((comp) =>

@@ -3,11 +3,13 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import AssetTransferModal from "../AssetTransferModal";
 import ConnectionModal from "../ConnectionModal";
-import {useContractRead} from "@starknet-react/core";
+import { useContractRead } from "@starknet-react/core";
 import { Account, RpcProvider } from "starknet";
 import CopyButton from "../CopyButton";
-import Erc20Abi from "../../abi/token.abi.json"
+import Erc20Abi from "../../abi/token.abi.json";
 import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utils/constant";
+import { formatCurrency } from "@/app/utils/currency";
+import ContractExecutionModal from "../ContractExecutionModal";
 interface IWallet {
   address: string;
   privateKey: string;
@@ -16,15 +18,12 @@ interface IWallet {
 
 function BurnerWallet({ wallet }: { wallet: IWallet }) {
   const [isSending, setIsSending] = useState(false);
+  const [isExecuting, setIsExecuting] = useState(false);
   const [account, setAccount] = useState(undefined);
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
 
-
-  const {
-    data: eth,
-    isLoading: ethLoading,
-  } = useContractRead({
+  const { data: eth, isLoading: ethLoading } = useContractRead({
     address: ETH_SEPOLIA,
     abi: Erc20Abi,
     functionName: "balanceOf",
@@ -32,10 +31,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
     watch: true,
   });
 
-  const {
-    data: strk,
-    isLoading: strkLoading,
-  } = useContractRead({
+  const { data: strk, isLoading: strkLoading } = useContractRead({
     address: STRK_SEPOLIA,
     abi: Erc20Abi,
     functionName: "balanceOf",
@@ -43,15 +39,14 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
     watch: true,
   });
 
-// @ts-ignore
-  const ethBalance = eth?.balance.low.toString() /  1e18;
   // @ts-ignore
-  const strkBalance = strk?.balance?.low
+  const ethBalance = formatCurrency(eth?.balance.low.toString());
+  // @ts-ignore
+  const strkBalance = formatCurrency(strk?.balance?.low.toString());
 
   function handleConnect() {
     const provider = new RpcProvider({
-      nodeUrl:
-        "https://starknet-sepolia.public.blastapi.io",
+      nodeUrl: "https://starknet-sepolia.public.blastapi.io",
     });
     const account: any = new Account(
       provider,
@@ -76,6 +71,15 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           />,
           document.body
         )}
+      {isExecuting &&
+        createPortal(
+          <ContractExecutionModal
+            isOpen={isExecuting}
+            onClose={() => setIsExecuting(false)}
+            account={account}
+          />,
+          document.body
+        )}
       {isConnecting &&
         createPortal(
           <ConnectionModal
@@ -95,7 +99,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
               {" "}
               {ethLoading
                 ? "Loading..."
-                : `${Number(ethBalance).toFixed(4)}ETH`}
+                : `${Number(ethBalance).toFixed(3)}ETH`}
             </span>
           </h2>
           <h2>
@@ -103,7 +107,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             <span className="font-medium text-xl">
               {strkLoading
                 ? "Loading..."
-                : `${Number(strkBalance).toFixed(4)}STRK`}
+                : `${Number(strkBalance).toFixed(3)}STRK`}
             </span>
           </h2>
         </div>
@@ -120,23 +124,26 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
       <div className="mt-[80px] flex  gap-[60px] justify-center">
         {isConnected ? (
           <>
+            {(ethBalance > 0 || strkBalance > 0) && (
+              <button
+                className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
+                disabled={!eth || !strk}
+                onClick={() => setIsSending(true)}
+              >
+                SEND
+              </button>
+            )}
             <button
-              className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
+              className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
               disabled={!eth || !strk}
-              onClick={() => setIsSending(true)}
-            >
-              SEND
-            </button>
-            <button
-              className=" px-6 py-4 bg-blue-500 text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
-              disabled={!eth || !strk}
+              onClick={() => setIsExecuting(true)}
             >
               EXECUTE
             </button>
           </>
         ) : (
           <button
-            className=" px-6 py-4 bg-blue-500 disabled:cursor-not-allowed text-white rounded-[5px] w-[200px] font-semibold"
+            className=" px-6 py-4 bg-[#f77448] disabled:cursor-not-allowed text-white rounded-[5px] w-[200px] font-semibold"
             onClick={() => setIsConnecting(true)}
             disabled={!eth || !strk}
           >

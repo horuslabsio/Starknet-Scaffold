@@ -8,6 +8,7 @@ import downChevron from "../../../public/assets/down-chevron.svg";
 import ethLogo from "../../../public/assets/ethereumLogo2.svg";
 import { Call, Contract, RpcProvider, Uint256, cairo } from "starknet";
 import abi from "./../../../public/abi/strk_abi.json";
+import spinner from "../../../public/assets/spinner.svg";
 
 type Props = {
   isOpen: boolean;
@@ -32,6 +33,7 @@ function AssetTransferModal({
   const [animate, setAnimate] = useState(false);
   const [activeToken, setActiveToken] = useState("strk");
   const [assetDropDownIsOpen, setAssetDropDownIsOpen] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const closeModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAnimate(false);
@@ -55,19 +57,17 @@ function AssetTransferModal({
   }
 
   const provider = new RpcProvider({
-    nodeUrl:
-      "https://starknet-sepolia.public.blastapi.io",
+    nodeUrl: "https://starknet-sepolia.public.blastapi.io",
   });
 
   let starknet_contract: any;
-  if(activeToken == "strk") {
+  if (activeToken == "strk") {
     starknet_contract = new Contract(
       abi,
       "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
       provider
     );
-  }
-  else{
+  } else {
     starknet_contract = new Contract(
       abi,
       "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
@@ -80,17 +80,21 @@ function AssetTransferModal({
       if (!walletAddress.length && !amount) {
         return;
       }
+      setLoading(true);
+      starknet_contract.connect(account);
       const toTransferTk: Uint256 = cairo.uint256(Number(amount) * 1e18);
       const transferCall: Call = starknet_contract.populate("transfer", {
         recipient: walletAddress,
         amount: toTransferTk,
       });
-      const { transaction_hash: transferTxHash } = await account.execute(transferCall);
+      const { transaction_hash: transferTxHash, } =
+        await starknet_contract.transfer(transferCall.calldata);
       await provider.waitForTransaction(transferTxHash);
       window.alert("Your transfer was successful!");
     } catch (err: any) {
       console.log(err.message);
     } finally {
+      setLoading(false);
       setTimeout(() => {
         onClose();
       }, 400);
@@ -227,13 +231,19 @@ function AssetTransferModal({
         </div>
 
         <button
-          className="w-full mt-7 py-3 bg-[#3b81f6] rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
+          className="w-full mt-7 py-3 bg-[#f77448] rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
           onClick={async (e) => {
             e.preventDefault();
             await handleTransfer();
           }}
         >
-          Send <Image src={rightArr} alt="right arrow" height={16} width={16} />
+          Send{" "}
+          <Image
+            src={loading ? spinner : rightArr}
+            alt={loading ? "loading" : "right arrow"}
+            height={16}
+            width={16}
+          />
         </button>
       </form>
     </GenericModal>

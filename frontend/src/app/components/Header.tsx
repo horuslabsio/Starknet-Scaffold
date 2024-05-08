@@ -93,7 +93,7 @@ const Header = () => {
     <>
       <header
         ref={dropdownRef}
-        className="w-full  fixed backdrop-blur-2xl dark:border-neutral-800 lg:bg-gray-200 lg:dark:bg-zinc-800/50 left-0 top-0  z-10 flex flex-wrap gap-4 py-2 px-4 md:py-4 md:px-10  justify-between items-center"
+        className="w-full fixed backdrop-blur-2xl dark:border-neutral-800 lg:bg-gray-200 lg:dark:bg-zinc-800/50 left-0 top-0  z-10 flex flex-wrap gap-4 py-2 px-4 md:py-4 md:px-10  justify-between items-center"
       >
         <span>
           <svg
@@ -119,7 +119,7 @@ const Header = () => {
             <div className="flex justify-end">
               <AddressBar setOpenConnectedModal={setOpenConnectedModal} />
               <button
-                className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+                className="mx-3 bg-[#f77448] hover:bg-[#f77448] text-white font-bold py-2 px-4 rounded-full transition duration-300"
                 onClick={handleOpenTransactionListClick}
               >
                 <LibraryBig className="h-full w-full" />
@@ -128,42 +128,62 @@ const Header = () => {
           ) : (
             <button
               onClick={toggleModal}
-              className="hidden md:block bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded-full transition duration-300"
+              className="hidden md:block bg-[#f77448] hover:bg-[#f77448] text-white  py-2 px-4 rounded-full transition duration-300"
             >
               Connect
             </button>
           )}
 
           <NetworkSwitcher />
+
+          <ThemeSwitch
+            className="flex md:hidden lg:hidden sm:hidden dark:transform-none transform dark:translate-none transition-all duration-500 ease-in-out"
+            action={changeTheme}
+            theme={theme}
+            openMenu={openMenu}
+          />
         </div>
-        <button
-          title="toggle menu"
-          onClick={toggleMenu}
-          className="flex flex-col gap-2 md:hidden"
-        >
-          <div
-            className={`w-[1.5em] h-[2px] ${
-              theme === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
-            }  rounded-full transition-all duration-300 ease-in-out ${
-              openMenu ? "rotate-45 translate-y-[.5em]" : "transform-none"
-            } `}
-          ></div>
-          <div
-            className={`w-[1.5em] h-[2px] ${
-              theme === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
-            }  rounded-full transition-all duration-300 ease-in-out ${
-              openMenu
-                ? "rotate-[-45deg] translate-y-[-.2em]"
-                : "transform-none"
-            } `}
-          ></div>
-        </button>
-        <ThemeSwitch
-          className="dark:transform-none transform translate-x-6 dark:translate-none transition-all duration-500 ease-in-out"
-          action={changeTheme}
-          theme={theme}
-          openMenu={openMenu}
-        />
+
+        <div className="flex items-center md:hidden gap-8">
+          <ThemeSwitch
+            className="flex md:hidden dark:transform-none transform dark:translate-none transition-all duration-500 ease-in-out"
+            action={changeTheme}
+            theme={theme}
+            openMenu={openMenu}
+          />
+
+          <button
+            title="toggle menu"
+            onClick={toggleMenu}
+            className="flex flex-col gap-2 md:hidden"
+          >
+            <div
+              className={`w-[1.5em] h-[2px] ${
+                theme === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
+              } rounded-full transition-all duration-300 ease-in-out ${
+                openMenu
+                  ? "rotate-45 translate-y-[0.625em]"
+                  : "rotate-0 translate-y-0"
+              }`}
+            ></div>
+            <div
+              className={`w-[1.5em] h-[2px] ${
+                theme === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
+              } rounded-full transition-all duration-300 ease-in-out ${
+                openMenu ? "opacity-0" : "opacity-100"
+              }`}
+            ></div>
+            <div
+              className={`w-[1.5em] h-[2px] ${
+                theme === "dark" ? "bg-[#ffffff]" : "bg-[#000000]"
+              } rounded-full transition-all duration-300 ease-in-out ${
+                openMenu
+                  ? "-rotate-45 translate-y-[-0.625em]"
+                  : "rotate-0 translate-y-0"
+              }`}
+            ></div>
+          </button>
+        </div>
 
         <div
           className={`w-screen  transition-all duration-300 ease-in-out grid ${
@@ -178,7 +198,7 @@ const Header = () => {
                 <div className="flex justify-end">
                   <AddressBar setOpenConnectedModal={setOpenConnectedModal} />
                   <button
-                    className="mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+                    className="mx-3 bg-[#f77448] hover:bg-[#f77448] text-white font-bold py-2 px-4 rounded-full transition duration-300"
                     onClick={handleOpenTransactionListClick}
                   >
                     <LibraryBig className="h-full w-full" />
@@ -187,7 +207,7 @@ const Header = () => {
               ) : (
                 <button
                   onClick={toggleModal}
-                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full transition duration-300"
+                  className="bg-[#f77448] hover:bg-[#f77448] text-white py-2 px-4 rounded-full transition duration-300"
                 >
                   Connect
                 </button>
