@@ -97,8 +97,9 @@ function AssetTransferModal({
         entrypoint: "transfer",
         calldata: [walletAddress, toTransferTk],
       });
+      
       const { transaction_hash: transferTxHash } =
-        await starknet_contract.invoke(
+        await starknet_contract.execute(
           "transfer",
           [walletAddress, toTransferTk],
           {
