@@ -16,6 +16,7 @@ import {
 } from "starknet";
 import abi from "./../../../public/abi/strk_abi.json";
 import spinner from "../../../public/assets/spinner.svg";
+import toast from "react-hot-toast";
 
 type Props = {
   isOpen: boolean;
@@ -97,11 +98,17 @@ function AssetTransferModal({
         calldata: [walletAddress, toTransferTk],
       });
       const { transaction_hash: transferTxHash } =
-        await starknet_contract.invoke("transfer", [walletAddress, toTransferTk], {
-          maxFee: maxFee,
-        });
+        await starknet_contract.invoke(
+          "transfer",
+          [walletAddress, toTransferTk],
+          {
+            maxFee: maxFee,
+          }
+        );
       await provider.waitForTransaction(transferTxHash);
+      toast.success("Your transfer was successful!", { duration: 2000 });
     } catch (err: any) {
+      toast.error("Your transfer was unsuccessfully", { duration: 2000 });
       console.log(err.message);
     } finally {
       setLoading(false);
