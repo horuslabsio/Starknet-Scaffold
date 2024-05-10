@@ -64,7 +64,7 @@ const WhyUs = () => {
             desc="Starknet Scaffold provides you with multiple out-of-the-box UI components you can customize to suit your needs"
           />
           <Point
-            title="Sripts to make your life easier"
+            title="Scripts to make your life easier"
             desc="We've added NPM scripts to help simplify your contract development with Starknet-Foundry"
           />
           <Point
