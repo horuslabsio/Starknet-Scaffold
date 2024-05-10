@@ -5,6 +5,7 @@ import rightArr from "../../../public/assets/right-arr.svg";
 import { useEffect, useState } from "react";
 import { Call } from "starknet";
 import spinner from "../../../public/assets/spinner.svg";
+import toast from "react-hot-toast";
 
 interface Errors {
   contractAddress?: boolean;
@@ -122,22 +123,30 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
 
       setLoading(true);
 
+
       const call: Call = {
         contractAddress: contractAddress,
         calldata: JSON.parse(callData),
         entrypoint: functionName,
       };
+      const { suggestedMaxFee: maxFee } = await account.estimateInvokeFee({
+        contractAddress: contractAddress,
+        entrypoint: functionName,
+        calldata: JSON.parse(callData),
+      });
 
-      const { transaction_hash: transferTxHash } = await account.execute(call);
+      const { transaction_hash: transferTxHash } = await account.execute(call, {maxFee});
       const transactionReponse = await account.waitForTransaction(
         transferTxHash
       );
-      console.log(transactionReponse);
 
-      window.alert("Your contract function was executed successfully!");
+      console.log(transactionReponse);
+      toast.success("Your contract function was executed successfully!", {
+        duration: 2000,
+      });
       success = true;
     } catch (err: any) {
-      window.alert("An error occured! Please try again.");
+      toast.error("An error occured! Please try again.", { duration: 2000 });
       console.log(err.message);
     } finally {
       setLoading(false);

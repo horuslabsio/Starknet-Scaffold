@@ -48,11 +48,13 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
     const provider = new RpcProvider({
       nodeUrl: "https://starknet-sepolia.public.blastapi.io",
     });
+
     const account: any = new Account(
       provider,
       wallet.address,
       wallet.privateKey
     );
+
     setAccount(account);
     setIsConnected(true);
     setIsConnecting(false);
@@ -90,7 +92,16 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           />,
           document.body
         )}
-      <h2 className="mb-[60px] text-2xl font-semibold">Burner Wallet</h2>
+      <h2 className="mb-[5px] text-2xl font-semibold">Burner Wallet</h2>
+
+      {ethBalance == 0 && (
+        <div>
+          <p className="mb-[40px] text-sm font-light">
+            <span className="font-medium">NB:</span> To proceed with the
+            transaction, please deposit ETH into your account.
+          </p>
+        </div>
+      )}
       <div className="flex gap-[100px] text-2xl font-normal">
         <div>
           <h2>
@@ -124,7 +135,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
       <div className="mt-[80px] flex  gap-[60px] justify-center">
         {isConnected ? (
           <>
-            {(ethBalance > 0 || strkBalance > 0) && (
+            {ethBalance > 0 && (
               <button
                 className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
                 disabled={!eth || !strk}
@@ -133,13 +144,15 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
                 SEND
               </button>
             )}
-            <button
-              className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
-              disabled={!eth || !strk}
-              onClick={() => setIsExecuting(true)}
-            >
-              EXECUTE
-            </button>
+            {ethBalance > 0 && (
+              <button
+                className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
+                disabled={!eth || !strk}
+                onClick={() => setIsExecuting(true)}
+              >
+                EXECUTE
+              </button>
+            )}
           </>
         ) : (
           <button

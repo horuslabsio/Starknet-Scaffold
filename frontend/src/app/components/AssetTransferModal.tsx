@@ -6,9 +6,17 @@ import rightArr from "../../../public/assets/right-arr.svg";
 import { useEffect, useState } from "react";
 import downChevron from "../../../public/assets/down-chevron.svg";
 import ethLogo from "../../../public/assets/ethereumLogo2.svg";
-import { Call, Contract, RpcProvider, Uint256, cairo } from "starknet";
+import {
+  Call,
+  CallData,
+  Contract,
+  RpcProvider,
+  Uint256,
+  cairo,
+} from "starknet";
 import abi from "./../../../public/abi/strk_abi.json";
 import spinner from "../../../public/assets/spinner.svg";
+import toast from "react-hot-toast";
 
 type Props = {
   isOpen: boolean;
@@ -83,15 +91,24 @@ function AssetTransferModal({
       setLoading(true);
       starknet_contract.connect(account);
       const toTransferTk: Uint256 = cairo.uint256(Number(amount) * 1e18);
-      const transferCall: Call = starknet_contract.populate("transfer", {
-        recipient: walletAddress,
-        amount: toTransferTk,
+      const { suggestedMaxFee: maxFee } = await account.estimateInvokeFee({
+        contractAddress: starknet_contract.address,
+        entrypoint: "transfer",
+        calldata: [walletAddress, toTransferTk],
       });
-      const { transaction_hash: transferTxHash, } =
-        await starknet_contract.transfer(transferCall.calldata);
+
+      const { transaction_hash: transferTxHash } =
+        await starknet_contract.invoke(
+          "transfer",
+          [walletAddress, toTransferTk],
+          {
+            maxFee: maxFee,
+          }
+        );
       await provider.waitForTransaction(transferTxHash);
-      window.alert("Your transfer was successful!");
+      toast.success("Your transfer was successful!", { duration: 2000 });
     } catch (err: any) {
+      toast.error("Your transfer was unsuccessfully", { duration: 2000 });
       console.log(err.message);
     } finally {
       setLoading(false);
