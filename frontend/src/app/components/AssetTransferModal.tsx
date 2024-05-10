@@ -92,12 +92,11 @@ function AssetTransferModal({
       starknet_contract.connect(account);
       const toTransferTk: Uint256 = cairo.uint256(Number(amount) * 1e18);
       const { suggestedMaxFee: maxFee } = await account.estimateInvokeFee({
-        contractAddress:
-          "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
+        contractAddress: starknet_contract.address,
         entrypoint: "transfer",
         calldata: [walletAddress, toTransferTk],
       });
-      
+
       const { transaction_hash: transferTxHash } =
         await starknet_contract.execute(
           "transfer",
