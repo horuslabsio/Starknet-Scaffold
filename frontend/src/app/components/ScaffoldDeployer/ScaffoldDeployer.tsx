@@ -291,7 +291,7 @@ function ScaffoldDeployer() {
           )}
           <button
             onClick={(e) => handleDeclare(e)}
-            className="bg-blue-500 py-3 px-4 rounded-[5px] w-[200px] text-white"
+            className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white"
           >
             Declare
           </button>

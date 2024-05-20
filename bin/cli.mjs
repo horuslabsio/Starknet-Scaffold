@@ -47,12 +47,17 @@ try {
     const componentsToRemove = [
       "burner",
       "website",
+      "devnet",
       `${FRONTEND_BASE_PATH}/burner`,
       `${FRONTEND_BASE_PATH}/wikipedia`,
       `${FRONTEND_BASE_PATH}/scaffold-deployer`,
       `${FRONTEND_BASE_PATH}/components/Burner`,
       `${FRONTEND_BASE_PATH}/components/BurnerWallet`,
-      `${FRONTEND_BASE_PATH}/components/ScaffoldDeployer`
+      `${FRONTEND_BASE_PATH}/components/ScaffoldDeployer`,
+      `${FRONTEND_BASE_PATH}/components/AssetTransferModal.tsx`,
+      `${FRONTEND_BASE_PATH}/components/ConnectModal.tsx`,
+      `${FRONTEND_BASE_PATH}/components/ConnectionModal.tsx`,
+      `${FRONTEND_BASE_PATH}/components/ContractExecutionModal.tsx`,
     ];
     basicCleanupTasks.push(
       ...componentsToRemove.map((comp) =>
@@ -82,11 +87,16 @@ try {
     recursive: true,
     force: true,
   });
+  const rmWebsite = rm(path.join(projectPath, "website"), {
+    recursive: true,
+    force: true,
+  });
   await Promise.all([
     rmGit,
     rmBin,
     rmGithub,
     rmContributing,
+    rmWebsite,
     ...basicCleanupTasks,
   ]);
 
