@@ -55,7 +55,6 @@ try {
       `${FRONTEND_BASE_PATH}/components/BurnerWallet`,
       `${FRONTEND_BASE_PATH}/components/ScaffoldDeployer`,
       `${FRONTEND_BASE_PATH}/components/AssetTransferModal.tsx`,
-      `${FRONTEND_BASE_PATH}/components/ConnectModal.tsx`,
       `${FRONTEND_BASE_PATH}/components/ConnectionModal.tsx`,
       `${FRONTEND_BASE_PATH}/components/ContractExecutionModal.tsx`,
     ];
