@@ -23,11 +23,17 @@ git clone git@github.com:argentlabs/Starknet-Scaffold.git
 cd Starknet-Scaffold
 ```
 
-Or install using create-starknet-app (recommended). This takes in the name and boilerplate type. If you need a basic boilerplate with frontend UI components, use the "basic" type else for full debugging suite, use "debugger". e.g
+Or install using create-starknet-app (recommended). This takes in the name and boilerplate type. If you need a basic boilerplate with frontend UI components, specify the `basic` type else for full debugging suite, use `debugger`. e.g
 
 ```
 npx create-starknet-app my-app debugger
 ```
+or
+```
+npx create-starknet-app my-app basic
+```
+
+PS: defaults to debugger mode, if no type is specified.
 
 ## FEATURES
 
@@ -47,7 +53,7 @@ Scripts exists to make your life easier! Here are available scripts and features
 | Deploy Contract | ✅ |
 | Devnet spin up | ✅ |
 | Burner wallets for debugging | ✅ |
-| Starknet contract Deployer | ❌ |
+| Starknet contract Deployer | ✅ |
 | sepETH/sepSTRK faucet | ✅ |
 | Cairo Wikipedia | ✅ |
 
