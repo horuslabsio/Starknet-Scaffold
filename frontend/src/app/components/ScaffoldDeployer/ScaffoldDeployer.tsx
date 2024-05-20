@@ -2,17 +2,13 @@
 import cloudUploadIcon from "../../../../public/assets/cloudUploadIcon.svg";
 import fileIcon from "../../../../public/assets/fileIcon.svg";
 import trash from "../../../../public/assets/deleteIcon.svg";
-import { useRef, useState, useMemo } from "react";
+import { useRef, useState } from "react";
 import Header from "../Header";
 import Image from "next/image";
-import { DeclareContractPayload, hash, json } from "starknet";
-import { useAccount, useWaitForTransaction } from "@starknet-react/core";
-import {
-  CallData,
-  Calldata,
-  UniversalDeployerContractPayload,
-  num,
-} from "starknet";
+import { DeclareContractPayload, hash, CallData,
+  UniversalDeployerContractPayload, CompiledSierraCasm } from "starknet";
+import { useAccount } from "@starknet-react/core";
+
 interface FileList {
   lastModified: number;
   lastModifiedDate: Date;
@@ -27,10 +23,10 @@ function ScaffoldDeployer() {
   const casmRef: any = useRef(null);
   const [selectedSierra, setSelectedSierra] = useState<FileList[]>([]);
   const [selectedCasm, setSelectedCasm] = useState<FileList[]>([]);
-  const [compiledClassHash, setCompiledClassHash] = useState("");
   const [contract, setContract] = useState<string | null>(null);
+  const [casm, setCasm] = useState<CompiledSierraCasm | null>(null)
+  const [contractClassHash, setContractClassHash] = useState("");
   const { account, status, isConnected } = useAccount();
-  const [selectedFiles, setSelectedFiles] = useState<FileList[]>([]);
   const [classHash, setClassHash] = useState("");
   const [deployedAddress, setDeployedAddress] = useState("");
   const [argumentsList, setArgumentsList] = useState([""]);
@@ -66,10 +62,10 @@ function ScaffoldDeployer() {
       const fileContent = event.target?.result as string;
 
       if (!fileContent) return;
-      setContract(json.parse(fileContent));
+      setContract(fileContent);
 
-      const classHash = hash.computeContractClassHash(fileContent);
-      setClassHash(classHash);
+      const contractClassHash = hash.computeContractClassHash(fileContent);
+      setContractClassHash(contractClassHash);
     };
     reader.readAsText(fileAsString); // Read file as text
   };
@@ -88,7 +84,7 @@ function ScaffoldDeployer() {
       const fileContent = event.target?.result as string;
 
       if (!fileContent) return;
-      setCompiledClassHash(json.parse(fileContent));
+      setCasm(JSON.parse(fileContent));
     };
     reader.readAsText(fileAsString); // Read file as text
   };
@@ -107,7 +103,6 @@ function ScaffoldDeployer() {
   const handleDrop = (event: any) => {
     event.preventDefault();
     const files: any = Array.from(event.dataTransfer.files);
-    // setSelectedFiles(files);
   };
 
   const handleDeclare = async (e: React.FormEvent) => {
@@ -118,21 +113,24 @@ function ScaffoldDeployer() {
         throw new Error("No Sierra");
       }
 
-      if (!compiledClassHash) {
+      if (!casm) {
         throw new Error("No CASM");
       }
 
       const payload: DeclareContractPayload = {
-        contract,
-        classHash,
-        compiledClassHash,
+        contract: contract,
+        classHash: contractClassHash
       };
+
+      if(casm) {
+        payload.casm = casm;
+        delete payload.classHash;
+      }
 
       let result;
 
       if (account && status == "connected") {
-        result = await account.declare(payload);
-        console.log(result);
+        await account.declare(payload);
       } else {
         throw new Error("Wallet not connected");
       }
@@ -278,6 +276,17 @@ function ScaffoldDeployer() {
               <button onClick={handleDeleteFile} name="casm">
                 <Image src={trash} alt="trash icon" />
               </button>
+            </div>
+          )}
+          {contractClassHash && (
+            <div>
+              <p>Declared ClassHash</p>
+              <input
+                type="text"
+                className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
+                value={contractClassHash}
+                disabled
+              />
             </div>
           )}
           <button
