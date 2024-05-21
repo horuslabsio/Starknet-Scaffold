@@ -43,7 +43,7 @@ const Navbar = () => {
       <button
         id="toggle-theme"
         onClick={toggleTheme}
-        className="h-[10vw] w-[10vw] max-w-10 max-h-10  p-2 rounded-full  bg-[#2D2D2D] text-[#FF6734] flex justify-center items-center relative"
+        className="h-[10vw] w-[10vw] max-w-10 max-h-10  p-2 rounded-full  bg-[#2D2D2D] text-[#FF6734] flex justify-center items-center relative overflow-hidden"
       >
         <span id="sun" className="text-[1.5em] md:text-[1.8em]">
           <SunIcon />

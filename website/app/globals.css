@@ -69,7 +69,11 @@ body {
 *::before {
   box-sizing: inherit;
 }
+html,
 body {
+  background: #141925;
+}
+main {
   font-family: "Coolvetica", sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
