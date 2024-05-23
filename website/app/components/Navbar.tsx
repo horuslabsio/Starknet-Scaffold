@@ -1,24 +1,9 @@
 "use client";
-
 import { useEffect } from "react";
 import SunIcon from "../svg/SunIcon";
 import MoonIcon from "../svg/MoonIcon";
 
 const Navbar = () => {
-  useEffect(() => {
-    let theme: "dark" | "light";
-
-    const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
-    const html = document.getElementsByTagName("html")[0];
-
-    if (systemSettingDark.matches) {
-      theme = "dark";
-    } else {
-      theme = "light";
-    }
-    html.setAttribute("data-theme", theme);
-  }, []);
-
   const toggleTheme = () => {
     const html = document.getElementsByTagName("html")[0];
     const currentTheme = html.getAttribute("data-theme");
@@ -29,6 +14,28 @@ const Navbar = () => {
       html.setAttribute("data-theme", "light");
     }
   };
+  useEffect(() => {
+    let theme: "dark" | "light";
+    const queryMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const html = document.getElementsByTagName("html")[0];
+    if (queryMedia.matches) {
+      theme = "dark";
+    } else {
+      theme = "light";
+    }
+    html.setAttribute("data-theme", theme);
+
+    queryMedia.addEventListener("change", () => {
+      toggleTheme();
+    });
+
+    return () => {
+      queryMedia.removeEventListener("change", () => {
+        toggleTheme();
+      });
+    };
+  }, []);
 
   return (
     <header className=" absolute w-screen top-0 left-0 z-[99] flex justify-between px-5 md:px-12 py-6">
@@ -43,7 +50,7 @@ const Navbar = () => {
       <button
         id="toggle-theme"
         onClick={toggleTheme}
-        className="h-[10vw] w-[10vw] max-w-10 max-h-10  p-2 rounded-full  bg-[#2D2D2D] text-[#FF6734] flex justify-center items-center relative"
+        className="h-[10vw] w-[10vw] max-w-10 max-h-10  p-2 rounded-full  bg-[#2D2D2D] text-[#FF6734] flex justify-center items-center relative overflow-hidden"
       >
         <span id="sun" className="text-[1.5em] md:text-[1.8em]">
           <SunIcon />
