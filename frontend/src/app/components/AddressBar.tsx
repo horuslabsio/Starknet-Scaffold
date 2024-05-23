@@ -81,7 +81,10 @@ export const UserModal = ({
           <span className="flex justify-between p-3 border-[1px] border-outline-gray rounded-full w-full">
             <span className="flex justify-center">
               {starkProfile?.name ||
-                address?.slice(0, 12).concat("...").concat(address?.slice(-5))}
+                address
+                  ?.slice(0, 12)
+                  .concat("...")
+                  .concat(address?.slice(-5))}
             </span>
             <Image
               onClick={handleCopyClick}
@@ -98,7 +101,7 @@ export const UserModal = ({
               disconnect();
               e.stopPropagation();
             }}
-            className="p-3 w-full rounded-lg bg-[#f77448]  "
+            className="p-3 w-full rounded-lg bg-primary  "
           >
             Disconnect
           </button>
@@ -129,7 +132,7 @@ const AddressBar = ({
   return (
     <button
       onClick={toggleModal}
-      className="bg-[#f77448] py-2 px-4 text-white rounded-full transition duration-300"
+      className="bg-primary py-2 px-4 text-white rounded-full transition duration-300"
     >
       {
         <span className="flex items-center">
@@ -144,7 +147,10 @@ const AddressBar = ({
           )}
           {starkProfile?.name
             ? starkProfile.name
-            : address?.slice(0, 6).concat("...").concat(address?.slice(-5))}
+            : address
+                ?.slice(0, 6)
+                .concat("...")
+                .concat(address?.slice(-5))}
         </span>
       }
     </button>

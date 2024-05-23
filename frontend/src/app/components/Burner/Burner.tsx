@@ -33,11 +33,11 @@ const Burners: React.FC = () => {
   let burnerWalletDeployer = new Contract(
     Array.from(Abi),
     burnerDeployerAddress!,
-    account
+    account,
   );
 
   const generateWallet = async (
-    burnerWalletDeployer: Contract
+    burnerWalletDeployer: Contract,
   ): Promise<Wallet> => {
     const provider = new RpcProvider({
       nodeUrl: rpcAddress,
@@ -47,12 +47,11 @@ const Burners: React.FC = () => {
 
     const publicKey = ec.starkCurve.getStarkKey(privateKey);
 
-    const TransactionHash = await burnerWalletDeployer.deploy_burner_wallet(
-      publicKey
-    );
+    const TransactionHash =
+      await burnerWalletDeployer.deploy_burner_wallet(publicKey);
 
     const result = await provider.waitForTransaction(
-      TransactionHash.transaction_hash
+      TransactionHash.transaction_hash,
     );
 
     return {
@@ -80,7 +79,7 @@ const Burners: React.FC = () => {
           setWallets([...wallets, newWallet]);
           localStorage.setItem(
             "wallets",
-            JSON.stringify([...wallets, newWallet])
+            JSON.stringify([...wallets, newWallet]),
           );
           console.log(newWallet);
         } catch (error) {
@@ -135,16 +134,17 @@ const Burners: React.FC = () => {
           )}
           <div className="flex">
             <button
-              className="mt-2 mr-5 p-2 bg-[#f77448] text-white rounded"
+              className="mt-2 mr-5 p-2 bg-primary text-white rounded"
               onClick={handleCreate}
             >
               Generate Wallet
             </button>
             <button
-              className="mt-2 p-2 bg-blue-500 text-white rounded"
+              className="mt-2 p-2 bg-secondary text-white rounded"
               onClick={clearWallets}
             >
-              Clear Wallets
+              {" "}
+              #3B82F6 Clear Wallets
             </button>
           </div>
         </div>
