@@ -52,7 +52,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
     const account: any = new Account(
       provider,
       wallet.address,
-      wallet.privateKey
+      wallet.privateKey,
     );
 
     setAccount(account);
@@ -71,7 +71,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             onClose={() => setIsSending(false)}
             account={account}
           />,
-          document.body
+          document.body,
         )}
       {isExecuting &&
         createPortal(
@@ -80,7 +80,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             onClose={() => setIsExecuting(false)}
             account={account}
           />,
-          document.body
+          document.body,
         )}
       {isConnecting &&
         createPortal(
@@ -90,7 +90,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             handleConnect={handleConnect}
             wallet={wallet}
           />,
-          document.body
+          document.body,
         )}
       <h2 className="mb-[5px] text-2xl font-semibold">Burner Wallet</h2>
 
@@ -137,7 +137,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           <>
             {ethBalance > 0 && (
               <button
-                className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
+                className=" px-6 py-4 bg-primary text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
                 disabled={!eth || !strk}
                 onClick={() => setIsSending(true)}
               >
@@ -146,7 +146,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             )}
             {ethBalance > 0 && (
               <button
-                className=" px-6 py-4 bg-[#f77448] text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
+                className=" px-6 py-4 bg-primary text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
                 disabled={!eth || !strk}
                 onClick={() => setIsExecuting(true)}
               >
@@ -156,7 +156,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           </>
         ) : (
           <button
-            className=" px-6 py-4 bg-[#f77448] disabled:cursor-not-allowed text-white rounded-[5px] w-[200px] font-semibold"
+            className=" px-6 py-4 bg-primary disabled:cursor-not-allowed text-white rounded-[5px] w-[200px] font-semibold"
             onClick={() => setIsConnecting(true)}
             disabled={!eth || !strk}
           >

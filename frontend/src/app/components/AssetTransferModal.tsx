@@ -73,13 +73,13 @@ function AssetTransferModal({
     starknet_contract = new Contract(
       abi,
       "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
-      provider
+      provider,
     );
   } else {
     starknet_contract = new Contract(
       abi,
       "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
-      provider
+      provider,
     );
   }
 
@@ -103,7 +103,7 @@ function AssetTransferModal({
           [walletAddress, toTransferTk],
           {
             maxFee: maxFee,
-          }
+          },
         );
       await provider.waitForTransaction(transferTxHash);
       toast.success("Your transfer was successful!", { duration: 2000 });
@@ -248,7 +248,7 @@ function AssetTransferModal({
         </div>
 
         <button
-          className="w-full mt-7 py-3 bg-[#f77448] rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
+          className="w-full mt-7 py-3 bg-primary rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
           onClick={async (e) => {
             e.preventDefault();
             await handleTransfer();

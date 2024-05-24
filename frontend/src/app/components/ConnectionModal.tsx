@@ -95,7 +95,7 @@ function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
         </div>
 
         <button
-          className="w-full mt-7 py-3 bg-[#f77448] rounded font-bold flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
+          className="w-full mt-7 py-3 bg-primary rounded font-bold flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
           type="submit"
           onClick={handleConnect}
         >

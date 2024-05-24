@@ -70,7 +70,7 @@ const Header = () => {
     if (lastUsedConnector) {
       connect({
         connector: connectors.find(
-          (connector) => connector.name === lastUsedConnector
+          (connector) => connector.name === lastUsedConnector,
         ),
       });
     }
@@ -119,7 +119,7 @@ const Header = () => {
             <div className="flex justify-end">
               <AddressBar setOpenConnectedModal={setOpenConnectedModal} />
               <button
-                className="mx-3 bg-[#f77448] hover:bg-[#f77448] text-white font-bold py-2 px-4 rounded-full transition duration-300"
+                className="mx-3 bg-primary hover:bg-primary text-white font-bold py-2 px-4 rounded-full transition duration-300"
                 onClick={handleOpenTransactionListClick}
               >
                 <LibraryBig className="h-full w-full" />
@@ -128,7 +128,7 @@ const Header = () => {
           ) : (
             <button
               onClick={toggleModal}
-              className="hidden md:block bg-[#f77448] hover:bg-[#f77448] text-white  py-2 px-4 rounded-full transition duration-300"
+              className="hidden md:block bg-primary hover:bg-primary text-white  py-2 px-4 rounded-full transition duration-300"
             >
               Connect
             </button>
@@ -198,7 +198,7 @@ const Header = () => {
                 <div className="flex justify-end">
                   <AddressBar setOpenConnectedModal={setOpenConnectedModal} />
                   <button
-                    className="mx-3 bg-[#f77448] hover:bg-[#f77448] text-white font-bold py-2 px-4 rounded-full transition duration-300"
+                    className="mx-3 bg-primary hover:bg-primary text-white font-bold py-2 px-4 rounded-full transition duration-300"
                     onClick={handleOpenTransactionListClick}
                   >
                     <LibraryBig className="h-full w-full" />
@@ -207,7 +207,7 @@ const Header = () => {
               ) : (
                 <button
                   onClick={toggleModal}
-                  className="bg-[#f77448] hover:bg-[#f77448] text-white py-2 px-4 rounded-full transition duration-300"
+                  className="bg-primary hover:bg-primary text-white py-2 px-4 rounded-full transition duration-300"
                 >
                   Connect
                 </button>
