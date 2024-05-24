@@ -144,7 +144,7 @@ const Burners: React.FC = () => {
               onClick={clearWallets}
             >
               {" "}
-              #3B82F6 Clear Wallets
+              Clear Wallets
             </button>
           </div>
         </div>
