@@ -1,6 +1,6 @@
 # Address bar (Displays StarknetID)
 
-To indicate that a wallet is connected to the dApp, the header of the page features an Address bar. If the connected wallet has a StarknetID, the Address bar will display the StarknetID profile picture and name. If the wallet does not have a StarknetID, it will instead show a Blockies-generated image representation of the connected address along with a shortened version of the address.
+The Address bar displays the address of the connected account. If the connected wallet has a Starknet.id, the Address bar will display the Starknet.id profile picture and name, else it shows a Blockies-generated image representation of the connected address along with a shortened version of the address.
 
 ## Import
 

@@ -1,6 +1,6 @@
 # Switch/display network
 
-This is a dropdown component used to switch between networks of the wallet connected to the dapp. The available networks to be toggled between are Sepolia Network and Mainnet Network.
+This is a dropdown component used to switch between Starknet networks (mainnet/sepolia).
 
 ## Import
 

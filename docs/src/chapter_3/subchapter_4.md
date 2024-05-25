@@ -1,10 +1,6 @@
 # User modal
 
-This modal is used to copy the connected wallet address, disconnect the wallet from the dapp and view connected account. This modal can be accessed by clicking on the address bar component. The modal contains firstly contains an avatar which is either the starknetId profile picture or a blockies image representation of the connected address.
-
-Then it has a component that either displays the StarknetId name or the connected address. This also contains a copy button to help copy the address or name with one click.
-
-Then lastly it has a component that shows the connected [account balance](subchapter_5.md) and disconnect button that once clicked, it disconnects the current connected wallet from the dapp.
+This modal hosts a copy button for copying the address of the connected wallet, a disconnect button for disconnecting the connected wallet, and displays the ETH/STRK balance of the connected wallet. This modal can be accessed by clicking on the address bar component.
 
 ## Import
 

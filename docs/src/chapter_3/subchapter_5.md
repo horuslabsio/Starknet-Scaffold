@@ -1,6 +1,6 @@
 # Display account balance
 
-This component shows the STRK and ETH balance of the passed in address.
+This component shows the STRK and ETH balance of the connected wallet address.
 
 ## Import
 

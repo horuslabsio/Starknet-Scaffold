@@ -1,6 +1,6 @@
 # App Light/Dark mode
 
-The theme toggler is used to switch between light and dark modes of the dapp.
+The theme toggler is used to switch between light and dark modes.
 
 ## Import
 
