@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Scaffold Starknet dApps",
-  description: "Everything you need to buidl dApps on Starknet",
+  title: "Starknet Scaffold",
+  description: "From prototyping to production",
 };
 
 export default function RootLayout({
