@@ -10,7 +10,6 @@
   - [Display account balance](./chapter_3/subchapter_5.md)
   - [Switch/display network](./chapter_3/subchapter_6.md)
   - [App Light/Dark mode](./chapter_3/subchapter_7.md)
-  - [Burner wallet UI](./chapter_3/subchapter_8.md)
 - [Chapter 4](./chapter_4.md)
 - [Chapter 5](./chapter_5.md)
 - [Chapter 6](./chapter_6.md)

@@ -1,1 +1,0 @@
-# Burner wallet UI

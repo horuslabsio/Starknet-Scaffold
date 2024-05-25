@@ -1,6 +1,6 @@
 # User modal
 
-This modal hosts a copy button for copying the address of the connected wallet, a disconnect button for disconnecting the connected wallet, and displays the ETH/STRK balance of the connected wallet. This modal can be accessed by clicking on the address bar component.
+This modal contains a copy button for copying the address of the connected wallet, a disconnect button for disconnecting the wallet, and displays the ETH/STRK balance of the connected wallet. You can access this modal by clicking on the address bar component.
 
 ## Import
 
