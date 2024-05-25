@@ -1,5 +1,5 @@
 "use client";
-import Burners from "../components/Burner/Burner";
+import Burners from "~/Burner/Burner";
 
 export default function Page() {
   return (
