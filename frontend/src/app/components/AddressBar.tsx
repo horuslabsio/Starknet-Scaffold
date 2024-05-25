@@ -8,6 +8,7 @@ import Blockies from "react-blockies";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import GenericModal from "./GenericModal";
+import AccountBalance from "./AccountBalance";
 
 export const UserModal = ({
   openConnectedModal,
@@ -68,16 +69,18 @@ export const UserModal = ({
           {starkProfile?.profilePicture ? (
             <img
               src={starkProfile?.profilePicture}
-              className="rounded-full h-[120px] w-[120px] mr-2"
+              className="rounded-full h-[120px] w-[120px] mr-2 mb-3"
               alt="starknet profile"
             />
           ) : (
             <Blockies
               seed={address}
               scale={15}
-              className="rounded-full h-24 w-24"
+              className="rounded-full h-24 w-24 mb-3"
             />
           )}
+
+          <AccountBalance address={address} />
           <span className="flex justify-between p-3 border-[1px] border-outline-gray rounded-full w-full">
             <span className="flex justify-center">
               {starkProfile?.name ||
