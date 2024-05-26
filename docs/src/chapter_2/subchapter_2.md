@@ -1,6 +1,6 @@
 # Environment
 
-## Getting Started with Your Starknet-Scaffold Project
+## Getting Started
 
 After setting up your project using either method, follow these steps to get your development environment running smoothly:
 
@@ -13,12 +13,12 @@ After setting up your project using either method, follow these steps to get you
    ```
 
    ```
-   npm install
+   npm run install
    ```
 
    This will download and install all the important packages specified in the `package.json` file.
 
-2. Build the Contract
+2. To build your Cairo contracts:
    
    Build the contract to ensure all files are correctly compiled and prepared for development:
 
@@ -26,45 +26,14 @@ After setting up your project using either method, follow these steps to get you
    npm run build-contracts
    ```
 
-3. Start the Development Server
+3. To start your development server, run:
    
-   Start the development server to see your project in action:
-
    ```
    npm run start
    ```
 
    This command will start a local server and open your default web browser to display your new Starknet-Scaffold project.
 
-4. Running Tests
-   
-   To ensure your project is set up correctly and to verify your code, run the test command:
+Starknet-Scaffold provides other scripts to facilitate development. We will cover more of these available scripts in the coming chapters.
 
-   ```
-   npm run test-contracts
-   ```
-
-   This will compile the contracts, collect the tests from the contracts package and run the tests.
-
-5. Formatting
-   
-   To ensure and maintain consistency in your codes, run the format command:
-
-   ```
-   npm run format-contracts
-   ```
-
-   This command will check your code for style inconsistencies and automatically fix them.
-
-6. Deploying the Project
-   
-    When you are ready to deploy your application, use the deploy command to create a production-ready build:
-
-    ```
-    npm run deploy-contract
-    ```
-
-
-You now have a fully set up and running installation of Starknet-Scaffold. You can start developing your StarkNet application using the provided boilerplate. For further customization and detailed instructions, refer to the documentation.
-
-If you encounter any issues or need additional help, consider checking the [GitHub repository](https://github.com/argentlabs/Starknet-Scaffold) for updates and support.
+You now have a fully set up and running installation of Starknet-Scaffold at https://localhost:3000. For further customization and detailed instructions, please refer to the documentation.
