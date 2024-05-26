@@ -1,6 +1,6 @@
 # Installation
 
-This documention provides detailed instructions on how to install and set up Starknet-Scaffold, an open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet.
+This documentation provides detailed instructions on how to install and set up Starknet-Scaffold, an open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet.
 
 ## Requirements
 
@@ -14,23 +14,23 @@ Before you begin, ensure you have the following tools installed on your system:
 
 ## Installation Methods
 
-1. Using the `create-starknet-app` tool (recommended).
+1. Using the `create-starknet-app` executable (recommended).
 2. Cloning the repository from GitHub.
 
-### Method One: Using `create-starknet-app` tool.
+### Method One: Using `create-starknet-app` executable.
 
-The recommended way to start with Starknet-Scaffold is by using the `create-starknet-app` command. This method allows you to choose between different boilerplate types based on your project. This method is more recommended for users.
+The recommended way to start with Starknet-Scaffold is by using the `create-starknet-app` command. This method allows you to choose between different boilerplate types based on your project needs.
 
-1. Run the initialization command
+1. Run the executable
 
     Open your terminal and run one of the following commands depending on your desired setup:
 
-   * For a project with a full debugging suite:
+   * For a project that needs to utilize our full debugging suite:
      ```
      npx create-starknet-app my-app debugger
      ```
 
-   * For a project with frontend UI components:
+   * For a project that only needs customizable out-of-the-box UI components:
      ```
      npx create-starknet-app my-app basic
      ```
