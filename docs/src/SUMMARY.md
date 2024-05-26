@@ -2,6 +2,8 @@
 
 - [Chapter 1](./chapter_1.md)
 - [Chapter 2](./chapter_2.md)
+  - [Installation](./chapter_2/subchapter_1.md)
+  - [Environment](./chapter_2/subchapter_2.md)
 - [Chapter 3](./chapter_3.md)
   - [Connect button & Custom Wallet Modal](./chapter_3/subchapter_1.md)
   - [Address bar (Displays StarknetID)](./chapter_3/subchapter_2.md)
