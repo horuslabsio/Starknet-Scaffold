@@ -5,8 +5,13 @@ import trash from "../../../../public/assets/deleteIcon.svg";
 import { useRef, useState } from "react";
 import Header from "../Header";
 import Image from "next/image";
-import { DeclareContractPayload, hash, CallData,
-  UniversalDeployerContractPayload, CompiledSierraCasm } from "starknet";
+import {
+  DeclareContractPayload,
+  hash,
+  CallData,
+  UniversalDeployerContractPayload,
+  CompiledSierraCasm,
+} from "starknet";
 import { useAccount } from "@starknet-react/core";
 
 interface FileList {
@@ -24,7 +29,7 @@ function ScaffoldDeployer() {
   const [selectedSierra, setSelectedSierra] = useState<FileList[]>([]);
   const [selectedCasm, setSelectedCasm] = useState<FileList[]>([]);
   const [contract, setContract] = useState<string | null>(null);
-  const [casm, setCasm] = useState<CompiledSierraCasm | null>(null)
+  const [casm, setCasm] = useState<CompiledSierraCasm | null>(null);
   const [contractClassHash, setContractClassHash] = useState("");
   const { account, status, isConnected } = useAccount();
   const [classHash, setClassHash] = useState("");
@@ -41,7 +46,7 @@ function ScaffoldDeployer() {
   const handleAddArgument = () => {
     if (argumentsList[argumentsList.length - 1] === "") {
       setArgumentError(
-        "Input an argument value in the previous field before adding another!"
+        "Input an argument value in the previous field before adding another!",
       );
       return;
     }
@@ -91,7 +96,7 @@ function ScaffoldDeployer() {
 
   const handleDeleteFile = (event: any) => {
     event.preventDefault();
-    console.log("e: ", event)
+    console.log("e: ", event);
     if (event.target.name == "casm") setSelectedCasm([]);
     if (event.target.name == "sierra") setSelectedSierra([]);
   };
@@ -119,10 +124,10 @@ function ScaffoldDeployer() {
 
       const payload: DeclareContractPayload = {
         contract: contract,
-        classHash: contractClassHash
+        classHash: contractClassHash,
       };
 
-      if(casm) {
+      if (casm) {
         payload.casm = casm;
         delete payload.classHash;
       }
@@ -149,7 +154,9 @@ function ScaffoldDeployer() {
       if (!isConnected || !account) {
         throw new Error("Connect wallet to continue");
       }
-      const contractConstructor = CallData.compile(argumentsList.filter(arg=>arg !== ''));
+      const contractConstructor = CallData.compile(
+        argumentsList.filter((arg) => arg !== ""),
+      );
       const payload: UniversalDeployerContractPayload = {
         classHash: classHash,
         constructorCalldata: contractConstructor,
@@ -157,14 +164,14 @@ function ScaffoldDeployer() {
       const result = await account.deployContract(payload);
       console.log(
         result.contract_address,
-        "Contract Address of The Smart Contract"
+        "Contract Address of The Smart Contract",
       );
       setDeployedAddress(result.contract_address);
     } catch (e) {
       console.error("DEPLOYER ERROR", e);
-    } finally{
+    } finally {
       setClassHash("");
-      setArgumentsList([""])
+      setArgumentsList([""]);
     }
   };
 
@@ -291,7 +298,7 @@ function ScaffoldDeployer() {
           )}
           <button
             onClick={(e) => handleDeclare(e)}
-            className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white"
+            className="bg-primary py-3 px-4 rounded-[5px] w-[200px] text-white"
           >
             Declare
           </button>
@@ -346,14 +353,14 @@ function ScaffoldDeployer() {
               type="button"
               onClick={handleAddArgument}
               disabled={argumentsList[argumentsList.length - 1] === ""}
-              className="bg-blue-500 py-3 px-4 rounded-[5px] w-[250px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+              className="bg-secondary py-3 px-4 rounded-[5px] w-[250px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
             >
               Add argument
             </button>
             <button
               type="submit"
               disabled={disableButton}
-              className="bg-[#f77448] py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+              className="bg-primary py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
             >
               Deploy
             </button>

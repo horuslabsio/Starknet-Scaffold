@@ -1,4 +1,4 @@
-import ScaffoldDeployer from "../components/ScaffoldDeployer/ScaffoldDeployer";
+import ScaffoldDeployer from "~/ScaffoldDeployer/ScaffoldDeployer";
 
 export default async function Page() {
   return (

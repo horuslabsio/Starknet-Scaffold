@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { StarknetProvider } from "./components/StarknetProvider";
-import {Toaster} from "react-hot-toast"
+import { StarknetProvider } from "~/StarknetProvider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +22,7 @@ export default function RootLayout({
         className={`${inter.className} dark:bg-black bg-gray-300 dark:text-white transition-all duration-500 ease-in-out`}
       >
         <StarknetProvider>{children}</StarknetProvider>
-        <Toaster/>
+        <Toaster />
       </body>
     </html>
   );

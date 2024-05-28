@@ -45,8 +45,6 @@ try {
   if (projectType === "basic") {
     const FRONTEND_BASE_PATH = "frontend/src/app";
     const componentsToRemove = [
-      "burner",
-      "website",
       "devnet",
       `${FRONTEND_BASE_PATH}/burner`,
       `${FRONTEND_BASE_PATH}/wikipedia`,
@@ -86,7 +84,15 @@ try {
     recursive: true,
     force: true,
   });
+  const rmBurner = rm(path.join(projectPath, "burner"), {
+    recursive: true,
+    force: true,
+  });
   const rmWebsite = rm(path.join(projectPath, "website"), {
+    recursive: true,
+    force: true,
+  });
+  const rmDocs = rm(path.join(projectPath, "docs"), {
     recursive: true,
     force: true,
   });
@@ -95,7 +101,9 @@ try {
     rmBin,
     rmGithub,
     rmContributing,
+    rmBurner,
     rmWebsite,
+    rmDocs,
     ...basicCleanupTasks,
   ]);
 
