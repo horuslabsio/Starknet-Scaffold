@@ -1,4 +1,4 @@
-# Starkent-Scaffold Scripts Overview
+# Starknet-Scaffold Scripts Overview
 
 ## Contract  Scripts
 
@@ -14,7 +14,7 @@ npm run build-contracts
 ### Format contracts
 Leverage `Scarb’s` native formatting capabilities to tidy up your contracts.
 ```
-npm run build-contracts
+npm run format-contracts
 ```
 
 
