@@ -40,7 +40,6 @@ npm run contract-scripts --url=<RPC_URL> --account=<ACCOUNT_NAME> <SCRIPT_NAME>
 ```
 
 
-
 ## Generate an SRC-5 interface ID for your contracts
 ```
 npm run generate-interface <PATH_TO_INTERFACE>
@@ -50,9 +49,7 @@ npm run generate-interface <PATH_TO_INTERFACE>
 
 ## Deploy Account
 
-A contract can be depolyed on Starknet using the flowing command:
-Ensure to provide profile which is found in `Scarb.toml` name is your account name and then supply the maxFee 
-Max fee will be automatically computed if --max-fee <MAX_FEE> is not passed.
+To deploy a contract, you can use the command below. Make sure to specify the profile from Scarb.toml, where the name corresponds to your account name. Additionally, you should provide the maximum fee
 ```
 npm run deploy-account --profile=<MY_PROFILE> --name=<ACCOUNT_NAME> --maxfee=<MAX_FEE>
 ```
@@ -61,8 +58,7 @@ npm run deploy-account --profile=<MY_PROFILE> --name=<ACCOUNT_NAME> --maxfee=<MA
 
 ##  Starknet-Devnet
 
-Please ensure docker is successfully installed to run starknet-devnet
-
+It’s important to verify that Docker has been properly installed to ensure the functionality of starknet-devnet.
 ```
 npm run devnet
 ```
