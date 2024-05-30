@@ -1,6 +1,6 @@
 # Quickstart
 
-This section should cover installation, environment
+This section covers installation and setting up of the development environment.
 
-Resources:
-- https://docs.scaffoldeth.io/quick-start
+1. [Installation](./chapter_2/subchapter_1.md)
+2. [Environment](./chapter_2/subchapter_2.md)
