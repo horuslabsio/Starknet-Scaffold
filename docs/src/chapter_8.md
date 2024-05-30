@@ -1,12 +1,12 @@
-# Scaffold-ETH 2 Contributing Guide
+# Starknet-Scaffold Contributing Guide
 
-Welcome to the Scaffold-ETH 2 contributing guide! Thank you for investing your time in contributing to our project. This guide aims to provide a comprehensive overview of the contribution workflow, ensuring an effective and efficient process for everyone involved.
+Welcome to the Starknet Scaffold contributing guide! Thank you for investing your time in contributing to our project. This guide aims to provide a comprehensive overview of the contribution workflow, ensuring an effective and efficient process for everyone involved.
 
 ### About the Project
-Scaffold-ETH 2 is a minimal and forkable repository providing builders with a starter kit to develop decentralized applications (dApps) on Ethereum. For an overview of the project, please read the [README](README.md) to get an overview of the project.
+Starknet-Scaffold, an open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts. It makes forking the Starknet development stack easy through a frontend that adapts to smart contracts, and scripts optimized to make contract building, declaring and deploying a breeze. [README](https://github.com/argentlabs/Starknet-Scaffold/blob/main/Readme.md) to get an overview of the project.
 
 ### Our Vision
-Our goal is to provide the primary building blocks for creating dApps. While the repository can be forked to include additional integrations and features, we aim to keep the master branch simple and minimalistic.
+Our goal is to provide the primary building blocks for creating dApps. While the repository can be forked to include additional integrations and features, we aim to keep the main branch simple and minimalistic.
 
 ### Project Status
 The project is under active development. You can view open issues, follow the development process, and contribute to the project.
@@ -19,26 +19,24 @@ You can contribute to this repository in several ways:
 
 ### General Contribution Guidelines
 
-**1. Understand Our Project:** Scaffold-ETH 2 is a minimal and forkable repository providing builders with a starter kit to develop decentralized applications (dApps) on Ethereum.
+**1. Understand Our Project:** Starknet-Scaffold, an open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet.
 
-**2. Read Our Documentation:** https://docs.scaffoldeth.io/
+**2. Search Existing Issues and Pull-Requests (PRs):** Before creating a new issue or Pull-Request (PR), check if a similar one already exists.
 
-**3. Search Existing Issues and  Pull-Requests (PRs):** Before creating a new issue or Pull-Request (PR), check if a similar one already exists.
+**3. Communication:**
+For more developer resources and questions - [@0xdarlington](https://x.com/0xdarlington)
 
-**4. Communication:**
-Participate in the Our communication channel - [Telegram](https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA)
+**4. Focused Contributions:** Contributions should either fix/add functionality or address style issues, but not both.
 
-**5. Focused Contributions:** Contributions should either fix/add functionality or address style issues, but not both.
+**5. Provide Context:** When reporting an error, explain what you were trying to do and how to reproduce the error.
 
-**6. Provide Context:** When reporting an error, explain what you were trying to do and how to reproduce the error.
+**6. Consistent Formatting:** Use the same formatting as in the repository. Configure your IDE using the included prettier/linting config files.
 
-**7. Consistent Formatting:** Use the same formatting as in the repository. Configure your IDE using the included prettier/linting config files.
+**7. Update Documentation:** If applicable, edit the README.md file to reflect any changes you make.
 
-**8. Update Documentation:** If applicable, edit the README.md file to reflect any changes you make.
+**8. Respond to Feedback:** Engage with maintainers and reviewers, making necessary changes and improvements based on their feedback.
 
-**9. Respond to Feedback:** Engage with maintainers and reviewers, making necessary changes and improvements based on their feedback.
-
-**10. Be Patient:** Understand that maintainers are often busy and it may take time for your PR to be reviewed and merged.
+**9. Be Patient:** Understand that maintainers are often busy and it may take time for your PR to be reviewed and merged.
 
 **10. Monitor Your Contribution:** Keep an eye on your PR and address any further comments or requested changes.
 Stay Engaged: Continue to contribute, help others, and be an active member of the community. By following these guidelines, you can make meaningful contributions to Our open-source project and become a valuable member of Our open-source community
@@ -47,7 +45,7 @@ Stay Engaged: Continue to contribute, help others, and be an active member of th
 Issues are used to report problems, request new features, or discuss potential changes before creating a Pull-Request PR.
 
 ### Solving an Issue
-1. **Find an Issue:** Browse existing issues to find one that interests you. [existing issues](https://github.com/scaffold-eth/scaffold-eth-2/issues)
+1. **Find an Issue:** Browse existing issues to find one that interests you. [existing issues](https://github.com/argentlabs/Starknet-Scaffold/issues)
 
 2. **Assign the Issue:** If you find an issue to work on, assign it to yourself.
 
@@ -67,14 +65,14 @@ We follow the "fork-and-pull" Git workflow: We follow the ["fork-and-pull" Git w
 
 1. **Fork the Repo:** Create a fork of the repository.
 
-Example: User A visits our main-repo repository on GitHub, https://github.com/argentlabs/Starknet-Scaffold and clicks the Fork button, creating a personal copy of the repository under their own GitHub account (e.g., userA/scaffold-eth-2).
+Example: User A visits our main-repo repository on GitHub, https://github.com/argentlabs/Starknet-Scaffold and clicks the Fork button, creating a personal copy of the repository under their own GitHub account (e.g., userA/Starknet-Scaffold).
 
 2. **Clone the Project:** Clone your fork locally.
 
 ````code
-git clone https://github.com/userA/scaffold-eth-2
+git clone https://github.com/userA/Starknet-Scaffold
 
-cd scaffold-eth-2
+cd Starknet-Scaffold
 ````
 
 3. **Create a Branch:** Create a new branch with a descriptive name. User A creates a new branch for their feature or bug fix. This ensures the main branch (typically main or master) remains clean and unaffected by ongoing work:
@@ -162,4 +160,4 @@ By following these tips, you can create a high-quality pull request that is more
 
 3. **Merging:** Once the PR is approved, we will "squash-and-merge" to keep the git commit history clean.
 
-Thank you for your contributions to Scaffold-ETH 2! We appreciate your efforts in helping us build and improve this project.
+Thank you for your contributions to Starknet-Scaffold! We appreciate your efforts in helping us build and improve this project.
