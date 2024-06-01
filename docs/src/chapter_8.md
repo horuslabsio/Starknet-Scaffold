@@ -1,4 +1,4 @@
-# Starknet-Scaffold Contributing Guide
+# Contributing Guide
 
 Welcome to the Starknet Scaffold contributing guide! Thank you for investing your time in contributing to our project. This guide aims to provide a comprehensive overview of the contribution workflow, ensuring an effective and efficient process for everyone involved.
 

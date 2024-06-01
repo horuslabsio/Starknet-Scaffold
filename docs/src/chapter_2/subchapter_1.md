@@ -1,6 +1,6 @@
 # Installation
 
-This documentation provides detailed instructions on how to install and set up Starknet-Scaffold, an open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet.
+This documentation provides detailed instructions on how to install and set up Starknet-Scaffold.
 
 ## Requirements
 
@@ -11,6 +11,7 @@ Before you begin, ensure you have the following tools installed on your system:
 * [Git](https://git-scm.com/downloads)
 * [Scarb](https://docs.swmansion.com/scarb/download.html)
 * [Starknet Foundry](https://foundry-rs.github.io/starknet-foundry/getting-started/installation.html)
+* [Docker](https://docs.docker.com/get-docker/)
 
 ## Installation Methods
 
@@ -19,7 +20,7 @@ Before you begin, ensure you have the following tools installed on your system:
 
 ### Method One: Using `create-starknet-app` executable.
 
-The recommended way to start with Starknet-Scaffold is by using the `create-starknet-app` command. This method allows you to choose between different boilerplate types based on your project needs.
+The recommended way to get started with Starknet-Scaffold is by using the `create-starknet-app` executable. This method allows you to choose between different boilerplate types based on your project needs.
 
 1. Run the executable
 

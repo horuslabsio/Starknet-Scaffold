@@ -1,4 +1,4 @@
-# Starknet Address Book
+# Address Book
 
 <!-- List all relevant contract addresses on Starknet.
 - https://starkscan.co/address-book -->
@@ -10,6 +10,7 @@ This provides a detailed list of relevant contract addresses on Starknet, includ
 | -------------------- | ------------------------------------------ |
 | Core Contract        | 0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4 |
 | GpsStatementVerifier | 0x47312450B3Ac8b5b8e247a6bB6d523e7605bDb60 |
+| STRK                 | 0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d |
 
 ### Tokens
 

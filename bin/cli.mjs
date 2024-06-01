@@ -49,6 +49,7 @@ try {
       `${FRONTEND_BASE_PATH}/burner`,
       `${FRONTEND_BASE_PATH}/wikipedia`,
       `${FRONTEND_BASE_PATH}/scaffold-deployer`,
+      `${FRONTEND_BASE_PATH}/address-book`,
       `${FRONTEND_BASE_PATH}/components/Burner`,
       `${FRONTEND_BASE_PATH}/components/BurnerWallet`,
       `${FRONTEND_BASE_PATH}/components/ScaffoldDeployer`,

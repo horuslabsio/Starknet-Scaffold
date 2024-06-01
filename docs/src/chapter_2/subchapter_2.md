@@ -19,8 +19,6 @@ After setting up your project using either method, follow these steps to get you
    This will download and install all the important packages specified in the `package.json` file.
 
 2. To build your Cairo contracts:
-   
-   Build the contract to ensure all files are correctly compiled and prepared for development:
 
    ```
    npm run build-contracts
@@ -32,8 +30,10 @@ After setting up your project using either method, follow these steps to get you
    npm run start
    ```
 
-   This command will start a local server and open your default web browser to display your new Starknet-Scaffold project.
+   This command kickstarts a local development server for your new project.
 
 Starknet-Scaffold provides other scripts to facilitate development. We will cover more of these available scripts in the coming chapters.
 
-You now have a fully set up and running installation of Starknet-Scaffold at https://localhost:3000. For further customization and detailed instructions, please refer to the documentation.
+<img src="../public/home.png" width="100%" alt="starknet scaffold" />
+
+You now have a fully set up and running installation of Starknet-Scaffold at `https://localhost:3000`. For further customization and detailed instructions, please refer to the documentation.

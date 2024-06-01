@@ -1,3 +1,3 @@
 # Address Book
 
-This is a tool that lists all relevant contract addresses within the starknet ecosystem.
+The address book contains a list of all relevant contract addresses within the starknet ecosystem.

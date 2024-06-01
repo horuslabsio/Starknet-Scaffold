@@ -1,6 +1,6 @@
 # Burner Wallet
 
-The burner wallet tool enables users to generate burner wallets which are temporary wallets that can be generated and used during the course of development. Burner wallets are only supported on the Sepolia network and a user can only only generate a maximum of five wallets at a time.
+The Burner wallet tool enables users to generate temporary wallets for use during the course of development. Burner wallets are only supported on the Sepolia network and a user can only generate a maximum of five wallets at a time.
 
 A generated wallet UI gives us information such as ETH and STRK balance and address. The burner wallet can be funded using the [Faucet](subchapter_3.md) tool.
 
@@ -10,6 +10,8 @@ In order for the generated burner wallet to be used, it has to be connected. Aft
    Transfer tokens by inputting the recipient address and amount.
 
 2. Execute smart contract calls:
-   The generated wallet can execute functions from other smart contracts by inputting the contract address, function name and arguments.
+   Execute functions from other smart contracts by inputting the contract address, function name and arguments.
 
-The user can also clear all generated wallets.
+Users have the ability to also clear the generated wallets.
+
+<img src="../public/burner.png" width="100%" alt="starknet burner" />

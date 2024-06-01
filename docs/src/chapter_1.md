@@ -1,6 +1,8 @@
-Starknet-Scaffold is a comprehensive, open-source toolkit designed for developing decentralized applications (dApps) on Starknet. This toolkit includes the most popular and functional tools, ensuring an up-to-date development environment. Starknet-Scaffold simplifies the process of forking the Starknet development stack through an adaptable frontend that seamlessly integrates with smart contracts. Additionally, it provides optimized scripts to streamline the processes of contract building, declaring, and deploying, thereby enhancing developer efficiency.
+# Introduction
 
-Starknet-Scaffold was built using a robust technology stack, including:
+Starknet-Scaffold is a comprehensive, open-source toolkit designed for developing decentralized applications (dApps) on Starknet. This toolkit includes the most popular and functional tools, ensuring an up-to-date development environment.
+
+Starknet-Scaffold was built using a robust technology stack, which includes:
 
 1. **NextJS**: A powerful React framework that enables server-side rendering and static site generation, improving performance and SEO for web applications. It provides a seamless development experience with features like file-based routing and API routes.
 
