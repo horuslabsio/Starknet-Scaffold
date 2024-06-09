@@ -18,7 +18,7 @@ import ThemeSwitch from "./Theme";
 
 | Prop      | Type     | Description                                      |
 | :-------- | :------- | :----------------------------------------------- |
-| className | string   | Additional classses to be added to the component |
+| className | string   | Additional classes to be added to the component |
 | action    | function | function to change the theme of the dapp         |
 | theme     | string   | specify the current theme of the dapp            |
-| openMenu  | boolean  | state value for wether a menu is open or not.    |
+| openMenu  | boolean  | state value for whether a menu is open or not.    |
