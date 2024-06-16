@@ -11,6 +11,7 @@ import {
   CallData,
   UniversalDeployerContractPayload,
   CompiledSierraCasm,
+  cairo,
 } from "starknet";
 import { useAccount } from "@starknet-react/core";
 
@@ -155,7 +156,19 @@ function ScaffoldDeployer() {
         throw new Error("Connect wallet to continue");
       }
       const contractConstructor = CallData.compile(
-        argumentsList.filter((arg) => arg !== ""),
+        argumentsList
+          .filter((arg) => arg !== "")
+          .map((arg) => {
+            if (
+              !arg.startsWith("0x0") &&
+              !isNaN(parseFloat(arg)) &&
+              (parseFloat(arg) > Number.MAX_SAFE_INTEGER ||
+                parseFloat(arg) < Number.MIN_SAFE_INTEGER)
+            ) {
+              return cairo.uint256(parseInt(arg));
+            }
+            return arg;
+          }),
       );
       const payload: UniversalDeployerContractPayload = {
         classHash: classHash,
