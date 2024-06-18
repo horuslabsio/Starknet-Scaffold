@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Button } from "~/ui/button";
+import { Button } from "@/app/components/ui_components/button";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 
@@ -46,7 +46,7 @@ export const columns: ColumnDef<Resource>[] = [
 
       return (
         <Link className="text-right font-medium" href={address} target="_blank">
-          {address.split('/')[address.split('/').length - 1]}
+          {address.split("/")[address.split("/").length - 1]}
         </Link>
       );
     },

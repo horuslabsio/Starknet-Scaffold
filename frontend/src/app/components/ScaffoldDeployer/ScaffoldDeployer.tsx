@@ -3,7 +3,7 @@ import cloudUploadIcon from "../../../../public/assets/cloudUploadIcon.svg";
 import fileIcon from "../../../../public/assets/fileIcon.svg";
 import trash from "../../../../public/assets/deleteIcon.svg";
 import { useRef, useState } from "react";
-import Header from "../Header";
+import Header from "../ui_components/Header";
 import Image from "next/image";
 import {
   DeclareContractPayload,

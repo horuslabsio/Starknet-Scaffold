@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useAccount, useNetwork } from "@starknet-react/core";
 import { Contract, RpcProvider, ec, stark } from "starknet";
 import * as Abi from "../../../../public/abi/burnerWallet.json";
-import Header from "../Header";
+import Header from "../ui_components/Header";
 import BurnerWallet from "../BurnerWallet/BurnerWallet";
 import spinner from "../../../../public/assets/spinner.svg";
 import Image from "next/image";

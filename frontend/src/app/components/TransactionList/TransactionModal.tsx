@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import GenericModal from "../GenericModal";
+import GenericModal from "../ui_components/GenericModal";
 import TransactionList from "./TransactionList";
 import React from "react";
 const TransactionModal = ({

@@ -1,6 +1,6 @@
 "use client";
-import CopyButton from "./CopyButton";
-import GenericModal from "./GenericModal";
+import CopyButton from "./ui_components/CopyButton";
+import GenericModal from "./ui_components/GenericModal";
 import { useEffect, useState } from "react";
 
 type Props = {

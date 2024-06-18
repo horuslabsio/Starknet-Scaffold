@@ -3,19 +3,19 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useNetwork } from "@starknet-react/core";
-import { Button } from "@/app/components/ui/button";
+import { Button } from "@/app/components/ui_components/button";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "@/app/components/ui/command";
+} from "@/app/components/ui_components/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/app/components/ui/popover";
+} from "@/app/components/ui_components/popover";
 import { cn } from "@/app/lib/utils";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
@@ -38,7 +38,7 @@ export function NetworkSwitcher() {
   const { chain } = useNetwork();
   const [open, setOpen] = React.useState(false);
   const [selectedNetwork, setSelectedNetwork] = React.useState(
-    NETWORK_MAPPING[chain.network]
+    NETWORK_MAPPING[chain.network],
   );
 
   const switchNetwork = async (newNetworkId: string, networkLabel: string) => {
@@ -95,7 +95,7 @@ export function NetworkSwitcher() {
                     "mr-2 h-4 w-4",
                     selectedNetwork === network.value
                       ? "opacity-100"
-                      : "opacity-0"
+                      : "opacity-0",
                   )}
                 />
                 {network.label}
