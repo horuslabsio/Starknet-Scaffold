@@ -1,10 +1,11 @@
+use core::starknet::SyscallResultTrait;
 use snforge_std::{declare, ContractClassTrait};
 use contracts::{IHelloStarknetDispatcher, IHelloStarknetDispatcherTrait};
 
 #[test]
 fn test_balance() {
-    let contract = declare("HelloStarknet");
-    let contract_address = contract.deploy(@ArrayTrait::new()).unwrap();
+    let contract = declare("HelloStarknet").unwrap();
+    let (contract_address, _) = contract.deploy(@ArrayTrait::new()).unwrap_syscall();
 
     let dispatcher = IHelloStarknetDispatcher { contract_address };
 
