@@ -13,7 +13,7 @@ Each transaction item shows the following:
 ## Import
 
 ```
-import TransactionModal from "~/components/TransactionModal";
+import TransactionModal from "~/TranscationList/TransactionModal";
 ```
 
 ## Usage

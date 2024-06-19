@@ -5,7 +5,7 @@ This is a dropdown component used to switch between Starknet networks (mainnet/s
 ## Import
 
 ```
-import NetworkSwitcher from "~/components/NetworkSwitcher";
+import NetworkSwitcher from "~/ui_components/NetworkSwitcher";
 ```
 
 ## Usage

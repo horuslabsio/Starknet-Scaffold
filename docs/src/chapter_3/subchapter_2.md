@@ -5,7 +5,7 @@ The Address bar displays the address of the connected account. If the connected 
 ## Import
 
 ```
-import AddressBar from "~/components/AddressBar";
+import AddressBar from "~/ui_components/AddressBar";
 ```
 
 ## Usage

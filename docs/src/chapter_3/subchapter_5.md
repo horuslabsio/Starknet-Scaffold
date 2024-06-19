@@ -5,7 +5,7 @@ This component shows the STRK and ETH balance of the connected wallet address.
 ## Import
 
 ```
-import AccountBalance from "~/components/AccountBalance";
+import AccountBalance from "~/ui_components/AccountBalance";
 ```
 
 ## Usage

@@ -5,7 +5,7 @@ The theme toggler is used to switch between light and dark modes.
 ## Import
 
 ```
-import ThemeSwitch from "./Theme";
+import ThemeSwitch from "~/ui_components/Theme";
 ```
 
 ## Usage
@@ -16,9 +16,9 @@ import ThemeSwitch from "./Theme";
 
 ## Props
 
-| Prop      | Type     | Description                                      |
-| :-------- | :------- | :----------------------------------------------- |
+| Prop      | Type     | Description                                     |
+| :-------- | :------- | :---------------------------------------------- |
 | className | string   | Additional classes to be added to the component |
-| action    | function | function to change the theme of the dapp         |
-| theme     | string   | specify the current theme of the dapp            |
-| openMenu  | boolean  | state value for whether a menu is open or not.    |
+| action    | function | function to change the theme of the dapp        |
+| theme     | string   | specify the current theme of the dapp           |
+| openMenu  | boolean  | state value for whether a menu is open or not.  |

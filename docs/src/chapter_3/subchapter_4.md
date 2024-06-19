@@ -5,7 +5,7 @@ This modal contains a copy button for copying the address of the connected walle
 ## Import
 
 ```
-import UserModal from "~/components/UserModal";
+import {UserModal} from "~/ui_components/AddressBar";
 ```
 
 ## Usage
