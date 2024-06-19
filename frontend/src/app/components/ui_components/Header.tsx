@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useConnect, useAccount } from "@starknet-react/core";
 import { LibraryBig } from "lucide-react";
 import TransactionModal from "../TransactionList/TransactionModal";
-import useTheme from "../../hooks/useTheme";
+import useTheme from "./hooks/useTheme";
 import ThemeSwitch from "./Theme";
 import NetworkSwitcher from "./NetworkSwitcher";
 import ConnectModal from "./ConnectModal";

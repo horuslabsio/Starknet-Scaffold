@@ -16,7 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/app/components/ui_components/popover";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/app/components/ui_components/lib/utils";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",
