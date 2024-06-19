@@ -3,15 +3,15 @@ name = "contracts"
 version = "0.1.0"
 
 [dependencies]
-starknet = "2.6.3"
+starknet = "2.6.4"
 
 [dependencies.openzeppelin]
 git = "https://github.com/OpenZeppelin/cairo-contracts.git"
-tag = "v0.11.0"
+tag = "v0.14.0"
 
 [dependencies.snforge_std]
 git = "https://github.com/foundry-rs/starknet-foundry"
-tag = "v0.20.1"
+tag = "v0.25.0"
 
 [[target.starknet-contract]]
 casm = true

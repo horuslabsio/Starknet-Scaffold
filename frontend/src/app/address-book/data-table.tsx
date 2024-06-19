@@ -19,10 +19,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/app/components/ui/table";
+} from "@/app/components/ui_components/table";
 
-import { Button } from "~/ui/button";
-import { Input } from "~/ui/input";
+import { Button } from "@/app/components/ui_components/button";
+import { Input } from "@/app/components/ui_components/input";
 import React from "react";
 
 interface DataTableProps<TData, TValue> {

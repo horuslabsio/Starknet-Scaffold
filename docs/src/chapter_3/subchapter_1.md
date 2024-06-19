@@ -22,7 +22,7 @@ The right side of the modal serves to educate the user on how wallet connections
 ## Import
 
 ```
-import ConnectModal from "~/components/ConnectModal";
+import ConnectModal from "~/ui_components/ConnectModal";
 ```
 
 ## Usage

@@ -1,5 +1,5 @@
 "use client";
-import GenericModal from "./GenericModal";
+import GenericModal from "./ui_components/GenericModal";
 import starknetLogo from "../../../public/starknetlogo.svg";
 import Image from "next/image";
 import rightArr from "../../../public/assets/right-arr.svg";

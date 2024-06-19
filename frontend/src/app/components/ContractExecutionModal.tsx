@@ -1,5 +1,5 @@
 "use client";
-import GenericModal from "./GenericModal";
+import GenericModal from "./ui_components/GenericModal";
 import Image from "next/image";
 import rightArr from "../../../public/assets/right-arr.svg";
 import { useEffect, useState } from "react";
@@ -123,7 +123,6 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
 
       setLoading(true);
 
-
       const call: Call = {
         contractAddress: contractAddress,
         calldata: JSON.parse(callData),
@@ -135,10 +134,11 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
         calldata: JSON.parse(callData),
       });
 
-      const { transaction_hash: transferTxHash } = await account.execute(call, {maxFee});
-      const transactionReponse = await account.waitForTransaction(
-        transferTxHash
-      );
+      const { transaction_hash: transferTxHash } = await account.execute(call, {
+        maxFee,
+      });
+      const transactionReponse =
+        await account.waitForTransaction(transferTxHash);
 
       console.log(transactionReponse);
       toast.success("Your contract function was executed successfully!", {
