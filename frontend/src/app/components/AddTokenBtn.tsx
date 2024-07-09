@@ -36,6 +36,7 @@ function AddTokenBtn() {
         className="text-black py-2 px-2 rounded w-[350px]"
         type="text"
         value={tokenAddress}
+        placeholder="Input token contract address."
         onChange={(e) => {
           setTokenAddress(e.target.value);
         }}
