@@ -50,14 +50,14 @@ const Burners: React.FC = () => {
     const TransactionHash =
       await burnerWalletDeployer.deploy_burner_wallet(publicKey);
 
-    const result = await provider.waitForTransaction(
+    const result: any = await provider.waitForTransaction(
       TransactionHash.transaction_hash,
     );
 
     return {
       privateKey,
       publicKey,
-      address: result.events[0].from_address,
+      address: result.events?.at(0).from_address,
     };
   };
 
