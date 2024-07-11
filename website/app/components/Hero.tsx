@@ -120,7 +120,7 @@ const Hero = () => {
           </button>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
-          <a href="https://docs.starknetscaffold.xyz">
+          <a href="https://app.starknetscaffold.xyz">
             <button className="border-solid border-dark-font-color border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400">
               Try Online
             </button>
