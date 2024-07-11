@@ -8,6 +8,7 @@ import useTheme from "./hooks/useTheme";
 import ThemeSwitch from "./Theme";
 import NetworkSwitcher from "./NetworkSwitcher";
 import ConnectModal from "./ConnectModal";
+import AddTokenBtn from "../AddTokenBtn";
 
 const Header = () => {
   const { address } = useAccount();
@@ -135,6 +136,7 @@ const Header = () => {
           )}
 
           <NetworkSwitcher />
+          <AddTokenBtn />
 
           <ThemeSwitch
             className="flex md:hidden lg:hidden sm:hidden dark:transform-none transform dark:translate-none transition-all duration-500 ease-in-out"
