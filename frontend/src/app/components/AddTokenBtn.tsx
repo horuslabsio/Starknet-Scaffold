@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import AddTokenModal from "./ui_components/AddTokenModal";
+import AddTokenModal from "~/ui_components/AddTokenModal";
 function AddTokenBtn() {
   const [openAddTokenModal, setOpenAddTokenModal] = useState(false);
 
