@@ -1,9 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import GenericModal from "./GenericModal";
-import { WalletAccount } from "starknet";
 import { useConnect } from "@starknet-react/core";
-const providerUrl = "https://starknet-sepolia.public.blastapi.io";
 
 const AddTokenModal = ({
   openAddTokenModal,
@@ -22,13 +20,9 @@ const AddTokenModal = ({
   function handleAddToken() {
     const fetchAddToken = async () => {
       try {
-        const myWalletAccount = new WalletAccount(
-          { nodeUrl: providerUrl },
-          // @ts-ignore
-          connector?._wallet,
-        );
-
-        const resp = await myWalletAccount.watchAsset({
+        // @ts-ignore
+        const walletProvider = connector?._wallet
+        const asset = {
           type: "ERC20",
           options: {
             address: tokenAddress,
@@ -36,6 +30,11 @@ const AddTokenModal = ({
             decimals,
             name,
           },
+        };
+
+        const resp = await walletProvider.request({
+          type: 'wallet_watchAsset',
+          params: asset,
         });
         console.log(resp);
       } catch (err) {
