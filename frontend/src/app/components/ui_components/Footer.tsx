@@ -12,7 +12,8 @@ const Footer = () => {
           </h2>
           <p className="text-[#BC988C] text-center text-2xl leading-[30px] mb-8">
             Join our community to learn and build together! And please raise an
-            issue on our Github if there's a new feature you'll like to see
+            issue on our Github if there&apos;s a new feature you&apos;ll like
+            to see
           </p>
           <a href="https://t.me/+sH0ug1mZ_WtjNmM0">
             <button className="bg-[#FAFAFA] w-fit text-[#141925] py-3 px-12 transition-all duration-400 rounded-[12px] hover:rounded-[20px] ">

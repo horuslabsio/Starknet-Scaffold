@@ -77,7 +77,7 @@ const Header = () => {
         ),
       });
     }
-  }, [connectors]);
+  }, [connectors, connect]);
 
   useEffect(() => {
     if (openConnectModal) {
