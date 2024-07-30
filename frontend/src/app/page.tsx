@@ -31,7 +31,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center gap-y-6 w-full px-[150px] py-[74px]">
         <div className="w-full grid grid-cols-[826px_1fr] h-[320px] gap-x-6">
-          <div className="relative w-full h-[320px] bg-[#F7F7F7] rounded-[16px] ">
+          <div className="relative w-full h-[320px] bg-burner-wallet-bg dark:bg-burner-wallet-bg-dark rounded-[16px] ">
             <div className="relative pt-9 pl-6 text-left z-[4] w-[320px]">
               <a
                 href="/burner"
@@ -49,13 +49,8 @@ export default function Home() {
                 of development
               </p>
             </div>
-            <Image
-              src={burnerWallet}
-              alt="burner banner"
-              className="absolute inset-0 z-[1]"
-            />
           </div>
-          <div className="relative w-full h-[320px] rounded-[16px] bg-[#F7F7F7] overflow-hidden">
+          <div className="relative w-full h-[320px] rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
             <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
               <a
                 href="https://starknet-faucet.vercel.app"
@@ -81,7 +76,7 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full grid grid-cols-[439px_1fr] gap-x-6">
-          <div className="relative w-full h-[480px] rounded-[16px] bg-[#F7F7F7] overflow-hidden">
+          <div className="relative w-full h-[480px] rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
             <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
               <a
                 href="/scaffold-deployer"
@@ -107,7 +102,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-[1fr] w-full grid-rows-[1fr_1fr] h-[480px] gap-y-6">
             <div className="grid grid-cols-[1fr_1fr] gap-x-6 h-full">
-              <div className="relative w-full rounded-[16px] bg-[#F7F7F7] overflow-hidden">
+              <div className="relative w-full rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
                 <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
                   <a
                     href="/wikipedia"
@@ -131,7 +126,7 @@ export default function Home() {
                   className="absolute z-[1] top-[126px] left-[41px]"
                 />
               </div>
-              <div className="relative w-full rounded-[16px] bg-[#F7F7F7] overflow-hidden">
+              <div className="relative w-full rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
                 <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
                   <a
                     href="https://www.stark-utils.xyz/converter"
@@ -156,7 +151,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="relative w-full rounded-[16px] bg-[#F7F7F7] overflow-hidden">
+            <div className="relative w-full rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
               <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
                 <a
                   href="/address-book"

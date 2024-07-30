@@ -96,9 +96,9 @@ const Header = () => {
     <>
       <header
         ref={dropdownRef}
-        className="w-full fixed dark:bg-[#1f1f1e]  bg-white left-0 top-0  z-10 flex flex-wrap py-2 px-4 md:pt-8 md:px-8 md:pb-3  justify-between "
+        className="w-full fixed dark:bg-[#1f1f1e] bg-white left-0 top-0  z-10 flex flex-wrap py-2 px-4 md:pt-8 md:px-8 md:pb-3  justify-between "
       >
-        <nav className="py-[30px] px-[68px] bg-primaryGradient w-full rounded-[32px] mb-8 flex justify-between items-center">
+        <nav className="py-[30px] px-[68px] bg-primaryGradient w-full rounded-[32px] flex justify-between items-center">
           <Image src={logoImage} alt="logo" width={360} height={48} />
           <div className="overflow-hidden">
             {address ? (
@@ -121,15 +121,15 @@ const Header = () => {
             )}
           </div>
         </nav>
-        <div className="flex w-full justify-end pr-[68px]">
-          <ThemeSwitch
-            className=""
-            action={changeTheme}
-            theme={theme}
-            openMenu={openMenu}
-          />
-        </div>
       </header>
+      <div className="flex w-full justify-end pr-[68px] bg-transparent bg-opacity-0 fixed top-[200px]">
+        <ThemeSwitch
+          className=""
+          action={changeTheme}
+          theme={theme}
+          openMenu={openMenu}
+        />
+      </div>
 
       <ConnectModal isOpen={openConnectModal} onClose={toggleModal} />
       <TransactionModal

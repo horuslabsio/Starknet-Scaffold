@@ -29,6 +29,8 @@ const config: Config = {
       },
       backgroundImage: {
         "footer-image": "url('/assets/footer-bg.svg')",
+        "burner-wallet-bg": "url('/assets/burnerWalletBg.svg')",
+        "burner-wallet-bg-dark": "url('/assets/burnerWalletBgDark.svg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
