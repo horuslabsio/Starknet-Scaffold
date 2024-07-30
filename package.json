@@ -1,6 +1,6 @@
 {
   "name": "create-starknet-app",
-  "version": "0.4.3",
+  "version": "0.4.5",
   "description": "An open-source starknet development stack",
   "bin": "./bin/cli.mjs",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/argentlabs/Starknet-Scaffold.git"
+    "url": "git+https://github.com/horuslabsio/Starknet-Scaffold"
   },
   "keywords": [
     "Starknet",
@@ -32,9 +32,9 @@
   "author": "Darlington Nnam",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/argentlabs/Starknet-Scaffold/issues"
+    "url": "https://github.com/horuslabsio/Starknet-Scaffold/issues"
   },
-  "homepage": "https://github.com/argentlabs/Starknet-Scaffold#readme",
+  "homepage": "https://github.com/horuslabsio/Starknet-Scaffold#readme",
   "dependencies": {
     "ora": "^8.0.1"
   }
