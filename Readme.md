@@ -23,7 +23,7 @@ git clone git@github.com:argentlabs/Starknet-Scaffold.git
 cd Starknet-Scaffold
 ```
 
-Or install using create-starknet-app (recommended). This takes in the name and boilerplate type. If you need a basic fullstack boilerplate with frontend UI components, specify the `fullstack` type, if you need just contracts specify, `contract_only`, else for full debugging suite, use `debugger`. 
+Or install using create-starknet-app (recommended). This takes in the name and boilerplate type. If you need a basic fullstack boilerplate with frontend UI components, specify the `fullstack` type, if you need just contracts specify, `contract_only`, else for full debugging suite, use `debugger`.
 
 PS: defaults to debugger mode, if no type is specified.
 
@@ -48,6 +48,16 @@ Scripts exists to make your life easier! Here are available scripts and features
 | Starknet contract Deployer | ✅ |
 | sepETH/sepSTRK faucet | ✅ |
 | Cairo Wikipedia | ✅ |
+
+### Dojo Section
+
+Scripts to make building with Dojo easier! Here are available scripts and features:
+| Feature | Available |
+| :---: | :---: |
+| Initialize Dojo Project | ✅ |
+| Build Dojo Project | ✅ |
+| Deploy Katana | ✅ |
+| Migrate Dojo Project | ✅ |
 
 ### UI Section
 
@@ -159,6 +169,42 @@ Ensure to have Docker installed. To run starknet-devnet:
 
 ```
 npm run devnet
+```
+
+### Dojo Section
+
+The `dojo-contracts` folder contains all the tools needed to write, build, test and dojo projects. It is built with sozo and katana. Here are common operations you can perform on your dojo contracts.
+
+#### Initialize Dojo Project
+
+To initialize a dojo project, from the base repository:
+
+```
+npm run initialize-dojo --name=<PROJECT_NAME>
+```
+
+#### Build Dojo Project
+
+To build your dojo project, from the base repository run:
+
+```
+npm run build-dojo --name=<PROJECT_NAME>
+```
+
+### Deploy Katana
+
+To build deploy katana, from the base repository run:
+
+```
+npm run deploy-dojo-katana --name=<PROJECT_NAME>
+```
+
+#### Migrate Dojo Project
+
+To migrate your dojo project, from the base repository run:
+
+```
+npm run migrate-dojo --name=<PROJECT_NAME>
 ```
 
 ### UI SECTION
