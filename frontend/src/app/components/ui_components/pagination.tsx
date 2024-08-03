@@ -27,13 +27,13 @@ export default function Pagination({ count }: { count: number }) {
 
   if (pageCount <= 1) return null;
   return (
-    <div className="flex items-center gap-x-[100px] text-[#141925] text-base leading-6 pt-4 border-t-[#F0F2F5] border-t-[2px]">
+    <div className="flex items-center gap-x-[100px] dark:text-white text-[#141925] text-base leading-6 pt-4 border-t-[#F0F2F5] border-t-[2px]">
       <p className="">
         Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{" "}
         <span>
           {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
         </span>{" "}
-        of <span className="font-semibold">{count}</span> results
+        of <span>{count} results</span>
       </p>
       <div className="flex items-center gap-x-4">
         <button

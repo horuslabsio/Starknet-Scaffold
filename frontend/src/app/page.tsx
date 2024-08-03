@@ -3,7 +3,6 @@ import Image from "next/image";
 import Header from "@/app/components/ui_components/Header";
 import NetworkSwitcher from "./components/ui_components/NetworkSwitcher";
 import AddTokenBtn from "./components/AddTokenBtn";
-import burnerWallet from "../../public/assets/burnerWalletBg.svg";
 import faucet from "../../public/assets/faucetBanner.svg";
 import deployer from "../../public/assets/deployerBanner.svg";
 import wikipedia from "../../public/assets/wikipediaBanner.svg";
@@ -11,6 +10,7 @@ import addressBook from "../../public/assets/addressBook.svg";
 import converter from "../../public/assets/converterBanner.svg";
 import Footer from "./components/ui_components/Footer";
 import arrow from "../../public/assets/linkArrow.svg";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -31,38 +31,38 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center gap-y-6 w-full px-[150px] py-[74px]">
         <div className="w-full grid grid-cols-[826px_1fr] h-[320px] gap-x-6">
-          <div className="relative w-full h-[320px] bg-burner-wallet-bg dark:bg-burner-wallet-bg-dark rounded-[16px] ">
+          <Link
+            href="/burner"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative w-full h-[320px] bg-burner-wallet-bg transition-all hover:bg-burner-wallet-bg-dark rounded-[16px] "
+          >
             <div className="relative pt-9 pl-6 text-left z-[4] w-[320px]">
-              <a
-                href="/burner"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[24px] leading-7 mb-2 text-[#141925]"
-              >
+              <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
                 Scaffold Burner Wallet
                 <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                   <Image alt="redirect" src={arrow} className="ml-[7px]" />
                 </span>
-              </a>
+              </h2>
               <p className="text-base leading-5 text-[#7A7A7A]">
                 Generate temporary wallets which can be used during the course
                 of development
               </p>
             </div>
-          </div>
-          <div className="relative w-full h-[320px] rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
+          </Link>
+          <Link
+            href="https://starknet-faucet.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative w-full h-[320px] rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+          >
             <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-              <a
-                href="https://starknet-faucet.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[24px] leading-7 mb-2 text-[#141925]"
-              >
+              <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
                 Scaffold Faucet
                 <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                   <Image alt="redirect" src={arrow} className="ml-[7px]" />
                 </span>
-              </a>
+              </h2>
               <p className="text-base leading-5 text-[#7A7A7A]">
                 A SepETH/SepSTRK faucet for claiming ETH/STRK Sepolia testnet
                 tokens
@@ -73,22 +73,22 @@ export default function Home() {
               alt="faucet banner"
               className="absolute z-[1] top-[60px] left-[-10px]"
             />
-          </div>
+          </Link>
         </div>
         <div className="w-full grid grid-cols-[439px_1fr] gap-x-6">
-          <div className="relative w-full h-[480px] rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
+          <Link
+            href="/scaffold-deployer"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative w-full h-[480px] rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+          >
             <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-              <a
-                href="/scaffold-deployer"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[24px] leading-7 mb-2 text-[#141925]"
-              >
+              <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
                 Scaffold Deployer
                 <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                   <Image alt="redirect" src={arrow} className="ml-[7px]" />
                 </span>
-              </a>
+              </h2>
               <p className="text-base leading-5 text-[#7A7A7A]">
                 A simple tool for seamlessly deploying smart contracts to
                 Starknet testnet and mainnet
@@ -99,22 +99,22 @@ export default function Home() {
               alt="deployer banner"
               className="absolute z-[1] top-[140px] left-[-2px]"
             />
-          </div>
+          </Link>
           <div className="grid grid-cols-[1fr] w-full grid-rows-[1fr_1fr] h-[480px] gap-y-6">
             <div className="grid grid-cols-[1fr_1fr] gap-x-6 h-full">
-              <div className="relative w-full rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
+              <Link
+                href="/wikipedia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-full rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+              >
                 <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-                  <a
-                    href="/wikipedia"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[24px] leading-7 mb-2 text-[#141925]"
-                  >
+                  <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
                     Scaffold Wikipedia
                     <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                       <Image alt="redirect" src={arrow} className="ml-[7px]" />
                     </span>
-                  </a>
+                  </h2>
                   <p className="text-base leading-5 text-[#7A7A7A]">
                     A collection of Starknet/Cairo learning resources in the
                     ecosystem
@@ -125,20 +125,20 @@ export default function Home() {
                   alt="wikipedia banner"
                   className="absolute z-[1] top-[126px] left-[41px]"
                 />
-              </div>
-              <div className="relative w-full rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
+              </Link>
+              <Link
+                href="https://www.stark-utils.xyz/converter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-full rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+              >
                 <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-                  <a
-                    href="https://www.stark-utils.xyz/converter"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[24px] leading-7 mb-2 text-[#141925]"
-                  >
+                  <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
                     Stark Converter
                     <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                       <Image alt="redirect" src={arrow} className="ml-[7px]" />
                     </span>
-                  </a>
+                  </h2>
                   <p className="text-base leading-5 text-[#7A7A7A]">
                     A collection of utility functions for Starknet/Cairo related
                     conversions
@@ -149,21 +149,21 @@ export default function Home() {
                   alt="converter banner"
                   className="absolute z-[1] top-[40px] right-[0px]"
                 />
-              </div>
+              </Link>
             </div>
-            <div className="relative w-full rounded-[16px] bg-[#F7F7F7] dark:bg-[#FFEFEA] overflow-hidden">
+            <Link
+              href="/address-book"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-full rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+            >
               <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-                <a
-                  href="/address-book"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[24px] leading-7 mb-2 text-[#141925]"
-                >
+                <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
                   Address Book
                   <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                     <Image alt="redirect" src={arrow} className="ml-[7px]" />
                   </span>
-                </a>
+                </h2>
                 <p className="text-base leading-5 text-[#7A7A7A]">
                   A collection of all relevant contract addresses on Starknet
                 </p>
@@ -173,7 +173,7 @@ export default function Home() {
                 alt="Address book banner"
                 className="absolute z-[1] top-[0px] right-[0px]"
               />
-            </div>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,9 +1,8 @@
-import Image from "next/image";
 import CategoryButton from "./category-button";
-import arrDown from "../../../public/assets/cheveron-down.svg";
-import filterIcon from "../../../public/assets/filter-icon.svg";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { FaChevronDown } from "react-icons/fa";
+import { IoFilter } from "react-icons/io5";
 
 export default function Filter({
   field,
@@ -18,21 +17,27 @@ export default function Filter({
 
   function handleClick(value: string) {
     const currentUrl = new URL(window.location.href);
+    if (currentCategory === value) {
+      currentUrl.searchParams.delete(field, value);
+      currentUrl.searchParams.set("page", "1");
+      router.push(currentUrl.toString());
+      return;
+    }
     currentUrl.searchParams.set(field, value);
     currentUrl.searchParams.set("page", "1");
     router.push(currentUrl.toString());
   }
   return (
-    <div className="text-xl leading-[30px] text-[#141925]  pr-3">
+    <div className="text-xl leading-[30px] pr-3">
       <div className="flex items-center gap-x-3 mb-6">
         <h3 className="text-[#7A7A7A]">Sort by:</h3>
-        <div className="flex gap-x-4 py-3 px-6 border-[2px] border-[#F2F2F2] rounded-xl">
+        <div className="flex gap-x-4 py-3 px-6 items-center border-[2px] border-[#F2F2F2] rounded-xl">
           Popular
-          <Image src={arrDown} alt="cheveron" />
+          <FaChevronDown />
         </div>
       </div>
       <div className="flex items-center py-3 px-2 gap-x-3">
-        <Image src={filterIcon} alt="filter" />
+        <IoFilter />
         Filters
       </div>
       <div>
@@ -45,7 +50,6 @@ export default function Filter({
               category={option.label}
               key={option.value}
               onClick={() => handleClick(option.value)}
-              disabled={option.value === currentCategory}
               active={option.value === currentCategory}
             />
           ))}

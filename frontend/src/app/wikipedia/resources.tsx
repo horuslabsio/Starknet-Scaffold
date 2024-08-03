@@ -3,10 +3,13 @@ import { useSearchParams } from "next/navigation";
 import Pagination from "../components/ui_components/pagination";
 import ResourceCard from "./resource-card";
 import { useEffect, useState } from "react";
+import { WikipediaResource } from "../types";
 
-export default function Resources({ data }: { data: any }) {
+export default function Resources({ data }: { data: WikipediaResource[] }) {
   const searchParams = useSearchParams();
-  const [filteredResources, setFilteredResources] = useState([]);
+  const [filteredResources, setFilteredResources] = useState<
+    WikipediaResource[]
+  >([]);
   // 1. FILTER
   const category = searchParams.get("category") || "all";
   const page = searchParams.get("page") || "1";
@@ -15,42 +18,12 @@ export default function Resources({ data }: { data: any }) {
   const to = from + (10 - 1);
 
   useEffect(() => {
-    if (category === "all") {
-      setFilteredResources(data);
-    }
-    if (category === "tutorials") {
-      setFilteredResources(
-        data.filter((resource: any) => resource.category === "tutorials"),
-      );
-    }
-    if (category === "blogs") {
-      setFilteredResources(
-        data.filter((resource: any) => resource.category === "blogs"),
-      );
-    }
-    if (category === "plugins") {
-      setFilteredResources(
-        data.filter((resource: any) => resource.category === "plugins"),
-      );
-    }
-    if (category === "sdk") {
-      setFilteredResources(
-        data.filter((resource: any) => resource.category === "sdk"),
-      );
-    }
-    if (category === "documentation") {
-      setFilteredResources(
-        data.filter((resource: any) => resource.category === "documentation"),
-      );
-    }
-    if (category === "official-website") {
-      setFilteredResources(
-        data.filter(
-          (resource: any) => resource.category === "official-website",
-        ),
-      );
-    }
-  }, [category]);
+    setFilteredResources(
+      category === "all"
+        ? data
+        : data.filter((resource) => resource.category === category),
+    );
+  }, [category, data]);
 
   return (
     <div>
