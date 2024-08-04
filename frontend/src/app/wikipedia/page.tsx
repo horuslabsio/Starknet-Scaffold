@@ -86,6 +86,9 @@ export default function Page() {
           }
         />
       </div>
+      <div className="p-6 bg-[#141925]">
+        <p className="text-center text-[#BC988C]">Built with ❤️ by Argent</p>
+      </div>
     </div>
   );
 }
