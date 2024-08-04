@@ -1,14 +1,14 @@
 "use client";
 import Image from "next/image";
-import Header from "@/app/components/ui_components/Header";
-import NetworkSwitcher from "./components/ui_components/NetworkSwitcher";
-import AddTokenBtn from "./components/AddTokenBtn";
+import Header from "~/ui_components/Header";
+import NetworkSwitcher from "~/ui_components/NetworkSwitcher";
+import Footer from "~/ui_components/Footer";
+import AddTokenBtn from "~/AddTokenBtn";
 import faucet from "../../public/assets/faucetBanner.svg";
 import deployer from "../../public/assets/deployerBanner.svg";
 import wikipedia from "../../public/assets/wikipediaBanner.svg";
 import addressBook from "../../public/assets/addressBook.svg";
 import converter from "../../public/assets/converterBanner.svg";
-import Footer from "./components/ui_components/Footer";
 import arrow from "../../public/assets/linkArrow.svg";
 import Link from "next/link";
 

@@ -3,8 +3,8 @@ import Image from "next/image";
 import logoImage from "../../../public/assets/logo.svg";
 import searchIcon from "../../../public/assets/search-icon.svg";
 
-import useTheme from "../components/ui_components/hooks/useTheme";
-import ThemeSwitch from "../components/ui_components/Theme";
+import useTheme from "~/ui_components/hooks/useTheme";
+import ThemeSwitch from "~/ui_components/Theme";
 import { useEffect, useState } from "react";
 import Filter from "./filter";
 import Resources from "./resources";
@@ -75,6 +75,7 @@ export default function Page() {
             { value: "official-website", label: "Official Website" },
             { value: "documentation", label: "Documentation" },
             { value: "sdk", label: "SDK" },
+            { value: "community", label: "Community" },
           ]}
         />
         <Resources

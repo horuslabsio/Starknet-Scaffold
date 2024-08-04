@@ -1,8 +1,8 @@
 import CategoryButton from "./category-button";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { FaChevronDown } from "react-icons/fa";
 import { IoFilter } from "react-icons/io5";
+import SortBy from "~/ui_components/SortBy";
 
 export default function Filter({
   field,
@@ -17,24 +17,31 @@ export default function Filter({
 
   function handleClick(value: string) {
     const currentUrl = new URL(window.location.href);
-    if (currentCategory === value) {
-      currentUrl.searchParams.delete(field, value);
-      currentUrl.searchParams.set("page", "1");
-      router.push(currentUrl.toString());
-      return;
+
+    const isCurrentCategory = currentCategory === value;
+
+    if (isCurrentCategory) {
+      currentUrl.searchParams.delete(field);
+    } else {
+      currentUrl.searchParams.set(field, value);
     }
-    currentUrl.searchParams.set(field, value);
+
     currentUrl.searchParams.set("page", "1");
+    currentUrl.searchParams.delete("sortBy");
+
     router.push(currentUrl.toString());
   }
   return (
     <div className="text-xl leading-[30px] pr-3">
       <div className="flex items-center gap-x-3 mb-6">
         <h3 className="text-[#7A7A7A]">Sort by:</h3>
-        <div className="flex gap-x-4 py-3 px-6 items-center border-[2px] border-[#F2F2F2] rounded-xl">
-          Popular
-          <FaChevronDown />
-        </div>
+        <SortBy
+          options={[
+            { value: "", label: "Default Sorting" },
+            { value: "name-asc", label: "Sort by name (A-Z)" },
+            { value: "name-desc", label: "Sort by name (Z-A)" },
+          ]}
+        />
       </div>
       <div className="flex items-center py-3 px-2 gap-x-3">
         <IoFilter />

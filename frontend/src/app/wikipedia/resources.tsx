@@ -1,30 +1,38 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import Pagination from "../components/ui_components/pagination";
+import Pagination from "~/ui_components/pagination";
 import ResourceCard from "./resource-card";
 import { useEffect, useState } from "react";
 import { WikipediaResource } from "../types";
 
 export default function Resources({ data }: { data: WikipediaResource[] }) {
   const searchParams = useSearchParams();
+
   const [filteredResources, setFilteredResources] = useState<
     WikipediaResource[]
   >([]);
-  // 1. FILTER
+
   const category = searchParams.get("category") || "all";
   const page = searchParams.get("page") || "1";
+  const sortBy = searchParams.get("sortBy") || "";
 
   const from = (+page - 1) * 10;
-  const to = from + (10 - 1);
+  const to = from + 10;
 
   useEffect(() => {
-    setFilteredResources(
+    let result =
       category === "all"
         ? data
-        : data.filter((resource) => resource.category === category),
-    );
-  }, [category, data]);
+        : data.filter((resource) => resource.category === category);
 
+    if (sortBy === "name-asc") {
+      result = result.slice().sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === "name-desc") {
+      result = result.slice().sort((a, b) => b.name.localeCompare(a.name));
+    }
+
+    setFilteredResources(result);
+  }, [category, data, sortBy]);
   return (
     <div>
       <div className="grid grid-cols-[1fr_1fr_1fr] gap-x-5 gap-y-6 w-full">

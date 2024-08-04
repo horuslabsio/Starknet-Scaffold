@@ -166,7 +166,7 @@ export const wikipediaResources = [
     description: "Official StarkWare YouTube channel.",
     status: "Up to date",
     url: "https://www.youtube.com/@starkware_ltd",
-    category: "tutorials",
+    category: "community",
   },
   {
     id: "20",
