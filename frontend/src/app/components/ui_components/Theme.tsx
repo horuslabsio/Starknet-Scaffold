@@ -22,12 +22,12 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
       }  md:top-[5rem] w-[3rem] h-[3rem] flex justify-center items-center dark:bg-[#1F2024] bg-white-1 rounded-full p-2 cursor-pointer`}
     >
       {theme === "dark" ? (
-        <span>
-          <MdOutlineLightMode className="font-black text-white-1" />
+        <span className="p-5 rounded-full bg-[#FFEBDA]">
+          <MdOutlineLightMode className="font-black text-[38px] fill-[#FF7300]" />
         </span>
       ) : (
-        <span>
-          <MdOutlineDarkMode className="font-black" />
+        <span className="p-5 rounded-full bg-[#FFEBDA]">
+          <MdOutlineDarkMode className="font-black text-[38px] fill-[#FF7300]" />
         </span>
       )}
     </button>

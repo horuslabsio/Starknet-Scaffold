@@ -63,18 +63,18 @@ export function NetworkSwitcher() {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button
-          variant="outline"
+        <button
+          // variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[264px] flex justify-between rounded-[12px] bg-[#F0F0F0] border-[3px] border-[#EAEAEA] py-[14px] px-6 text-[#141925] text-2xl leading-9"
         >
           {selectedNetwork
             ? networks.find((network) => network.value === selectedNetwork)
                 ?.label
             : "Select Network..."}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-        </Button>
+          <ChevronsUpDown className="h-8 w-8 shrink-0 opacity-50" />
+        </button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>

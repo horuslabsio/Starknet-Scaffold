@@ -1,125 +1,183 @@
+"use client";
 import Image from "next/image";
-import Header from "@/app/components/ui_components/Header";
+import Header from "~/ui_components/Header";
+import NetworkSwitcher from "~/ui_components/NetworkSwitcher";
+import Footer from "~/ui_components/Footer";
+import AddTokenBtn from "~/AddTokenBtn";
+import faucet from "../../public/assets/faucetBanner.svg";
+import deployer from "../../public/assets/deployerBanner.svg";
+import wikipedia from "../../public/assets/wikipediaBanner.svg";
+import addressBook from "../../public/assets/addressBook.svg";
+import converter from "../../public/assets/converterBanner.svg";
+import arrow from "../../public/assets/linkArrow.svg";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between py-24 md:p-24">
+    <main className="min-h-screen h-fit pt-[272px] dark:bg-[#1f1f1e] bg-white relative font-coolvetica">
       <Header />
-      <Image
-        className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
-        src="/starknetlogo.png"
-        alt="Starknet Scaffold"
-        width={180}
-        height={40}
-        priority
-      />
-
-      <div className="mb-32 grid md:grid-cols-2 md:text-start text-center  lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left lg:max-w-5xl">
-        <a
-          href="/scaffold-deployer"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Scaffold Deployer{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A simple tool for seamlessly deploying smart contracts to Starknet
-            testnet and mainnet <br />
-            <br />
-          </p>
-        </a>
-        <a
-          href="https://starknet-faucet.vercel.app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Sepolia Faucet{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A sepETH/sepSTRK faucet for claiming ETH/STRK sepolia testnet tokens{" "}
-          </p>
-        </a>
-
-        <a
-          href="/burner"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Scaffold Burner Wallet{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Generate temporary wallets, which can be used during the course of
-            development <br />
-            <br />
-          </p>
-        </a>
-
-        <a
-          href="/wikipedia"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Scaffold Wikipedia{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A collection of Starknet/Cairo learning resources in the ecosystem{" "}
-          </p>
-        </a>
-
-        <a
-          href="https://www.stark-utils.xyz/converter"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Stark Converter{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A collection of utility functions for Starknet related conversions{" "}
-          </p>
-        </a>
-
-        <a
-          href="/address-book"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Address Book{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            A collection of all relevant contract addresses on Starknet{" "}
-          </p>
-        </a>
+      <div className="max-w-[850px] mx-auto text-center">
+        <h1 className="text-[64px] leading-[70px] text-[#141925] mb-3 dark:text-white">
+          Everything you need to buidl dApps on Ethereum
+        </h1>
+        <p className="text-[24px] leading-7 text-[#7A7A7A] dark:text-[#ba978c] mb-8">
+          A modern clean veersion of Starknet-Scaffold with NextJS, Rainbowkit,
+          Wagmi and Typescript. Supports Hardhat and Foundry
+        </p>
+        <div className="flex items-center justify-center gap-x-5">
+          <NetworkSwitcher />
+          <AddTokenBtn />
+        </div>
       </div>
+      <div className="flex flex-col items-center gap-y-6 w-full px-[150px] py-[74px]">
+        <div className="w-full grid grid-cols-[826px_1fr] h-[320px] gap-x-6">
+          <Link
+            href="/burner"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative w-full h-[320px] bg-burner-wallet-bg transition-all hover:bg-burner-wallet-bg-dark rounded-[16px] "
+          >
+            <div className="relative pt-9 pl-6 text-left z-[4] w-[320px]">
+              <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
+                Scaffold Burner Wallet
+                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                  <Image alt="redirect" src={arrow} className="ml-[7px]" />
+                </span>
+              </h2>
+              <p className="text-base leading-5 text-[#7A7A7A]">
+                Generate temporary wallets which can be used during the course
+                of development
+              </p>
+            </div>
+          </Link>
+          <Link
+            href="https://starknet-faucet.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative w-full h-[320px] rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+          >
+            <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
+              <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
+                Scaffold Faucet
+                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                  <Image alt="redirect" src={arrow} className="ml-[7px]" />
+                </span>
+              </h2>
+              <p className="text-base leading-5 text-[#7A7A7A]">
+                A SepETH/SepSTRK faucet for claiming ETH/STRK Sepolia testnet
+                tokens
+              </p>
+            </div>
+            <Image
+              src={faucet}
+              alt="faucet banner"
+              className="absolute z-[1] top-[60px] left-[-10px]"
+            />
+          </Link>
+        </div>
+        <div className="w-full grid grid-cols-[439px_1fr] gap-x-6">
+          <Link
+            href="/scaffold-deployer"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative w-full h-[480px] rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+          >
+            <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
+              <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
+                Scaffold Deployer
+                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                  <Image alt="redirect" src={arrow} className="ml-[7px]" />
+                </span>
+              </h2>
+              <p className="text-base leading-5 text-[#7A7A7A]">
+                A simple tool for seamlessly deploying smart contracts to
+                Starknet testnet and mainnet
+              </p>
+            </div>
+            <Image
+              src={deployer}
+              alt="deployer banner"
+              className="absolute z-[1] top-[140px] left-[-2px]"
+            />
+          </Link>
+          <div className="grid grid-cols-[1fr] w-full grid-rows-[1fr_1fr] h-[480px] gap-y-6">
+            <div className="grid grid-cols-[1fr_1fr] gap-x-6 h-full">
+              <Link
+                href="/wikipedia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-full rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+              >
+                <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
+                  <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
+                    Scaffold Wikipedia
+                    <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                      <Image alt="redirect" src={arrow} className="ml-[7px]" />
+                    </span>
+                  </h2>
+                  <p className="text-base leading-5 text-[#7A7A7A]">
+                    A collection of Starknet/Cairo learning resources in the
+                    ecosystem
+                  </p>
+                </div>
+                <Image
+                  src={wikipedia}
+                  alt="wikipedia banner"
+                  className="absolute z-[1] top-[126px] left-[41px]"
+                />
+              </Link>
+              <Link
+                href="https://www.stark-utils.xyz/converter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-full rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+              >
+                <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
+                  <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
+                    Stark Converter
+                    <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                      <Image alt="redirect" src={arrow} className="ml-[7px]" />
+                    </span>
+                  </h2>
+                  <p className="text-base leading-5 text-[#7A7A7A]">
+                    A collection of utility functions for Starknet/Cairo related
+                    conversions
+                  </p>
+                </div>
+                <Image
+                  src={converter}
+                  alt="converter banner"
+                  className="absolute z-[1] top-[40px] right-[0px]"
+                />
+              </Link>
+            </div>
+            <Link
+              href="/address-book"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-full rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+            >
+              <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
+                <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
+                  Address Book
+                  <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                    <Image alt="redirect" src={arrow} className="ml-[7px]" />
+                  </span>
+                </h2>
+                <p className="text-base leading-5 text-[#7A7A7A]">
+                  A collection of all relevant contract addresses on Starknet
+                </p>
+              </div>
+              <Image
+                src={addressBook}
+                alt="Address book banner"
+                className="absolute z-[1] top-[0px] right-[0px]"
+              />
+            </Link>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </main>
   );
 }

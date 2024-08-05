@@ -1,5 +1,9 @@
 @tailwind base;
 @tailwind components;
+@font-face {
+  font-family: "coolvetica";
+  src: url("../../public/coolvetica rg.otf");
+}
 @tailwind utilities;
 
 html,
