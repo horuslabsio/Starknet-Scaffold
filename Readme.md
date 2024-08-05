@@ -23,15 +23,7 @@ git clone git@github.com:argentlabs/Starknet-Scaffold.git
 cd Starknet-Scaffold
 ```
 
-Or install using create-starknet-app (recommended). This takes in the name and boilerplate type. If you need a basic boilerplate with frontend UI components, specify the `basic` type else for full debugging suite, use `debugger`. e.g
-
-```
-npx create-starknet-app my-app debugger
-```
-or
-```
-npx create-starknet-app my-app basic
-```
+Or install using create-starknet-app (recommended). This takes in the name and boilerplate type. If you need a basic fullstack boilerplate with frontend UI components, specify the `fullstack` type, if you need just contracts specify, `contract_only`, else for full debugging suite, use `debugger`. 
 
 PS: defaults to debugger mode, if no type is specified.
 
