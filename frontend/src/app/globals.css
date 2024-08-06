@@ -1,6 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: "coolvetica";
+  src: url("../../public/coolvetica rg.otf");
+}
+
+:root {
+  --foreground: #7a7a7a;
+  --background: #ffffff;
+  --h1: #141925;
+  --add-token-border: #141925;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: #eaeaea;
+    --background: #1f1f1f;
+    --h1: #eaeaea;
+    --add-token-border: #141925;
+  }
+}
+
+[data-theme="light"] {
+  --foreground: #7a7a7a;
+  --background: #ffffff;
+  --h1: #141925;
+  --add-token-border: #141925;
+}
+
+[data-theme="dark"] {
+  --foreground: #eaeaea;
+  --background: #1f1f1f;
+  --h1: #eaeaea;
+  --add-token-border: #ffffff;
+}
 
 html,
 body {
@@ -10,6 +44,21 @@ body {
 
 body {
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition:
+    background-color 0.5s linear,
+    color 0.5s linear;
+}
+h1 {
+  color: var(--h1);
+}
+.add-token {
+  border-color: var(--add-token-border);
+  transition: border-color 0.5s linear;
 }
 *,
 *::after,

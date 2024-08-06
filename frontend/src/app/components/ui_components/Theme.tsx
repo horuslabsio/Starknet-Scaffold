@@ -1,5 +1,6 @@
-import React, { MouseEventHandler } from "react";
-import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
+import { MouseEventHandler } from "react";
+import Moon from "svg/Moon";
+import Sun from "svg/Sun";
 
 interface ThemeSwitchProps {
   theme: string;
@@ -15,19 +16,14 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
   className,
 }) => {
   return (
-    <button
-      onClick={action}
-      className={`transition-all duration-300 ease-in-out ${
-        openMenu ? "top-[10rem]" : "top-[5rem]"
-      }  md:top-[5rem] w-[3rem] h-[3rem] flex justify-center items-center dark:bg-[#1F2024] bg-white-1 rounded-full p-2 cursor-pointer`}
-    >
+    <button onClick={action}>
       {theme === "dark" ? (
-        <span>
-          <MdOutlineLightMode className="font-black text-white-1" />
+        <span className="text-l">
+          <Sun />
         </span>
       ) : (
-        <span>
-          <MdOutlineDarkMode className="font-black" />
+        <span className="text-l">
+          <Moon />
         </span>
       )}
     </button>

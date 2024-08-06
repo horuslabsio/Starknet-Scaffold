@@ -1,7 +1,10 @@
 "use client";
-
 import { useState, useEffect } from "react";
-import { themeConstant } from "../utils/constant";
+
+const themeConstant = {
+  DARK: "dark",
+  LIGHT: "light",
+};
 
 export const useTheme = () => {
   const [theme, setTheme] = useState<string>("");
@@ -15,9 +18,10 @@ export const useTheme = () => {
         window.matchMedia(`(prefers-color-scheme: ${themeConstant.DARK})`)
           .matches)
     ) {
-      document.documentElement.classList.add(themeConstant.DARK);
+      document.body.setAttribute("data-theme", themeConstant.DARK);
       setTheme(themeConstant.DARK);
     } else {
+      document.body.setAttribute("data-theme", themeConstant.LIGHT);
       setTheme(themeConstant.LIGHT);
     }
   }, []);
@@ -25,11 +29,11 @@ export const useTheme = () => {
   const changeTheme = () => {
     if (theme === themeConstant.DARK) {
       localStorage.setItem("theme", themeConstant.LIGHT);
-      document.documentElement.classList.remove(themeConstant.DARK);
+      document.body.setAttribute("data-theme", themeConstant.LIGHT);
       setTheme(themeConstant.LIGHT);
     } else {
       localStorage.setItem("theme", themeConstant.DARK);
-      document.documentElement.classList.add(themeConstant.DARK);
+      document.body.setAttribute("data-theme", themeConstant.DARK);
       setTheme(themeConstant.DARK);
     }
   };
