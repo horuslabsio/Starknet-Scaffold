@@ -26,7 +26,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
   }
 
   return (
-    <div className="bg-white mb-4 flex flex-col items-start justify-between rounded-lg p-4 shadow-lg">
+    <div className="bg-white shadow-lg rounded-lg p-4 mb-4 flex flex-col justify-between items-start">
       <div className="flex items-center">
         {Icon && <Icon className={`${color} mr-2`} />}
         <div>
@@ -34,7 +34,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
           <p className="text-gray-700 text-sm">{transaction.text}</p>
         </div>
       </div>
-      <div className="my-3 flex w-full items-center justify-between">
+      <div className="flex w-full justify-between items-center my-3">
         <p className="text-gray-500 text-xs">
           {formatDate(transaction.createdAt)}
         </p>

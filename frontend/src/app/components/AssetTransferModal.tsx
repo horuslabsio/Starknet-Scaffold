@@ -123,7 +123,7 @@ function AssetTransferModal({
       isOpen={isOpen}
       onClose={closeModal}
       animate={animate}
-      className={`text-white bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
+      className={`w-[90vw] mx-auto md:h-fit md:w-[45rem] text-white py-4 px-5 relative bg-black`}
     >
       <div className="absolute right-5 top-4">
         <button
@@ -131,7 +131,7 @@ function AssetTransferModal({
             closeModal(e);
             e.stopPropagation();
           }}
-          className="bg-outline-grey grid h-8 w-8 place-content-center rounded-full"
+          className="w-8 h-8  grid place-content-center rounded-full bg-outline-grey  "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -146,11 +146,11 @@ function AssetTransferModal({
           </svg>
         </button>
       </div>
-      <h1 className="mb-2 text-[24px] font-semibold">Send</h1>
+      <h1 className="text-[24px] mb-2 font-semibold">Send</h1>
       <h5 className="font-medium">Asset</h5>
       <div>
         <div
-          className="mb-5 mt-2 flex cursor-pointer items-center justify-between rounded-md bg-[#1f1f1f] px-3 py-2"
+          className="flex items-center justify-between mt-2 mb-5 bg-[#1f1f1f] py-2 px-3 rounded-md cursor-pointer"
           onClick={() => setAssetDropDownIsOpen((open) => !open)}
         >
           <div className="flex items-center gap-3">
@@ -183,13 +183,13 @@ function AssetTransferModal({
           />
         </div>
         <ul
-          className={`absolute left-5 right-5 overflow-hidden rounded-md bg-[#1f1e1e] transition-all duration-150 ease-in-out ${
+          className={`bg-[#1f1e1e] rounded-md overflow-hidden duration-150 transition-all ease-in-out absolute left-5 right-5 ${
             assetDropDownIsOpen ? "h-fit" : "h-0"
           }`}
         >
           <li className="cursor-pointer px-5 py-3">
             <button
-              className="flex w-full items-center justify-between"
+              className="flex justify-between items-center w-full"
               onClick={(e) => onChangeToken(e, "strk")}
             >
               <div className="flex gap-x-4">
@@ -208,7 +208,7 @@ function AssetTransferModal({
           </li>
           <li className="cursor-pointer px-5 py-3">
             <button
-              className="flex w-full items-center justify-between"
+              className="flex justify-between items-center w-full"
               onClick={(e) => onChangeToken(e, "eth")}
             >
               <div className="flex gap-x-4">
@@ -229,7 +229,7 @@ function AssetTransferModal({
             <input
               type="text"
               placeholder="Enter Wallet Address"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
               value={walletAddress}
               onChange={(e) => setWalletAddress(e.target.value)}
             />
@@ -240,7 +240,7 @@ function AssetTransferModal({
             <input
               type="text"
               placeholder="Enter Amount"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
@@ -248,7 +248,7 @@ function AssetTransferModal({
         </div>
 
         <button
-          className="bg-primary mt-7 flex w-full items-center justify-center gap-x-2 rounded py-3 font-medium disabled:cursor-not-allowed"
+          className="w-full mt-7 py-3 bg-primary rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
           onClick={async (e) => {
             e.preventDefault();
             await handleTransfer();
