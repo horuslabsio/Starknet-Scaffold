@@ -4,7 +4,7 @@
   "description": "An open-source starknet development stack",
   "bin": "./bin/cli.mjs",
   "scripts": {
-    "initialize-dojo": "cd dojo-contracts && sozo init ${npm_config_name}",
+    "initialize-dojo": "bash scripts/create_dojo_contracts_dir.sh && cd dojo-contracts && sozo init ${npm_config_name}",
     "build-dojo": "cd dojo-contracts/${npm_config_name} && sozo build",
     "deploy-dojo-katana": "cd dojo-contracts/${npm_config_name} && katana --disable-fee  --allowed-origins \"*\"",
     "migrate-dojo": "cd dojo-contracts/${npm_config_name} && sozo migrate apply",
