@@ -17,7 +17,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
 }) => {
   return (
     <button
-      className={`absolute bottom-[-250%] left-1/2 grid h-16 w-16 place-content-center rounded-full bg-button-secondary`}
+      className={`grid h-16 w-16 place-content-center rounded-full bg-button-secondary transition-all duration-300 ease-in-out ${className}`}
       onClick={action}
     >
       {theme === "dark" ? (
