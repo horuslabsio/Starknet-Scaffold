@@ -3,6 +3,8 @@ import "./globals.css";
 import { StarknetProvider } from "~/StarknetProvider";
 import { Toaster } from "react-hot-toast";
 
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata: Metadata = {
   title: "Starknet Scaffold",
   description: "Created with love",
