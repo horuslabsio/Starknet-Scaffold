@@ -83,6 +83,7 @@ body {
     }
     :root {
       --100vh: calc(100vh / 0.8);
+      --100svh: calc(100svh / 0.8);
     }
   }
   /* @media only screen and (max-width: 1350px) {
@@ -107,6 +108,7 @@ body {
     }
     :root {
       --100vh: 100vh;
+      --100svh: 100svh;
     }
   }
   /* @media only screen and (max-width: 1350px) {

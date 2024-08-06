@@ -1,0 +1,20 @@
+import { Metadata } from "next";
+import Header from "../components/ui_components/Header";
+
+export const metadata: Metadata = {
+  title: "Starknet Scaffold",
+  description: "Created with love",
+};
+
+export default function ScaffoldDeployerRootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <main className="flex min-h-svh flex-col justify-between gap-16">
+      <Header />
+      {children}
+    </main>
+  );
+}
