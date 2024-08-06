@@ -176,7 +176,7 @@ const Header = () => {
             ) : (
               <button
                 onClick={toggleModal}
-                className="rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light"
+                className="rounded-[12px] bg-button-primary px-6 py-4 text-background-primary-light"
               >
                 Connect Wallet
               </button>
