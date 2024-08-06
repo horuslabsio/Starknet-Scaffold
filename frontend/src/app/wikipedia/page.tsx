@@ -1,417 +1,71 @@
 import { Resource, columns } from "./columns";
 import { DataTable } from "./data-table";
 
-async function getData(): Promise<Resource[]> {
-  return [
-    {
-      id: "0",
-      name: "Starknet Website",
-      description: "Official Website of Starknet.",
-      status: "Up to date",
-      url: "https://www.starknet.io/en",
-    },
-    {
-      id: "1",
-      name: "Starknet Documentation",
-      description: "Official Documentation for Starknet.",
-      status: "Up to date",
-      url: "https://docs.starknet.io/",
-    },
-    {
-      id: "2",
-      name: "The Starknet Book",
-      description:
-        "The Starknet Book is a step-by-step guide aimed at teaching you the essentials of Starknet development. This book works hand-in-hand with the Cairo Book.",
-      status: "Up to date",
-      url: "https://book.starknet.io/",
-    },
-    {
-      id: "3",
-      name: "Starklings",
-      description:
-        "Interactive tutorial to get you up and running with Cairo v1 and Starknet.",
-      status: "Up to date",
-      url: "https://github.com/shramee/starklings-cairo1",
-    },
-    {
-      id: "4",
-      name: "Awesome Starknet",
-      description: "A curated list of awesome StarkNet resources, libraries, tools and more",
-      status: "Up to date",
-      url: "https://github.com/keep-starknet-strange/awesome-starknet"
-    },
-    {
-      id: "5",
-      name: "Node Guardians",
-      description: "Cairo 1.0 interactive tutorials.",
-      status: "Up to date",
-      url: "https://nodeguardians.io/dev-hub?s=devhub-campaigns&sc=starting-cairo",
-    },
-    {
-      id: "6",
-      name: "Starknet messaging tutorial",
-      description:
-        "Detailed tutorial to test messaging with Anvil and Katana.",
-      status: "Out of date",
-      url: "https://github.com/starknet-edu/starknet-erc721",
-    },
-    {
-      id: "7",
-      name: "Starknet Blog Posts",
-      description: "Official blog posts related to Starknet.",
-      status: "Up to date",
-      url: "https://www.starknet.io/en/content",
-    },
-    {
-      id: "8",
-      name: "Developers Blog",
-      description: "Official Developers Blog for Starknet.",
-      status: "Up to date",
-      url: "https://www.starknet.io/en/content/category/developers",
-    },
-    {
-      id: "9",
-      name: "Starknet research hub",
-      description:
-        "The place to learn more about the Starknet ecosystem and stay-up-to-date with the latest news.",
-      status: "Up to date",
-      url: "https://starknet-research.beehiiv.com/",
-    },
-    {
-      id: "10",
-      name: "Starknet Hardhat plugin",
-      description:
-        "A plugin for integrating Starknet tools into Hardhat projects.",
-      status: "Up to date",
-      url: "https://github.com/0xSpaceShard/starknet-hardhat-plugin",
-    },
-    {
-      id: "11",
-      name: "STARK Math: The Journey Begins",
-      description:
-        "Starkware's series of blog posts explaining the theory behind STARKs.",
-      status: "Up to date",
-      url: "https://medium.com/starkware/stark-math-the-journey-begins-51bd2b063c71",
-    },
-    {
-      id: "12",
-      name: "Cryptography and maths",
-      description: "Educational resources on cryptography and maths.",
-      status: "Up to date",
-      url: "https://medium.com/starkware/tagged/math",
-    },
-    {
-      id: "13",
-      name: "Starkware verifier (StarkEx)",
-      description: "Official Starkware verifier.",
-      status: "Up to date",
-      url: "https://github.com/starkware-libs/starkex-contracts",
-    },
-    {
-      id: "14",
-      name: "STONE",
-      description: "Prover and verifier for STARKs.",
-      status: "Up to date",
-      url: "https://github.com/starkware-libs/stone-prover",
-    },
-    {
-      id: "15",
-      name: "sandstorm",
-      description: "Cairo prover powered by miniSTARK.",
-      status: "Up to date",
-      url: "https://github.com/andrewmilson/sandstorm",
-    },
-    {
-      id: "16",
-      name: "awesome-prover-mechanisms",
-      description: "List of resources for prover mechanisms in the zkrollup ecosystem.",
-      status: "Up to date",
-      url: "https://github.com/niluferokay/awesome-prover-mechanisms",
-    },
-    {
-      id: "17",
-      name: "Arithmetization I",
-      description: "Part of Starkware's series on STARKs.",
-      status: "Up to date",
-      url: "https://medium.com/starkware/arithmetization-i-15c046390862",
-    },
-    {
-      id: "18",
-      name: "Arithmetization II",
-      description: "Part of Starkware's series on STARKs.",
-      status: "Up to date",
-      url: "https://medium.com/starkware/arithmetization-ii-403c3b3f4355",
-    },
-    {
-      id: "19",
-      name: "YouTube channel",
-      description: "Official StarkWare YouTube channel.",
-      status: "Up to date",
-      url: "https://www.youtube.com/@starkware_ltd",
-    },
-    {
-      id: "20",
-      name: "Roadmap",
-      description: "What’s coming next for Starknet.",
-      status: "Up to date",
-      url: "https://starknet.io/#roadmap",
-    },
-    {
-      id: "21",
-      name: "SNIPs",
-      description: "Starknet Improvement Proposals (SNIPs) repository.",
-      status: "Up to date",
-      url: "https://github.com/starknet-io/snips",
-    },
-    {
-      id: "22",
-      name: "starkware-libs/cairo",
-      description: "Official Cairo Github repository.",
-      status: "Up to date",
-      url: "https://github.com/starkware-libs/cairo",
-    },
-    {
-      id: "23",
-      name: "Cairopractice",
-      description: "Cairo blog covering various aspects of the language and its applications.",
-      status: "Up to date",
-      url: "https://cairopractice.com/",
-    },
-    {
-      id: "24",
-      name: "Cairo – a Turing-complete STARK-friendly CPU architecture",
-      description: "Whitepaper providing an in-depth look into the Cairo architecture and its STARK-friendly features.",
-      status: "Up to date",
-      url: "https://eprint.iacr.org/2021/1063.pdf",
-    },
-    {
-      id: "25",
-      name: "A verified algebraic representation of Cairo program execution",
-      description: "Proof demonstrating the soundness of Cairo's execution using the Lean proof assistant.",
-      status: "Up to date",
-      url: "https://arxiv.org/abs/2109.14534",
-    },
-    {
-      id: "26",
-      name: "WTF Starknet",
-      description: "English and Chinese tutorials covering various aspects of Starknet.",
-      status: "Up to date",
-      url: "https://github.com/WTFAcademy/WTF-Starknet",
-    },
-    {
-      id: "27",
-      name: "ethSTARK Documentation",
-      description: "Explanation of the computational integrity of STARKs.",
-      status: "Up to date",
-      url: "https://eprint.iacr.org/2021/58",
-    },
-    {
-      id: "28",
-      name: "STARK Paper",
-      description: "Original paper introducing STARKs.",
-      status: "Up to date",
-      url: "https://www.starkware.co/stark",
-    },
-    {
-      id: "29",
-      name: "FRI Protocol",
-      description: "Explanation of the Fast Reed-Solomon Interactive Oracle Proofs (FRI) protocol.",
-      status: "Up to date",
-      url: "https://en.wikipedia.org/wiki/FRI_protocol",
-    },
-    {
-      id: "30",
-      name: "DEEP-FRI Protocol",
-      description: "Explanation of the DEEP-FRI protocol, an improvement over FRI.",
-      status: "Up to date",
-      url: "https://arxiv.org/abs/1903.12243",
-    },
-    {
-      id: "31",
-      name: "Aurora",
-      description: "Transparent Succinct Arguments for R1CS.",
-      status: "Up to date",
-      url: "https://eprint.iacr.org/2020/705.pdf",
-    },
-    {
-      id: "32",
-      name: "Starknet Developer Tools",
-      description: "Official documentation for Starknet developer tools, including setup guides and usage instructions.",
-      status: "Up to date",
-      url: "https://docs.starknet.io/documentation/tools/devtools/",
-    },
-    {
-      id: "33",
-      name: "Starknet.js SDK",
-      description: "Javascript library.",
-      status: "Up to date",
-      url: "https://www.starknetjs.com/",
-    },
-    {
-      id: "34",
-      name: "Starknet.py SDK",
-      description: "Python library.",
-      status: "Up to date",
-      url: "https://github.com/software-mansion/starknet.py",
-    },
-    {
-      id: "35",
-      name: "Starknet-rs SDK",
-      description: "Rust Library.",
-      status: "Up to date",
-      url: "https://github.com/xJonathanLEI/starknet-rs",
-    },
-    {
-      id: "36",
-      name: "cairo-vm",
-      description: "Rust implementation of the Cairo VM.",
-      status: "Up to date",
-      url: "https://github.com/lambdaclass/cairo-vm",
-    },
-    {
-      id: "37",
-      name: "cairo-vm-go",
-      description: "Golang implementation of the Cairo VM.",
-      status: "Up to date",
-      url: "https://github.com/NethermindEth/cairo-vm-go",
-    },
-    {
-      id: "38",
-      name: "cairo-vm_in_go",
-      description: "Another Golang implementation of the Cairo VM.",
-      status: "Up to date",
-      url: "https://github.com/lambdaclass/cairo-vm_in_go",
-    },
-    {
-      id: "39",
-      name: "cairo-zig",
-      description: "Zig implementation of the Cairo VM.",
-      status: "Up to date",
-      url: "https://github.com/keep-starknet-strange/ziggy-starkdust",
-    },
-    {
-      id: "40",
-      name: "Setting up your environment",
-      description: "Environment setup guide for Starknet development.",
-      status: "Up to date",
-      url: "https://docs.starknet.io/documentation/quick_start/environment_setup/",
-    },
-    {
-      id: "41",
-      name: "Starkli",
-      description: "The recommended CLI for Starknet development.",
-      status: "Up to date",
-      url: "https://book.starkli.rs/",
-    },
-    {
-      id: "42",
-      name: "Scarb",
-      description: "The recommended build toolchain and package manager for Starknet development.",
-      status: "Up to date",
-      url: "https://docs.swmansion.com/scarb",
-    },
-    {
-      id: "43",
-      name: "Vscode Cairo extension",
-      description: "Official Cairo extension for VSCode with diagnostics, go-to-definition, completion and more.",
-      status: "Up to date",
-      url: "https://marketplace.visualstudio.com/items?itemName=starkware.cairo1",
-    },
-    {
-      id: "44",
-      name: "Vim plugin for Scarb projects",
-      description: "Vim plugin for projects built with Scarb.",
-      status: "Up to date",
-      url: "https://github.com/swan-of-bodom/scarb-vim",
-    },
-    {
-      id: "45",
-      name: "Starknet Foundry",
-      description: "Toolchain for smart contracts development, testing and deployment on Starknet.",
-      status: "Up to date",
-      url: "https://foundry-rs.github.io/starknet-foundry/",
-    },
-    {
-      id: "46",
-      name: "Starknet Foundry Forge Template",
-      description: "Template for starting projects with Starknet Foundry.",
-      status: "Up to date",
-      url: "https://github.com/foundry-rs/starknet_forge_template",
-    },
-    {
-      id: "47",
-      name: "Starknet Remix",
-      description: "The official Starknet plugin for Remix, a browser-based IDE without the need for any installation.",
-      status: "Up to date",
-      url: "https://remix.ethereum.org/?#activate=Starknet",
-    },
-    {
-      id: "48",
-      name: "Starknet Devnet",
-      description: "Local testnet for Starknet development.",
-      status: "Up to date",
-      url: "https://github.com/0xSpaceShard/starknet-devnet-rs",
-    },
-    {
-      id: "49",
-      name: "Katana",
-      description: "High performance sequencer that can be used as a local testnet for Starknet.",
-      status: "Up to date",
-      url: "https://book.dojoengine.org/toolchain/katana/overview",
-    },
-    {
-      id: "50",
-      name: "Starknet Hardhat plugin",
-      description: "Plugin for integrating Starknet tools into Hardhat projects.",
-      status: "Up to date",
-      url: "https://github.com/Shard-Labs/starknet-hardhat-plugin",
-    },
-    {
-      id: "51",
-      name: "starknet-hardhat-example",
-      description: "Example project demonstrating the usage of the Starknet Hardhat plugin.",
-      status: "Up to date",
-      url: "https://github.com/0xSpaceShard/starknet-hardhat-example",
-    },
-    {
-      id: "52",
-      name: "docker-cairo",
-      description: "Multi-arch Docker images with Cairo binaries.",
-      status: "Up to date",
-      url: "https://github.com/xJonathanLEI/docker-cairo",
-    },
-    {
-      id: "53",
-      name: "DappLand",
-      description: "The best Starknet Dapps. Built by Argent.",
-      status: "Up to date",
-      url: "https://www.dappland.com/",
-    },
-    {
-      id: "54",
-      name: "Starknet dApps and tools",
-      description:
-        "Unofficial ecosystem page for Ethereum and its layer 2s like Starknet.",
-      status: "Up to date",
-      url: "https://www.ethereum-ecosystem.com/blockchains/starknet",
-    },
-    {
-      id: "55",
-      name: "The Cairo Book",
-      description:
-        "Official Cairo documentation by the community",
-      status: "Up to date",
-      url: "https://book.cairo-lang.org/",
-    },
-  ];
-}
+import useTheme from "~/ui_components/hooks/useTheme";
+import { useEffect, useState } from "react";
+import Filter from "./filter";
+import Resources from "./resources";
+import { useDebounce } from "../hooks";
+import { searchResources, wikipediaResources } from "../utils";
+import { WikipediaResource } from "../types";
+import ThemeSwitch from "../components/ui_components/Theme";
 
 export default async function Page() {
   const data = await getData();
 
   return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+    <div className="relative w-full bg-background-primary-light dark:bg-background-primary-dark">
+      <div className="w-full bg-primary-gradient px-[100px] py-[30px]">
+        <div className="relative mb-[95px] flex flex-wrap items-center justify-between">
+          <div className="flex items-center gap-x-[9px]">
+            <Image src={logoImage} alt="logo" width={360} height={48} />
+            <h4 className="border-l-[1.75px] border-[#141925] px-2 py-1 text-[24px] uppercase italic leading-7 text-[#141925]">
+              wikipedia
+            </h4>
+          </div>
+          <ThemeSwitch
+            className=""
+            action={changeTheme}
+            theme={theme}
+            openMenu={openMenu}
+          />
+        </div>
+        <div className="relative mx-auto w-fit">
+          <input
+            type="text"
+            className="w-[800px] rounded-2xl bg-[#F7F7F7] px-6 py-5 pl-[60px] text-l leading-[30px] text-[#141925] placeholder:text-[#7A7A7A]"
+            placeholder="Search keywords, links"
+            name="search"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <Image
+            src={searchIcon}
+            className="absolute left-6 top-[24px] z-10 h-6 w-6"
+            alt="search"
+          />
+        </div>
+      </div>
+      <div className="dark:text-white grid h-full w-full grid-cols-[315px_1fr] gap-y-[54px] px-8 pb-[74px] pt-8 text-[#141925]">
+        <Filter
+          field="category"
+          options={[
+            { value: "tutorials", label: "Tutorials" },
+            { value: "plugins", label: "Plugins" },
+            { value: "blogs", label: "Blogs" },
+            { value: "official-website", label: "Official Website" },
+            { value: "documentation", label: "Documentation" },
+            { value: "sdk", label: "SDK" },
+            { value: "community", label: "Community" },
+          ]}
+        />
+        <Resources
+          data={
+            filteredResources.length > 0 && search.length > 0
+              ? filteredResources
+              : resources
+          }
+        />
+      </div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function Home() {
       {/* HERO --> */}
       <section className="pt-[clamp(200px,25vh,650px)]">
         <div className="mx-auto flex max-w-[850px] flex-col gap-8 p-8 text-center">
-          <h1 className="text-3xl">
+          <h1 className="text-3xl text-accent-secondary">
             Everything you need to buidl dApps on Ethereum
           </h1>
           <p className="text-md">
@@ -32,8 +32,8 @@ export default function Home() {
       </section>
       {/* <-- END */}
 
-      <section className="container mx-auto grid w-[80%] grid-cols-3 gap-8 text-text-primary">
-        <div className="relative col-span-2 h-full w-full rounded-[16px] bg-accent-tertiary">
+      <section className="container mx-auto grid w-[80%] grid-cols-3 gap-8">
+        <div className="relative col-span-2 h-full w-full rounded-[16px] bg-accent-tertiary bg-burner-wallet-bg bg-cover bg-center bg-no-repeat transition-all duration-500 hover:bg-burner-wallet-bg-dark">
           {/* before:absolute before:h-full before:w-full before:rounded-[16px] before:bg-button-secondary */}
           <Link
             href="/burner"
