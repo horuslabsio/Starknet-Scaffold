@@ -4,6 +4,7 @@ import logo from "../../../public/assets/starknetLogo.svg";
 import arr from "../../../public/assets/linkArrow.svg";
 import verify from "../../../public/assets/verified-icon.svg";
 import Link from "next/link";
+import Upright from "svg/Upright";
 
 export default function ResourceCard({ resource }: { resource: any }) {
   return (
@@ -11,7 +12,7 @@ export default function ResourceCard({ resource }: { resource: any }) {
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative rounded-2xl bg-[#F7F7F7] p-6 pb-[72px] font-coolvetica transition-all duration-200 hover:bg-[#FFEFEA]"
+      className="group relative rounded-2xl bg-accent-tertiary p-6 pb-[72px] transition-all duration-500 hover:bg-[#FFEFEA]"
     >
       <div className="flex items-start justify-between gap-x-2">
         <div className="flex gap-x-2">
@@ -19,15 +20,16 @@ export default function ResourceCard({ resource }: { resource: any }) {
             <Image alt="resource-logo" src={logo} />
           </div>
           <div className="w-[216px] text-wrap">
-            <h3 className="text-xl leading-5 text-[#141925]">
-              {resource.name}
-            </h3>
-            <h4 className="w-[200px] break-words text-sm leading-4 text-[#FF6734]">
+            <h3 className="text-md text-button-primary">{resource.name}</h3>
+            <h4 className="w-full break-words text-sm text-text-links">
               {resource.url}
             </h4>
           </div>
         </div>
-        <Image src={arr} alt="redirect" />
+        {/* <Image src={arr} alt="redirect" /> */}
+        <span className="transition-all duration-500 group-hover:-translate-y-1">
+          <Upright />
+        </span>
       </div>
       <div className="text-base mb-7 mt-3 pl-[50px] leading-5 text-[#7A7A7A]">
         {resource.description}

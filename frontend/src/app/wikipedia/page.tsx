@@ -4,13 +4,13 @@ import logoImage from "../../../public/assets/logo.svg";
 import searchIcon from "../../../public/assets/search-icon.svg";
 
 import useTheme from "~/ui_components/hooks/useTheme";
-import ThemeSwitch from "~/ui_components/Theme";
 import { useEffect, useState } from "react";
 import Filter from "./filter";
 import Resources from "./resources";
 import { useDebounce } from "../hooks";
 import { searchResources, wikipediaResources } from "../utils";
 import { WikipediaResource } from "../types";
+import ThemeSwitch from "../components/ui_components/Theme";
 
 export default function Page() {
   const { theme, changeTheme } = useTheme();
@@ -33,9 +33,9 @@ export default function Page() {
   }, [debouncedSearch]);
 
   return (
-    <div className="bg-white relative h-fit min-h-[100vh] w-full font-coolvetica dark:bg-[#1f1f1e]">
-      <div className="bg-primaryGradient w-full px-[100px] py-[30px]">
-        <div className="mb-[95px] flex flex-wrap items-center justify-between">
+    <div className="relative w-full bg-background-primary-light dark:bg-background-primary-dark">
+      <div className="w-full bg-primary-gradient px-[100px] py-[30px]">
+        <div className="relative mb-[95px] flex flex-wrap items-center justify-between">
           <div className="flex items-center gap-x-[9px]">
             <Image src={logoImage} alt="logo" width={360} height={48} />
             <h4 className="border-l-[1.75px] border-[#141925] px-2 py-1 text-[24px] uppercase italic leading-7 text-[#141925]">
@@ -52,14 +52,14 @@ export default function Page() {
         <div className="relative mx-auto w-fit">
           <input
             type="text"
-            className="placeholder:text-[ #7A7A7A] w-[800px] rounded-2xl bg-[#F7F7F7] px-6 py-5 pl-[60px] font-coolvetica text-xl leading-[30px] text-[#141925]"
+            className="w-[800px] rounded-2xl bg-[#F7F7F7] px-6 py-5 pl-[60px] text-l leading-[30px] text-[#141925] placeholder:text-[#7A7A7A]"
             placeholder="Search keywords, links"
             name="search"
             onChange={(e) => setSearch(e.target.value)}
           />
           <Image
             src={searchIcon}
-            className="absolute left-6 top-[22px] z-10"
+            className="absolute left-6 top-[24px] z-10 h-6 w-6"
             alt="search"
           />
         </div>
@@ -84,9 +84,6 @@ export default function Page() {
               : resources
           }
         />
-      </div>
-      <div className="bg-[#141925] p-6">
-        <p className="text-center text-[#BC988C]">Built with ❤️ by Argent</p>
       </div>
     </div>
   );
