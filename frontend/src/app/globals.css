@@ -1,18 +1,122 @@
 @tailwind base;
 @tailwind components;
+@font-face {
+  font-family: "coolvetica";
+  src: url("../../public/coolvetica rg.otf");
+}
 @tailwind utilities;
+
+:root {
+  --foreground-rgb: 20, 25, 37;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --background-variation-rgb: 237, 235, 235;
+  --translate-sun: translateX(-2rem) translateY(1rem);
+  --translate-moon: translateX(0rem) translateY(0rem);
+  --moon-opacity: 1;
+  --sun-opacity: 0;
+  --dark-img-opacity: 0;
+  --light-img-opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 31, 31, 31;
+    --background-end-rgb: 31, 31, 31;
+    --background-variation-rgb: 45, 45, 45, 1;
+    --translate-sun: translateX(0rem) translateY(0rem);
+    --translate-moon: translateX(2rem) translateY(-1rem);
+    --moon-opacity: 0;
+    --sun-opacity: 1;
+    --dark-img-opacity: 1;
+    --light-img-opacity: 0;
+  }
+}
+
+[data-theme="light"] {
+  --foreground-rgb: 20, 25, 37;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --background-variation-rgb: 237, 235, 235;
+  --translate-sun: translateX(-2rem) translateY(1rem);
+  --translate-moon: translateX(0rem) translateY(0rem);
+  --moon-opacity: 1;
+  --sun-opacity: 0;
+  --dark-img-opacity: 0;
+  --light-img-opacity: 1;
+}
+
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 31, 31, 31;
+  --background-end-rgb: 31, 31, 31;
+  --background-variation-rgb: 45, 45, 45, 1;
+  --translate-sun: translateX(0rem) translateY(0rem);
+  --translate-moon: translateX(2rem) translateY(-1rem);
+  --moon-opacity: 0;
+  --sun-opacity: 1;
+  --dark-img-opacity: 1;
+  --light-img-opacity: 0;
+}
 
 html,
 body {
   margin: 0;
   padding: 0;
-}
-
-body {
   box-sizing: border-box;
 }
+
 *,
 *::after,
 *::before {
   box-sizing: inherit;
+}
+
+@layer base {
+  :root {
+    --100vh: calc(100vh);
+  }
+  @media only screen and (max-width: 1600px) {
+    html {
+      zoom: 0.8;
+    }
+    :root {
+      --100vh: calc(100vh / 0.8);
+    }
+  }
+  /* @media only screen and (max-width: 1350px) {
+    html {
+      zoom: 0.7;
+    }
+    :root {
+      --100vh: calc(100vh / 0.7);
+    }
+  }
+  @media only screen and (max-width: 1200px) {
+    html {
+      zoom: 0.6;
+    }
+    :root {
+      --100vh: calc(100vh / 0.6);
+    }
+  } */
+  @media only screen and (max-width: 768px) {
+    html {
+      zoom: 1;
+    }
+    :root {
+      --100vh: 100vh;
+    }
+  }
+  /* @media only screen and (max-width: 1350px) {
+    html {
+      zoom: 0.7;
+    }
+    :root {
+      --100vh: calc(100vh / 0.7);
+    }
+  }
+ 
+   */
 }

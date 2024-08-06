@@ -178,21 +178,21 @@ function ScaffoldDeployer() {
   const disableButton = !isConnected || !account || classHash === "";
 
   return (
-    <div className="flex flex-col dark:text-white text-black">
+    <div className="dark:text-white text-black flex flex-col">
       <Header />
-      <div className="flex items-center flex-col p-4 pt-20">
+      <div className="flex flex-col items-center p-4 pt-20">
         <form action="" className="flex flex-col">
           <h1 className="text-2xl font-bold">Declare</h1>
 
           {/*  */}
           {selectedSierra.length == 0 ? (
             <div
-              className=" flex w-[600px] flex-col items-center rounded-[5px] border-[1px]  border-dashed border-[#333] bg-white pb-[90px] mb-5 mt-3 pt-[90px] text-center"
+              className="bg-white mb-5 mt-3 flex w-[600px] flex-col items-center rounded-[5px] border-[1px] border-dashed border-[#333] pb-[90px] pt-[90px] text-center"
               onDragOver={handleDragOver}
               onDrop={handleDrop}
             >
               <Image src={cloudUploadIcon} className="mb-10" alt="" />
-              <h2 className="mb-2  text-[22px] font-normal text-black">
+              <h2 className="text-black mb-2 text-[22px] font-normal">
                 Input Contract Class JSON file (Sierra)
               </h2>
               <input
@@ -208,22 +208,22 @@ function ScaffoldDeployer() {
                   e.preventDefault();
                   fileInputRef?.current.click();
                 }}
-                className="rounded-lg border-[1px] border-solid border-dark132 px-[57px] py-[16px] font-satoshi text-lg font-medium text-black"
+                className="border-dark132 font-satoshi text-lg text-black rounded-lg border-[1px] border-solid px-[57px] py-[16px] font-medium"
               >
                 Browse File
               </button>
             </div>
           ) : (
-            <div className="bg-white flex items-center w-[600px] justify-between rounded-[20px] mt-3 mb-5 py-[16px] pl-8 pr-[52px]">
+            <div className="bg-white mb-5 mt-3 flex w-[600px] items-center justify-between rounded-[20px] py-[16px] pl-8 pr-[52px]">
               <div className="flex items-center">
                 <div className="relative flex h-[96px] w-[118px] justify-end">
-                  <div className="absolute left-0 top-[40px] z-20 min-w-[70px] rounded-lg bg-[#2ECC71] px-[4.5px] py-[1.5px] text-center font-satoshi text-2xl font-medium text-white">
+                  <div className="font-satoshi text-white absolute left-0 top-[40px] z-20 min-w-[70px] rounded-lg bg-[#2ECC71] px-[4.5px] py-[1.5px] text-center text-2xl font-medium">
                     {selectedSierra?.at(0)?.name?.split(".")[1].toUpperCase()}
                   </div>
                   <Image src={fileIcon} className="" alt="file icon" />
                 </div>
                 <div>
-                  <h3 className="mb-2 text-[22px] font-medium text-black">
+                  <h3 className="text-black mb-2 text-[22px] font-medium">
                     {selectedSierra?.at(0)?.name.split(".")[0]}
                   </h3>
                 </div>
@@ -237,12 +237,12 @@ function ScaffoldDeployer() {
           {/*  */}
           {selectedCasm.length == 0 ? (
             <div
-              className=" flex w-[600px] flex-col items-center rounded-[5px] border-[1px]  border-dashed border-[#333] bg-white pb-[90px] mb-5 mt-3 pt-[90px] text-center"
+              className="bg-white mb-5 mt-3 flex w-[600px] flex-col items-center rounded-[5px] border-[1px] border-dashed border-[#333] pb-[90px] pt-[90px] text-center"
               onDragOver={handleDragOver}
               onDrop={handleDrop}
             >
               <Image src={cloudUploadIcon} className="mb-10" alt="" />
-              <h2 className="mb-2  text-[22px] font-normal text-black">
+              <h2 className="text-black mb-2 text-[22px] font-normal">
                 Input Compiled Contract Class JSON file (CASM)
               </h2>
               <input
@@ -260,22 +260,22 @@ function ScaffoldDeployer() {
                   e.preventDefault();
                   casmRef?.current.click();
                 }}
-                className="rounded-lg border-[1px] border-solid border-dark132 px-[57px] py-[16px] font-satoshi text-lg font-medium text-black"
+                className="border-dark132 font-satoshi text-lg text-black rounded-lg border-[1px] border-solid px-[57px] py-[16px] font-medium"
               >
                 Browse File
               </button>
             </div>
           ) : (
-            <div className="bg-white flex items-center w-[600px] justify-between rounded-[20px] mt-3 mb-5 py-[16px] pl-8 pr-[52px]">
+            <div className="bg-white mb-5 mt-3 flex w-[600px] items-center justify-between rounded-[20px] py-[16px] pl-8 pr-[52px]">
               <div className="flex items-center">
                 <div className="relative flex h-[96px] w-[118px] justify-end">
-                  <div className="absolute left-0 top-[40px] z-20 min-w-[70px] rounded-lg bg-[#2ECC71] px-[4.5px] py-[1.5px] text-center font-satoshi text-2xl font-medium text-white">
+                  <div className="font-satoshi text-white absolute left-0 top-[40px] z-20 min-w-[70px] rounded-lg bg-[#2ECC71] px-[4.5px] py-[1.5px] text-center text-2xl font-medium">
                     {selectedCasm?.at(0)?.name?.split(".")[1].toUpperCase()}
                   </div>
                   <Image src={fileIcon} className="" alt="file icon" />
                 </div>
                 <div>
-                  <h3 className="mb-2 text-[22px] font-medium text-black">
+                  <h3 className="text-black mb-2 text-[22px] font-medium">
                     {selectedCasm?.at(0)?.name.split(".")[0]}
                   </h3>
                 </div>
@@ -290,7 +290,7 @@ function ScaffoldDeployer() {
               <p>Declared ClassHash</p>
               <input
                 type="text"
-                className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
+                className="text-black mb-6 mt-4 w-[600px] rounded p-3"
                 value={contractClassHash}
                 disabled
               />
@@ -298,16 +298,16 @@ function ScaffoldDeployer() {
           )}
           <button
             onClick={(e) => handleDeclare(e)}
-            className="bg-primary py-3 px-4 rounded-[5px] w-[200px] text-white"
+            className="bg-primary text-white w-[200px] rounded-[5px] px-4 py-3"
           >
             Declare
           </button>
         </form>
-        <form onSubmit={handleDeploy} className="flex flex-col mt-12">
+        <form onSubmit={handleDeploy} className="mt-12 flex flex-col">
           <h1 className="text-2xl font-bold">Deploy</h1>
           <input
             type="text"
-            className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
+            className="text-black mb-6 mt-4 w-[600px] rounded p-3"
             placeholder="Input Class Hash"
             onChange={(e) => {
               setClassHash(e.target.value);
@@ -315,23 +315,23 @@ function ScaffoldDeployer() {
             value={classHash}
           />
           <div className="mb-4">
-            <h2 className="text-lg font-bold mb-2">Constructor Arguments</h2>
+            <h2 className="text-lg mb-2 font-bold">Constructor Arguments</h2>
             <div className="flex flex-col gap-y-3">
               {argumentsList.map((arg, index) => (
                 <div key={index} className="flex items-center gap-x-2">
-                  <h4 className="text-base font-medium w-[120px]">
+                  <h4 className="text-base w-[120px] font-medium">
                     Argument {index + 1}
                   </h4>
                   <input
                     type="text"
                     value={arg}
-                    className="py-2 px-6 rounded-md w-full text-[#333]"
+                    className="w-full rounded-md px-6 py-2 text-[#333]"
                     onChange={(event) => handleInputChange(index, event)}
                   />
                 </div>
               ))}
               {argumentError === "" && (
-                <h6 className=" text-red-600 text-sm">{argumentError}</h6>
+                <h6 className="text-red-600 text-sm">{argumentError}</h6>
               )}
             </div>
           </div>
@@ -341,7 +341,7 @@ function ScaffoldDeployer() {
               <p>Deployed Address</p>
               <input
                 type="text"
-                className="mt-4 mb-6 text-black p-3 rounded w-[600px]"
+                className="text-black mb-6 mt-4 w-[600px] rounded p-3"
                 value={deployedAddress}
                 disabled
               />
@@ -353,14 +353,14 @@ function ScaffoldDeployer() {
               type="button"
               onClick={handleAddArgument}
               disabled={argumentsList[argumentsList.length - 1] === ""}
-              className="bg-secondary py-3 px-4 rounded-[5px] w-[250px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+              className="bg-secondary text-white disabled:bg-slate-300 w-[250px] rounded-[5px] px-4 py-3 disabled:cursor-not-allowed"
             >
               Add argument
             </button>
             <button
               type="submit"
               disabled={disableButton}
-              className="bg-primary py-3 px-4 rounded-[5px] w-[200px] text-white disabled:bg-slate-300 disabled:cursor-not-allowed"
+              className="bg-primary text-white disabled:bg-slate-300 w-[200px] rounded-[5px] px-4 py-3 disabled:cursor-not-allowed"
             >
               Deploy
             </button>

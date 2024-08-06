@@ -116,31 +116,31 @@ const Burners: React.FC = () => {
           </h2>
           <br />
 
-          <h3 className="font-bold text-start">Burner Wallets:</h3>
+          <h3 className="text-start font-bold">Burner Wallets:</h3>
           {!burnerWalletLoading ? (
             wallets.length !== 0 ? (
               wallets.map((wallet, index) => (
                 <BurnerWallet key={index} wallet={wallet} />
               ))
             ) : (
-              <div className="flex justify-center items-center rounded-lg border px-8 py-12 border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 w-full">
+              <div className="border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 flex w-full items-center justify-center rounded-lg border px-8 py-12">
                 <div>No burner wallets found</div>
               </div>
             )
           ) : (
-            <div className="flex justify-center items-center rounded-lg border px-8 py-12 border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 w-full">
+            <div className="border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 flex w-full items-center justify-center rounded-lg border px-8 py-12">
               <Image src={spinner} width={32} height={32} alt="loading" />
             </div>
           )}
           <div className="flex">
             <button
-              className="mt-2 mr-5 p-2 bg-primary text-white rounded"
+              className="bg-primary text-white mr-5 mt-2 rounded p-2"
               onClick={handleCreate}
             >
               Generate Wallet
             </button>
             <button
-              className="mt-2 p-2 bg-secondary text-white rounded"
+              className="bg-secondary text-white mt-2 rounded p-2"
               onClick={clearWallets}
             >
               {" "}

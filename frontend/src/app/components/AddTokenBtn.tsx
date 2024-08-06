@@ -11,7 +11,7 @@ function AddTokenBtn() {
   return (
     <>
       <button
-        className="px-5 py-2 bg-primary text-white rounded font-semibold"
+        className="w-fit rounded-[12px] border-[2.5px] border-solid border-accent-secondary bg-background-primary-light px-12 py-3 text-accent-secondary"
         onClick={toggleAddTokenModal}
       >
         Add Token

@@ -36,13 +36,13 @@ const Wallet = ({
 
   return (
     <button
-      className="flex gap-4 items-center text-start p-[.2rem] hover:bg-outline-grey hover:rounded-[10px] transition-all cursor-pointer"
+      className="hover:bg-outline-grey flex cursor-pointer items-center gap-4 p-[.2rem] text-start transition-all hover:rounded-[10px]"
       onClick={(e) => handleConnectWallet(e)}
     >
       <div className="h-[2.2rem] w-[2.2rem] rounded-[5px]">
         {isSvg ? (
           <div
-            className="h-full w-full object-cover rounded-[5px]"
+            className="h-full w-full rounded-[5px] object-cover"
             dangerouslySetInnerHTML={{
               __html: src ?? "",
             }}
@@ -54,7 +54,7 @@ const Wallet = ({
             src={src}
             width={70}
             height={70}
-            className="h-full w-full object-cover rounded-[5px]"
+            className="h-full w-full rounded-[5px] object-cover"
           />
         )}
       </div>
@@ -86,11 +86,11 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
       isOpen={isOpen}
       onClose={closeModal}
       animate={animate}
-      className={`w-[90vw] mx-auto md:h-[30rem] md:w-[45rem] text-white `}
+      className={`text-white mx-auto w-[90vw] md:h-[30rem] md:w-[45rem]`}
     >
-      <div className="flex p-4 w-full lg:p-0 lg:grid lg:grid-cols-5">
-        <div className="basis-5/6 lg:col-span-2  lg:border-r-[1px] lg:border-solid lg:border-outline-grey lg:py-4 lg:pl-8">
-          <h2 className="text-center my-4 lg:text-start font-bold text-white text-[1.125em]">
+      <div className="flex w-full p-4 lg:grid lg:grid-cols-5 lg:p-0">
+        <div className="lg:border-outline-grey basis-5/6 lg:col-span-2 lg:border-r-[1px] lg:border-solid lg:py-4 lg:pl-8">
+          <h2 className="text-white my-4 text-center text-[1.125em] font-bold lg:text-start">
             Connect a Wallet
           </h2>
         </div>
@@ -100,7 +100,7 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
               closeModal(e);
               e.stopPropagation();
             }}
-            className="w-8 h-8  grid place-content-center rounded-full bg-outline-grey  "
+            className="bg-outline-grey grid h-8 w-8 place-content-center rounded-full"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,9 +116,9 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col flex-1 justify-between lg:grid lg:grid-cols-5 ">
-        <div className="px-8  lg:h-full lg:col-span-2  lg:border-r-[1px] lg:border-solid lg:border-outline-grey">
-          <h4 className="mb-[1rem] text-text-grey font-semibold">Popular</h4>
+      <div className="flex flex-1 flex-col justify-between lg:grid lg:grid-cols-5">
+        <div className="lg:border-outline-grey px-8 lg:col-span-2 lg:h-full lg:border-r-[1px] lg:border-solid">
+          <h4 className="text-text-grey mb-[1rem] font-semibold">Popular</h4>
 
           <div className="flex flex-col gap-4 py-8">
             {connectors.map((connector, index) => (
@@ -133,13 +133,13 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
             ))}
           </div>
         </div>
-        <div className="p-4 border-t-[.5px] border-solid  border-red h-fit lg:h-full lg:border-none lg:col-span-3 lg:px-8 lg:py-0 lg:flex lg:flex-col">
-          <h2 className="lg:text-center lg:mb-[3rem] lg:text-[1.125em]  font-bold">
+        <div className="border-red h-fit border-t-[.5px] border-solid p-4 lg:col-span-3 lg:flex lg:h-full lg:flex-col lg:border-none lg:px-8 lg:py-0">
+          <h2 className="font-bold lg:mb-[3rem] lg:text-center lg:text-[1.125em]">
             What is a wallet?
           </h2>
-          <article className="hidden lg:flex  flex-col gap-8 place-content-center text-[0.875em] justify-self-center self-center ">
-            <div className="grid grid-cols-10 items-center  gap-4">
-              <div className="col-span-2 border-solid border-[2px] border-white rounded-[10px] h-[3rem] w-[3rem]">
+          <article className="hidden flex-col place-content-center gap-8 self-center justify-self-center text-[0.875em] lg:flex">
+            <div className="grid grid-cols-10 items-center gap-4">
+              <div className="border-white col-span-2 h-[3rem] w-[3rem] rounded-[10px] border-[2px] border-solid">
                 <Image
                   alt="text"
                   loader={loader}
@@ -148,10 +148,10 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
                   }
                   width={100}
                   height={100}
-                  className="h-full w-full object-cover rounded-[10px]"
+                  className="h-full w-full rounded-[10px] object-cover"
                 />
               </div>
-              <div className="col-span-8 flex flex-col gap-2 ">
+              <div className="col-span-8 flex flex-col gap-2">
                 <h4 className="text-[1.14em] font-bold">
                   A home for your digital assets
                 </h4>
@@ -161,8 +161,8 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-10 items-center  gap-4">
-              <div className="col-span-2 border-solid border-[2px] border-white rounded-[10px] h-[3rem] w-[3rem]">
+            <div className="grid grid-cols-10 items-center gap-4">
+              <div className="border-white col-span-2 h-[3rem] w-[3rem] rounded-[10px] border-[2px] border-solid">
                 <Image
                   alt="text"
                   loader={loader}
@@ -171,10 +171,10 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
                   }
                   width={100}
                   height={100}
-                  className="h-full w-full object-cover rounded-[10px]"
+                  className="h-full w-full rounded-[10px] object-cover"
                 />
               </div>
-              <div className="col-span-8 flex flex-col gap-2 ">
+              <div className="col-span-8 flex flex-col gap-2">
                 <h4 className="text-[1.14em] font-bold">
                   A new way to sign-in
                 </h4>

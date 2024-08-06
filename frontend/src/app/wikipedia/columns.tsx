@@ -35,7 +35,7 @@ export const columns: ColumnDef<Resource>[] = [
       const description: string = row.getValue("description");
 
       return (
-        <div className="text-left font-medium line-clamp-2">{description}</div>
+        <div className="line-clamp-2 text-left font-medium">{description}</div>
       );
     },
   },
