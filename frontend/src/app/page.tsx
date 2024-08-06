@@ -36,7 +36,7 @@ export default function Home() {
       {/* <-- END */}
 
       <section className="container mx-auto grid w-[80%] grid-cols-3 gap-8">
-        <div className="relative col-span-2 h-full w-full rounded-[16px] bg-accent-tertiary">
+        <div className="relative col-span-2 h-full w-full rounded-[16px] bg-accent-tertiary bg-burner-wallet-bg bg-cover bg-center bg-no-repeat transition-all duration-500 hover:bg-burner-wallet-bg-dark">
           {/* before:absolute before:h-full before:w-full before:rounded-[16px] before:bg-button-secondary */}
           <Link
             href="/burner"
@@ -56,7 +56,7 @@ export default function Home() {
                 of development
               </p>
             </div>
-            <Image className="w-full" src={burnerWallet} alt="" />
+            {/* <Image className="w-full" src={burnerWallet} alt="" /> */}
           </Link>
         </div>
 

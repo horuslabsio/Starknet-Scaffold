@@ -32,9 +32,9 @@ export default function Filter({
     router.push(currentUrl.toString());
   }
   return (
-    <div className="pr-3 text-xl leading-[30px]">
+    <div className="pr-3 text-md">
       <div className="mb-6 flex items-center gap-x-3">
-        <h3 className="text-[#7A7A7A]">Sort by:</h3>
+        <h3 className="text-text-primary">Sort by:</h3>
         <SortBy
           options={[
             { value: "", label: "Default Sorting" },
