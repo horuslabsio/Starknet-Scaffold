@@ -21,7 +21,7 @@ const AddTokenModal = ({
     const fetchAddToken = async () => {
       try {
         // @ts-ignore
-        const walletProvider = connector?._wallet;
+        const walletProvider = connector?._wallet
         const asset = {
           type: "ERC20",
           options: {
@@ -33,7 +33,7 @@ const AddTokenModal = ({
         };
 
         const resp = await walletProvider.request({
-          type: "wallet_watchAsset",
+          type: 'wallet_watchAsset',
           params: asset,
         });
         console.log(resp);
@@ -72,7 +72,7 @@ const AddTokenModal = ({
       isOpen={openAddTokenModal}
       onClose={closeModal}
       animate={animate}
-      className={`text-white mx-auto h-[60vh] w-[80vw] md:h-[30rem] md:w-[25rem]`}
+      className={`w-[80vw] h-[60vh] mx-auto md:w-[25rem] md:h-[30rem]  text-white `}
     >
       <form action="" className="px-5 py-3">
         <div className="flex flex-col gap-y-5">
@@ -81,7 +81,7 @@ const AddTokenModal = ({
             <input
               type="text"
               placeholder="Enter Token Contract Address"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
               value={tokenAddress}
               onChange={(e) => setTokenAddress(e.target.value)}
             />
@@ -91,7 +91,7 @@ const AddTokenModal = ({
             <input
               type="text"
               placeholder="Enter Name"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -101,7 +101,7 @@ const AddTokenModal = ({
             <input
               type="text"
               placeholder="Enter Symbol"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
               value={symbol}
               onChange={(e) => setSymbol(e.target.value)}
             />
@@ -111,7 +111,7 @@ const AddTokenModal = ({
             <input
               type="number"
               placeholder="Enter Decimal"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
               value={decimals}
               onChange={(e) => setDecimals(parseInt(e.target.value))}
             />
@@ -119,7 +119,7 @@ const AddTokenModal = ({
         </div>
 
         <button
-          className="bg-primary mt-7 flex w-full items-center justify-center gap-x-2 rounded py-3 font-medium disabled:cursor-not-allowed"
+          className="w-full mt-7 py-3 bg-primary rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
           onClick={async (e) => {
             e.preventDefault();
             handleAddToken();

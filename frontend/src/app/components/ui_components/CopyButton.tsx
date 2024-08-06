@@ -31,7 +31,7 @@ function CopyButton({ data }: Props) {
         e.preventDefault();
         handleCopyClick();
       }}
-      className="dark:bg-black rounded-sm bg-[#333] p-1"
+      className="dark:bg-black p-1 rounded-sm bg-[#333]"
     >
       <Image
         src={isCopied ? "/assets/tick.svg" : "/assets/copy.svg"}

@@ -62,33 +62,36 @@ export const UserModal = ({
       isOpen={openConnectedModal}
       onClose={closeModal}
       animate={animate}
-      className={`text-white mx-auto h-[60vh] w-[80vw] md:h-[30rem] md:w-[25rem]`}
+      className={`w-[80vw] h-[60vh] mx-auto md:w-[25rem] md:h-[30rem]  text-white `}
     >
-      <div className="flex h-full w-full flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center h-full w-full">
         <div className="flex h-[80%] w-[80%] flex-col items-center justify-evenly">
           {starkProfile?.profilePicture ? (
             <img
               src={starkProfile?.profilePicture}
-              className="mb-3 mr-2 h-[120px] w-[120px] rounded-full"
+              className="rounded-full h-[120px] w-[120px] mr-2 mb-3"
               alt="starknet profile"
             />
           ) : (
             <Blockies
               seed={address}
               scale={15}
-              className="mb-3 h-24 w-24 rounded-full"
+              className="rounded-full h-24 w-24 mb-3"
             />
           )}
 
           <AccountBalance address={address} />
-          <span className="border-outline-gray flex w-full justify-between rounded-full border-[1px] p-3">
+          <span className="flex justify-between p-3 border-[1px] border-outline-gray rounded-full w-full">
             <span className="flex justify-center">
               {starkProfile?.name ||
-                address?.slice(0, 12).concat("...").concat(address?.slice(-5))}
+                address
+                  ?.slice(0, 12)
+                  .concat("...")
+                  .concat(address?.slice(-5))}
             </span>
             <Image
               onClick={handleCopyClick}
-              className="border-outline-grey cursor-pointer border-l-[1px] border-solid pl-1"
+              className="border-l-[1px] border-outline-grey border-solid pl-1 cursor-pointer"
               src={isCopied ? "/assets/tick.svg" : "/assets/copy.svg"}
               width={20}
               height={20}
@@ -101,7 +104,7 @@ export const UserModal = ({
               disconnect();
               e.stopPropagation();
             }}
-            className="bg-primary w-full rounded-lg p-3"
+            className="p-3 w-full rounded-lg bg-primary  "
           >
             Disconnect
           </button>
@@ -132,22 +135,25 @@ const AddressBar = ({
   return (
     <button
       onClick={toggleModal}
-      className="bg-primary text-white rounded-full px-4 py-2 transition duration-300"
+      className="bg-primary py-2 px-4 text-white rounded-full transition duration-300"
     >
       {
         <span className="flex items-center">
           {starkProfile?.profilePicture ? (
             <img
               src={starkProfile?.profilePicture}
-              className="mr-2 h-8 w-8 rounded-full"
+              className="rounded-full h-8 w-8 mr-2"
               alt="starknet profile"
             />
           ) : (
-            <Blockies seed={address} className="mr-2 h-8 w-8 rounded-full" />
+            <Blockies seed={address} className="rounded-full h-8 w-8 mr-2" />
           )}
           {starkProfile?.name
             ? starkProfile.name
-            : address?.slice(0, 6).concat("...").concat(address?.slice(-5))}
+            : address
+                ?.slice(0, 6)
+                .concat("...")
+                .concat(address?.slice(-5))}
         </span>
       }
     </button>

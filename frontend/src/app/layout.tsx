@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { StarknetProvider } from "~/StarknetProvider";
 import { Toaster } from "react-hot-toast";
-import Footer from "./components/ui_components/Footer";
 
 export const metadata: Metadata = {
   title: "Starknet Scaffold",
@@ -15,11 +14,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="font-coolvetica text-sm text-text-primary lg:text-md">
+    <html lang="en" className="dark">
+      <body
+        className={`${inter.className} dark:bg-black bg-gray-300 dark:text-white transition-all duration-500 ease-in-out`}
+      >
         <StarknetProvider>{children}</StarknetProvider>
         <Toaster />
-        <Footer />
       </body>
     </html>
   );

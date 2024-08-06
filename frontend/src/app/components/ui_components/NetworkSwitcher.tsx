@@ -1,7 +1,9 @@
 "use client";
+
 import * as React from "react";
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronsUpDown } from "lucide-react";
 import { useNetwork } from "@starknet-react/core";
+import { Button } from "@/app/components/ui_components/button";
 import {
   Command,
   CommandEmpty,
@@ -14,6 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/app/components/ui_components/popover";
+import { cn } from "@/app/components/ui_components/lib/utils";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",
@@ -60,30 +63,26 @@ export function NetworkSwitcher() {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <button
+        <Button
+          variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="flex w-[12rem] cursor-pointer items-center justify-between rounded-[12px] bg-accent-tertiary p-3 text-md text-accent-secondary"
+          className="w-[200px] justify-between"
         >
-          <span>
-            {selectedNetwork
-              ? networks.find((network) => network.value === selectedNetwork)
-                  ?.label
-              : "Select Network..."}
-          </span>
-          <span>
-            <ChevronDown />
-          </span>
-        </button>
+          {selectedNetwork
+            ? networks.find((network) => network.value === selectedNetwork)
+                ?.label
+            : "Select Network..."}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] bg-background-primary-light p-0">
+      <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Search network..." />
           <CommandEmpty>No network found.</CommandEmpty>
           <CommandGroup>
             {networks.map((network) => (
               <CommandItem
-                className="cursor-pointer"
                 key={network.value}
                 value={network.value}
                 onSelect={() => {
@@ -91,12 +90,15 @@ export function NetworkSwitcher() {
                   setOpen(false);
                 }}
               >
-                <span
-                  className={`mr-2 text-md ${selectedNetwork === network.value ? "opacity-100" : "opacity-0"}`}
-                >
-                  <Check />
-                </span>
-                <span>{network.label}</span>
+                <Check
+                  className={cn(
+                    "mr-2 h-4 w-4",
+                    selectedNetwork === network.value
+                      ? "opacity-100"
+                      : "opacity-0",
+                  )}
+                />
+                {network.label}
               </CommandItem>
             ))}
           </CommandGroup>

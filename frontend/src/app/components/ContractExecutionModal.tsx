@@ -162,7 +162,7 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
       isOpen={isOpen}
       onClose={closeModal}
       animate={animate}
-      className={`text-white bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
+      className={`w-[90vw] mx-auto md:h-fit md:w-[45rem] text-white py-4 px-5 relative bg-black`}
     >
       <div className="absolute right-5 top-4">
         <button
@@ -170,7 +170,7 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
             closeModal(e);
             e.stopPropagation();
           }}
-          className="bg-outline-grey grid h-8 w-8 place-content-center rounded-full"
+          className="w-8 h-8  grid place-content-center rounded-full bg-outline-grey  "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +185,7 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
           </svg>
         </button>
       </div>
-      <h1 className="mb-2 text-[24px] font-semibold">Execute Contract</h1>
+      <h1 className="text-[24px] mb-2 font-semibold">Execute Contract</h1>
       <form action="">
         <div className="flex flex-col gap-y-5">
           <div className="flex flex-col gap-y-2">
@@ -193,7 +193,7 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
             <input
               type="text"
               placeholder="Enter Contract Address"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
               value={contractAddress}
               onChange={(e) => setContractAddressValue(e.target.value)}
             />
@@ -209,7 +209,7 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
             <input
               type="text"
               placeholder="Enter Function Name"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
               value={functionName}
               onChange={(e) => setFunctionNameValue(e.target.value)}
             />
@@ -225,7 +225,7 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
             <input
               type="text"
               placeholder={`["value1", "value2", "value3", ... , "value(n)"]`}
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
               value={callData}
               onChange={(e) => setCallDataValue(e.target.value)}
             />
@@ -238,7 +238,7 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
         </div>
 
         <button
-          className="mt-7 flex w-full items-center justify-center gap-x-2 rounded bg-[#3b81f6] py-3 font-medium disabled:cursor-not-allowed"
+          className="w-full mt-7 py-3 bg-[#3b81f6] rounded font-medium flex items-center gap-x-2 justify-center disabled:cursor-not-allowed"
           disabled={
             errors?.callData || errors?.contractAddress || errors?.functionName
           }
