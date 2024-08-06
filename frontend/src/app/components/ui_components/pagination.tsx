@@ -27,7 +27,7 @@ export default function Pagination({ count }: { count: number }) {
 
   if (pageCount <= 1) return null;
   return (
-    <div className="flex items-center gap-x-[100px] dark:text-white text-[#141925] text-base leading-6 pt-4 border-t-[#F0F2F5] border-t-[2px]">
+    <div className="dark:text-white text-base flex items-center gap-x-[100px] border-t-[2px] border-t-[#F0F2F5] pt-4 leading-6 text-[#141925]">
       <p className="">
         Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{" "}
         <span>
@@ -37,14 +37,14 @@ export default function Pagination({ count }: { count: number }) {
       </p>
       <div className="flex items-center gap-x-4">
         <button
-          className="flex items-center rounded-lg disabled:cursor-not-allowed py-2 px-3 border-[1px] border-[#F2F2F2] gap-x-2"
+          className="flex items-center gap-x-2 rounded-lg border-[1px] border-[#F2F2F2] px-3 py-2 disabled:cursor-not-allowed"
           onClick={prevPage}
           disabled={currentPage === 1}
         >
           <HiChevronLeft /> <span>Previous</span>
         </button>
         <button
-          className="flex items-center disabled:cursor-not-allowed rounded-lg py-2 px-3 border-[1px] border-[#F2F2F2] gap-x-2"
+          className="flex items-center gap-x-2 rounded-lg border-[1px] border-[#F2F2F2] px-3 py-2 disabled:cursor-not-allowed"
           onClick={nextPage}
           disabled={currentPage === pageCount}
         >

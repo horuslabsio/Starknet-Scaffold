@@ -2,182 +2,221 @@
 import Image from "next/image";
 import Header from "~/ui_components/Header";
 import NetworkSwitcher from "~/ui_components/NetworkSwitcher";
-import Footer from "~/ui_components/Footer";
 import AddTokenBtn from "~/AddTokenBtn";
 import faucet from "../../public/assets/faucetBanner.svg";
 import deployer from "../../public/assets/deployerBanner.svg";
 import wikipedia from "../../public/assets/wikipediaBanner.svg";
 import addressBook from "../../public/assets/addressBook.svg";
 import converter from "../../public/assets/converterBanner.svg";
-import arrow from "../../public/assets/linkArrow.svg";
+import burnerWallet from "../../public/assets/burnerWalletBg.svg";
 import Link from "next/link";
+import Upright from "svg/Upright";
 
 export default function Home() {
   return (
-    <main className="min-h-screen h-fit pt-[272px] dark:bg-[#1f1f1e] bg-white relative font-coolvetica">
+    <main className="flex min-h-svh flex-col justify-between gap-16">
       <Header />
-      <div className="max-w-[850px] mx-auto text-center">
-        <h1 className="text-[64px] leading-[70px] text-[#141925] mb-3 dark:text-white">
-          Everything you need to buidl dApps on Ethereum
-        </h1>
-        <p className="text-[24px] leading-7 text-[#7A7A7A] dark:text-[#ba978c] mb-8">
-          A modern clean veersion of Starknet-Scaffold with NextJS, Rainbowkit,
-          Wagmi and Typescript. Supports Hardhat and Foundry
-        </p>
-        <div className="flex items-center justify-center gap-x-5">
-          <NetworkSwitcher />
-          <AddTokenBtn />
+
+      {/* HERO --> */}
+      <section className="pt-[clamp(200px,25vh,650px)]">
+        <div className="mx-auto flex max-w-[850px] flex-col gap-8 p-8 text-center">
+          <h1 className="text-3xl text-accent-secondary">
+            Everything you need to buidl dApps on Ethereum
+          </h1>
+          <p className="text-md">
+            A modern clean version of Starknet-Scaffold with NextJS, Rainbowkit,
+            Wagmi and Typescript. Supports Hardhat and Foundry
+          </p>
+          <div className="flex items-center justify-center gap-x-5">
+            <NetworkSwitcher />
+            <AddTokenBtn />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center gap-y-6 w-full px-[150px] py-[74px]">
-        <div className="w-full grid grid-cols-[826px_1fr] h-[320px] gap-x-6">
+      </section>
+      {/* <-- END */}
+
+      <section className="container mx-auto grid w-[80%] grid-cols-3 gap-8">
+        <div className="relative col-span-2 h-full w-full rounded-[16px] bg-accent-tertiary">
+          {/* before:absolute before:h-full before:w-full before:rounded-[16px] before:bg-button-secondary */}
           <Link
             href="/burner"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative w-full h-[320px] bg-burner-wallet-bg transition-all hover:bg-burner-wallet-bg-dark rounded-[16px] "
+            className="group"
           >
-            <div className="relative pt-9 pl-6 text-left z-[4] w-[320px]">
-              <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
-                Scaffold Burner Wallet
-                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                  <Image alt="redirect" src={arrow} className="ml-[7px]" />
+            <div className="absolute w-1/2 p-8">
+              <h2 className="mb-2 flex items-center gap-1 text-l text-accent-secondary">
+                <span>Scaffold Burner Wallet</span>
+                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                  <Upright />
                 </span>
               </h2>
-              <p className="text-base leading-5 text-[#7A7A7A]">
+              <p className="">
                 Generate temporary wallets which can be used during the course
                 of development
               </p>
             </div>
+            <Image className="w-full" src={burnerWallet} alt="" />
           </Link>
+        </div>
+
+        <div className="relative h-full w-full rounded-[16px] bg-accent-tertiary">
           <Link
             href="https://starknet-faucet.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative w-full h-[320px] rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
-            <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-              <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
-                Scaffold Faucet
-                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                  <Image alt="redirect" src={arrow} className="ml-[7px]" />
+            <div className="absolute px-8 pt-8">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+                <span>Scaffold Faucet</span>
+                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                  <Upright />
                 </span>
               </h2>
-              <p className="text-base leading-5 text-[#7A7A7A]">
+              <p className="">
                 A SepETH/SepSTRK faucet for claiming ETH/STRK Sepolia testnet
                 tokens
               </p>
             </div>
-            <Image
-              src={faucet}
-              alt="faucet banner"
-              className="absolute z-[1] top-[60px] left-[-10px]"
-            />
+            <div className="mr-auto mt-auto w-[90%]">
+              <Image src={faucet} alt="faucet banner" className="w-full" />
+            </div>
           </Link>
         </div>
-        <div className="w-full grid grid-cols-[439px_1fr] gap-x-6">
+
+        <div className="relative row-span-2 h-full w-full rounded-[16px] bg-accent-tertiary">
           <Link
             href="/scaffold-deployer"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative w-full h-[480px] rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
+            className="group flex h-full w-full flex-col justify-between rounded-[16px] px-8 pt-8 transition-all duration-500 hover:bg-button-secondary"
           >
-            <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-              <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
-                Scaffold Deployer
-                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                  <Image alt="redirect" src={arrow} className="ml-[7px]" />
+            <div className="absolute">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+                <span>Scaffold Deployer</span>
+                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                  <Upright />
                 </span>
               </h2>
-              <p className="text-base leading-5 text-[#7A7A7A]">
+              <p>
                 A simple tool for seamlessly deploying smart contracts to
                 Starknet testnet and mainnet
               </p>
             </div>
-            <Image
-              src={deployer}
-              alt="deployer banner"
-              className="absolute z-[1] top-[140px] left-[-2px]"
-            />
-          </Link>
-          <div className="grid grid-cols-[1fr] w-full grid-rows-[1fr_1fr] h-[480px] gap-y-6">
-            <div className="grid grid-cols-[1fr_1fr] gap-x-6 h-full">
-              <Link
-                href="/wikipedia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative w-full rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
-              >
-                <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-                  <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
-                    Scaffold Wikipedia
-                    <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                      <Image alt="redirect" src={arrow} className="ml-[7px]" />
-                    </span>
-                  </h2>
-                  <p className="text-base leading-5 text-[#7A7A7A]">
-                    A collection of Starknet/Cairo learning resources in the
-                    ecosystem
-                  </p>
-                </div>
-                <Image
-                  src={wikipedia}
-                  alt="wikipedia banner"
-                  className="absolute z-[1] top-[126px] left-[41px]"
-                />
-              </Link>
-              <Link
-                href="https://www.stark-utils.xyz/converter"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative w-full rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
-              >
-                <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-                  <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
-                    Stark Converter
-                    <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                      <Image alt="redirect" src={arrow} className="ml-[7px]" />
-                    </span>
-                  </h2>
-                  <p className="text-base leading-5 text-[#7A7A7A]">
-                    A collection of utility functions for Starknet/Cairo related
-                    conversions
-                  </p>
-                </div>
-                <Image
-                  src={converter}
-                  alt="converter banner"
-                  className="absolute z-[1] top-[40px] right-[0px]"
-                />
-              </Link>
+            <div className="mt-auto max-w-[400px]">
+              <Image src={deployer} alt="deployer banner" className="w-full" />
             </div>
-            <Link
-              href="/address-book"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative w-full rounded-[16px] bg-[#F7F7F7] transition-all hover:bg-[#FFEFEA] overflow-hidden"
-            >
-              <div className="relative pt-9 pl-6 text-left z-[4] w-[292px] h-fit">
-                <h2 className="text-[24px] leading-7 mb-2 text-[#141925]">
-                  Address Book
-                  <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                    <Image alt="redirect" src={arrow} className="ml-[7px]" />
-                  </span>
-                </h2>
-                <p className="text-base leading-5 text-[#7A7A7A]">
-                  A collection of all relevant contract addresses on Starknet
-                </p>
-              </div>
+          </Link>
+        </div>
+
+        <div className="relative h-full w-full rounded-[16px] bg-accent-tertiary">
+          <Link
+            href="/wikipedia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+          >
+            <div className="absolute px-8 pt-8">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+                <span>Scaffold Wikipedia</span>
+                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                  <Upright />
+                </span>
+              </h2>
+              <p>
+                A collection of Starknet/Cairo learning resources in the
+                ecosystem
+              </p>
+            </div>
+            <div className="ml-auto mt-auto max-h-[220px] w-[90%] max-w-[400px]">
+              <Image
+                src={wikipedia}
+                alt="wikipedia banner"
+                className="w-full"
+              />
+            </div>
+          </Link>
+        </div>
+
+        <div className="relative h-full w-full rounded-[16px] bg-accent-tertiary">
+          <Link
+            href="https://www.stark-utils.xyz/converter"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+          >
+            <div className="absolute px-8 pt-8">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+                <span>Stark Converter</span>
+                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                  <Upright />
+                </span>
+              </h2>
+              <p>
+                A collection of utility functions for Starknet/Cairo related
+                conversions
+              </p>
+            </div>
+            <div className="ml-auto w-1/2 pt-16">
+              <Image
+                src={converter}
+                alt="converter banner"
+                className="h-full w-full"
+              />
+            </div>
+          </Link>
+        </div>
+
+        <div className="relative col-span-2 h-full w-full rounded-[16px] bg-accent-tertiary">
+          <Link
+            href="/address-book"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block h-full w-full rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+          >
+            <div className="absolute px-8 pt-8">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+                <span>Address Book</span>
+                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                  <Upright />
+                </span>
+              </h2>
+              <p>A collection of all relevant contract addresses on Starknet</p>
+            </div>
+            <div className="ml-auto w-[60%] max-w-[400px]">
               <Image
                 src={addressBook}
                 alt="Address book banner"
-                className="absolute z-[1] top-[0px] right-[0px]"
+                className="w-full"
               />
-            </Link>
-          </div>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      <div className="flex w-full flex-col items-center justify-center gap-4 bg-footer-image bg-cover bg-center bg-no-repeat px-4 py-16 md:px-8">
+        <div className="flex flex-col items-center gap-4">
+          <img
+            src={"assets/footerLogo.svg"}
+            alt="burner banner"
+            className="mx-auto"
+          />
+          <h2 className="mb-4 text-center text-[48px] leading-[58px] text-[#FF6734]">
+            Become a part of the Community
+          </h2>
+          <p className="text-center text-text-tertiary">
+            Join our community to learn and build together! And please raise an
+            issue on our Github if there&apos;s a new feature you&apos;ll like
+            to see
+          </p>
+          <a href="https://t.me/+sH0ug1mZ_WtjNmM0">
+            <button className="duration-400 w-fit rounded-[12px] bg-[#FAFAFA] px-12 py-3 text-[#141925] transition-all hover:rounded-[20px]">
+              Learn more
+            </button>
+          </a>
         </div>
       </div>
-      <Footer />
     </main>
   );
 }

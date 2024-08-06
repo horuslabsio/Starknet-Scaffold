@@ -10,34 +10,47 @@ const config: Config = {
   ],
   prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+    colors: {
+      "background-primary-light": "#FFFFFF",
+      "background-primary-dark": "#1F1F1F",
+      "accent-primary": "#FF7300",
+      "accent-secondary": "#141925",
+      "accent-tertiary": "#F7F7F7",
+      "button-primary": "#141925",
+      "button-secondary": "#FFEBDA",
+      "button-tertiary": "#F5F5F5",
+      "text-primary": "#7A7A7A",
+      "text-secondary": "#344054",
+      "text-tertiary": "#BC988C",
+      "text-links": "#FF6734",
+      shadow: "#EC796B33",
+      backdrop: "#ffffff4d" /* 30% */,
+      "green-primary": "#CDFFD2",
+      "green-secondary": "#10A41F",
+      "red-primary": "#FFCDCD",
+      "red-secondary": "#A41010",
+      "yellow-primary": "#FD9332",
+      "yellow-secondary": "#FFEECD",
     },
-    extend: {
-      colors: {
-        "dark-1": "#000",
-        "white-1": "#fff",
-        primary: "#f77448",
-        secondary: "#3B82F6",
-      },
-      fontFamily: {
-        coolvetica: ["coolvetica", "sans-serif"],
-      },
-      backgroundImage: {
-        "footer-image": "url('/assets/footer-bg.svg')",
-        "burner-wallet-bg": "url('/assets/burnerWalletBg.svg')",
-        "burner-wallet-bg-dark": "url('/assets/burnerWalletBgDark.svg')",
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        primaryGradient:
-          "linear-gradient(180deg, #FF8D4E -9.12%, #FF6734 39.7%)",
-      },
+    fontSize: {
+      "3xl": ["4em", "1.09"],
+      "2xl": ["3em", "1.18"],
+      xl: ["2.25em", "1.1"],
+      l: ["1.5em", "1.2"],
+      md: ["1.1em", "1.18"],
+      sm: [".875em", "1.2"],
     },
+    backgroundImage: {
+      "footer-image": "url('/assets/footer-bg.svg')",
+      "burner-wallet-bg": "url('/assets/burnerWalletBg.svg')",
+      "burner-wallet-bg-dark": "url('/assets/burnerWalletBgDark.svg')",
+      "primary-gradient":
+        "linear-gradient(180deg, #FF8D4E -9.12%, #FF6734 39.7%)",
+    },
+    fontFamily: {
+      coolvetica: ["coolvetica", "sans-serif"],
+    },
+    extend: {},
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

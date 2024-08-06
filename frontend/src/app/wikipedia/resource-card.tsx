@@ -11,29 +11,29 @@ export default function ResourceCard({ resource }: { resource: any }) {
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-6 pb-[72px] bg-[#F7F7F7] font-coolvetica rounded-2xl relative hover:bg-[#FFEFEA] transition-all duration-200"
+      className="relative rounded-2xl bg-[#F7F7F7] p-6 pb-[72px] font-coolvetica transition-all duration-200 hover:bg-[#FFEFEA]"
     >
-      <div className="flex items-start gap-x-2 justify-between">
+      <div className="flex items-start justify-between gap-x-2">
         <div className="flex gap-x-2">
-          <div className="p-[5px] h-fit bg-[#FFD8CB] rounded-full">
+          <div className="h-fit rounded-full bg-[#FFD8CB] p-[5px]">
             <Image alt="resource-logo" src={logo} />
           </div>
           <div className="w-[216px] text-wrap">
             <h3 className="text-xl leading-5 text-[#141925]">
               {resource.name}
             </h3>
-            <h4 className="text-sm leading-4 text-[#FF6734] break-words w-[200px]">
+            <h4 className="w-[200px] break-words text-sm leading-4 text-[#FF6734]">
               {resource.url}
             </h4>
           </div>
         </div>
         <Image src={arr} alt="redirect" />
       </div>
-      <div className="mt-3 text-base leading-5 pl-[50px] text-[#7A7A7A] mb-7">
+      <div className="text-base mb-7 mt-3 pl-[50px] leading-5 text-[#7A7A7A]">
         {resource.description}
       </div>
-      <div className="flex justify-end absolute bottom-6 right-6">
-        <div className="py-[9px] px-2 bg-[#CDFFD2] gap-x-[5px] text-[#6A6A6A] rounded-full flex items-center">
+      <div className="absolute bottom-6 right-6 flex justify-end">
+        <div className="flex items-center gap-x-[5px] rounded-full bg-[#CDFFD2] px-2 py-[9px] text-[#6A6A6A]">
           <Image src={verify} alt="verify" />
           UP TO DATE
         </div>
