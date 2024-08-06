@@ -183,7 +183,7 @@ const Header = () => {
             )}
 
             <ThemeSwitch
-              className=""
+              className="absolute bottom-[-250%] left-1/2"
               action={changeTheme}
               theme={theme}
               openMenu={openMenu}
