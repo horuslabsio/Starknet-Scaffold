@@ -1,63 +1,39 @@
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
 @font-face {
   font-family: "coolvetica";
   src: url("../../public/coolvetica rg.otf");
 }
-@tailwind utilities;
 
 :root {
-  --foreground-rgb: 20, 25, 37;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --background-variation-rgb: 237, 235, 235;
-  --translate-sun: translateX(-2rem) translateY(1rem);
-  --translate-moon: translateX(0rem) translateY(0rem);
-  --moon-opacity: 1;
-  --sun-opacity: 0;
-  --dark-img-opacity: 0;
-  --light-img-opacity: 1;
+  --foreground: #7a7a7a;
+  --background: #ffffff;
+  --h1: #141925;
+  --add-token-border: #141925;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 31, 31, 31;
-    --background-end-rgb: 31, 31, 31;
-    --background-variation-rgb: 45, 45, 45, 1;
-    --translate-sun: translateX(0rem) translateY(0rem);
-    --translate-moon: translateX(2rem) translateY(-1rem);
-    --moon-opacity: 0;
-    --sun-opacity: 1;
-    --dark-img-opacity: 1;
-    --light-img-opacity: 0;
+    --foreground: #eaeaea;
+    --background: #1f1f1f;
+    --h1: #eaeaea;
+    --add-token-border: #141925;
   }
 }
 
 [data-theme="light"] {
-  --foreground-rgb: 20, 25, 37;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --background-variation-rgb: 237, 235, 235;
-  --translate-sun: translateX(-2rem) translateY(1rem);
-  --translate-moon: translateX(0rem) translateY(0rem);
-  --moon-opacity: 1;
-  --sun-opacity: 0;
-  --dark-img-opacity: 0;
-  --light-img-opacity: 1;
+  --foreground: #7a7a7a;
+  --background: #ffffff;
+  --h1: #141925;
+  --add-token-border: #141925;
 }
 
 [data-theme="dark"] {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 31, 31, 31;
-  --background-end-rgb: 31, 31, 31;
-  --background-variation-rgb: 45, 45, 45, 1;
-  --translate-sun: translateX(0rem) translateY(0rem);
-  --translate-moon: translateX(2rem) translateY(-1rem);
-  --moon-opacity: 0;
-  --sun-opacity: 1;
-  --dark-img-opacity: 1;
-  --light-img-opacity: 0;
+  --foreground: #eaeaea;
+  --background: #1f1f1f;
+  --h1: #eaeaea;
+  --add-token-border: #ffffff;
 }
 
 html,
@@ -67,6 +43,20 @@ body {
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition:
+    background-color 0.5s linear,
+    color 0.5s linear;
+}
+h1 {
+  color: var(--h1);
+}
+.add-token {
+  border-color: var(--add-token-border);
+  transition: border-color 0.5s linear;
+}
 *,
 *::after,
 *::before {

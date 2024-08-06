@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-coolvetica text-sm text-text-primary lg:text-md">
+      <body className="font-coolvetica text-sm lg:text-md">
         <StarknetProvider>{children}</StarknetProvider>
         <Toaster />
         <Footer />
