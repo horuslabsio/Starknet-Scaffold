@@ -34,7 +34,7 @@ export default function Filter({
   return (
     <div className="pr-3 text-md">
       <div className="mb-6 flex items-center gap-x-3">
-        <h3 className="text-text-primary">Sort by:</h3>
+        <h3>Sort by:</h3>
         <SortBy
           options={[
             { value: "", label: "Default Sorting" },
@@ -43,15 +43,15 @@ export default function Filter({
           ]}
         />
       </div>
-      <div className="flex items-center gap-x-3 px-2 py-3">
+      <div className="flex items-center gap-x-3 px-2 py-3 text-[--headings]">
         <IoFilter />
         Filters
       </div>
       <div>
-        <div className="mb-2 flex w-full items-center justify-between px-[7px] py-3">
+        <div className="mb-2 flex w-full items-center justify-between px-[7px] py-3 text-[--headings]">
           Categories
         </div>
-        <div className="flex flex-wrap gap-[6px]">
+        <div className="flex flex-wrap gap-4">
           {options.map((option: any) => (
             <CategoryButton
               category={option.label}

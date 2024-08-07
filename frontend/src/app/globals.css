@@ -6,66 +6,78 @@
   src: url("../../public/coolvetica rg.otf");
 }
 
-:root {
-  --foreground: #7a7a7a;
-  --background: #ffffff;
-  --h1: #141925;
-  --add-token-border: #141925;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #eaeaea;
-    --background: #1f1f1f;
-    --h1: #eaeaea;
-    --add-token-border: #141925;
-  }
-}
-
-[data-theme="light"] {
-  --foreground: #7a7a7a;
-  --background: #ffffff;
-  --h1: #141925;
-  --add-token-border: #141925;
-}
-
-[data-theme="dark"] {
-  --foreground: #eaeaea;
-  --background: #1f1f1f;
-  --h1: #eaeaea;
-  --add-token-border: #ffffff;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  transition:
-    background-color 0.5s linear,
-    color 0.5s linear;
-}
-h1 {
-  color: var(--h1);
-}
-.add-token {
-  border-color: var(--add-token-border);
-  transition: border-color 0.5s linear;
-}
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-}
-
 @layer base {
   :root {
+    --foreground: #7a7a7a;
+    --background: #ffffff;
+    --headings: #141925;
+    --add-token-border: #141925;
+    --backdrop: #ffffff4d;
+    --link-card: #f7f7f7;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground: #eaeaea;
+      --background: #1f1f1f;
+      --headings: #eaeaea;
+      --add-token-border: #141925;
+      --backdrop: transparent;
+      --link-card: #343333;
+    }
+  }
+
+  [data-theme="light"] {
+    --foreground: #7a7a7a;
+    --background: #ffffff;
+    --headings: #141925;
+    --add-token-border: #141925;
+    --backdrop: #ffffff4d;
+    --link-card: #f7f7f7;
+  }
+
+  [data-theme="dark"] {
+    --foreground: #eaeaea;
+    --background: #1f1f1f;
+    --headings: #eaeaea;
+    --add-token-border: #ffffff;
+    --backdrop: transparent;
+    --link-card: #343333;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--background);
+
+    transition:
+      background-color 0.5s linear,
+      color 0.5s linear;
+  }
+  h1 {
+    color: var(--headings);
+  }
+  .add-token {
+    border-color: var(--add-token-border);
+    transition: border-color 0.3s linear;
+  }
+  .link-card {
+    background-color: var(--link-card);
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+  }
+
+  :root {
     --100vh: calc(100vh);
+    --100svh: 100svh;
   }
   @media only screen and (max-width: 1600px) {
     html {
@@ -73,25 +85,10 @@ h1 {
     }
     :root {
       --100vh: calc(100vh / 0.8);
-      --100svh: calc(100svh / 0.8);
+      --100svh: calc((100svh / 0.8) - (3rem / 0.8));
     }
   }
-  /* @media only screen and (max-width: 1350px) {
-    html {
-      zoom: 0.7;
-    }
-    :root {
-      --100vh: calc(100vh / 0.7);
-    }
-  }
-  @media only screen and (max-width: 1200px) {
-    html {
-      zoom: 0.6;
-    }
-    :root {
-      --100vh: calc(100vh / 0.6);
-    }
-  } */
+
   @media only screen and (max-width: 768px) {
     html {
       zoom: 1;
@@ -101,14 +98,35 @@ h1 {
       --100svh: 100svh;
     }
   }
-  /* @media only screen and (max-width: 1350px) {
-    html {
-      zoom: 0.7;
+  [popover] {
+    transform: translateY(10%);
+  }
+  [popover],
+  ::backdrop {
+    opacity: 0;
+
+    transition-property: opacity display overlay;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-behavior: allow-discrete;
+  }
+  [popover]:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [popover]:popover-open::backdrop {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+    background-color: var(--backdrop);
+  }
+  @starting-style {
+    [popover]:popover-open {
+      opacity: 0;
+      transform: translateY(10%);
     }
-    :root {
-      --100vh: calc(100vh / 0.7);
+
+    ::backdrop::popover-open {
+      opacity: 0;
     }
   }
- 
-   */
 }

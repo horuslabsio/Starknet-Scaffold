@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Header from "~/ui_components/Header";
+import Header from "@/app/components/header/Header";
 import NetworkSwitcher from "~/ui_components/NetworkSwitcher";
 import AddTokenBtn from "~/AddTokenBtn";
 import faucet from "../../public/assets/faucetBanner.svg";
@@ -8,7 +8,7 @@ import deployer from "../../public/assets/deployerBanner.svg";
 import wikipedia from "../../public/assets/wikipediaBanner.svg";
 import addressBook from "../../public/assets/addressBook.svg";
 import converter from "../../public/assets/converterBanner.svg";
-import burnerWallet from "../../public/assets/burnerWalletBg.svg";
+import burnerWallet from "../../public/assets/burnerWallet.svg";
 import Link from "next/link";
 import Upright from "svg/Upright";
 
@@ -35,17 +35,17 @@ export default function Home() {
       </section>
       {/* <-- END */}
 
-      <section className="container mx-auto grid w-[80%] grid-cols-3 gap-8">
-        <div className="relative col-span-2 h-full w-full rounded-[16px] bg-accent-tertiary bg-burner-wallet-bg bg-cover bg-center bg-no-repeat transition-all duration-500 hover:bg-burner-wallet-bg-dark">
-          {/* before:absolute before:h-full before:w-full before:rounded-[16px] before:bg-button-secondary */}
+      {/* Link cards --> */}
+      <section className="container mx-auto grid w-[80%] grid-cols-3 gap-8 text-text-primary">
+        <div className="relative col-span-2 h-[350px] w-full rounded-[16px] bg-[--link-card]">
           <Link
             href="/burner"
             target="_blank"
             rel="noopener noreferrer"
-            className="group"
+            className="group flex h-full w-full rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
-            <div className="absolute w-1/2 p-8">
-              <h2 className="mb-2 flex items-center gap-1 text-l text-accent-secondary">
+            <div className="absolute w-[45%] px-8 pt-8">
+              <h2 className="mb-2 flex items-center gap-1 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Scaffold Burner Wallet</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
                   <Upright />
@@ -56,19 +56,25 @@ export default function Home() {
                 of development
               </p>
             </div>
-            {/* <Image className="w-full" src={burnerWallet} alt="" /> */}
+            <div className="flex h-full w-full rounded-[16px] px-4">
+              <Image
+                src={burnerWallet}
+                alt=""
+                className="mt-auto h-full w-full rounded-[16px]"
+              />
+            </div>
           </Link>
         </div>
 
-        <div className="relative h-full w-full rounded-[16px] bg-accent-tertiary">
+        <div className="group relative h-full w-full rounded-[16px] bg-[--link-card]">
           <Link
             href="https://starknet-faucet.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
-            <div className="absolute px-8 pt-8">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+            <div className="absolute bg-red-900 px-8 pt-8">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Scaffold Faucet</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
                   <Upright />
@@ -85,7 +91,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative row-span-2 h-full w-full rounded-[16px] bg-accent-tertiary">
+        <div className="relative row-span-2 h-full w-full rounded-[16px] bg-[--link-card]">
           <Link
             href="/scaffold-deployer"
             target="_blank"
@@ -93,7 +99,7 @@ export default function Home() {
             className="group flex h-full w-full flex-col justify-between rounded-[16px] px-8 pt-8 transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Scaffold Deployer</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
                   <Upright />
@@ -110,7 +116,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative h-full w-full rounded-[16px] bg-accent-tertiary">
+        <div className="relative h-full w-full rounded-[16px] bg-[--link-card]">
           <Link
             href="/wikipedia"
             target="_blank"
@@ -118,7 +124,7 @@ export default function Home() {
             className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute px-8 pt-8">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Scaffold Wikipedia</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
                   <Upright />
@@ -139,7 +145,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative h-full w-full rounded-[16px] bg-accent-tertiary">
+        <div className="relative h-full w-full rounded-[16px] bg-[--link-card]">
           <Link
             href="https://www.stark-utils.xyz/converter"
             target="_blank"
@@ -147,7 +153,7 @@ export default function Home() {
             className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute px-8 pt-8">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Stark Converter</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
                   <Upright />
@@ -168,7 +174,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative col-span-2 h-full w-full rounded-[16px] bg-accent-tertiary">
+        <div className="relative col-span-2 h-full w-full rounded-[16px] bg-[--link-card]">
           <Link
             href="/address-book"
             target="_blank"
@@ -176,7 +182,7 @@ export default function Home() {
             className="group block h-full w-full rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute px-8 pt-8">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Address Book</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
                   <Upright />
@@ -194,7 +200,9 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      {/* <-- END */}
 
+      {/* Community --> */}
       <div className="flex w-full flex-col items-center justify-center gap-4 bg-footer-image bg-cover bg-center bg-no-repeat px-4 py-16 md:px-8">
         <div className="flex flex-col items-center gap-4">
           <img
