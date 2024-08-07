@@ -27,7 +27,7 @@ export default function Home() {
       {/* HERO --> */}
       <section className="pt-[clamp(200px,25vh,650px)]">
         <div className="mx-auto flex max-w-[850px] flex-col gap-8 p-8 text-center">
-          <h1 className="text-3xl text-accent-secondary">
+          <h1 className="text-3xl text-[--headings]">
             Everything you need to buidl dApps on Ethereum
           </h1>
           <p className="text-md">
