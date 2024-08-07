@@ -80,7 +80,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
-            <div className="absolute bg-red-900 px-8 pt-8">
+            <div className="absolute px-8 pt-8">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Scaffold Faucet</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
