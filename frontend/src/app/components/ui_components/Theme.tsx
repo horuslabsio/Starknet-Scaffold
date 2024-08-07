@@ -16,7 +16,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
 }) => {
   return (
     <button
-      className={`grid h-16 w-16 place-content-center rounded-full bg-button-secondary transition-all duration-300 ease-in-out ${className}`}
+      className={`grid h-16 w-16 place-content-center rounded-full bg-button-secondary transition-all duration-200 ease-in-out dark:bg-[#343434] ${className}`}
       onClick={action}
       // className={`transition-all duration-300 ease-in-out ${
       //   openMenu ? "top-[10rem]" : "top-[5rem]"

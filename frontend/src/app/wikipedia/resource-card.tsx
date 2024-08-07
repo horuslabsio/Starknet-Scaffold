@@ -27,7 +27,7 @@ export default function ResourceCard({ resource }: { resource: any }) {
           </div>
         </div>
         {/* <Image src={arr} alt="redirect" /> */}
-        <span className="transition-all duration-500 group-hover:-translate-y-1">
+        <span className="text-text-primary transition-all duration-500 group-hover:-translate-y-1">
           <Upright />
         </span>
       </div>

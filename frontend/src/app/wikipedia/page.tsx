@@ -37,7 +37,13 @@ export default function Page() {
       <div className="w-full bg-primary-gradient px-[100px] py-[30px]">
         <div className="relative mb-[95px] flex flex-wrap items-center justify-between">
           <div className="flex items-center gap-x-[9px]">
-            <Image src={logoImage} alt="logo" width={360} height={48} />
+            <div className="w-[18.75rem]">
+              <img
+                src="/assets/logo.svg"
+                alt="logo"
+                className="h-full w-full"
+              />
+            </div>
             <h4 className="border-l-[1.75px] border-[#141925] px-2 py-1 text-[24px] uppercase italic leading-7 text-[#141925]">
               wikipedia
             </h4>
