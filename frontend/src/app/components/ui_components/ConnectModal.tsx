@@ -1,12 +1,7 @@
 import Image from "next/image";
 import GenericModal from "./GenericModal";
 import { Connector, useConnect } from "@starknet-react/core";
-import { useEffect, useState } from "react";
-
-type Props = {
-  isOpen: boolean;
-  onClose: () => void;
-};
+import Close from "svg/Close";
 
 const loader = ({ src }: { src: string }) => {
   return src;
@@ -17,20 +12,19 @@ const Wallet = ({
   alt,
   src,
   connector,
-  closeModal,
 }: {
   name: string;
   alt: string;
   src: string;
   connector: Connector;
-  closeModal: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }) => {
   const { connect } = useConnect();
   const isSvg = src?.startsWith("<svg");
 
   function handleConnectWallet(e: React.MouseEvent<HTMLButtonElement>): void {
     connect({ connector });
-    closeModal(e);
+    const popover = document.getElementById("connect-modal");
+    popover.hidePopover();
     localStorage.setItem("lastUsedConnector", connector.name);
   }
 
@@ -63,30 +57,12 @@ const Wallet = ({
   );
 };
 
-const ConnectModal = ({ isOpen, onClose }: Props) => {
-  const [animate, setAnimate] = useState(false);
-  const closeModal = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setAnimate(false);
-    setTimeout(() => {
-      onClose();
-    }, 400);
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      setAnimate(true);
-    } else {
-      setAnimate(false);
-    }
-  }, [isOpen]);
+const ConnectModal = () => {
   const { connectors } = useConnect();
   return (
     <GenericModal
-      isOpen={isOpen}
-      onClose={closeModal}
-      animate={animate}
-      className={`w-[90vw] mx-auto md:h-[30rem] md:w-[45rem] text-white `}
+      popoverId="connect-modal"
+      style="text-white border-outline-grey mx-auto flex w-[90vw] flex-col rounded-[25px] border-[1px] border-solid bg-[#1c1b1f] md:h-[30rem] md:w-[45rem]"
     >
       <div className="flex p-4 w-full lg:p-0 lg:grid lg:grid-cols-5">
         <div className="basis-5/6 lg:col-span-2  lg:border-r-[1px] lg:border-solid lg:border-outline-grey lg:py-4 lg:pl-8">
@@ -96,23 +72,11 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
         </div>
         <div className="ml-auto lg:col-span-3 lg:py-4 lg:pr-8">
           <button
-            onClick={(e) => {
-              closeModal(e);
-              e.stopPropagation();
-            }}
-            className="w-8 h-8  grid place-content-center rounded-full bg-outline-grey  "
+            popovertarget="connect-modal"
+            popovertargetaction="hide"
+            className="bg-outline-grey grid h-8 w-8 place-content-center rounded-full"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="m6.4 18.308l-.708-.708l5.6-5.6l-5.6-5.6l.708-.708l5.6 5.6l5.6-5.6l.708.708l-5.6 5.6l5.6 5.6l-.708.708l-5.6-5.6z"
-              />
-            </svg>
+            <Close />
           </button>
         </div>
       </div>
@@ -123,7 +87,6 @@ const ConnectModal = ({ isOpen, onClose }: Props) => {
           <div className="flex flex-col gap-4 py-8">
             {connectors.map((connector, index) => (
               <Wallet
-                closeModal={closeModal}
                 key={connector.id || index}
                 src={connector.icon.light!}
                 name={connector.name}
