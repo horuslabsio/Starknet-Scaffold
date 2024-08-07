@@ -37,7 +37,7 @@ function AccountBalance({ address }: Props) {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
-            <div className="bg-black h-12 w-12 rounded-full"></div>
+            <div className="h-12 w-12 rounded-full bg-black"></div>
             <div>
               <p className="text-l text-accent-secondary">ETH</p>
               <p>Ethereum</p>
@@ -54,7 +54,7 @@ function AccountBalance({ address }: Props) {
         </div>
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
-            <div className="bg-black h-12 w-12 rounded-full"></div>
+            <div className="h-12 w-12 rounded-full bg-black"></div>
             <div>
               <p className="text-l text-accent-secondary">STRK</p>
               <p>Starknet token</p>
@@ -71,18 +71,6 @@ function AccountBalance({ address }: Props) {
         </div>
       </div>
     </div>
-    // <div className="flex flex-col gap-y-4 text-left">
-    //   <h3 className="text-lg font-semibold">
-    //     STRK Balance:{" "}
-    //     <span className="font-normal">
-    //       {Number(strkBalance).toFixed(3)} STRK
-    //     </span>
-    //   </h3>
-    //   <h3 className="text-lg font-semibold">
-    //     ETH Balance:{" "}
-    //     <span className="font-normal">{Number(ethBalance).toFixed(3)} ETH</span>
-    //   </h3>
-    // </div>
   );
 }
 
