@@ -1,81 +1,83 @@
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
 @font-face {
   font-family: "coolvetica";
   src: url("../../public/coolvetica rg.otf");
 }
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 20, 25, 37;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --background-variation-rgb: 237, 235, 235;
-  --translate-sun: translateX(-2rem) translateY(1rem);
-  --translate-moon: translateX(0rem) translateY(0rem);
-  --moon-opacity: 1;
-  --sun-opacity: 0;
-  --dark-img-opacity: 0;
-  --light-img-opacity: 1;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 31, 31, 31;
-    --background-end-rgb: 31, 31, 31;
-    --background-variation-rgb: 45, 45, 45, 1;
-    --translate-sun: translateX(0rem) translateY(0rem);
-    --translate-moon: translateX(2rem) translateY(-1rem);
-    --moon-opacity: 0;
-    --sun-opacity: 1;
-    --dark-img-opacity: 1;
-    --light-img-opacity: 0;
-  }
-}
-
-[data-theme="light"] {
-  --foreground-rgb: 20, 25, 37;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --background-variation-rgb: 237, 235, 235;
-  --translate-sun: translateX(-2rem) translateY(1rem);
-  --translate-moon: translateX(0rem) translateY(0rem);
-  --moon-opacity: 1;
-  --sun-opacity: 0;
-  --dark-img-opacity: 0;
-  --light-img-opacity: 1;
-}
-
-[data-theme="dark"] {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 31, 31, 31;
-  --background-end-rgb: 31, 31, 31;
-  --background-variation-rgb: 45, 45, 45, 1;
-  --translate-sun: translateX(0rem) translateY(0rem);
-  --translate-moon: translateX(2rem) translateY(-1rem);
-  --moon-opacity: 0;
-  --sun-opacity: 1;
-  --dark-img-opacity: 1;
-  --light-img-opacity: 0;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-}
 
 @layer base {
   :root {
+    --foreground: #7a7a7a;
+    --background: #ffffff;
+    --headings: #141925;
+    --add-token-border: #141925;
+    --backdrop: #ffffff4d;
+    --link-card: #f7f7f7;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground: #eaeaea;
+      --background: #1f1f1f;
+      --headings: #eaeaea;
+      --add-token-border: #141925;
+      --backdrop: transparent;
+      --link-card: #343333;
+    }
+  }
+
+  [data-theme="light"] {
+    --foreground: #7a7a7a;
+    --background: #ffffff;
+    --headings: #141925;
+    --add-token-border: #141925;
+    --backdrop: #ffffff4d;
+    --link-card: #f7f7f7;
+  }
+
+  [data-theme="dark"] {
+    --foreground: #eaeaea;
+    --background: #1f1f1f;
+    --headings: #eaeaea;
+    --add-token-border: #ffffff;
+    --backdrop: transparent;
+    --link-card: #343333;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--background);
+
+    transition:
+      background-color 0.5s linear,
+      color 0.5s linear;
+  }
+  h1 {
+    color: var(--headings);
+  }
+  .add-token {
+    border-color: var(--add-token-border);
+    transition: border-color 0.3s linear;
+  }
+  .link-card {
+    background-color: var(--link-card);
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+  }
+
+  :root {
     --100vh: calc(100vh);
+    --100svh: 100svh;
   }
   @media only screen and (max-width: 1600px) {
     html {
@@ -83,25 +85,10 @@ body {
     }
     :root {
       --100vh: calc(100vh / 0.8);
-      --100svh: calc(100svh / 0.8);
+      --100svh: calc((100svh / 0.8) - (3rem / 0.8));
     }
   }
-  /* @media only screen and (max-width: 1350px) {
-    html {
-      zoom: 0.7;
-    }
-    :root {
-      --100vh: calc(100vh / 0.7);
-    }
-  }
-  @media only screen and (max-width: 1200px) {
-    html {
-      zoom: 0.6;
-    }
-    :root {
-      --100vh: calc(100vh / 0.6);
-    }
-  } */
+
   @media only screen and (max-width: 768px) {
     html {
       zoom: 1;
@@ -111,14 +98,35 @@ body {
       --100svh: 100svh;
     }
   }
-  /* @media only screen and (max-width: 1350px) {
-    html {
-      zoom: 0.7;
+  [popover] {
+    transform: translateY(10%);
+  }
+  [popover],
+  ::backdrop {
+    opacity: 0;
+
+    transition-property: opacity display overlay;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-behavior: allow-discrete;
+  }
+  [popover]:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [popover]:popover-open::backdrop {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+    background-color: var(--backdrop);
+  }
+  @starting-style {
+    [popover]:popover-open {
+      opacity: 0;
+      transform: translateY(10%);
     }
-    :root {
-      --100vh: calc(100vh / 0.7);
+
+    ::backdrop::popover-open {
+      opacity: 0;
     }
   }
- 
-   */
 }

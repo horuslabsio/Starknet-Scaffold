@@ -27,7 +27,7 @@ export default function Pagination({ count }: { count: number }) {
 
   if (pageCount <= 1) return null;
   return (
-    <div className="dark:text-white text-base flex items-center gap-x-[100px] border-t-[2px] border-t-[#F0F2F5] pt-4 leading-6 text-[#141925]">
+    <div className="flex items-center gap-x-[100px] border-t-[1px] border-t-[#F0F2F5] pt-4 text-base text-[--headings] dark:text-white">
       <p className="">
         Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{" "}
         <span>

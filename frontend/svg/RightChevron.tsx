@@ -1,4 +1,4 @@
-const Upright = () => {
+const RightChevron = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,12 +8,10 @@ const Upright = () => {
     >
       <path
         fill="currentColor"
-        stroke="currentColor"
-        strokeWidth=".5"
-        d="m16.004 9.414l-8.607 8.607l-1.414-1.414L14.59 8H7.003V6h11v11h-2z"
+        d="M8.59 16.58L13.17 12L8.59 7.41L10 6l6 6l-6 6z"
       />
     </svg>
   );
 };
 
-export default Upright;
+export default RightChevron;

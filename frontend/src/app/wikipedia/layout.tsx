@@ -5,14 +5,10 @@ export const metadata: Metadata = {
   description: "Created with love",
 };
 
-export default function AddressBookRootLayout({
+export default function WikipediaRootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <main className="flex min-h-[--100svh] flex-col justify-between gap-16">
-      {children}
-    </main>
-  );
+  return <main className="min-h-[--100svh]">{children}</main>;
 }
