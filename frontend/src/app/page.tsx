@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Header from "@/app/components/header/Header";
 import NetworkSwitcher from "~/ui_components/NetworkSwitcher";
-import AddTokenBtn from "~/AddTokenBtn";
 import faucet from "../../public/assets/faucetBanner.svg";
 import deployer from "../../public/assets/deployerBanner.svg";
 import wikipedia from "../../public/assets/wikipediaBanner.svg";
@@ -29,7 +28,15 @@ export default function Home() {
           </p>
           <div className="flex items-center justify-center gap-x-5">
             <NetworkSwitcher />
-            <AddTokenBtn />
+            <button
+              aria-haspopup="dialog"
+              popoverTarget="add-token-popover"
+              className="add-token w-fit rounded-[12px] border-[2.5px] border-solid bg-background-primary-light px-12 py-3 text-accent-secondary"
+            >
+              Add Token
+            </button>
+
+            {/* <AddTokenBtn /> */}
           </div>
         </div>
       </section>
