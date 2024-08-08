@@ -6,18 +6,22 @@ interface ThemeSwitchProps {
   theme: string;
   action: MouseEventHandler<HTMLButtonElement>;
   className?: string;
+  dimension?: string;
 }
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
   theme,
   action,
   className,
+  dimension = "4rem",
 }) => {
-  console.log(theme);
-
   return (
     <button
-      className={`grid h-16 w-16 place-content-center rounded-full bg-button-secondary transition-all duration-300 ease-in-out ${className}`}
+      style={{
+        width: dimension,
+        height: dimension,
+      }}
+      className={`grid place-content-center rounded-full bg-button-secondary transition-all duration-300 ease-in-out ${className}`}
       onClick={action}
     >
       {theme === "dark" ? (

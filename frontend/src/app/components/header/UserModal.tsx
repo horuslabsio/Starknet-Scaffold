@@ -38,14 +38,18 @@ const UserModal = () => {
     setIsCopied(true);
   }
   return (
-    <>
-      <GenericModal
-        popoverId="user-popover"
-        style="mr-[4rem] mt-[9rem] w-screen min-h-screen rounded-[24px] bg-transparent p-0 backdrop:mt-[9rem]"
-      >
-        <div className="flex h-full flex-col items-end justify-center px-12 py-8">
-          {/* User profile --> */}
-          <div className="shadow-popover-shadow mb-8 flex w-[30rem] flex-col justify-between gap-4 rounded-[24px] bg-[--background] p-8 text-md text-text-primary transition-colors duration-500 ease-linear">
+    <GenericModal
+      popoverId="user-popover"
+      style="mr-[4rem]  mt-[9rem]  bg-transparent backdrop:mt-[9rem]"
+    >
+      <div className="flex h-[--m-100vh] w-screen flex-col items-end px-12">
+        <div
+          style={{
+            zoom: "0.9",
+          }}
+          className="pt-8"
+        >
+          <div className="mb-8 flex w-[30rem] flex-col justify-between gap-4 rounded-[24px] bg-[--background] p-8 text-md text-text-primary shadow-popover-shadow transition-colors duration-500 ease-linear">
             <div className="flex justify-between">
               <h3 className="text-l text-[--headings]">Connected</h3>
               <button>
@@ -71,7 +75,7 @@ const UserModal = () => {
               </div>
               <button
                 onClick={handleCopyClick}
-                className="flex items-center gap-2 text-yellow-primary"
+                className="flex items-center gap-2 text-sm text-yellow-primary"
               >
                 <span>
                   {starkProfile?.name ||
@@ -112,11 +116,14 @@ const UserModal = () => {
               </button>
             </div>
           </div>
-          {/* <-- end */}
-
-          {/* Add token --> */}
-
-          <div className="shadow-popover-shadow flex w-[30rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 transition-colors duration-500 ease-linear">
+        </div>
+        <div
+          style={{
+            zoom: "0.9",
+          }}
+          className="pb-8"
+        >
+          <div className="flex w-[30rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 shadow-popover-shadow transition-colors duration-500 ease-linear">
             <div className="flex items-center justify-between">
               <p className="text-text-primary">Select Network</p>
               <NetworkSwitcher />
@@ -140,12 +147,13 @@ const UserModal = () => {
                 className="ml-auto"
                 action={changeTheme}
                 theme={theme}
+                dimension="3rem"
               />
             </div>
           </div>
         </div>
-      </GenericModal>
-    </>
+      </div>
+    </GenericModal>
   );
 };
 

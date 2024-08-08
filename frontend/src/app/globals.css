@@ -66,7 +66,7 @@
 
   body {
     background-color: var(--background);
-
+    /* overflow: hidden; */
     transition:
       background-color 0.5s linear,
       color 0.5s linear;
@@ -88,8 +88,9 @@
   }
 
   :root {
-    --100vh: calc(100vh);
+    --100vh: 100vh;
     --100svh: 100svh;
+    --m-100vh: 100svh;
   }
   @media only screen and (max-width: 1600px) {
     html {
@@ -98,18 +99,27 @@
     :root {
       --100vh: calc(100vh / 0.8);
       --100svh: calc((100svh / 0.8) - (3rem / 0.8));
+      --m-100vh: calc((100svh / 0.8) - (7rem / 0.8));
     }
   }
-
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1350px) {
+    :root {
+      --m-100vh: calc(100svh - 9rem);
+    }
+  }
+  @media only screen and (max-width: 1200px) {
+  }
+  @media only screen and (max-width: 1024px) {
     html {
       zoom: 1;
     }
     :root {
       --100vh: 100vh;
       --100svh: 100svh;
+      --m-100vh: 100svh;
     }
   }
+
   [popover] {
     transform: translateY(10%);
   }
