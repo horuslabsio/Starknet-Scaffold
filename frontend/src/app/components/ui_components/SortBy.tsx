@@ -8,7 +8,6 @@ export default function SortBy({ options }: { options: any }) {
 
   function handleChange(e: any) {
     const currentUrl = new URL(window.location.href);
-    let currentSortBy = currentUrl.searchParams.get("sortBy");
     if (e.target.value === "") {
       currentUrl.searchParams.delete("sortBy");
       router.push(currentUrl.toString());

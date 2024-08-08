@@ -20,6 +20,8 @@ const config: Config = {
         "button-primary": "#141925",
         "button-secondary": "#FFEBDA",
         "button-tertiary": "#F5F5F5",
+        "orange-accent-primary": "#332920",
+        "text-white-secondary": "#EAEAEA",
         "text-primary": "#7A7A7A",
         "text-secondary": "#344054",
         "text-tertiary": "#BC988C",
@@ -32,6 +34,7 @@ const config: Config = {
         "red-secondary": "#A41010",
         "yellow-primary": "#FD9332",
         "yellow-secondary": "#FFEECD",
+        "grey-light-primary": "#F9FAFB",
       },
       fontSize: {
         "3xl": ["4em", "1.09"],
