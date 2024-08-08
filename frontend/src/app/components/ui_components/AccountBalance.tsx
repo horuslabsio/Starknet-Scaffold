@@ -32,7 +32,7 @@ function AccountBalance({ address }: Props) {
   const strkBalance = formatCurrency(strk?.balance?.low.toString());
 
   return (
-    <div className="p-4 text-[--headings]">
+    <div className="p-4 text-sm text-[--headings]">
       <h3 className="mb-4">Asset</h3>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between">
