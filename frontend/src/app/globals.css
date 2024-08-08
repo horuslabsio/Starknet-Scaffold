@@ -10,6 +10,7 @@
   :root {
     --foreground: #7a7a7a;
     --background: #ffffff;
+    --table-header: #f9fafb;
     --headings: #141925;
     --add-token-border: #141925;
     --backdrop: #ffffff4d;
@@ -23,6 +24,7 @@
     :root {
       --foreground: #eaeaea;
       --background: #1f1f1f;
+      --table-header: #332920;
       --headings: #eaeaea;
       --add-token-border: #141925;
       --backdrop: transparent;
@@ -36,6 +38,7 @@
   [data-theme="light"] {
     --foreground: #7a7a7a;
     --background: #ffffff;
+    --table-header: #f9fafb;
     --headings: #141925;
     --add-token-border: #141925;
     --backdrop: #ffffff4d;
@@ -48,6 +51,7 @@
   [data-theme="dark"] {
     --foreground: #eaeaea;
     --background: #1f1f1f;
+    --table-header: #332920;
     --headings: #eaeaea;
     --add-token-border: #ffffff;
     --backdrop: transparent;
@@ -71,9 +75,7 @@
       background-color 0.5s linear,
       color 0.5s linear;
   }
-  h1 {
-    color: var(--headings);
-  }
+
   .add-token {
     border-color: var(--add-token-border);
     transition: border-color 0.3s linear;
