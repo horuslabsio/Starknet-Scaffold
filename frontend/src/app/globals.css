@@ -70,7 +70,6 @@
 
   body {
     background-color: var(--background);
-    /* overflow: hidden; */
     transition:
       background-color 0.5s linear,
       color 0.5s linear;

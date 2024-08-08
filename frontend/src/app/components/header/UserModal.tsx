@@ -137,7 +137,11 @@ const UserModal = () => {
               </button>
             </div>
             <div>
-              <button className="w-full rounded-[12px] bg-accent-secondary p-4 text-background-primary-light">
+              <button
+                aria-haspopup="dialog"
+                popoverTarget="add-token-popover"
+                className="w-full rounded-[12px] bg-accent-secondary p-4 text-background-primary-light"
+              >
                 Add Token
               </button>
             </div>

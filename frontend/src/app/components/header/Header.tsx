@@ -8,6 +8,7 @@ import Menu from "svg/Menu";
 import UserModal from "./UserModal";
 import AddressBar from "./AddressBar";
 import ThemeSwitch from "./Theme";
+import AddTokenModal from "./AddTokenModal";
 
 const Header = () => {
   const { address } = useAccount();
@@ -67,6 +68,7 @@ const Header = () => {
         <ConnectModal />
         <TransactionModal />
         <UserModal />
+        <AddTokenModal />
       </header>
     </div>
   );
