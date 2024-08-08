@@ -61,6 +61,17 @@
     --borders: #494949;
   }
 
+  [data-header="hover-hide"],
+  [data-header="scroll-hide"] {
+    transform: translateY(-90%);
+  }
+
+  [data-header="hover-hide"] #theme-switcher,
+  [data-header="scroll-hide"] #theme-switcher {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   html,
   body {
     margin: 0;
