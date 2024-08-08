@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import logo from "../../../public/assets/starknetLogo.svg";
+import logo from "../../../public/assets/strk.svg";
 import Link from "next/link";
 import Upright from "svg/Upright";
 import Verified from "svg/Verified";
