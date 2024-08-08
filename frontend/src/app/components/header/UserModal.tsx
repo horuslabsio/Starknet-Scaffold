@@ -40,9 +40,9 @@ const UserModal = () => {
   return (
     <GenericModal
       popoverId="user-popover"
-      style="mr-[4rem]  mt-[9rem]  bg-transparent backdrop:mt-[9rem]"
+      style="w-full mt-[9rem] bg-transparent  backdrop:mt-[9rem]"
     >
-      <div className="flex h-[--m-100vh] w-screen flex-col items-end px-12">
+      <div className="user-modal mx-auto flex h-[--m-100vh] w-screen max-w-[2000px] flex-col items-end px-12">
         <div
           style={{
             zoom: "0.9",

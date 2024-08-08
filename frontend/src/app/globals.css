@@ -101,17 +101,20 @@
     :root {
       --100vh: calc(100vh / 0.8);
       --100svh: calc((100svh / 0.8) - (3rem / 0.8));
-      --m-100vh: calc((100svh / 0.8) - (7rem / 0.8));
+      --m-100vh: calc((100vh / 0.8) - 9rem);
     }
   }
   @media only screen and (max-width: 1350px) {
     :root {
-      --m-100vh: calc(100svh - 9rem);
+      /* --m-100vh: calc(100svh - 9rem); */
     }
   }
   @media only screen and (max-width: 1200px) {
+    :root {
+      /* --m-100vh: 100svh; */
+    }
   }
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 768px) {
     html {
       zoom: 1;
     }
@@ -142,6 +145,11 @@
     opacity: 1;
     backdrop-filter: blur(5px);
     background-color: var(--backdrop);
+  }
+  .user-modal {
+    overflow: scroll;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
   }
   @starting-style {
     [popover]:popover-open {
