@@ -1,11 +1,11 @@
 "use client";
 import GenericModal from "./ui_components/GenericModal";
-import starknetLogo from "../../../public/starknetlogo.svg";
 import Image from "next/image";
 import rightArr from "../../../public/assets/right-arr.svg";
 import { useEffect, useState } from "react";
 import downChevron from "../../../public/assets/down-chevron.svg";
-import ethLogo from "../../../public/assets/ethereumLogo2.svg";
+import ethLogo from "../../../public/assets/eth.svg";
+import starknetLogo from "../../../public/assets/strk.svg";
 import {
   Call,
   CallData,
@@ -123,7 +123,7 @@ function AssetTransferModal({
       isOpen={isOpen}
       onClose={closeModal}
       animate={animate}
-      className={`w-[90vw] mx-auto md:h-fit md:w-[45rem] text-white py-4 px-5 relative bg-black`}
+      className={`relative mx-auto w-[90vw] bg-black px-5 py-4 text-white md:h-fit md:w-[45rem]`}
     >
       <div className="absolute right-5 top-4">
         <button
@@ -229,7 +229,7 @@ function AssetTransferModal({
             <input
               type="text"
               placeholder="Enter Wallet Address"
-              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
+              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
               value={walletAddress}
               onChange={(e) => setWalletAddress(e.target.value)}
             />
@@ -240,7 +240,7 @@ function AssetTransferModal({
             <input
               type="text"
               placeholder="Enter Amount"
-              className="w-full p-2 rounded text-black outline-none focus:border-[#3b81f6] border-[2px]"
+              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />

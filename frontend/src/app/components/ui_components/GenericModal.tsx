@@ -8,7 +8,7 @@ const GenericModal = ({
   style: string;
 }) => {
   return (
-    <div id={popoverId} className={style} role="dialog" popover="auto">
+    <div id={popoverId} className={style} popover="auto">
       {/* Note: Do NOT add any display property on this parent div, to avoid strange behavior  */}
       {children}
     </div>

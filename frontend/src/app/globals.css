@@ -14,6 +14,9 @@
     --add-token-border: #141925;
     --backdrop: #ffffff4d;
     --link-card: #f7f7f7;
+    --modal-assets-bg: #ffebda;
+    --modal-disconnect-bg: #f7f7f7;
+    --borders: #eeeeee;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -24,6 +27,9 @@
       --add-token-border: #141925;
       --backdrop: transparent;
       --link-card: #343333;
+      --modal-assets-bg: #34302d;
+      --modal-disconnect-bg: transparent;
+      --borders: #494949;
     }
   }
 
@@ -34,6 +40,9 @@
     --add-token-border: #141925;
     --backdrop: #ffffff4d;
     --link-card: #f7f7f7;
+    --modal-assets-bg: #ffebda;
+    --modal-disconnect-bg: #f7f7f7;
+    --borders: #eeeeee;
   }
 
   [data-theme="dark"] {
@@ -43,6 +52,9 @@
     --add-token-border: #ffffff;
     --backdrop: transparent;
     --link-card: #343333;
+    --modal-assets-bg: #34302d;
+    --modal-disconnect-bg: transparent;
+    --borders: #494949;
   }
 
   html,
