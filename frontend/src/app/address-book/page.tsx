@@ -36,7 +36,7 @@ export default function Page() {
   }, [debouncedSearch]);
 
   return (
-    <div className="relative w-full bg-[--background]">
+    <div className="relative w-full">
       <div className="w-full bg-primary-gradient px-[100px] py-[30px]">
         <div className="relative mb-[95px] flex flex-wrap items-center justify-between">
           <div className="flex items-center gap-x-[9px]">
