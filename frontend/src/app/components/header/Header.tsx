@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useConnect, useAccount } from "@starknet-react/core";
 import TransactionModal from "../TransactionList/TransactionModal";
 import useTheme from "../ui_components/hooks/useTheme";
@@ -8,10 +8,13 @@ import Menu from "svg/Menu";
 import UserModal from "./UserModal";
 import AddressBar from "./AddressBar";
 import ThemeSwitch from "./Theme";
+import AddTokenModal from "./AddTokenModal";
 
 const Header = () => {
   const { address } = useAccount();
   const { connect, connectors } = useConnect();
+  const { theme, changeTheme } = useTheme();
+  const lastYRef = useRef(0);
 
   useEffect(() => {
     const lastUsedConnector = localStorage.getItem("lastUsedConnector");
@@ -24,10 +27,45 @@ const Header = () => {
     }
   }, [connectors, connect]);
 
-  const { theme, changeTheme } = useTheme();
+  useEffect(() => {
+    const nav = document.getElementById("nav");
+
+    const handleScroll = () => {
+      const difference = window.scrollY - lastYRef.current;
+      if (Math.abs(difference) > 50) {
+        if (difference > 0) {
+          nav?.setAttribute("data-header", "scroll-hide");
+        } else {
+          nav?.setAttribute("data-header", "scroll-show");
+        }
+        lastYRef.current = window.scrollY;
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <div className="fixed z-[9999] w-full px-8 pt-8">
+    <div
+      onMouseEnter={(e) => {
+        if (e.currentTarget.getAttribute("data-header") === "scroll-hide") {
+          e.currentTarget.setAttribute("data-header", "hover-show");
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (e.currentTarget.getAttribute("data-header") === "hover-show") {
+          e.currentTarget.setAttribute("data-header", "hover-hide");
+        }
+      }}
+      onFocusCapture={(e) =>
+        e.currentTarget.setAttribute("data-header", "scroll-show")
+      }
+      id="nav"
+      className="fixed z-[9999] w-full px-8 pt-8 transition-all duration-500"
+    >
       <header className="rounded-[32px] bg-primary-gradient">
         <div className="mx-auto flex h-[7rem] max-w-[2000px] items-center justify-between px-8">
           <div className="w-[18.75rem]">
@@ -67,6 +105,7 @@ const Header = () => {
         <ConnectModal />
         <TransactionModal />
         <UserModal />
+        <AddTokenModal />
       </header>
     </div>
   );

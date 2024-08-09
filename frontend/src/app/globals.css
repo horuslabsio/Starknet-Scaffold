@@ -15,6 +15,9 @@
     --add-token-border: #141925;
     --backdrop: #ffffff4d;
     --link-card: #f7f7f7;
+    --modal-assets-bg: #ffebda;
+    --modal-disconnect-bg: #f7f7f7;
+    --borders: #eeeeee;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -26,6 +29,9 @@
       --add-token-border: #141925;
       --backdrop: transparent;
       --link-card: #343333;
+      --modal-assets-bg: #34302d;
+      --modal-disconnect-bg: transparent;
+      --borders: #494949;
     }
   }
 
@@ -37,6 +43,9 @@
     --add-token-border: #141925;
     --backdrop: #ffffff4d;
     --link-card: #f7f7f7;
+    --modal-assets-bg: #ffebda;
+    --modal-disconnect-bg: #f7f7f7;
+    --borders: #eeeeee;
   }
 
   [data-theme="dark"] {
@@ -47,6 +56,20 @@
     --add-token-border: #ffffff;
     --backdrop: transparent;
     --link-card: #343333;
+    --modal-assets-bg: #34302d;
+    --modal-disconnect-bg: transparent;
+    --borders: #494949;
+  }
+
+  [data-header="hover-hide"],
+  [data-header="scroll-hide"] {
+    transform: translateY(-90%);
+  }
+
+  [data-header="hover-hide"] #theme-switcher,
+  [data-header="scroll-hide"] #theme-switcher {
+    opacity: 0;
+    pointer-events: none;
   }
 
   html,
@@ -58,7 +81,6 @@
 
   body {
     background-color: var(--background);
-
     transition:
       background-color 0.5s linear,
       color 0.5s linear;
@@ -78,8 +100,9 @@
   }
 
   :root {
-    --100vh: calc(100vh);
+    --100vh: 100vh;
     --100svh: 100svh;
+    --m-100vh: 100svh;
   }
   @media only screen and (max-width: 1600px) {
     html {
@@ -88,9 +111,19 @@
     :root {
       --100vh: calc(100vh / 0.8);
       --100svh: calc((100svh / 0.8) - (3rem / 0.8));
+      --m-100vh: calc((100vh / 0.8) - 9rem);
     }
   }
-
+  @media only screen and (max-width: 1350px) {
+    :root {
+      /* --m-100vh: calc(100svh - 9rem); */
+    }
+  }
+  @media only screen and (max-width: 1200px) {
+    :root {
+      /* --m-100vh: 100svh; */
+    }
+  }
   @media only screen and (max-width: 768px) {
     html {
       zoom: 1;
@@ -98,8 +131,10 @@
     :root {
       --100vh: 100vh;
       --100svh: 100svh;
+      --m-100vh: 100svh;
     }
   }
+
   [popover] {
     transform: translateY(10%);
   }
@@ -120,6 +155,11 @@
     opacity: 1;
     backdrop-filter: blur(5px);
     background-color: var(--backdrop);
+  }
+  .user-modal {
+    overflow: scroll;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
   }
   @starting-style {
     [popover]:popover-open {

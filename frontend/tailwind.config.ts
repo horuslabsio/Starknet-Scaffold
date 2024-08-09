@@ -31,9 +31,12 @@ const config: Config = {
         "green-primary": "#CDFFD2",
         "green-secondary": "#10A41F",
         "red-primary": "#FFCDCD",
-        "red-secondary": "#A41010",
+        "red-secondary": "#FE4E4E",
         "yellow-primary": "#FD9332",
         "yellow-secondary": "#FFEECD",
+        "dark-hover": "#34302D",
+        "border-dark": "494949",
+        "border-light": "#eeeeee",
         "grey-light-primary": "#F9FAFB",
       },
       fontSize: {
@@ -54,6 +57,7 @@ const config: Config = {
       fontFamily: {
         coolvetica: ["coolvetica", "sans-serif"],
       },
+      boxShadow: { "popover-shadow": "0px 0px 50px 2px #EC796B33" },
     },
   },
   plugins: [require("tailwindcss-animate")],

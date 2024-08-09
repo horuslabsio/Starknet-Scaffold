@@ -32,39 +32,39 @@ function AccountBalance({ address }: Props) {
   const strkBalance = formatCurrency(strk?.balance?.low.toString());
 
   return (
-    <div className="p-4">
+    <div className="p-4 text-sm text-[--headings]">
       <h3 className="mb-4">Asset</h3>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-full bg-black"></div>
+            <div className="h-12 w-12 rounded-full">
+              <img className="w-full" src="/assets/eth.svg" alt="" />
+            </div>
             <div>
-              <p className="text-l text-accent-secondary">ETH</p>
+              <p className="mb-2 text-md">ETH</p>
               <p>Ethereum</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <p className="text-accent-secondary">
-              {Number(ethBalance).toFixed(3)}
-            </p>
-            <span className="text-l text-accent-secondary">
+            <p className="">{Number(ethBalance).toFixed(3)}</p>
+            <span className="text-l">
               <RightChevron />
             </span>
           </div>
         </div>
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
-            <div className="h-12 w-12 rounded-full bg-black"></div>
+            <div className="h-12 w-12 rounded-full">
+              <img className="w-full" src="/assets/strk.svg" alt="" />
+            </div>
             <div>
-              <p className="text-l text-accent-secondary">STRK</p>
+              <p className="mb-2 text-md">STRK</p>
               <p>Starknet token</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <p className="text-accent-secondary">
-              {Number(strkBalance).toFixed(3)}
-            </p>
-            <span className="text-l text-accent-secondary">
+            <p className="">{Number(strkBalance).toFixed(3)}</p>
+            <span className="text-l">
               <RightChevron />
             </span>
           </div>
