@@ -26,12 +26,12 @@ export default function Home() {
             A modern clean version of Starknet-Scaffold with NextJS, Rainbowkit,
             Wagmi and Typescript. Supports Hardhat and Foundry
           </p>
-          <div className="flex items-center justify-center gap-x-5">
+          <div className="flex justify-center gap-x-5">
             <NetworkSwitcher />
             <button
               aria-haspopup="dialog"
               popoverTarget="add-token-popover"
-              className="add-token w-fit rounded-[12px] border-[2.5px] border-solid bg-background-primary-light px-12 py-3 text-accent-secondary"
+              className="add-token h-fit w-fit rounded-[12px] border-[2.5px] border-solid bg-background-primary-light px-12 py-3 text-accent-secondary"
             >
               Add Token
             </button>

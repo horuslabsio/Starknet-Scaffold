@@ -2,18 +2,6 @@
 import * as React from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { useNetwork } from "@starknet-react/core";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/app/components/ui_components/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/app/components/ui_components/popover";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",
@@ -58,51 +46,49 @@ export function NetworkSwitcher() {
   }, [chain.network]);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <button
-          role="combobox"
-          aria-expanded={open}
-          className="flex w-[12rem] cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 text-md text-[--headings]"
+    <div className="relative transition-all duration-500">
+      <button
+        role="combobox"
+        className="flex w-[12rem] cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 text-md text-[--headings]"
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        <span>
+          {selectedNetwork
+            ? networks.find((network) => network.value === selectedNetwork)
+                ?.label
+            : "Select Network..."}
+        </span>
+        <span
+          className={`${open ? "-rotate-180" : ""} transition-all duration-500`}
         >
-          <span>
-            {selectedNetwork
-              ? networks.find((network) => network.value === selectedNetwork)
-                  ?.label
-              : "Select Network..."}
-          </span>
-          <span>
-            <ChevronDown />
-          </span>
-        </button>
-      </PopoverTrigger>
-      <PopoverContent className="w-[200px] bg-background-primary-light p-0">
-        <Command>
-          <CommandInput placeholder="Search network..." />
-          <CommandEmpty>No network found.</CommandEmpty>
-          <CommandGroup>
-            {networks.map((network) => (
-              <CommandItem
-                className="cursor-pointer"
-                key={network.value}
-                value={network.value}
-                onSelect={() => {
-                  switchNetwork(network.value, network.label);
-                  setOpen(false);
-                }}
-              >
-                <span
-                  className={`mr-2 text-md ${selectedNetwork === network.value ? "opacity-100" : "opacity-0"}`}
-                >
-                  <Check />
-                </span>
-                <span>{network.label}</span>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </Command>
-      </PopoverContent>
-    </Popover>
+          <ChevronDown />
+        </span>
+      </button>
+      <div
+        className={` ${open ? "inline-block h-fit" : "hidden h-0 overflow-hidden"} absolute left-0 top-[75px] z-[10] mx-auto flex w-[250px] flex-col overflow-hidden rounded-xl border-[2px] border-solid border-[--borders] bg-[--link-card] transition-all duration-500`}
+      >
+        {networks.map((network) => (
+          <button
+            className="flex w-full cursor-pointer items-center px-4 py-3"
+            key={network.value}
+            value={network.value}
+            onClick={() => {
+              switchNetwork(network.value, network.label);
+              setOpen(false);
+            }}
+          >
+            <span
+              className={`mr-2 text-md ${selectedNetwork === network.value ? "opacity-100" : "opacity-0"}`}
+            >
+              <Check />
+            </span>
+            <span>{network.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
