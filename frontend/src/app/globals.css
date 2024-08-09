@@ -18,6 +18,7 @@
     --modal-assets-bg: #ffebda;
     --modal-disconnect-bg: #f7f7f7;
     --borders: #eeeeee;
+    --header-max-w: 2000px;
   }
 
   @media (prefers-color-scheme: dark) {

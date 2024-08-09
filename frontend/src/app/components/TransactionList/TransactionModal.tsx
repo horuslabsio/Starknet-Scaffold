@@ -50,7 +50,7 @@ const TransactionModal = () => {
       popoverId="transaction-modal"
       style="mx-auto bg-transparent p-0 w-full h-full mt-[9rem] backdrop:mt-[9rem]"
     >
-      <div className="mx-auto mt-8 flex max-w-[2000px] flex-col items-end">
+      <div className="mx-auto mt-8 flex max-w-[--header-max-w] flex-col items-end">
         <div className="ml-auto mr-[3rem] w-[30rem] rounded-[24px] bg-[--background] p-8 text-text-primary shadow-popover-shadow">
           <div className="mb-8 flex justify-between">
             <h3 className="text-l text-[--headings]">Transaction List</h3>

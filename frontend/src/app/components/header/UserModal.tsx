@@ -42,7 +42,7 @@ const UserModal = () => {
       popoverId="user-popover"
       style="w-full mt-[9rem] bg-transparent backdrop:mt-[9rem]"
     >
-      <div className="user-modal mx-auto flex h-[--m-100vh] w-full max-w-[2000px] flex-col items-end px-12">
+      <div className="user-modal mx-auto flex h-[--m-100vh] w-full max-w-[--header-max-w] flex-col items-end px-12">
         <div
           style={{
             zoom: "0.9",

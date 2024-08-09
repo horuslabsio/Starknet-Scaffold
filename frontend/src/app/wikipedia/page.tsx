@@ -32,7 +32,7 @@ export default function Page() {
   return (
     <section className="relative w-full">
       <div className="w-full bg-[url('/assets/header-bg.svg')] bg-cover bg-[0px] bg-no-repeat px-24 py-10">
-        <div className="mx-auto max-w-[2000px]">
+        <div className="mx-auto max-w-[--header-max-w]">
           <div className="relative mb-[95px] flex flex-wrap items-center justify-between">
             <div className="flex items-center gap-x-[9px]">
               <Image src={logoImage} alt="logo" width={360} height={48} />
