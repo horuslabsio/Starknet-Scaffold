@@ -46,7 +46,7 @@ export function NetworkSwitcher() {
   }, [chain.network]);
 
   return (
-    <div className="relative transition-all duration-500">
+    <div className="relative flex flex-col gap-y-3 transition-all duration-500">
       <button
         role="combobox"
         className="flex w-[12rem] cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 text-md text-[--headings]"
@@ -67,6 +67,34 @@ export function NetworkSwitcher() {
         </span>
       </button>
       <div
+        className={`absolute left-0 top-[65px] z-[10] grid w-[250px] overflow-hidden rounded-xl shadow-md transition-all duration-300 ease-in-out ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden rounded-xl">
+          <div className="flex flex-col overflow-hidden rounded-xl border-[2px] border-solid border-[--borders] bg-[--link-card]">
+            {networks.map((network) => (
+              <button
+                className="flex w-full cursor-pointer items-center rounded-xl px-4 py-3"
+                key={network.value}
+                value={network.value}
+                onClick={() => {
+                  switchNetwork(network.value, network.label);
+                  setOpen(false);
+                }}
+              >
+                <span
+                  className={`mr-2 text-md ${selectedNetwork === network.value ? "opacity-100" : "opacity-0"}`}
+                >
+                  <Check />
+                </span>
+                <span>{network.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* <div
         className={` ${open ? "inline-block h-fit" : "hidden h-0 overflow-hidden"} absolute left-0 top-[75px] z-[10] mx-auto flex w-[250px] flex-col overflow-hidden rounded-xl border-[2px] border-solid border-[--borders] bg-[--link-card] transition-all duration-500`}
       >
         {networks.map((network) => (
@@ -87,7 +115,7 @@ export function NetworkSwitcher() {
             <span>{network.label}</span>
           </button>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
