@@ -67,16 +67,14 @@ const Header = () => {
       className="fixed z-[9999] w-full px-8 pt-8 transition-all duration-500"
     >
       <header className="rounded-[32px] bg-primary-gradient">
-        <div className="mx-auto flex h-[7rem] max-w-[2000px] items-center justify-between px-8">
+        <div className="mx-auto flex h-[7rem] max-w-[--header-max-w] items-center justify-between px-8">
           <div className="w-[18.75rem]">
             <img src="/assets/logo.svg" alt="logo" className="h-full w-full" />
           </div>
           <div className="relative">
             {address ? (
               <div className="flex items-center gap-4">
-                <button className="rounded-full bg-button-tertiary text-accent-secondary">
-                  <AddressBar />
-                </button>
+                <AddressBar />
                 <button
                   aria-haspopup="dialog"
                   popoverTarget="transaction-modal"
