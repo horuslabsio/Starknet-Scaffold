@@ -49,7 +49,7 @@ export default function Home() {
             href="/burner"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute w-[45%] px-8 pt-8">
               <h2 className="mb-2 flex items-center gap-1 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -78,7 +78,7 @@ export default function Home() {
             href="https://starknet-faucet.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute px-8 pt-8">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -103,7 +103,7 @@ export default function Home() {
             href="/scaffold-deployer"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between rounded-[16px] px-8 pt-8 transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] px-8 pt-8 transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -128,7 +128,7 @@ export default function Home() {
             href="/wikipedia"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute px-8 pt-8">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -157,7 +157,7 @@ export default function Home() {
             href="https://www.stark-utils.xyz/converter"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute px-8 pt-8">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -186,7 +186,7 @@ export default function Home() {
             href="/address-book"
             target="_blank"
             rel="noopener noreferrer"
-            className="group block h-full w-full rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="group block h-full w-full overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="absolute px-8 pt-8">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
