@@ -19,7 +19,7 @@ const networks = [
   },
 ];
 
-export function NetworkSwitcher() {
+export default function NetworkSwitcher() {
   const { chain } = useNetwork();
   const [open, setOpen] = React.useState(false);
   const [selectedNetwork, setSelectedNetwork] = React.useState(
@@ -46,10 +46,10 @@ export function NetworkSwitcher() {
   }, [chain.network]);
 
   return (
-    <div className="relative flex flex-col gap-y-3 transition-all duration-500">
+    <div className="relative flex w-[50%] max-w-[12rem] flex-col gap-y-3 text-[--headings] transition-all duration-500">
       <button
         role="combobox"
-        className="flex w-[12rem] cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 text-md text-[--headings]"
+        className="flex h-12 cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] px-4"
         onClick={() => {
           setOpen((prev) => !prev);
         }}
@@ -67,12 +67,12 @@ export function NetworkSwitcher() {
         </span>
       </button>
       <div
-        className={`absolute left-0 top-[65px] z-[10] grid w-[250px] overflow-hidden rounded-xl shadow-md transition-all duration-300 ease-in-out ${
+        className={`absolute left-0 top-[65px] z-[10] grid w-[250px] -translate-x-1/2 overflow-hidden rounded-xl transition-all duration-300 ease-in-out md:translate-x-0 ${
           open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <div className="overflow-hidden rounded-xl">
-          <div className="flex flex-col overflow-hidden rounded-xl border-[2px] border-solid border-[--borders] bg-[--link-card]">
+        <div className="overflow-hidden">
+          <div className="flex flex-col rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card]">
             {networks.map((network) => (
               <button
                 className="flex w-full cursor-pointer items-center rounded-xl px-4 py-3"
@@ -94,30 +94,6 @@ export function NetworkSwitcher() {
           </div>
         </div>
       </div>
-      {/* <div
-        className={` ${open ? "inline-block h-fit" : "hidden h-0 overflow-hidden"} absolute left-0 top-[75px] z-[10] mx-auto flex w-[250px] flex-col overflow-hidden rounded-xl border-[2px] border-solid border-[--borders] bg-[--link-card] transition-all duration-500`}
-      >
-        {networks.map((network) => (
-          <button
-            className="flex w-full cursor-pointer items-center px-4 py-3"
-            key={network.value}
-            value={network.value}
-            onClick={() => {
-              switchNetwork(network.value, network.label);
-              setOpen(false);
-            }}
-          >
-            <span
-              className={`mr-2 text-md ${selectedNetwork === network.value ? "opacity-100" : "opacity-0"}`}
-            >
-              <Check />
-            </span>
-            <span>{network.label}</span>
-          </button>
-        ))}
-      </div> */}
     </div>
   );
 }
-
-export default NetworkSwitcher;

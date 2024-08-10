@@ -40,19 +40,17 @@ const UserModal = () => {
   return (
     <GenericModal
       popoverId="user-popover"
-      style="w-full mt-[9rem] bg-transparent backdrop:mt-[9rem]"
+      style="mt-[5rem] w-full bg-transparent backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
     >
-      <div className="user-modal mx-auto flex h-[--m-100vh] w-full max-w-[2000px] flex-col items-end px-12">
-        <div
-          style={{
-            zoom: "0.9",
-          }}
-          className="pt-8"
-        >
-          <div className="mb-8 flex w-[30rem] flex-col justify-between gap-4 rounded-[24px] bg-[--background] p-8 text-md text-text-primary shadow-popover-shadow transition-colors duration-500 ease-linear">
+      <div className="user-modal mx-auto flex h-[--modal-h] w-full max-w-[--header-max-w] flex-col items-center md:items-end md:px-12">
+        <div className="zoom pt-8">
+          <div className="mb-8 flex w-[95vw] max-w-[30rem] flex-col justify-between gap-4 rounded-[24px] bg-[--background] p-8 text-md text-text-primary shadow-popover-shadow transition-colors duration-500 ease-linear">
             <div className="flex justify-between">
               <h3 className="text-l text-[--headings]">Connected</h3>
-              <button popoverTarget="user-popover">
+              <button
+                // @ts-ignore
+                popoverTarget="user-popover"
+              >
                 <Close />
               </button>
             </div>
@@ -107,6 +105,7 @@ const UserModal = () => {
               <button
                 onClick={(e) => {
                   const popover = document.getElementById("user-popover");
+                  // @ts-ignore
                   popover.hidePopover();
                   disconnect();
                 }}
@@ -117,19 +116,17 @@ const UserModal = () => {
             </div>
           </div>
         </div>
-        <div
-          style={{
-            zoom: "0.9",
-          }}
-          className="pb-8"
-        >
-          <div className="flex w-[30rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 shadow-popover-shadow transition-colors duration-500 ease-linear">
+        <div className="zoom pb-8">
+          <div className="flex w-[95vw] max-w-[30rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 shadow-popover-shadow transition-colors duration-500 ease-linear">
             <div className="flex items-center justify-between">
               <p className="text-text-primary">Select Network</p>
               <NetworkSwitcher />
             </div>
             <div>
-              <button className="flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] p-4 text-[--headings]">
+              <button // @ts-ignore
+                popoverTarget="transaction-modal"
+                className="flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] p-4 text-[--headings]"
+              >
                 <span className="text-l">
                   <Library />
                 </span>
@@ -139,6 +136,7 @@ const UserModal = () => {
             <div>
               <button
                 aria-haspopup="dialog"
+                // @ts-ignore
                 popoverTarget="add-token-popover"
                 className="w-full rounded-[12px] bg-accent-secondary p-4 text-background-primary-light"
               >
@@ -148,7 +146,7 @@ const UserModal = () => {
 
             <div>
               <ThemeSwitch
-                className="ml-auto"
+                className="grid"
                 action={changeTheme}
                 theme={theme}
                 dimension="3rem"
