@@ -12,7 +12,7 @@ const AddressBar = () => {
     return null;
   }
 
-  const openPopover = ({ targetId }: { targetId: string }) => {
+  const togglePopover = ({ targetId }: { targetId: string }) => {
     const popover = document.getElementById(targetId);
     // @ts-ignore
     popover.togglePopover();
@@ -30,7 +30,7 @@ const AddressBar = () => {
   return (
     <button
       aria-haspopup="dialog"
-      onClick={() => openPopover({ targetId: "user-popover" })}
+      onClick={() => togglePopover({ targetId: "user-popover" })}
       className="rounded-full bg-button-tertiary px-2 py-1 text-accent-secondary md:px-4 md:py-2"
     >
       {
