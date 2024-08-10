@@ -58,7 +58,7 @@ export default function Home() {
       {/* <-- END */}
 
       {/* Link cards --> */}
-      <section className="container mx-auto flex w-[90%] grid-cols-3 flex-col gap-4 text-text-primary md:grid md:gap-2 lg:w-[80%] lg:gap-4">
+      <section className="container mx-auto flex w-[90%] grid-cols-3 grid-rows-2 flex-col gap-4 text-text-primary md:grid md:gap-2 lg:w-[80%] lg:gap-4">
         <div className="relative col-span-2 mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-[350px] md:max-w-none">
           <Link
             href="/burner"
@@ -84,7 +84,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="group relative mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:max-w-none">
+        <div className="group relative mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-[350px] md:max-h-none md:max-w-none">
           <Link
             href="https://starknet-faucet.vercel.app"
             target="_blank"
@@ -226,6 +226,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
       {/* <-- END */}
 
       {/* Community --> */}
