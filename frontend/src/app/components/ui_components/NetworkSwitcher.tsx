@@ -19,7 +19,7 @@ const networks = [
   },
 ];
 
-export function NetworkSwitcher() {
+export default function NetworkSwitcher() {
   const { chain } = useNetwork();
   const [open, setOpen] = React.useState(false);
   const [selectedNetwork, setSelectedNetwork] = React.useState(
@@ -46,29 +46,33 @@ export function NetworkSwitcher() {
   }, [chain.network]);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <button
-          role="combobox"
-          aria-expanded={open}
-          className="flex h-12 w-[50%] max-w-[12rem] cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] px-4 text-[--headings]"
+    <div className="relative flex w-[50%] max-w-[12rem] flex-col gap-y-3 text-[--headings] transition-all duration-500">
+      <button
+        role="combobox"
+        className="flex h-12 cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] px-4"
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        <span>
+          {selectedNetwork
+            ? networks.find((network) => network.value === selectedNetwork)
+                ?.label
+            : "Select Network..."}
+        </span>
+        <span
+          className={`${open ? "-rotate-180" : ""} transition-all duration-500`}
         >
-          <span>
-            {selectedNetwork
-              ? networks.find((network) => network.value === selectedNetwork)
-                  ?.label
-              : "Select Network..."}
-          </span>
-          <span>
-            <ChevronDown />
-          </span>
-        </button>
-      </PopoverTrigger>
-      <PopoverContent className="w-[200px] bg-background-primary-light p-0">
-        <Command>
-          <CommandInput placeholder="Search network..." />
-          <CommandEmpty>No network found.</CommandEmpty>
-          <CommandGroup>
+          <ChevronDown />
+        </span>
+      </button>
+      <div
+        className={`absolute left-0 top-[65px] z-[10] grid w-[250px] -translate-x-1/2 overflow-hidden rounded-xl transition-all duration-300 ease-in-out md:translate-x-0 ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="flex flex-col rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card]">
             {networks.map((network) => (
               <button
                 className="flex w-full cursor-pointer items-center rounded-xl px-4 py-3"
@@ -90,30 +94,6 @@ export function NetworkSwitcher() {
           </div>
         </div>
       </div>
-      {/* <div
-        className={` ${open ? "inline-block h-fit" : "hidden h-0 overflow-hidden"} absolute left-0 top-[75px] z-[10] mx-auto flex w-[250px] flex-col overflow-hidden rounded-xl border-[2px] border-solid border-[--borders] bg-[--link-card] transition-all duration-500`}
-      >
-        {networks.map((network) => (
-          <button
-            className="flex w-full cursor-pointer items-center px-4 py-3"
-            key={network.value}
-            value={network.value}
-            onClick={() => {
-              switchNetwork(network.value, network.label);
-              setOpen(false);
-            }}
-          >
-            <span
-              className={`mr-2 text-md ${selectedNetwork === network.value ? "opacity-100" : "opacity-0"}`}
-            >
-              <Check />
-            </span>
-            <span>{network.label}</span>
-          </button>
-        ))}
-      </div> */}
     </div>
   );
 }
-
-export default NetworkSwitcher;
