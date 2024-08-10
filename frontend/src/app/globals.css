@@ -117,11 +117,7 @@
       --modal-h: calc((100vh / 0.8) - 9rem);
     }
   }
-  @media only screen and (max-width: 1350px) {
-    :root {
-      /* --modal-h: calc(100svh - 9rem); */
-    }
-  }
+
   @media only screen and (max-width: 1024px) {
     html {
       zoom: 0.9;
@@ -164,7 +160,16 @@
     backdrop-filter: blur(5px);
     background-color: var(--backdrop);
   }
+  @starting-style {
+    [popover]:popover-open {
+      opacity: 0;
+      transform: translateY(10%);
+    }
 
+    ::backdrop::popover-open {
+      opacity: 0;
+    }
+  }
   .user-modal,
   .transactions-modal {
     overflow: scroll;
@@ -183,16 +188,6 @@
   @media only screen and (min-width: 768px) {
     .zoom {
       zoom: 0.9;
-    }
-  }
-  @starting-style {
-    [popover]:popover-open {
-      opacity: 0;
-      transform: translateY(10%);
-    }
-
-    ::backdrop::popover-open {
-      opacity: 0;
     }
   }
 }
