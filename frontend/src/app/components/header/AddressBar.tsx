@@ -15,7 +15,8 @@ const AddressBar = () => {
   return (
     <button
       aria-haspopup="dialog"
-      popovertarget="user-popover"
+      // @ts-ignore
+      popoverTarget="user-popover"
       className="rounded-full bg-button-tertiary px-2 py-1 text-accent-secondary md:px-4 md:py-2"
     >
       {

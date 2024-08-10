@@ -45,15 +45,16 @@ const AddTokenModal = () => {
   }
 
   return (
-    <GenericModal
-      popoverId="add-token-popover"
-      style={`bg-transparent w-full h-full`}
-    >
-      <div className="flex h-full items-center">
-        <div className="mx-auto h-fit w-[30rem] rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
+    <GenericModal popoverId="add-token-popover" style={`bg-transparent w-full`}>
+      <div className="gird h-svh place-content-center">
+        <div className="mx-auto h-[98svh] max-h-[600px] w-[95vw] max-w-[30rem] overflow-scroll rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
           <div className="mb-8 flex justify-between">
             <h3 className="text-l text-[--headings]">Add Token</h3>
-            <button popoverTarget="add-token-popover">
+
+            <button
+              // @ts-ignore
+              popoverTarget="add-token-popover"
+            >
               <Close />
             </button>
           </div>
