@@ -2,18 +2,6 @@
 import * as React from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { useNetwork } from "@starknet-react/core";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/app/components/ui_components/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/app/components/ui_components/popover";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",
@@ -82,11 +70,11 @@ export function NetworkSwitcher() {
           <CommandEmpty>No network found.</CommandEmpty>
           <CommandGroup>
             {networks.map((network) => (
-              <CommandItem
-                className="cursor-pointer"
+              <button
+                className="flex w-full cursor-pointer items-center rounded-xl px-4 py-3"
                 key={network.value}
                 value={network.value}
-                onSelect={() => {
+                onClick={() => {
                   switchNetwork(network.value, network.label);
                   setOpen(false);
                 }}
@@ -97,12 +85,34 @@ export function NetworkSwitcher() {
                   <Check />
                 </span>
                 <span>{network.label}</span>
-              </CommandItem>
+              </button>
             ))}
-          </CommandGroup>
-        </Command>
-      </PopoverContent>
-    </Popover>
+          </div>
+        </div>
+      </div>
+      {/* <div
+        className={` ${open ? "inline-block h-fit" : "hidden h-0 overflow-hidden"} absolute left-0 top-[75px] z-[10] mx-auto flex w-[250px] flex-col overflow-hidden rounded-xl border-[2px] border-solid border-[--borders] bg-[--link-card] transition-all duration-500`}
+      >
+        {networks.map((network) => (
+          <button
+            className="flex w-full cursor-pointer items-center px-4 py-3"
+            key={network.value}
+            value={network.value}
+            onClick={() => {
+              switchNetwork(network.value, network.label);
+              setOpen(false);
+            }}
+          >
+            <span
+              className={`mr-2 text-md ${selectedNetwork === network.value ? "opacity-100" : "opacity-0"}`}
+            >
+              <Check />
+            </span>
+            <span>{network.label}</span>
+          </button>
+        ))}
+      </div> */}
+    </div>
   );
 }
 

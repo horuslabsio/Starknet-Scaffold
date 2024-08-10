@@ -82,7 +82,7 @@ export default function Home() {
             href="https://starknet-faucet.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="px-8 pt-8 md:absolute">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -140,7 +140,7 @@ export default function Home() {
             href="/wikipedia"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="p-4 md:absolute md:px-8 md:pt-8">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -169,7 +169,7 @@ export default function Home() {
             href="https://www.stark-utils.xyz/converter"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="p-4 md:absolute md:px-8 md:pt-8">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
