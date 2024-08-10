@@ -49,8 +49,8 @@ export default function Home() {
       {/* <-- END */}
 
       {/* Link cards --> */}
-      <section className="container mx-auto flex w-[90%] max-w-[500px] grid-cols-3 flex-col gap-2 text-text-primary md:grid md:max-w-none lg:w-[80%] lg:gap-4">
-        <div className="relative col-span-2 h-[280px] w-full overflow-clip rounded-[16px] bg-[--link-card] md:h-[350px]">
+      <section className="container mx-auto flex w-[90%] grid-cols-3 flex-col gap-4 text-text-primary md:grid md:gap-2 lg:w-[80%] lg:gap-4">
+        <div className="relative col-span-2 mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-[350px] md:max-w-none">
           <Link
             href="/burner"
             target="_blank"
@@ -75,12 +75,12 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="group relative h-[280px] w-full overflow-hidden rounded-[16px] bg-[--link-card] md:h-full md:max-h-none">
+        <div className="group relative mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:max-w-none">
           <Link
             href="https://starknet-faucet.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-full w-full flex-col rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
           >
             <div className="px-8 pt-8 md:absolute">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -94,7 +94,7 @@ export default function Home() {
                 tokens
               </p>
             </div>
-            <div className="h-[180px] md:mr-auto md:mt-auto md:h-fit md:w-[90%]">
+            <div className="mr-auto h-[180px] w-[70%] md:mt-auto md:h-fit md:w-[90%]">
               <Image
                 src={faucet}
                 alt="faucet banner"
@@ -104,7 +104,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative row-span-2 h-full max-h-[280px] w-full overflow-clip rounded-[16px] bg-[--link-card] md:max-h-none">
+        <div className="relative row-span-2 mx-auto h-full max-h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:max-h-none md:max-w-none">
           <Link
             href="/scaffold-deployer"
             target="_blank"
@@ -133,7 +133,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative h-[280px] w-full rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px]">
+        <div className="relative mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px] md:max-w-none">
           <Link
             href="/wikipedia"
             target="_blank"
@@ -162,7 +162,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative h-full max-h-[280px] w-full overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px]">
+        <div className="relative mx-auto h-full max-h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px] md:max-w-none">
           <Link
             href="https://www.stark-utils.xyz/converter"
             target="_blank"
@@ -191,7 +191,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative col-span-2 h-[280px] w-full overflow-clip rounded-[16px] bg-[--link-card] md:h-full">
+        <div className="relative col-span-2 mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-w-none">
           <Link
             href="/address-book"
             target="_blank"
