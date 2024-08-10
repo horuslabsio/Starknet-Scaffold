@@ -51,14 +51,14 @@ export default function Page() {
           <div className="relative mx-auto md:w-fit">
             <input
               type="text"
-              className="w-full rounded-[10px] bg-[#F7F7F7] px-4 py-3 pl-10 text-sm text-[#141925] placeholder:text-[#7A7A7A] md:w-[800px] md:rounded-2xl md:px-6 md:py-5 md:pl-[60px] md:text-l md:leading-[30px]"
+              className="w-full rounded-[10px] bg-[#F7F7F7] px-4 py-3 pl-10 text-base text-[#141925] placeholder:text-[#7A7A7A] md:w-[800px] md:rounded-2xl md:px-6 md:py-5 md:pl-[60px] md:text-l md:leading-[30px]"
               placeholder="Search keywords, links"
               name="search"
               onChange={(e) => setSearch(e.target.value)}
             />
             <Image
               src={searchIcon}
-              className="absolute left-4 top-[11px] z-10 h-4 w-4 md:left-6 md:top-6 md:h-6 md:w-6"
+              className="absolute left-4 top-[14px] z-10 h-5 w-5 md:left-6 md:top-6 md:h-6 md:w-6"
               alt="search"
             />
           </div>
