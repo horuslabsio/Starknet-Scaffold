@@ -34,7 +34,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
   }
 
   return (
-    <div className="flex items-center gap-4 rounded-[24px] border-[1px] border-solid border-[--headings] bg-transparent p-4">
+    <div className="flex items-center gap-4 rounded-[24px] border-[1px] border-solid border-[--headings] bg-transparent p-2 text-sm md:p-4">
       <div>
         <span className="grid h-12 w-12 place-content-center rounded-[12px] bg-yellow-secondary text-l text-yellow-primary">
           <WarnBadge />
@@ -58,9 +58,9 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
         </svg> */}
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 px-4">
+      <div className="flex flex-1 flex-col gap-2 px-2 md:gap-4 md:px-4">
         <div className="flex items-center justify-between">
-          <div className="flex w-fit items-center gap-2 rounded-full bg-[--link-card] px-4 py-2">
+          <div className="flex w-fit items-center gap-2 rounded-full bg-[--link-card] p-1 md:px-4 md:py-2">
             <div className="h-8 w-8 overflow-clip rounded-full">
               <Blockies
                 seed={address || ""}
@@ -68,6 +68,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
                 className="mx-auto h-full w-full rounded-full"
               />
             </div>
+
             <p className="text-primary text-sm text-yellow-primary">
               {starkProfile?.name ||
                 address?.slice(0, 6).concat("...").concat(address?.slice(-5))}

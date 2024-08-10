@@ -38,6 +38,7 @@ export default function Home() {
 
             <button
               aria-haspopup="dialog"
+              // @ts-ignore
               popoverTarget="add-token-popover"
               className="h-12 w-[50%] max-w-[12rem] rounded-[12px] border-[2px] border-solid border-[--add-token-border] bg-background-primary-light text-accent-secondary transition-all duration-300 hover:rounded-[30px]"
             >
@@ -46,6 +47,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <button
+        aria-haspopup="dialog"
+        // @ts-ignore
+        popoverTarget="user-popover"
+        className="rounded-full bg-button-tertiary px-2 py-1 text-accent-secondary md:px-4 md:py-2"
+      >
+        Longggggggg
+      </button>
       {/* <-- END */}
 
       {/* Link cards --> */}

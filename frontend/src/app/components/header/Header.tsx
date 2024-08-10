@@ -81,6 +81,7 @@ const Header = () => {
                 <AddressBar />
                 <button
                   aria-haspopup="dialog"
+                  // @ts-ignore
                   popoverTarget="transaction-modal"
                   className="grid h-10 w-10 place-content-center rounded-full bg-accent-secondary text-[1.5em] text-background-primary-light md:h-12 md:w-12"
                 >
@@ -90,6 +91,7 @@ const Header = () => {
             ) : (
               <button
                 aria-haspopup="dialog"
+                // @ts-ignore
                 popoverTarget="connect-modal"
                 className="rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
               >

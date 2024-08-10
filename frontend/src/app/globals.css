@@ -86,7 +86,9 @@
       background-color 0.5s linear,
       color 0.5s linear;
   }
-
+  input {
+    font-size: 1rem;
+  }
   .add-token {
     border-color: var(--add-token-border);
     transition: border-color 0.3s linear;
@@ -103,7 +105,7 @@
   :root {
     --100vh: 100vh;
     --100svh: 100svh;
-    --m-100vh: 100svh;
+    --modal-h: 100svh;
   }
   @media only screen and (max-width: 1600px) {
     html {
@@ -112,12 +114,12 @@
     :root {
       --100vh: calc(100vh / 0.8);
       --100svh: calc((100svh / 0.8) - (3rem / 0.8));
-      --m-100vh: calc((100vh / 0.8) - 9rem);
+      --modal-h: calc((100vh / 0.8) - 9rem);
     }
   }
   @media only screen and (max-width: 1350px) {
     :root {
-      /* --m-100vh: calc(100svh - 9rem); */
+      /* --modal-h: calc(100svh - 9rem); */
     }
   }
   @media only screen and (max-width: 1024px) {
@@ -127,7 +129,7 @@
     :root {
       --100vh: calc(100vh / 0.9);
       --100svh: calc((100svh / 0.9) - (3rem / 0.9));
-      --m-100vh: calc((100vh / 0.9) - 9rem);
+      --modal-h: calc((100vh / 0.9) - 9rem);
     }
   }
   @media only screen and (max-width: 768px) {
@@ -137,7 +139,7 @@
     :root {
       --100vh: 100vh;
       --100svh: 100svh;
-      --m-100vh: 100svh;
+      --modal-h: 90svh;
     }
   }
 
@@ -162,7 +164,8 @@
     backdrop-filter: blur(5px);
     background-color: var(--backdrop);
   }
-  .user-modal {
+  .user-modal,
+  .transactions-modal {
     overflow: scroll;
     scrollbar-color: transparent transparent;
     scrollbar-width: thin;
