@@ -16,7 +16,7 @@ const AddressBar = () => {
     <button
       aria-haspopup="dialog"
       popovertarget="user-popover"
-      className="rounded-full bg-button-tertiary px-4 py-2 text-accent-secondary"
+      className="rounded-full bg-button-tertiary px-2 py-1 text-accent-secondary md:px-4 md:py-2"
     >
       {
         <span className="flex items-center">

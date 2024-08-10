@@ -63,7 +63,7 @@ export function NetworkSwitcher() {
         <button
           role="combobox"
           aria-expanded={open}
-          className="flex w-[12rem] cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 text-md text-[--headings]"
+          className="flex h-12 w-[50%] max-w-[12rem] cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] px-4 text-[--headings]"
         >
           <span>
             {selectedNetwork
