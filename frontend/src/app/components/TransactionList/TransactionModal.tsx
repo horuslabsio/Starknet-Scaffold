@@ -48,9 +48,9 @@ const TransactionModal = () => {
   return (
     <GenericModal
       popoverId="transaction-modal"
-      style="mx-auto mt-[5rem] h-full w-full bg-transparent p-0 backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
+      style="mx-auto mt-[5rem]  h-full w-full bg-transparent p-0 backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
     >
-      <div className="mt-8 flex max-w-[--header-max-w] flex-col items-center md:items-end">
+      <div className="mx-auto mt-8 flex max-w-[--header-max-w] flex-col items-center md:items-end">
         <div className="w-[95vw] max-w-[30rem] rounded-[24px] bg-[--background] p-8 text-text-primary shadow-popover-shadow md:ml-auto md:mr-[3rem]">
           <div className="mb-8 flex justify-between">
             <h3 className="text-l text-[--headings]">Transaction List</h3>
