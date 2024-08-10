@@ -59,7 +59,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
       </div>
 
       <div className="flex flex-1 flex-col gap-2 px-2 md:gap-4 md:px-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-y-2">
           <div className="flex w-fit items-center gap-2 rounded-full bg-[--link-card] p-1 md:px-4 md:py-2">
             <div className="h-8 w-8 overflow-clip rounded-full">
               <Blockies
@@ -68,13 +68,12 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
                 className="mx-auto h-full w-full rounded-full"
               />
             </div>
-
             <p className="text-primary text-sm text-yellow-primary">
               {starkProfile?.name ||
                 address?.slice(0, 6).concat("...").concat(address?.slice(-5))}
             </p>
           </div>
-          <div>
+          <div className="ml-auto">
             <p className="text-green-secondary">+234 ETH</p>
           </div>
         </div>

@@ -170,6 +170,14 @@
     scrollbar-color: transparent transparent;
     scrollbar-width: thin;
   }
+  .zoom {
+    zoom: 1;
+  }
+  @media only screen and (min-width: 768px) {
+    .zoom {
+      zoom: 0.9;
+    }
+  }
   @starting-style {
     [popover]:popover-open {
       opacity: 0;

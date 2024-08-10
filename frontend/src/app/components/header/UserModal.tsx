@@ -43,12 +43,7 @@ const UserModal = () => {
       style="mt-[5rem] w-full bg-transparent backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
     >
       <div className="user-modal mx-auto flex h-[--modal-h] w-full max-w-[--header-max-w] flex-col items-center md:items-end md:px-12">
-        <div
-          style={{
-            zoom: "0.9",
-          }}
-          className="pt-8"
-        >
+        <div className="zoom pt-8">
           <div className="mb-8 flex w-[95vw] max-w-[30rem] flex-col justify-between gap-4 rounded-[24px] bg-[--background] p-8 text-md text-text-primary shadow-popover-shadow transition-colors duration-500 ease-linear">
             <div className="flex justify-between">
               <h3 className="text-l text-[--headings]">Connected</h3>
@@ -121,12 +116,7 @@ const UserModal = () => {
             </div>
           </div>
         </div>
-        <div
-          style={{
-            zoom: "0.9",
-          }}
-          className="pb-8"
-        >
+        <div className="zoom pb-8">
           <div className="flex w-[95vw] max-w-[30rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 shadow-popover-shadow transition-colors duration-500 ease-linear">
             <div className="flex items-center justify-between">
               <p className="text-text-primary">Select Network</p>
