@@ -48,6 +48,21 @@ const Header = () => {
     };
   }, []);
 
+  const openPopover = ({ targetId }: { targetId: string }) => {
+    const popover = document.getElementById(targetId);
+    // @ts-ignore
+    popover.togglePopover();
+    if (popover) {
+      popover.addEventListener("toggle", () => {
+        if (popover.matches(":popover-open")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+      });
+    }
+  };
+
   return (
     <div
       onMouseEnter={(e) => {
@@ -81,8 +96,7 @@ const Header = () => {
                 <AddressBar />
                 <button
                   aria-haspopup="dialog"
-                  // @ts-ignore
-                  popoverTarget="transaction-modal"
+                  onClick={() => openPopover({ targetId: "transaction-modal" })}
                   className="grid h-10 w-10 place-content-center rounded-full bg-accent-secondary text-[1.5em] text-background-primary-light md:h-12 md:w-12"
                 >
                   <Menu />
@@ -91,8 +105,7 @@ const Header = () => {
             ) : (
               <button
                 aria-haspopup="dialog"
-                // @ts-ignore
-                popoverTarget="connect-modal"
+                onClick={() => openPopover({ targetId: "connect-modal" })}
                 className="rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
               >
                 Connect Wallet
