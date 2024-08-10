@@ -22,7 +22,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
         width: dimension,
         height: dimension,
       }}
-      className={`grid place-content-center rounded-full bg-button-secondary transition-[opacity] duration-500 ${className}`}
+      className={`place-content-center rounded-full bg-button-secondary transition-[opacity] duration-500 ${className}`}
       onClick={action}
       // className={`transition-all duration-300 ease-in-out ${
       //   openMenu ? "top-[10rem]" : "top-[5rem]"

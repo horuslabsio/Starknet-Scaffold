@@ -64,12 +64,16 @@ const Header = () => {
         e.currentTarget.setAttribute("data-header", "scroll-show")
       }
       id="nav"
-      className="fixed z-[9999] w-full px-8 pt-8 transition-all duration-500"
+      className="fixed z-[9999] w-full px-2 pt-4 transition-all duration-500 md:px-8 md:pt-8"
     >
-      <header className="rounded-[32px] bg-primary-gradient">
-        <div className="mx-auto flex h-[7rem] max-w-[--header-max-w] items-center justify-between px-8">
-          <div className="w-[18.75rem]">
+      <header className="rounded-[12px] bg-primary-gradient md:rounded-[32px]">
+        <div className="mx-auto flex h-16 max-w-[--header-max-w] items-center justify-between px-4 md:h-28 md:px-8">
+          <div className="hidden w-[18.75rem] md:block">
             <img src="/assets/logo.svg" alt="logo" className="h-full w-full" />
+          </div>
+
+          <div className="block md:hidden">
+            <img src="/assets/mobile-logo.svg" alt="" />
           </div>
           <div className="relative">
             {address ? (
@@ -78,7 +82,7 @@ const Header = () => {
                 <button
                   aria-haspopup="dialog"
                   popoverTarget="transaction-modal"
-                  className="grid h-12 w-12 place-content-center rounded-full bg-accent-secondary text-[1.5em] text-background-primary-light"
+                  className="grid h-10 w-10 place-content-center rounded-full bg-accent-secondary text-[1.5em] text-background-primary-light md:h-12 md:w-12"
                 >
                   <Menu />
                 </button>
@@ -87,14 +91,14 @@ const Header = () => {
               <button
                 aria-haspopup="dialog"
                 popoverTarget="connect-modal"
-                className="rounded-[12px] bg-button-primary px-6 py-4 text-background-primary-light"
+                className="rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
               >
                 Connect Wallet
               </button>
             )}
 
             <ThemeSwitch
-              className="absolute bottom-[-250%] left-1/2"
+              className="absolute bottom-[-250%] left-1/2 hidden md:grid"
               action={changeTheme}
               theme={theme}
             />
