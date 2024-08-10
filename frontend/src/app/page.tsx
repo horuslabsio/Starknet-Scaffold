@@ -47,14 +47,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <button
+      {/* <button
         aria-haspopup="dialog"
         // @ts-ignore
         popoverTarget="user-popover"
         className="rounded-full bg-button-tertiary px-2 py-1 text-accent-secondary md:px-4 md:py-2"
       >
         Longggggggg
-      </button>
+      </button> */}
       {/* <-- END */}
 
       {/* Link cards --> */}
