@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Header from "@/app/components/header/Header";
-import NetworkSwitcher from "~/ui_components/NetworkSwitcher";
 import faucet from "../../public/assets/faucetBanner.svg";
 import deployer from "../../public/assets/deployerBanner.svg";
 import wikipedia from "../../public/assets/wikipediaBanner.svg";
@@ -9,6 +8,7 @@ import converter from "../../public/assets/converterBanner.svg";
 import burnerWallet from "../../public/assets/burnerWallet.svg";
 import Link from "next/link";
 import Upright from "svg/Upright";
+import NetworkSwitcher from "./components/ui_components/NetworkSwitcher";
 
 export default function Home() {
   return (
@@ -47,14 +47,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* <button
+      <button
         aria-haspopup="dialog"
         // @ts-ignore
         popoverTarget="user-popover"
         className="rounded-full bg-button-tertiary px-2 py-1 text-accent-secondary md:px-4 md:py-2"
       >
         Longggggggg
-      </button> */}
+      </button>
       {/* <-- END */}
 
       {/* Link cards --> */}
