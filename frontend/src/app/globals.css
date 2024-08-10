@@ -120,9 +120,14 @@
       /* --m-100vh: calc(100svh - 9rem); */
     }
   }
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1024px) {
+    html {
+      zoom: 0.9;
+    }
     :root {
-      /* --m-100vh: 100svh; */
+      --100vh: calc(100vh / 0.9);
+      --100svh: calc((100svh / 0.9) - (3rem / 0.9));
+      --m-100vh: calc((100vh / 0.9) - 9rem);
     }
   }
   @media only screen and (max-width: 768px) {

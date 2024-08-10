@@ -42,15 +42,15 @@ export default function Home() {
       {/* <-- END */}
 
       {/* Link cards --> */}
-      <section className="container mx-auto flex w-[90%] max-w-[500px] grid-cols-3 flex-col gap-8 text-text-primary md:grid md:w-[80%] md:max-w-none">
-        <div className="relative col-span-2 h-[280px] w-full rounded-[16px] bg-[--link-card] md:h-[350px]">
+      <section className="container mx-auto flex w-[90%] max-w-[500px] grid-cols-3 flex-col gap-2 text-text-primary md:grid md:max-w-none lg:w-[80%] lg:gap-4">
+        <div className="relative col-span-2 h-[280px] w-full overflow-clip rounded-[16px] bg-[--link-card] md:h-[350px]">
           <Link
             href="/burner"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col rounded-[16px] p-4 transition-all duration-500 hover:bg-button-secondary md:block md:p-0"
+            className="group flex h-full w-full flex-col rounded-[16px] p-4 transition-all duration-500 hover:bg-button-secondary md:block md:pb-0"
           >
-            <div className="p-4 md:absolute md:w-[45%] md:px-8 md:pt-8">
+            <div className="p-4 md:absolute md:pt-8 lg:w-[40%]">
               <h2 className="mb-2 flex items-center gap-1 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Scaffold Burner Wallet</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
@@ -62,8 +62,8 @@ export default function Home() {
                 of development
               </p>
             </div>
-            <div className="flex h-full w-full px-4 md:rounded-[16px]">
-              <Image src={burnerWallet} alt="" className="h-full w-full" />
+            <div className="flex h-full w-full">
+              <Image src={burnerWallet} alt="" className="mt-auto w-full" />
             </div>
           </Link>
         </div>
@@ -87,7 +87,7 @@ export default function Home() {
                 tokens
               </p>
             </div>
-            <div className="h-[180px] flex-1 md:mr-auto md:mt-auto md:h-full md:w-[90%]">
+            <div className="h-[180px] md:mr-auto md:mt-auto md:h-fit md:w-[90%]">
               <Image
                 src={faucet}
                 alt="faucet banner"
@@ -104,7 +104,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary md:px-4 md:pt-4"
           >
-            <div className="px-8 pt-8 md:absolute">
+            <div className="px-4 pt-8 md:absolute">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Scaffold Deployer</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
@@ -126,7 +126,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative h-[280px] w-full rounded-[16px] bg-[--link-card] md:h-full md:max-h-none">
+        <div className="relative h-[280px] w-full rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px]">
           <Link
             href="/wikipedia"
             target="_blank"
@@ -155,7 +155,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative h-full max-h-[280px] w-full overflow-clip rounded-[16px] bg-[--link-card] md:max-h-none">
+        <div className="relative h-full max-h-[280px] w-full overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px]">
           <Link
             href="https://www.stark-utils.xyz/converter"
             target="_blank"
@@ -174,7 +174,7 @@ export default function Home() {
                 conversions
               </p>
             </div>
-            <div className="ml-auto h-[180px] w-1/2 md:h-fit md:pt-16">
+            <div className="ml-auto mt-auto h-[180px] w-1/2 md:h-fit md:pt-16">
               <Image
                 src={converter}
                 alt="converter banner"
@@ -191,7 +191,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary md:block"
           >
-            <div className="p-4 md:absolute md:px-8 md:pt-8">
+            <div className="p-4 md:absolute md:w-[50%] md:px-8 md:pt-8 lg:w-[60%]">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
                 <span>Address Book</span>
                 <span className="transition-all duration-500 group-hover:-translate-y-1">
