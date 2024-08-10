@@ -35,12 +35,12 @@ export default function Resources({ data }: { data: WikipediaResource[] }) {
   }, [category, data, sortBy]);
   return (
     <div>
-      <div className="grid w-full grid-cols-[1fr_1fr_1fr] gap-x-5 gap-y-6">
+      <div className="grid w-full grid-cols-1 gap-y-[10px] md:grid-cols-[1fr_1fr_1fr] md:gap-x-5 md:gap-y-6">
         {filteredResources.slice(from, to).map((item: any, i: number) => (
           <ResourceCard key={i} resource={item} />
         ))}
       </div>
-      <div className="mt-[34px] flex w-full justify-end">
+      <div className="mt-[34px] flex w-full justify-between md:justify-end">
         <Pagination count={filteredResources.length} />
       </div>
     </div>
