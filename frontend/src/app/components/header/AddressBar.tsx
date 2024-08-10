@@ -12,11 +12,25 @@ const AddressBar = () => {
     return null;
   }
 
+  const openPopover = ({ targetId }: { targetId: string }) => {
+    const popover = document.getElementById(targetId);
+    // @ts-ignore
+    popover.togglePopover();
+    if (popover) {
+      popover.addEventListener("toggle", () => {
+        if (popover.matches(":popover-open")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+      });
+    }
+  };
+
   return (
     <button
       aria-haspopup="dialog"
-      // @ts-ignore
-      popoverTarget="user-popover"
+      onClick={() => openPopover({ targetId: "user-popover" })}
       className="rounded-full bg-button-tertiary px-2 py-1 text-accent-secondary md:px-4 md:py-2"
     >
       {
