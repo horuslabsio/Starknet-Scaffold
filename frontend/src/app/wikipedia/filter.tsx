@@ -53,7 +53,7 @@ export default function Filter({
         <div className="mb-2 hidden w-full items-center justify-between px-[7px] py-3 text-[--headings] md:flex">
           Categories
         </div>
-        <div className="flex w-full gap-3 overflow-x-auto md:flex-wrap md:gap-4">
+        <div className="flex w-full gap-3 overflow-x-auto pb-3 md:flex-wrap md:gap-4">
           {options.map((option: any) => (
             <CategoryButton
               category={option.label}
