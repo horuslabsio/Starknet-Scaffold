@@ -42,6 +42,7 @@ const config: Config = {
       fontSize: {
         "3xl": ["4em", "1.09"],
         "2xl": ["3em", "1.18"],
+        base: ["1em", "1.5"],
         xl: ["2.25em", "1.1"],
         l: ["1.5em", "1.2"],
         md: ["1.1em", "1.18"],
