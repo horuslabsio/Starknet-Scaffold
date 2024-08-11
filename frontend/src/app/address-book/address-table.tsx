@@ -33,11 +33,13 @@ function AddressTable({ addresses }: { addresses: AddressBookResource[] }) {
 
   return (
     <div>
-      <AddressTableHeader />
-      <div className="flex flex-col gap-y-[2px] py-4">
-        {filteredAddresses.slice(from, to).map((address) => (
-          <AddressTableRow address={address} key={address.id} />
-        ))}
+      <div className="w-full overflow-x-auto">
+        <AddressTableHeader />
+        <div className="flex flex-col gap-y-3 py-1 md:gap-y-[2px] md:py-4">
+          {filteredAddresses.slice(from, to).map((address) => (
+            <AddressTableRow address={address} key={address.id} />
+          ))}
+        </div>
       </div>
       <div className="mt-[34px] flex w-full justify-end">
         <Pagination count={filteredAddresses.length} />
