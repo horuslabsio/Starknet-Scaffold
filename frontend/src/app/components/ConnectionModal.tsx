@@ -36,10 +36,8 @@ function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
 
   return (
     <GenericModal
-      isOpen={isOpen}
-      onClose={closeModal}
-      animate={animate}
-      className={`bg-white text-white dark:bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
+      popoverId=""
+      style={`bg-white text-white dark:bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
     >
       <div className="absolute right-5 top-4">
         <button
@@ -73,7 +71,7 @@ function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
             <input
               type="text"
               placeholder="Enter Private Key"
-              className="dark:text-white text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6] disabled:cursor-not-allowed"
+              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6] disabled:cursor-not-allowed dark:text-white"
               value={wallet.privateKey}
               disabled={true}
             />
@@ -87,7 +85,7 @@ function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
             <input
               type="text"
               placeholder="Enter Account Address"
-              className="dark:text-white text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6] disabled:cursor-not-allowed"
+              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6] disabled:cursor-not-allowed dark:text-white"
               value={wallet.address}
               disabled={true}
             />
