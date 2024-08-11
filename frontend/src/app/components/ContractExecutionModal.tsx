@@ -159,10 +159,17 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
 
   return (
     <GenericModal
-      isOpen={isOpen}
-      onClose={closeModal}
-      animate={animate}
-      className={`text-white bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
+      // isOpen={isOpen}
+      // onClose={closeModal}
+      // animate={animate}
+      // className={`text-white bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
+
+      //////////////////
+      // Place holder
+      //////////////////
+      popoverId="#"
+      style=""
+      //////////////////
     >
       <div className="absolute right-5 top-4">
         <button
@@ -193,12 +200,12 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
             <input
               type="text"
               placeholder="Enter Contract Address"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
               value={contractAddress}
               onChange={(e) => setContractAddressValue(e.target.value)}
             />
             {errors?.contractAddress && contractAddress.length !== 0 && (
-              <p className="text-red-500 text-sm">
+              <p className="text-sm text-red-500">
                 Please enter a valid contract address
               </p>
             )}
@@ -209,12 +216,12 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
             <input
               type="text"
               placeholder="Enter Function Name"
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
               value={functionName}
               onChange={(e) => setFunctionNameValue(e.target.value)}
             />
             {errors?.functionName && (
-              <p className="text-red-500 text-sm">
+              <p className="text-sm text-red-500">
                 Please enter a function name
               </p>
             )}
@@ -225,12 +232,12 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
             <input
               type="text"
               placeholder={`["value1", "value2", "value3", ... , "value(n)"]`}
-              className="text-black w-full rounded border-[2px] p-2 outline-none focus:border-[#3b81f6]"
+              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
               value={callData}
               onChange={(e) => setCallDataValue(e.target.value)}
             />
             {errors?.callData && callData.length !== 0 && (
-              <p className="text-red-500 text-sm">
+              <p className="text-sm text-red-500">
                 Please enter valid arguments in correct format
               </p>
             )}
