@@ -24,8 +24,7 @@ const Wallet = ({
   function handleConnectWallet(e: React.MouseEvent<HTMLButtonElement>): void {
     connect({ connector });
     const popover = document.getElementById("connect-modal");
-    //@ts-ignore
-    popover.hidePopover();
+    popover?.hidePopover();
     localStorage.setItem("lastUsedConnector", connector.name);
   }
 
