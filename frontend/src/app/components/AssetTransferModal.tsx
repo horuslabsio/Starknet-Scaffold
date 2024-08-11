@@ -120,17 +120,8 @@ function AssetTransferModal({
 
   return (
     <GenericModal
-      // isOpen={isOpen}
-      // onClose={closeModal}
-      // animate={animate}
-      // className={`relative mx-auto w-[90vw] bg-black px-5 py-4 text-white md:h-fit md:w-[45rem]`}
-
-      //////////////////
-      // Place holder
-      //////////////////
-      popoverId="#"
-      style=""
-      //////////////////
+      popoverId=""
+      style={`relative mx-auto w-[90vw] bg-black px-5 py-4 text-white md:h-fit md:w-[45rem]`}
     >
       <div className="absolute right-5 top-4">
         <button

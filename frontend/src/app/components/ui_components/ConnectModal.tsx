@@ -24,7 +24,8 @@ const Wallet = ({
   function handleConnectWallet(e: React.MouseEvent<HTMLButtonElement>): void {
     connect({ connector });
     const popover = document.getElementById("connect-modal");
-    popover?.hidePopover();
+    //@ts-ignore
+    popover.hidePopover();
     localStorage.setItem("lastUsedConnector", connector.name);
   }
 
@@ -73,8 +74,9 @@ const ConnectModal = () => {
           </div>
           <div className="ml-auto lg:col-span-3 lg:py-4 lg:pr-8">
             <button
-              popovertarget="connect-modal"
-              popovertargetaction="hide"
+              //@ts-ignore
+              popoverTarget="connect-modal"
+              popoverTargetAction="hide"
               className="bg-outline-grey grid h-8 w-8 place-content-center rounded-full"
             >
               <Close />

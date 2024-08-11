@@ -36,17 +36,8 @@ function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
 
   return (
     <GenericModal
-      // isOpen={isOpen}
-      // onClose={closeModal}
-      // animate={animate}
-      // className={`bg-white text-white dark:bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
-
-      //////////////////
-      // Place holder
-      //////////////////
-      popoverId="#"
-      style=""
-      //////////////////
+      popoverId=""
+      style={`bg-white text-white dark:bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
     >
       <div className="absolute right-5 top-4">
         <button
