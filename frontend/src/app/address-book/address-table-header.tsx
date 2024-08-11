@@ -18,17 +18,17 @@ export default function AddressTableHeader() {
     router.push(currentUrl.toString());
   }
   return (
-    <div className="grid grid-cols-[1fr_1.3fr_1.95fr] gap-x-[2px] text-sm">
-      <div className="flex items-center gap-x-3 rounded-tl-[12px] bg-[--table-header] px-[10px] py-4">
+    <div className="grid grid-cols-[107px_150px_282px] gap-x-[2px] text-xs md:grid-cols-[1fr_1.3fr_1.95fr] md:text-sm">
+      <div className="flex items-center gap-x-3 rounded-tl-[12px] bg-[--table-header] px-[10px] py-3 md:py-4">
         Name{" "}
         <button onClick={handleSort}>
           <Sort />
         </button>
       </div>
-      <div className="!rounded-none bg-[--table-header] px-[10px] py-4">
+      <div className="!rounded-none bg-[--table-header] px-[10px] py-3 md:py-4">
         Description
       </div>
-      <div className="rounded-tr-[12px] bg-[--table-header] px-[10px] py-4">
+      <div className="rounded-tr-[12px] bg-[--table-header] px-[10px] py-3 md:py-4">
         Address
       </div>
     </div>
