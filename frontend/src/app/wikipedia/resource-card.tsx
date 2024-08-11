@@ -11,15 +11,19 @@ export default function ResourceCard({ resource }: { resource: any }) {
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative rounded-2xl bg-[--link-card] p-6 pb-[72px] transition-all duration-500 hover:bg-button-secondary"
+      className="group relative w-full rounded-2xl bg-[--link-card] px-6 py-4 pb-[72px] transition-all duration-500 md:p-6 md:hover:bg-button-secondary"
     >
       <div className="flex items-start justify-between gap-x-2">
         <div className="flex gap-x-2">
           <div className="h-fit rounded-[12px] bg-[#FFD8CB] p-[5px]">
-            <Image alt="resource-logo" src={logo} />
+            <Image
+              alt="resource-logo"
+              src={logo}
+              className="h-[30px] w-[30px]"
+            />
           </div>
-          <div className="text-wrap">
-            <h3 className="mb-2 text-md text-[--headings] group-hover:text-accent-secondary">
+          <div className="max-w-[218px] text-wrap md:max-w-fit">
+            <h3 className="text-md text-[--headings] md:mb-2 md:group-hover:text-accent-secondary">
               {resource.name}
             </h3>
             <p className="w-full break-words text-sm text-text-links underline">
@@ -27,15 +31,15 @@ export default function ResourceCard({ resource }: { resource: any }) {
             </p>
           </div>
         </div>
-        <span className="text-[--headings] transition-all duration-500 group-hover:-translate-y-1 group-hover:text-accent-secondary">
+        <span className="text-[--headings] transition-all duration-500 md:group-hover:-translate-y-1 md:group-hover:text-accent-secondary">
           <Upright />
         </span>
       </div>
-      <div className="mb-7 mt-3 pl-[50px] text-base leading-5 text-[#7A7A7A]">
+      <div className="mb-3 mt-3 pl-[50px] text-[13px] leading-4 text-text-primary md:mb-7 md:text-base md:leading-5">
         {resource.description}
       </div>
-      <div className="absolute bottom-6 right-6 flex justify-end">
-        <div className="flex items-center gap-x-[5px] rounded-full bg-green-primary p-3 text-sm">
+      <div className="absolute bottom-4 right-5 flex justify-end md:bottom-6 md:right-6">
+        <div className="flex items-center gap-x-[3px] rounded-full bg-green-primary p-2 text-sm md:gap-x-[5px] md:p-3">
           <span className="rounded-full bg-background-primary-light text-green-secondary">
             <Verified />
           </span>

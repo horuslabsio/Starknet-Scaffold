@@ -27,7 +27,7 @@ export default function Pagination({ count }: { count: number }) {
 
   if (pageCount <= 1) return null;
   return (
-    <div className="flex items-center gap-x-[100px] border-t-[1px] border-t-[#F0F2F5] pt-4 text-base text-[--headings] dark:text-white">
+    <div className="flex items-center gap-x-8 border-t-[1px] border-t-[#F0F2F5] pt-4 text-sm text-[--headings] md:gap-x-[6.25rem] md:text-base dark:text-white">
       <p className="">
         Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{" "}
         <span>
@@ -35,7 +35,7 @@ export default function Pagination({ count }: { count: number }) {
         </span>{" "}
         of <span>{count} results</span>
       </p>
-      <div className="flex items-center gap-x-4">
+      <div className="flex items-center gap-x-2 md:gap-x-4">
         <button
           className="flex items-center gap-x-2 rounded-lg border-[1px] border-[#F2F2F2] px-3 py-2 disabled:cursor-not-allowed"
           onClick={prevPage}

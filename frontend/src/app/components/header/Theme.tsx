@@ -22,7 +22,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
         width: dimension,
         height: dimension,
       }}
-      className={`place-content-center rounded-full bg-button-secondary transition-[opacity] duration-500 ${className}`}
+      className={`grid place-content-center rounded-full bg-button-secondary transition-[opacity] duration-500 ${className}`}
       onClick={action}
     >
       {theme === "dark" ? (
