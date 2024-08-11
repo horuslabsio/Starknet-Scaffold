@@ -47,7 +47,7 @@ export default function Page() {
                 className="h-full w-full"
               />
             </div>
-            <h4 className="border-l-[1.75px] border-[#141925] px-2 py-1 text-[24px] uppercase italic leading-7 text-[#141925]">
+            <h4 className="border-l-[1.75px] border-[#141925] px-2 py-1 text-[24px] uppercase italic leading-7 text-accent-secondary">
               ADDRESSBOOK
             </h4>
           </div>
@@ -56,7 +56,7 @@ export default function Page() {
         <div className="relative mx-auto w-fit">
           <input
             type="text"
-            className="w-[800px] rounded-2xl bg-[--link-card] px-6 py-5 pl-[60px] text-l leading-[30px] text-[#141925] placeholder:text-[#7A7A7A] dark:text-white"
+            className="w-[800px] rounded-2xl bg-[--link-card] px-6 py-5 pl-[60px] text-l leading-[30px] text-accent-secondary placeholder:text-text-primary dark:text-white"
             placeholder="Search keywords, contract addreses"
             name="search"
             onChange={(e) => setSearch(e.target.value)}

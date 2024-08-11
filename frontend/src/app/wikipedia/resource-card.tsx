@@ -35,7 +35,7 @@ export default function ResourceCard({ resource }: { resource: any }) {
           <Upright />
         </span>
       </div>
-      <div className="mb-3 mt-3 pl-[50px] text-[13px] leading-4 text-[#7A7A7A] md:mb-7 md:text-base md:leading-5">
+      <div className="mb-3 mt-3 pl-[50px] text-[13px] leading-4 text-text-primary md:mb-7 md:text-base md:leading-5">
         {resource.description}
       </div>
       <div className="absolute bottom-4 right-5 flex justify-end md:bottom-6 md:right-6">
