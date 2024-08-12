@@ -7,7 +7,7 @@ import ConnectModal from "../ui_components/ConnectModal";
 import Menu from "svg/Menu";
 import UserModal from "./UserModal";
 import AddressBar from "./AddressBar";
-import ThemeSwitch from "./Theme";
+import ThemeSwitch from "./ThemeSwitch";
 import AddTokenModal from "./AddTokenModal";
 
 const Header = () => {
@@ -115,7 +115,8 @@ const Header = () => {
             )}
 
             <ThemeSwitch
-              className="absolute bottom-[-250%] left-1/2 hidden md:grid"
+              className="absolute bottom-[-200%] left-3/4 md:left-1/2 md:grid lg:bottom-[-250%]"
+              dimension="w-[3rem] h-[3rem] md:w-[3.5rem] md:h-[3.5rem] lg:w-[4rem] lg:h-[4rem]"
               action={changeTheme}
               theme={theme}
             />
