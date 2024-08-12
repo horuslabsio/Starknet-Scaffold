@@ -11,7 +11,7 @@ export default function ResourceCard({ resource }: { resource: any }) {
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative w-full rounded-2xl bg-[--link-card] px-6 py-4 pb-[72px] transition-all duration-500 md:p-6 md:hover:bg-button-secondary"
+      className="group relative w-full rounded-2xl bg-[--link-card] px-6 py-4 pb-[72px] transition-all duration-500 md:p-6 md:pb-[72px] md:hover:bg-button-secondary"
     >
       <div className="flex items-start justify-between gap-x-2">
         <div className="flex gap-x-2">
@@ -22,11 +22,11 @@ export default function ResourceCard({ resource }: { resource: any }) {
               className="h-[30px] w-[30px]"
             />
           </div>
-          <div className="max-w-[218px] text-wrap md:max-w-fit">
+          <div className="max-w-[218px] text-wrap">
             <h3 className="text-md text-[--headings] md:mb-2 md:group-hover:text-accent-secondary">
               {resource.name}
             </h3>
-            <p className="w-full break-words text-sm text-text-links underline">
+            <p className="truncate text-sm text-text-links underline">
               {resource.url}
             </p>
           </div>
