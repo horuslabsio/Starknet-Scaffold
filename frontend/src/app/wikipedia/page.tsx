@@ -10,6 +10,7 @@ import { useDebounce } from "../hooks";
 import { searchResources, wikipediaResources } from "../utils";
 import { WikipediaResource } from "../types";
 import ThemeSwitch from "../components/header/ThemeSwitch";
+import Search from "svg/Search";
 
 export default function Page() {
   const { theme, changeTheme } = useTheme();
@@ -52,19 +53,17 @@ export default function Page() {
               theme={theme}
             />
           </div>
-          <div className="relative mx-auto md:w-fit">
+          <div className="relative mx-auto text-[--headings] md:w-fit">
             <input
               type="text"
-              className="w-full rounded-[10px] bg-[#F7F7F7] px-4 py-3 pl-10 text-base text-accent-secondary placeholder:text-text-primary md:w-[800px] md:rounded-[16px] md:px-6 md:py-5 md:pl-[60px] md:text-l md:leading-[30px]"
+              className="w-full rounded-[10px] bg-[--link-card] px-4 py-3 pl-10 outline-[--borders] md:w-[800px] md:rounded-[16px] md:px-6 md:py-5 md:pl-[60px] md:text-md"
               placeholder="Search keywords, links"
               name="search"
               onChange={(e) => setSearch(e.target.value)}
             />
-            <Image
-              src={searchIcon}
-              className="absolute left-4 top-[14px] z-10 h-5 w-5 md:left-6 md:top-6 md:h-6 md:w-6"
-              alt="search"
-            />
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-md md:text-l">
+              <Search />
+            </span>
           </div>
         </div>
       </div>
