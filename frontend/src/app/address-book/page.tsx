@@ -48,7 +48,12 @@ export default function Page() {
                 addressbook
               </h4>
             </div>
-            <ThemeSwitch className="grid" action={changeTheme} theme={theme} />
+            <ThemeSwitch
+              dimension="w-[3rem] h-[3rem] md:w-[3.5rem] md:h-[3.5rem] lg:w-[4rem] lg:h-[4rem]"
+              className="grid"
+              action={changeTheme}
+              theme={theme}
+            />
           </div>
           <div className="relative mx-auto md:w-fit">
             <input
