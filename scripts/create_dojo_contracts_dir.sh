@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Hardcoded directory name
-DIR_NAME="dojo-contracts"
+DIR_NAME="contracts"
 
 # Check if the directory exists
 if [ -d "$DIR_NAME" ]; then
-  echo "Directory '$DIR_NAME' already exists."
+  rm -rf "$DIR_NAME"
+  echo "Directory '$DIR_NAME' created."
 else
   # Create the directory
   mkdir "$DIR_NAME"
