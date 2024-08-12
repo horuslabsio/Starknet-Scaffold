@@ -1,25 +1,23 @@
 const Search = () => {
   return (
     <svg
-      width="28"
-      height="28"
-      viewBox="0 0 28 28"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 48 48"
     >
-      <path
-        d="M12.2502 22.1667C17.7271 22.1667 22.1668 17.7269 22.1668 12.25C22.1668 6.77308 17.7271 2.33333 12.2502 2.33333C6.77325 2.33333 2.3335 6.77308 2.3335 12.25C2.3335 17.7269 6.77325 22.1667 12.2502 22.1667Z"
+      <g
+        fill="none"
         stroke="currentColor"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M15.55 8.36675C15.1172 7.93277 14.6028 7.58861 14.0365 7.35406C13.4702 7.11951 12.8631 6.99918 12.2501 7C11.6372 6.99918 11.0301 7.11951 10.4638 7.35406C9.89745 7.58861 9.38307 7.93277 8.9502 8.36675M19.3796 19.3795L24.3292 24.3291"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+        stroke-linejoin="round"
+        stroke-width="4"
+      >
+        <path d="M21 38c9.389 0 17-7.611 17-17S30.389 4 21 4S4 11.611 4 21s7.611 17 17 17Z" />
+        <path
+          stroke-linecap="round"
+          d="M26.657 14.343A7.98 7.98 0 0 0 21 12a7.98 7.98 0 0 0-5.657 2.343m17.879 18.879l8.485 8.485"
+        />
+      </g>
     </svg>
   );
 };
