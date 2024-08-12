@@ -1,6 +1,7 @@
-import { Resource, columns } from "./columns";
-import { DataTable } from "./data-table";
-
+"use client";
+import Image from "next/image";
+import logoImage from "../../../public/assets/logo.svg";
+import searchIcon from "../../../public/assets/search-icon.svg";
 import useTheme from "~/ui_components/hooks/useTheme";
 import { useEffect, useState } from "react";
 import Filter from "./filter";
@@ -44,7 +45,12 @@ export default function Page() {
                 wikipedia
               </h4>
             </div>
-            <ThemeSwitch className="grid" action={changeTheme} theme={theme} />
+            <ThemeSwitch
+              dimension="w-[3rem] h-[3rem] md:w-[3.5rem] md:h-[3.5rem] lg:w-[4rem] lg:h-[4rem]"
+              className="grid"
+              action={changeTheme}
+              theme={theme}
+            />
           </div>
           <div className="relative mx-auto md:w-fit">
             <input
