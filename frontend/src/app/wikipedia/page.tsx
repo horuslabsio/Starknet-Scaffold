@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import logoImage from "../../../public/assets/logo.svg";
-import searchIcon from "../../../public/assets/search-icon.svg";
 import useTheme from "~/ui_components/hooks/useTheme";
 import { useEffect, useState } from "react";
 import Filter from "./filter";

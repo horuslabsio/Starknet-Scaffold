@@ -6,7 +6,6 @@ import { AddressBookResource } from "../types";
 import { addressBookResources, searchResources } from "../utils";
 import { useDebounce } from "../hooks";
 import Image from "next/image";
-import searchIcon from "../../../public/assets/search-icon.svg";
 import AddressTable from "./address-table";
 import ThemeSwitch from "../components/header/ThemeSwitch";
 import Search from "svg/Search";
