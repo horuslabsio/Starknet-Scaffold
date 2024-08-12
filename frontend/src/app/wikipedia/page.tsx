@@ -8,7 +8,7 @@ import Resources from "./resources";
 import { useDebounce } from "../hooks";
 import { searchResources, wikipediaResources } from "../utils";
 import { WikipediaResource } from "../types";
-import ThemeSwitch from "../components/header/Theme";
+import ThemeSwitch from "../components/header/ThemeSwitch";
 
 export default function Page() {
   const { theme, changeTheme } = useTheme();

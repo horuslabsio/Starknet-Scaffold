@@ -8,7 +8,7 @@ import { useDebounce } from "../hooks";
 import Image from "next/image";
 import searchIcon from "../../../public/assets/search-icon.svg";
 import AddressTable from "./address-table";
-import ThemeSwitch from "../components/header/Theme";
+import ThemeSwitch from "../components/header/ThemeSwitch";
 
 export default function Page() {
   const { theme, changeTheme } = useTheme();

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import GenericModal from "../ui_components/GenericModal";
 import AccountBalance from "../ui_components/AccountBalance";
 import Close from "svg/Close";
-import ThemeSwitch from "./Theme";
+import ThemeSwitch from "./ThemeSwitch";
 import useTheme from "../ui_components/hooks/useTheme";
 import NetworkSwitcher from "../ui_components/NetworkSwitcher";
 import Library from "svg/Library";
@@ -149,7 +149,7 @@ const UserModal = () => {
                 className="grid"
                 action={changeTheme}
                 theme={theme}
-                dimension="3rem"
+                dimension="w-[3rem] h-[3rem]"
               />
             </div>
           </div>
