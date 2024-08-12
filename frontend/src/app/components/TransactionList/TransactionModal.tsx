@@ -3,6 +3,10 @@ import { useState } from "react";
 import TransactionItem from "./TransactionItem";
 import Close from "svg/Close";
 import GenericModal from "../ui_components/GenericModal";
+import NetworkSwitcher from "../ui_components/NetworkSwitcher";
+import ThemeSwitch from "../header/ThemeSwitch";
+import Library from "svg/Library";
+import useTheme from "../ui_components/hooks/useTheme";
 
 export enum Status {
   Accepted,
@@ -43,32 +47,92 @@ export type Transaction = {
 };
 
 const TransactionModal = () => {
+  const { theme, changeTheme } = useTheme();
   const [transactions, setTransactions] = useState(testTransactions);
 
   return (
-    <GenericModal
-      popoverId="transaction-modal"
-      style="mx-auto mt-[5rem]  h-full w-full bg-transparent p-0 backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
-    >
-      <div className="mx-auto mt-8 flex max-w-[--header-max-w] flex-col items-center md:items-end">
-        <div className="w-[95vw] max-w-[30rem] rounded-[24px] bg-[--background] p-8 text-text-primary shadow-popover-shadow md:ml-auto md:mr-[3rem]">
-          <div className="mb-8 flex justify-between">
-            <h3 className="text-l text-[--headings]">Transaction List</h3>
-            <button
-              //@ts-ignore
-              popoverTarget="transaction-modal"
-            >
-              <Close />
-            </button>
-          </div>
-          <div className="transactions-modal flex h-[60svh] max-h-[600px] flex-col gap-4 overflow-scroll md:h-full">
-            {transactions.map((transaction, index) => (
-              <TransactionItem key={index} transaction={transaction} />
-            ))}
+    <>
+      <GenericModal
+        popoverId="transaction-modal"
+        style="mt-[5rem] w-full bg-transparent backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
+      >
+        <div className="user-modal mx-auto flex h-screen w-full max-w-[--header-max-w] flex-col items-center md:items-end md:px-12">
+          <div className="zoom pt-8">
+            <div className="flex w-[95vw] max-w-[30rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 shadow-popover-shadow transition-colors duration-500 ease-linear">
+              <div className="mb-8 flex justify-between">
+                <h3 className="text-l text-[--headings]">Transactions</h3>
+                <button
+                  //@ts-ignore
+                  popoverTarget="transaction-modal"
+                  className="text-[--headings]"
+                >
+                  <Close />
+                </button>
+              </div>
+              <div className="flex items-center justify-between">
+                <p className="text-text-primary">Select Network</p>
+                <NetworkSwitcher />
+              </div>
+              <div>
+                <button // @ts-ignore
+                  popoverTarget="transaction-history"
+                  className="flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] p-4 text-[--headings]"
+                >
+                  <span className="text-l">
+                    <Library />
+                  </span>
+                  <span>Transaction History</span>
+                </button>
+              </div>
+              <div>
+                <button
+                  aria-haspopup="dialog"
+                  // @ts-ignore
+                  popoverTarget="add-token-popover"
+                  className="w-full rounded-[12px] bg-accent-secondary p-4 text-background-primary-light"
+                >
+                  Add Token
+                </button>
+              </div>
+
+              <div className="ml-auto">
+                <ThemeSwitch
+                  className="grid"
+                  action={changeTheme}
+                  theme={theme}
+                  dimension="w-[3rem] h-[3rem]"
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </GenericModal>
+      </GenericModal>
+
+      <GenericModal
+        popoverId="transaction-history"
+        style="mx-auto mt-[5rem]  h-full w-full bg-transparent p-0 backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
+      >
+        <div className="mx-auto mt-8 flex max-w-[--header-max-w] flex-col items-center md:items-end">
+          <div className="w-[95vw] max-w-[30rem] rounded-[24px] bg-[--background] p-8 text-text-primary shadow-popover-shadow md:ml-auto md:mr-[3rem]">
+            <div className="mb-8 flex justify-between">
+              <h3 className="text-l text-[--headings]">Transaction List</h3>
+              <button
+                //@ts-ignore
+                popoverTarget="transaction-history"
+                className="text-[--headings]"
+              >
+                <Close />
+              </button>
+            </div>
+            <div className="transactions-modal flex h-[60svh] max-h-[600px] flex-col gap-4 overflow-scroll md:h-full">
+              {transactions.map((transaction, index) => (
+                <TransactionItem key={index} transaction={transaction} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </GenericModal>
+    </>
   );
 };
 

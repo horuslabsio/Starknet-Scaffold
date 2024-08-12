@@ -9,10 +9,8 @@ import { useEffect, useState } from "react";
 import GenericModal from "../ui_components/GenericModal";
 import AccountBalance from "../ui_components/AccountBalance";
 import Close from "svg/Close";
-import ThemeSwitch from "./ThemeSwitch";
 import useTheme from "../ui_components/hooks/useTheme";
-import NetworkSwitcher from "../ui_components/NetworkSwitcher";
-import Library from "svg/Library";
+import ThemeSwitch from "./ThemeSwitch";
 
 const UserModal = () => {
   const { address } = useAccount();
@@ -37,12 +35,13 @@ const UserModal = () => {
     navigator.clipboard.writeText(starkProfile?.name || address);
     setIsCopied(true);
   }
+
   return (
     <GenericModal
       popoverId="user-popover"
       style="mt-[5rem] w-full bg-transparent backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
     >
-      <div className="user-modal mx-auto flex h-[--modal-h] w-full max-w-[--header-max-w] flex-col items-center md:items-end md:px-12">
+      <div className="user-modal mx-auto flex h-screen w-full max-w-[--header-max-w] flex-col items-center md:items-end md:px-12">
         <div className="zoom pt-8">
           <div className="mb-8 flex w-[95vw] max-w-[30rem] flex-col justify-between gap-4 rounded-[24px] bg-[--background] p-8 text-md text-text-primary shadow-popover-shadow transition-colors duration-500 ease-linear">
             <div className="flex justify-between">
@@ -114,37 +113,7 @@ const UserModal = () => {
                 Disconnect
               </button>
             </div>
-          </div>
-        </div>
-        <div className="zoom pb-8">
-          <div className="flex w-[95vw] max-w-[30rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 shadow-popover-shadow transition-colors duration-500 ease-linear">
-            <div className="flex items-center justify-between">
-              <p className="text-text-primary">Select Network</p>
-              <NetworkSwitcher />
-            </div>
-            <div>
-              <button // @ts-ignore
-                popoverTarget="transaction-modal"
-                className="flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] p-4 text-[--headings]"
-              >
-                <span className="text-l">
-                  <Library />
-                </span>
-                <span>Transaction History</span>
-              </button>
-            </div>
-            <div>
-              <button
-                aria-haspopup="dialog"
-                // @ts-ignore
-                popoverTarget="add-token-popover"
-                className="w-full rounded-[12px] bg-accent-secondary p-4 text-background-primary-light"
-              >
-                Add Token
-              </button>
-            </div>
-
-            <div>
+            <div className="ml-auto">
               <ThemeSwitch
                 className="grid"
                 action={changeTheme}
