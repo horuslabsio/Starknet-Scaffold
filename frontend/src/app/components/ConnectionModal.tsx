@@ -61,6 +61,7 @@ function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
         </button>
       </div>
       <h1 className="mb-2 text-[24px] font-semibold">Connect Account</h1>
+
       <form>
         <div className="flex flex-col gap-y-5">
           <div className="flex flex-col gap-y-2">
