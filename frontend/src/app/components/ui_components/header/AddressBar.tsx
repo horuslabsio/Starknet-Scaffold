@@ -5,9 +5,9 @@ import {
   useStarkProfile,
 } from "@starknet-react/core";
 import Blockies from "react-blockies";
-import AccountBalance from "../ui_components/AccountBalance";
+import AccountBalance from "../AccountBalance";
 import Copy from "svg/Copy";
-import GenericModal from "../ui_components/GenericModal";
+import GenericModal from "../GenericModal";
 import Close from "svg/Close";
 import { useEffect, useState } from "react";
 

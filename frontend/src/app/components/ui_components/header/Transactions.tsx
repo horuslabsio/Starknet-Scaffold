@@ -1,17 +1,17 @@
 "use client";
 import Menu from "svg/Menu";
 import { useState } from "react";
-import GenericModal from "../ui_components/GenericModal";
+import GenericModal from "../GenericModal";
 import Close from "svg/Close";
-import NetworkSwitcher from "../ui_components/NetworkSwitcher";
+import NetworkSwitcher from "../NetworkSwitcher";
 import Library from "svg/Library";
 import AddTokenModal from "./AddTokenModal";
-import { formatDate } from "@/app/components/ui_components/utils/date";
 import { CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import Verified from "svg/Verified";
 import Blockies from "react-blockies";
 import { useAccount, useStarkProfile } from "@starknet-react/core";
 import WarnBadge from "svg/WarnBadge";
+import { formatDate } from "@/app/utils/date";
 
 export enum Status {
   Accepted,

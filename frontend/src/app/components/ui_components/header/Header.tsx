@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { useAccount } from "@starknet-react/core";
-import useTheme from "../ui_components/hooks/useTheme";
 import AddressBar from "./AddressBar";
 import ThemeSwitch from "./ThemeSwitch";
 import Transactions from "./Transactions";
 import ConnectButton from "./Connect";
+import useTheme from "@/app/hooks/useTheme";
 
 const Header = () => {
   const { address } = useAccount();
