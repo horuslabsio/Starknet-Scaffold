@@ -41,7 +41,7 @@ const UserModal = () => {
       popoverId="user-popover"
       style="mt-[5rem] w-full bg-transparent backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
     >
-      <div className="user-modal mx-auto flex h-screen w-full max-w-[--header-max-w] flex-col items-center md:items-end md:px-12">
+      <div className="user-modal mx-auto flex h-[80vh] w-full max-w-[--header-max-w] flex-col items-center md:items-end md:px-12">
         <div className="zoom pt-8">
           <div className="mb-8 flex w-[95vw] max-w-[30rem] flex-col justify-between gap-4 rounded-[24px] bg-[--background] p-8 text-md text-text-primary shadow-popover-shadow transition-colors duration-500 ease-linear">
             <div className="flex justify-between">
