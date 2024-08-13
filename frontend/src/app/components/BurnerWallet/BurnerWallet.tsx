@@ -7,12 +7,9 @@ import { useContractRead } from "@starknet-react/core";
 import { Account, RpcProvider } from "starknet";
 import CopyButton from "../ui_components/CopyButton";
 import Erc20Abi from "../../abi/token.abi.json";
-import {
-  ETH_SEPOLIA,
-  STRK_SEPOLIA,
-} from "@/app/components/ui_components/utils/constant";
-import { formatCurrency } from "@/app/components/ui_components/utils/currency";
+
 import ContractExecutionModal from "../ContractExecutionModal";
+import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utils/constant";
 interface IWallet {
   address: string;
   privateKey: string;
@@ -25,7 +22,6 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
   const [account, setAccount] = useState(undefined);
   const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
-
   const { data: eth, isLoading: ethLoading } = useContractRead({
     address: ETH_SEPOLIA,
     abi: Erc20Abi,
@@ -64,7 +60,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
   }
 
   return (
-    <div className="rounded-lg border px-8 py-12 border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 w-full">
+    <div className="w-full rounded-lg border border-gray-300 bg-gray-100 px-8 py-12 dark:border-neutral-700 dark:bg-neutral-800/30">
       {isSending &&
         createPortal(
           <AssetTransferModal
@@ -140,7 +136,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           <>
             {ethBalance > 0 && (
               <button
-                className=" px-6 py-4 bg-primary text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
+                className="bg-primary w-[200px] rounded-[5px] px-6 py-4 font-semibold text-white disabled:cursor-not-allowed"
                 disabled={!eth || !strk}
                 onClick={() => setIsSending(true)}
               >
@@ -149,7 +145,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
             )}
             {ethBalance > 0 && (
               <button
-                className=" px-6 py-4 bg-primary text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
+                className="bg-primary w-[200px] rounded-[5px] px-6 py-4 font-semibold text-white disabled:cursor-not-allowed"
                 disabled={!eth || !strk}
                 onClick={() => setIsExecuting(true)}
               >
@@ -159,7 +155,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
           </>
         ) : (
           <button
-            className=" px-6 py-4 bg-primary disabled:cursor-not-allowed text-white rounded-[5px] w-[200px] font-semibold"
+            className="bg-primary w-[200px] rounded-[5px] px-6 py-4 font-semibold text-white disabled:cursor-not-allowed"
             onClick={() => setIsConnecting(true)}
             disabled={!eth || !strk}
           >

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Header from "@/app/components/header/Header";
+import Header from "@/app/components/ui_components/header/Header";
 import faucet from "../../public/assets/faucetBanner.svg";
 import deployer from "../../public/assets/deployerBanner.svg";
 import wikipedia from "../../public/assets/wikipediaBanner.svg";
