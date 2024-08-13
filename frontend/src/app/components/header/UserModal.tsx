@@ -113,14 +113,6 @@ const UserModal = () => {
                 Disconnect
               </button>
             </div>
-            <div className="ml-auto">
-              <ThemeSwitch
-                className="grid"
-                action={changeTheme}
-                theme={theme}
-                dimension="w-[3rem] h-[3rem]"
-              />
-            </div>
           </div>
         </div>
       </div>
