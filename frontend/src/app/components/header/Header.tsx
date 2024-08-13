@@ -65,16 +65,6 @@ const Header = () => {
 
   return (
     <div
-      onMouseEnter={(e) => {
-        if (e.currentTarget.getAttribute("data-header") === "scroll-hide") {
-          e.currentTarget.setAttribute("data-header", "hover-show");
-        }
-      }}
-      onMouseLeave={(e) => {
-        if (e.currentTarget.getAttribute("data-header") === "hover-show") {
-          e.currentTarget.setAttribute("data-header", "hover-hide");
-        }
-      }}
       onFocusCapture={(e) =>
         e.currentTarget.setAttribute("data-header", "scroll-show")
       }
@@ -116,7 +106,6 @@ const Header = () => {
 
             <ThemeSwitch
               className="absolute bottom-[-200%] left-3/4 md:left-1/2 md:grid lg:bottom-[-250%]"
-              dimension="w-[3rem] h-[3rem] md:w-[3.5rem] md:h-[3.5rem] lg:w-[4rem] lg:h-[4rem]"
               action={changeTheme}
               theme={theme}
             />

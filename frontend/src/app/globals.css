@@ -62,16 +62,20 @@
     --borders: #494949;
   }
 
-  [data-header="hover-hide"],
   [data-header="scroll-hide"] {
     transform: translateY(-90%);
   }
-
-  [data-header="hover-hide"] #theme-switcher,
   [data-header="scroll-hide"] #theme-switcher {
     opacity: 0;
     pointer-events: none;
   }
+  #nav[data-header="scroll-hide"]:hover {
+    transform: translateY(0) !important;
+  }
+  /* #nav[data-header="scroll-hide"]:hover #theme-switcher {
+    opacity: 1;
+    pointer-events: all;
+  } */
 
   html,
   body {
@@ -175,7 +179,6 @@
     overflow: scroll;
     scrollbar-width: none; /* Firefox */
   }
-
   /* Hide scrollbar for Chrome, Safari and Opera */
   .user-modal::-webkit-scrollbar,
   .transactions-modal::-webkit-scrollbar {
