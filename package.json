@@ -4,6 +4,10 @@
   "description": "An open-source starknet development stack",
   "bin": "./bin/cli.mjs",
   "scripts": {
+    "initialize-dojo": "rm -rf contracts && mkdir contracts && cd contracts && sozo init ${npm_config_name}",
+    "build-dojo": "cd contracts/${npm_config_name} && sozo build",
+    "deploy-dojo-katana": "cd contracts/${npm_config_name} && katana --disable-fee  --allowed-origins \"*\"",
+    "migrate-dojo": "cd contracts/${npm_config_name} && sozo migrate apply",
     "build-contracts": "cd contracts && scarb build",
     "test-contracts": "cd contracts && snforge test",
     "format-contracts": "cd contracts && scarb fmt",
@@ -16,7 +20,7 @@
     "deploy-contract": "cd contracts && sncast --profile ${npm_config_profile} deploy --class-hash ${npm_config_classhash}",
     "devnet": "sh ./devnet/start.sh",
     "start": "cd frontend && npm run dev",
-    "install": "cd frontend && npm install --legacy-peer-deps",
+    "install": "cd scripts && bash install_tools.sh && cd ../frontend && npm install --legacy-peer-deps",
     "build-ui": "cd frontend && npm run build"
   },
   "repository": {
