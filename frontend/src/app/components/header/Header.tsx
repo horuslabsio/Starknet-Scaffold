@@ -65,16 +65,6 @@ const Header = () => {
 
   return (
     <div
-      onMouseEnter={(e) => {
-        if (e.currentTarget.getAttribute("data-header") === "scroll-hide") {
-          e.currentTarget.setAttribute("data-header", "hover-show");
-        }
-      }}
-      onMouseLeave={(e) => {
-        if (e.currentTarget.getAttribute("data-header") === "hover-show") {
-          e.currentTarget.setAttribute("data-header", "hover-hide");
-        }
-      }}
       onFocusCapture={(e) =>
         e.currentTarget.setAttribute("data-header", "scroll-show")
       }
