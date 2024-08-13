@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useConnect } from "@starknet-react/core";
 import GenericModal from "../ui_components/GenericModal";
 import Close from "svg/Close";

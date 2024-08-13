@@ -158,4 +158,33 @@ const ConnectModal = () => {
   );
 };
 
-export default ConnectModal;
+const ConnectButton = () => {
+  const togglePopover = ({ targetId }: { targetId: string }) => {
+    const popover = document.getElementById(targetId);
+    // @ts-ignore
+    popover.togglePopover();
+    if (popover) {
+      popover.addEventListener("toggle", () => {
+        if (popover.matches(":popover-open")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "auto";
+        }
+      });
+    }
+  };
+  return (
+    <>
+      <button
+        aria-haspopup="dialog"
+        onClick={() => togglePopover({ targetId: "connect-modal" })}
+        className="rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
+      >
+        Connect Wallet
+      </button>
+      <ConnectModal />
+    </>
+  );
+};
+
+export default ConnectButton;
