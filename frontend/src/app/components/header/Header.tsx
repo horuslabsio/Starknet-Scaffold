@@ -4,8 +4,8 @@ import { useAccount } from "@starknet-react/core";
 import useTheme from "../ui_components/hooks/useTheme";
 import AddressBar from "./AddressBar";
 import ThemeSwitch from "./ThemeSwitch";
-import ConnectButton from "../ui_components/Connect";
 import Transactions from "./Transactions";
+import ConnectButton from "./Connect";
 
 const Header = () => {
   const { address } = useAccount();
