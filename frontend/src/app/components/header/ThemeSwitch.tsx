@@ -6,19 +6,17 @@ interface ThemeSwitchProps {
   theme: string;
   action: MouseEventHandler<HTMLButtonElement>;
   className?: string;
-  dimension?: string;
 }
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({
   theme,
   action,
   className,
-  dimension = "w-[4rem] h-[4rem]",
 }) => {
   return (
     <button
       id="theme-switcher"
-      className={`grid place-content-center rounded-full bg-button-secondary transition-[opacity] duration-500 ${dimension} ${className}`}
+      className={`grid h-[3rem] w-[3rem] place-content-center rounded-full bg-button-secondary transition-[opacity] duration-500 md:h-[3.5rem] md:w-[3.5rem] lg:h-[4rem] lg:w-[4rem] ${className}`}
       onClick={action}
       // className={`transition-all duration-300 ease-in-out ${
       //   openMenu ? "top-[10rem]" : "top-[5rem]"

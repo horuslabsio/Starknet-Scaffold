@@ -116,7 +116,6 @@ const Header = () => {
 
             <ThemeSwitch
               className="absolute bottom-[-200%] left-3/4 md:left-1/2 md:grid lg:bottom-[-250%]"
-              dimension="w-[3rem] h-[3rem] md:w-[3.5rem] md:h-[3.5rem] lg:w-[4rem] lg:h-[4rem]"
               action={changeTheme}
               theme={theme}
             />
