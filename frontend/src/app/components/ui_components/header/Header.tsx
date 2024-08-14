@@ -1,35 +1,19 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { useConnect, useAccount } from "@starknet-react/core";
-import TransactionModal from "../TransactionList/TransactionModal";
-import useTheme from "../ui_components/hooks/useTheme";
-import ConnectModal from "../ui_components/ConnectModal";
-import Menu from "svg/Menu";
-import UserModal from "./UserModal";
+import { useAccount } from "@starknet-react/core";
 import AddressBar from "./AddressBar";
 import ThemeSwitch from "./ThemeSwitch";
-import AddTokenModal from "./AddTokenModal";
+import Transactions from "./Transactions";
+import ConnectButton from "./Connect";
+import useTheme from "@/app/hooks/useTheme";
 
 const Header = () => {
   const { address } = useAccount();
-  const { connect, connectors } = useConnect();
   const { theme, changeTheme } = useTheme();
   const lastYRef = useRef(0);
 
   useEffect(() => {
-    const lastUsedConnector = localStorage.getItem("lastUsedConnector");
-    if (lastUsedConnector) {
-      connect({
-        connector: connectors.find(
-          (connector) => connector.name === lastUsedConnector,
-        ),
-      });
-    }
-  }, [connectors, connect]);
-
-  useEffect(() => {
     const nav = document.getElementById("nav");
-
     const handleScroll = () => {
       const difference = window.scrollY - lastYRef.current;
       if (Math.abs(difference) > 50) {
@@ -47,21 +31,6 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const togglePopover = ({ targetId }: { targetId: string }) => {
-    const popover = document.getElementById(targetId);
-    // @ts-ignore
-    popover.togglePopover();
-    if (popover) {
-      popover.addEventListener("toggle", () => {
-        if (popover.matches(":popover-open")) {
-          document.body.style.overflow = "hidden";
-        } else {
-          document.body.style.overflow = "";
-        }
-      });
-    }
-  };
 
   return (
     <div
@@ -84,26 +53,11 @@ const Header = () => {
             {address ? (
               <div className="flex items-center gap-4">
                 <AddressBar />
-                <button
-                  aria-haspopup="dialog"
-                  onClick={() =>
-                    togglePopover({ targetId: "transaction-modal" })
-                  }
-                  className="grid h-10 w-10 place-content-center rounded-full bg-accent-secondary text-[1.5em] text-background-primary-light md:h-12 md:w-12"
-                >
-                  <Menu />
-                </button>
+                <Transactions />
               </div>
             ) : (
-              <button
-                aria-haspopup="dialog"
-                onClick={() => togglePopover({ targetId: "connect-modal" })}
-                className="rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
-              >
-                Connect Wallet
-              </button>
+              <ConnectButton />
             )}
-
             <ThemeSwitch
               className="absolute bottom-[-200%] left-3/4 md:left-1/2 md:grid lg:bottom-[-250%]"
               action={changeTheme}
@@ -111,10 +65,6 @@ const Header = () => {
             />
           </div>
         </div>
-        <ConnectModal />
-        <TransactionModal />
-        <UserModal />
-        <AddTokenModal />
       </header>
     </div>
   );

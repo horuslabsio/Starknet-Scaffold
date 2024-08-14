@@ -5,17 +5,15 @@ import {
   useStarkProfile,
 } from "@starknet-react/core";
 import Blockies from "react-blockies";
-import { useEffect, useState } from "react";
-import GenericModal from "../ui_components/GenericModal";
-import AccountBalance from "../ui_components/AccountBalance";
-import Close from "svg/Close";
-import useTheme from "../ui_components/hooks/useTheme";
+import AccountBalance from "../AccountBalance";
 import Copy from "svg/Copy";
+import GenericModal from "../GenericModal";
+import Close from "svg/Close";
+import { useEffect, useState } from "react";
 
 const UserModal = () => {
   const { address } = useAccount();
   const { disconnect } = useDisconnect();
-  const { theme, changeTheme } = useTheme();
 
   const [isCopied, setIsCopied] = useState(false);
   const { data: starkProfile } = useStarkProfile({
@@ -108,4 +106,58 @@ const UserModal = () => {
   );
 };
 
-export default UserModal;
+const AddressBar = () => {
+  const { address } = useAccount();
+  const { data: starkProfile } = useStarkProfile({
+    address,
+  });
+
+  if (!address) {
+    return null;
+  }
+
+  const togglePopover = ({ targetId }: { targetId: string }) => {
+    const popover = document.getElementById(targetId);
+    // @ts-ignore
+    popover.togglePopover();
+    if (popover) {
+      popover.addEventListener("toggle", () => {
+        if (popover.matches(":popover-open")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "auto";
+        }
+      });
+    }
+  };
+
+  return (
+    <>
+      <button
+        aria-haspopup="dialog"
+        onClick={() => togglePopover({ targetId: "user-popover" })}
+        className="rounded-full bg-button-tertiary px-2 py-1 text-accent-secondary md:px-4 md:py-2"
+      >
+        {
+          <span className="flex items-center">
+            {starkProfile?.profilePicture ? (
+              <img
+                src={starkProfile?.profilePicture}
+                className="mr-2 h-8 w-8 rounded-full"
+                alt="starknet profile"
+              />
+            ) : (
+              <Blockies seed={address} className="mr-2 h-8 w-8 rounded-full" />
+            )}
+            {starkProfile?.name
+              ? starkProfile.name
+              : address?.slice(0, 6).concat("...").concat(address?.slice(-5))}
+          </span>
+        }
+      </button>
+      <UserModal />
+    </>
+  );
+};
+
+export default AddressBar;

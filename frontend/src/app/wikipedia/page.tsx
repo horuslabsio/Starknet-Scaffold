@@ -1,16 +1,16 @@
 "use client";
 import Image from "next/image";
 import logoImage from "../../../public/assets/logo.svg";
-import useTheme from "~/ui_components/hooks/useTheme";
 import { useEffect, useState } from "react";
 import Filter from "./filter";
 import Resources from "./resources";
 import { useDebounce } from "../hooks";
 import { searchResources, wikipediaResources } from "../utils";
 import { WikipediaResource } from "../types";
-import ThemeSwitch from "../components/header/ThemeSwitch";
+import ThemeSwitch from "../components/ui_components/header/ThemeSwitch";
 import Search from "svg/Search";
 import Link from "next/link";
+import useTheme from "../hooks/useTheme";
 
 export default function Page() {
   const { theme, changeTheme } = useTheme();
@@ -48,12 +48,7 @@ export default function Page() {
                 wikipedia
               </h4>
             </div>
-            <ThemeSwitch
-              dimension="w-[3rem] h-[3rem] md:w-[3.5rem] md:h-[3.5rem] lg:w-[4rem] lg:h-[4rem]"
-              className="grid"
-              action={changeTheme}
-              theme={theme}
-            />
+            <ThemeSwitch className="grid" action={changeTheme} theme={theme} />
           </div>
           <div className="relative mx-auto text-[--headings] md:w-fit">
             <input
