@@ -7,6 +7,7 @@ import Transactions from "./Transactions";
 import ConnectButton from "./Connect";
 import useTheme from "@/app/hooks/useTheme";
 import Link from "next/link";
+import Link from "next/link";
 
 const Header = () => {
   const { address } = useAccount();
@@ -43,9 +44,15 @@ const Header = () => {
     >
       <header className="rounded-[12px] bg-primary-gradient md:rounded-[32px]">
         <div className="mx-auto flex h-16 max-w-[--header-max-w] items-center justify-between px-4 md:h-28 md:px-8">
-          <Link href={"/"} className="hidden w-[18.75rem] md:block">
-            <img src="/assets/logo.svg" alt="logo" className="h-full w-full" />
-          </Link>
+          <div className="hidden w-[18.75rem] md:block">
+            <Link href={"/"}>
+              <img
+                src="/assets/logo.svg"
+                alt="logo"
+                className="h-full w-full"
+              />
+            </Link>
+          </div>
 
           <Link href={"/"} className="block md:hidden">
             <img src="/assets/mobile-logo.svg" alt="" />
