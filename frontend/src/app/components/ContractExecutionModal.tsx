@@ -31,7 +31,7 @@ function ContractExecutionModal({ account, popoverId }: Props) {
 
   const [executeStatus, setExecuteStatus] = useState<
     "execute" | "executing" | "executed" | "failed"
-  >("execute");
+  >("executed");
 
   function isValidStringArrayString(str: string): boolean {
     try {
@@ -141,12 +141,43 @@ function ContractExecutionModal({ account, popoverId }: Props) {
       popoverId={`burner-execute-popover-${popoverId}`}
       style={`p-16 bg-transparent`}
     >
+      {/* FEEDBACK UI --> */}
+      <div
+        className={`absolute top-0 flex h-[3rem] w-[95vw] max-w-[30rem] items-center justify-center rounded-[12px] bg-[--background] transition-all ${executeStatus === "failed" || executeStatus === "executed" ? "" : "-translate-y-full scale-75"}`}
+      >
+        {executeStatus === "failed" && (
+          <p className="flex items-center justify-center gap-2 text-red-secondary">
+            <span className="text-l">
+              <WarnBadge />
+            </span>
+            <span>
+              Your contract function was not executed, please try again
+            </span>
+          </p>
+        )}
+        {executeStatus === "executed" && (
+          <p className="flex items-center justify-center gap-2 text-green-secondary">
+            <span className="text-l">
+              <Verified />
+            </span>
+            <span>Your contract function was executed successfully!</span>
+          </p>
+        )}
+      </div>
+      {/* <-- */}
+
       <div className="w-[95vw] max-w-[30rem] rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
         <div className="mb-8 flex justify-between">
           <h3 className="text-l text-[--headings]">Execute Contract</h3>
           <button
             // @ts-ignore
             popoverTarget={`burner-execute-popover-${popoverId}`}
+            onClick={() => {
+              setExecuteStatus("execute");
+              setCallData("");
+              setContractAddress("");
+              setFunctionName("");
+            }}
           >
             <Close />
           </button>
@@ -219,25 +250,6 @@ function ContractExecutionModal({ account, popoverId }: Props) {
               <span>Execute</span>
             )}
           </button>
-          <div>
-            {executeStatus === "failed" && (
-              <p className="flex items-center justify-end gap-2 text-red-secondary">
-                <span className="">
-                  <WarnBadge />
-                </span>
-                <span>Your contract function was not executed</span>
-              </p>
-            )}
-
-            {executeStatus === "executed" && (
-              <p className="flex items-center justify-end gap-2 text-green-secondary">
-                <span className="">
-                  <Verified />
-                </span>
-                <span>Your contract function was executed successfully!</span>
-              </p>
-            )}
-          </div>
         </form>
       </div>
     </GenericModal>
