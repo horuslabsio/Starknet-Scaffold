@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useAccount, useNetwork } from "@starknet-react/core";
 import { Contract, RpcProvider, ec, stark } from "starknet";
 import * as Abi from "../../../public/abi/burnerWallet.json";
-import spinner from "../../../public/assets/spinner.svg";
-import Image from "next/image";
 import BurnerWallet from "../components/BurnerWallet/BurnerWallet";
+import GenericModal from "../components/ui_components/GenericModal";
+import WarnBadge from "svg/WarnBadge";
+import Close from "svg/Close";
 
 type Wallet = {
   address: string;
@@ -16,10 +17,10 @@ type Wallet = {
 export default function Page() {
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const [burnerWalletLoading, setBurnerWalletLoading] = useState<boolean>(true);
-  const { account } = useAccount();
+  const { account, address } = useAccount();
   const { chain } = useNetwork();
 
-  let burnerDeployerAddress;
+  let burnerDeployerAddress: string;
   let rpcAddress: string;
   if (chain.network == "sepolia") {
     burnerDeployerAddress =
@@ -43,7 +44,6 @@ export default function Page() {
     });
 
     const privateKey = stark.randomAddress();
-
     const publicKey = ec.starkCurve.getStarkKey(privateKey);
 
     const TransactionHash =
@@ -90,7 +90,10 @@ export default function Page() {
         console.error("Burner wallet deployer is undefined.");
       }
     } else {
-      alert("Maximum of 5 burner accounts are allowed.");
+      const alertPopover = document.getElementById("alert-popover");
+      // @ts-ignore
+      alertPopover.showPopover();
+      console.log("Maximum of 5 burner accounts are allowed.");
     }
   };
 
@@ -99,52 +102,91 @@ export default function Page() {
     localStorage.removeItem("wallets");
   };
   return (
-    <section className="flex flex-col pt-[clamp(200px,25vh,650px)]">
-      <div className="flex justify-center p-4 pt-20">
-        <div className="flex flex-col items-start gap-2">
-          <h2>
-            <b className="text-black-300">
-              NB: Please note that burner wallets are not supported on mainnet.
-              Resolve to using a wallet provider instead! <br />
-              <br />
-              Also you can only generate a maximum of 5 burner wallets for each
-              session
-            </b>
-          </h2>
-          <br />
-
-          <h3 className="text-start font-bold">Burner Wallets:</h3>
-          {!burnerWalletLoading ? (
-            wallets.length !== 0 ? (
-              wallets.map((wallet, index) => (
-                <BurnerWallet key={index} wallet={wallet} />
-              ))
-            ) : (
-              <div className="border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 flex w-full items-center justify-center rounded-lg border px-8 py-12">
-                <div>No burner wallets found</div>
-              </div>
-            )
-          ) : (
-            <div className="border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 flex w-full items-center justify-center rounded-lg border px-8 py-12">
-              <Image src={spinner} width={32} height={32} alt="loading" />
+    <section className="container mx-auto pb-32 pt-[8rem] md:pt-[clamp(200px,25vh,650px)]">
+      <div className="py-8 text-md">
+        <p className="mb-4 flex items-center gap-2">
+          <span>
+            <WarnBadge />
+          </span>
+          <span>
+            NB: Please note that burner wallets are not supported on mainnet.
+            Resolve to using a wallet provider instead!
+          </span>
+        </p>
+        <p className="flex items-center gap-2">
+          <span>
+            <WarnBadge />
+          </span>
+          Also you can only generate a maximum of 5 burner wallets for each
+          session
+        </p>
+      </div>
+      <div className="mx-auto flex w-fit gap-4">
+        {!burnerWalletLoading ? (
+          wallets.length !== 0 ? (
+            <div className="flex flex-col gap-8">
+              {wallets.map((wallet, index) => (
+                <BurnerWallet
+                  walletNumber={index + 1}
+                  key={index}
+                  wallet={wallet}
+                  popoverId={`wallet-${index}`}
+                />
+              ))}
             </div>
-          )}
-          <div className="flex">
+          ) : (
+            <div className="grid w-[43rem] max-w-[43rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8">
+              <p>No burner wallets found</p>
+            </div>
+          )
+        ) : (
+          <div className="grid w-[43rem] max-w-[43rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8">
+            <span className="inline-block h-[3rem] w-[3rem] animate-spin rounded-full border-[3px] border-[--headings] border-b-transparent"></span>
+          </div>
+        )}
+        <div className="h-fit w-[27rem] rounded-[16px] border border-[--borders] p-8">
+          <div className="mb-8 border-b border-b-[#DADADA] pb-8">
+            <h2 className="mb-8 text-l text-[--headings]">Burner wallet</h2>
+            <div>
+              <button className="w-full rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-4 text-[--headings]">
+                Wallet Accounts
+              </button>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
             <button
-              className="bg-primary text-white mr-5 mt-2 rounded p-2"
               onClick={handleCreate}
+              className="w-full rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
             >
-              Generate Wallet
+              Generate wallet
             </button>
             <button
-              className="bg-secondary text-white mt-2 rounded p-2"
               onClick={clearWallets}
+              className="w-full rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-4 text-red-secondary"
             >
-              {" "}
-              Clear Wallets
+              Clear wallets
             </button>
           </div>
         </div>
+
+        <GenericModal style="bg-transparent p-16" popoverId="alert-popover">
+          <div className="flex h-[20rem] w-[95vw] max-w-[30rem] flex-col items-center gap-4 rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
+            <div className="flex w-full justify-end">
+              <button
+                // @ts-ignore
+                popoverTarget="alert-popover"
+              >
+                <Close />
+              </button>
+            </div>
+            <div>
+              <span className="text-[6em] text-red-secondary">
+                <WarnBadge />
+              </span>
+            </div>
+            <p className="text-md">Maximum of 5 burner accounts are allowed.</p>
+          </div>
+        </GenericModal>
       </div>
     </section>
   );

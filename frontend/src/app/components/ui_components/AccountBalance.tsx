@@ -6,9 +6,10 @@ import { formatCurrency } from "@/app/utils/currency";
 
 type Props = {
   address: string;
+  heading?: boolean;
 };
 
-function AccountBalance({ address }: Props) {
+function AccountBalance({ address, heading = true }: Props) {
   const { data: eth, isLoading: ethLoading } = useContractRead({
     address: ETH_SEPOLIA,
     abi: Erc20Abi,
@@ -31,9 +32,10 @@ function AccountBalance({ address }: Props) {
   const strkBalance = formatCurrency(strk?.balance?.low.toString());
 
   return (
-    <div className="p-4 text-sm text-[--headings]">
-      <h3 className="mb-4">Asset</h3>
-      <div className="flex flex-col gap-4">
+    <div className="p-4 text-sm">
+      {heading && <h3 className="mb-4 text-md">Assets</h3>}
+
+      <div className="flex flex-col gap-4 text-[--headings]">
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
             <div className="h-12 w-12 rounded-full">
