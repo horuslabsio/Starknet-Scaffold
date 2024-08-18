@@ -2,7 +2,6 @@
 import GenericModal from "./ui_components/GenericModal";
 import { useState } from "react";
 import { Call } from "starknet";
-import toast from "react-hot-toast";
 import Close from "svg/Close";
 import WarnBadge from "svg/WarnBadge";
 import Verified from "svg/Verified";
@@ -124,14 +123,10 @@ function ContractExecutionModal({ account, popoverId }: Props) {
         await account.waitForTransaction(transferTxHash);
 
       console.log(transactionReponse);
-      toast.success("Your contract function was executed successfully!", {
-        duration: 2000,
-      });
       success = true;
       setExecuteStatus("executed");
     } catch (err: any) {
       setExecuteStatus("failed");
-      toast.error("An error occured! Please try again.", { duration: 2000 });
       console.log(err.message);
     }
   }
