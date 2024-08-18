@@ -17,6 +17,7 @@ import Close from "svg/Close";
 import WarnBadge from "svg/WarnBadge";
 import Verified from "svg/Verified";
 import ChevronDown from "svg/ChevronDown";
+import Loading from "./ui_components/util/Loading";
 
 type Props = {
   strkBalance: number | undefined;
@@ -253,7 +254,7 @@ function AssetTransferModal({
           >
             {sendStatus === "sending" ? (
               <span className="flex items-center justify-center gap-2">
-                <span className="inline-block h-[1.2rem] w-[1.2rem] animate-spin rounded-full border-[2px] border-background-primary-light border-b-transparent"></span>
+                <Loading dimension="h-[1.2rem] w-[1.2rem]" />
                 <span>Sending</span>
               </span>
             ) : sendStatus === "sent" ? (

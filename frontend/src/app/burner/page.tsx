@@ -7,6 +7,9 @@ import BurnerWallet from "../components/BurnerWallet/BurnerWallet";
 import GenericModal from "../components/ui_components/GenericModal";
 import WarnBadge from "svg/WarnBadge";
 import Close from "svg/Close";
+import { ChevronDown } from "lucide-react";
+import Loading from "../components/ui_components/util/Loading";
+import Blockies from "react-blockies";
 
 type Wallet = {
   address: string;
@@ -15,6 +18,8 @@ type Wallet = {
 };
 
 export default function Page() {
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const [activeWallet, setActiveWallets] = useState(0);
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const [burnerWalletLoading, setBurnerWalletLoading] = useState<boolean>(true);
   const { account, address } = useAccount();
@@ -101,6 +106,19 @@ export default function Page() {
     setWallets([]);
     localStorage.removeItem("wallets");
   };
+
+  const clearWallet = () => {
+    setWallets((prev) => {
+      const updatedWallets = [...prev];
+      updatedWallets.splice(activeWallet, 1);
+
+      localStorage.setItem("wallets", JSON.stringify(updatedWallets));
+      if (activeWallet >= updatedWallets.length && updatedWallets.length > 0) {
+        setActiveWallets(0);
+      }
+      return updatedWallets;
+    });
+  };
   return (
     <section className="container mx-auto pb-32 pt-[8rem] md:pt-[clamp(200px,25vh,650px)]">
       <div className="py-8 text-md">
@@ -125,14 +143,11 @@ export default function Page() {
         {!burnerWalletLoading ? (
           wallets.length !== 0 ? (
             <div className="flex flex-col gap-8">
-              {wallets.map((wallet, index) => (
-                <BurnerWallet
-                  walletNumber={index + 1}
-                  key={index}
-                  wallet={wallet}
-                  popoverId={`wallet-${index}`}
-                />
-              ))}
+              <BurnerWallet
+                wallet={wallets[activeWallet]}
+                popoverId={`wallet-${activeWallet}`}
+                walletNumber={activeWallet + 1}
+              />
             </div>
           ) : (
             <div className="grid w-[43rem] max-w-[43rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8">
@@ -141,30 +156,84 @@ export default function Page() {
           )
         ) : (
           <div className="grid w-[43rem] max-w-[43rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8">
-            <span className="inline-block h-[3rem] w-[3rem] animate-spin rounded-full border-[3px] border-[--headings] border-b-transparent"></span>
+            <Loading />
           </div>
         )}
+
         <div className="h-fit w-[27rem] rounded-[16px] border border-[--borders] p-8">
           <div className="mb-8 border-b border-b-[#DADADA] pb-8">
             <h2 className="mb-8 text-l text-[--headings]">Burner wallet</h2>
-            <div>
-              <button className="w-full rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-4 text-[--headings]">
-                Wallet Accounts
+            <div className="relative">
+              <button
+                disabled={!wallets.length}
+                aria-expanded={openDropdown}
+                aria-controls="wallet-dropdown"
+                aria-haspopup="listbox"
+                onClick={() => setOpenDropdown((prev) => !prev)}
+                className="flex w-full items-center justify-center gap-8 rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-4 text-[--headings] disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <span>Wallet Account {activeWallet + 1}</span>
+                <span>
+                  <ChevronDown />
+                </span>
               </button>
+              <div
+                id="wallet-dropdown"
+                className={`absolute w-full overflow-hidden ${openDropdown ? "h-fit" : "h-0"}`}
+              >
+                <ul
+                  role="listbox"
+                  tabIndex={-1}
+                  aria-activedescendant={`wallet-${activeWallet}`}
+                  className={`mt-4 flex h-fit flex-col items-center gap-4 rounded-[12px] border-2 border-solid border-[--borders] bg-[--background] p-4 text-[--headings] transition-all duration-300 ${openDropdown ? "translate-y-0 opacity-100" : "translate-y-[20px] opacity-0"}`}
+                >
+                  {wallets.map((wallet, index) => {
+                    return (
+                      <li
+                        id={`wallet-${index}`}
+                        role="option"
+                        aria-selected={index === activeWallet}
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            setActiveWallets(index);
+                            setOpenDropdown(false);
+                          }
+                        }}
+                        key={wallet.address}
+                        onClick={() => {
+                          setActiveWallets(index);
+                          setOpenDropdown(false);
+                        }}
+                        className="flex w-full cursor-pointer items-center gap-4 rounded-[8px] p-2 transition-all hover:bg-[--modal-assets-bg]"
+                      >
+                        <Blockies
+                          seed={wallet.address || ""}
+                          scale={4}
+                          className="rounded-full"
+                        />
+                        <span>wallet {index + 1}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-4">
             <button
+              disabled={!address}
               onClick={handleCreate}
-              className="w-full rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
+              className="w-full rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 md:py-4"
             >
-              Generate wallet
+              Generate new wallet
             </button>
             <button
-              onClick={clearWallets}
-              className="w-full rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-4 text-red-secondary"
+              disabled={!wallets.length}
+              onClick={clearWallet}
+              className="w-full rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-4 text-red-secondary disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Clear wallets
+              Clear wallet
             </button>
           </div>
         </div>
