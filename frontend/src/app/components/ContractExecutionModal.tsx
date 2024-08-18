@@ -5,6 +5,7 @@ import { Call } from "starknet";
 import Close from "svg/Close";
 import WarnBadge from "svg/WarnBadge";
 import Verified from "svg/Verified";
+import Loading from "./ui_components/util/Loading";
 
 interface Errors {
   contractAddress?: boolean;
@@ -236,7 +237,7 @@ function ContractExecutionModal({ account, popoverId }: Props) {
           >
             {executeStatus === "executing" ? (
               <span className="flex items-center justify-center gap-2">
-                <span className="inline-block h-[1.2rem] w-[1.2rem] animate-spin rounded-full border-[2px] border-background-primary-light border-b-transparent"></span>
+                <Loading dimension="h-[1.2rem] w-[1.2rem]" />
                 <span>Executing</span>
               </span>
             ) : executeStatus === "executed" ? (

@@ -36,6 +36,9 @@ function CopyButton({
   }
   return (
     <button
+      aria-label={isCopied ? "Copied!" : "copy"}
+      aria-live="assertive"
+      title={isCopied ? "Copied!" : "copy"}
       onClick={(e) => {
         e.preventDefault();
         handleCopyClick();
@@ -43,7 +46,9 @@ function CopyButton({
       className={className}
     >
       <span>{buttonText}</span>
-      <span className={iconClassName}>{isCopied ? <Check /> : <Copy />}</span>
+      <span aria-hidden className={iconClassName}>
+        {isCopied ? <Check /> : <Copy />}
+      </span>
     </button>
   );
 }
