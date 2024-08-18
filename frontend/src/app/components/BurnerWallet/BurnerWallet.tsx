@@ -1,19 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 import AssetTransferModal from "../AssetTransferModal";
 import ConnectionModal from "../ConnectionModal";
 import { useContractRead } from "@starknet-react/core";
 import { Account, RpcProvider } from "starknet";
-import CopyButton from "../ui_components/CopyButton";
+import CopyButton from "../ui_components/util/CopyButton";
 import Erc20Abi from "../../abi/token.abi.json";
-
 import ContractExecutionModal from "../ContractExecutionModal";
 import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utils/constant";
 import { formatCurrency } from "@/app/utils/currency";
 import AccountBalance from "../ui_components/AccountBalance";
-import Copy from "svg/Copy";
-import { handleCopyClick } from "@/app/utils/copy";
 interface IWallet {
   address: string;
   privateKey: string;
@@ -30,10 +26,7 @@ function BurnerWallet({
   popoverId: string;
 }) {
   const [isCopied, setIsCopied] = useState(false);
-  const [isSending, setIsSending] = useState(false);
-  const [isExecuting, setIsExecuting] = useState(false);
   const [account, setAccount] = useState(undefined);
-  const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const { data: eth, isLoading: ethLoading } = useContractRead({
     address: ETH_SEPOLIA,
@@ -93,25 +86,14 @@ function BurnerWallet({
             <h2 className="mb-2 text-l text-[--headings]">
               Wallet Account {walletNumber}
             </h2>{" "}
-            <button
-              onClick={() =>
-                handleCopyClick({
-                  text: wallet.address,
-                  setIsCopied: setIsCopied,
-                })
-              }
-              className="flex gap-2 rounded-[30px] bg-button-tertiary px-6 py-3 text-accent-secondary md:py-4"
-            >
-              <span className="flex items-center">
-                {wallet.address
-                  ?.slice(0, 6)
-                  .concat("...")
-                  .concat(wallet.address?.slice(-5))}
-              </span>
-              <span>
-                <Copy />
-              </span>
-            </button>
+            <CopyButton
+              copyText={wallet.address}
+              buttonText={wallet.address
+                ?.slice(0, 6)
+                .concat("...")
+                .concat(wallet.address?.slice(-5))}
+              className="flex items-center gap-2 rounded-[30px] bg-button-tertiary px-6 py-3 text-md text-accent-secondary md:py-4"
+            />
           </div>
           <button
             //@ts-ignore
