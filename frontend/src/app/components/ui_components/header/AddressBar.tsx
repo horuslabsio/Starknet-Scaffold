@@ -6,11 +6,10 @@ import {
 } from "@starknet-react/core";
 import Blockies from "react-blockies";
 import AccountBalance from "../AccountBalance";
-import Copy from "svg/Copy";
 import GenericModal from "../GenericModal";
 import Close from "svg/Close";
 import { useEffect, useState } from "react";
-import { handleCopyClick } from "@/app/utils/copy";
+import CopyButton from "../util/CopyButton";
 
 const UserModal = () => {
   const { address } = useAccount();
@@ -62,26 +61,15 @@ const UserModal = () => {
                 />
               )}
             </div>
-            <button
-              onClick={() =>
-                handleCopyClick({
-                  text: starkProfile?.name || address || "",
-                  setIsCopied: setIsCopied,
-                })
+            <CopyButton
+              copyText={starkProfile?.name || address || ""}
+              buttonText={
+                starkProfile?.name ||
+                address?.slice(0, 12).concat("...").concat(address?.slice(-5))
               }
               className="flex items-center gap-2 text-sm text-yellow-primary"
-            >
-              <span>
-                {starkProfile?.name ||
-                  address
-                    ?.slice(0, 12)
-                    .concat("...")
-                    .concat(address?.slice(-5))}
-              </span>
-              <span className="rounded-full bg-accent-tertiary p-1">
-                <Copy />
-              </span>
-            </button>
+              iconClassName="rounded-full bg-[--link-card] p-1 text-yellow-primary dark:bg-black"
+            />
           </div>
           <div className="rounded-[12px] bg-[--modal-assets-bg] transition-colors duration-500 ease-linear">
             <AccountBalance address={address || ""} />

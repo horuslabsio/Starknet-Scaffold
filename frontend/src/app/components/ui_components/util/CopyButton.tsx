@@ -3,10 +3,18 @@ import Check from "svg/Check";
 import Copy from "svg/Copy";
 
 type Props = {
-  data: string;
+  copyText: string;
+  buttonText?: string;
+  className?: string;
+  iconClassName?: string;
 };
 
-function CopyButton({ data }: Props) {
+function CopyButton({
+  copyText,
+  buttonText,
+  className = "rounded-full bg-[--link-card] p-1 text-yellow-primary dark:bg-black",
+  iconClassName = "",
+}: Props) {
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
@@ -18,12 +26,12 @@ function CopyButton({ data }: Props) {
   }, [isCopied]);
 
   function handleCopyClick() {
-    if (!data) return;
-    navigator.clipboard.writeText(data);
+    if (!copyText) return;
+    navigator.clipboard.writeText(copyText);
     setIsCopied(true);
   }
 
-  if (!data) {
+  if (!copyText) {
     return null;
   }
   return (
@@ -32,17 +40,10 @@ function CopyButton({ data }: Props) {
         e.preventDefault();
         handleCopyClick();
       }}
-      className="rounded-full bg-[--link-card] p-1 text-yellow-primary dark:bg-black"
+      className={className}
     >
-      {isCopied ? (
-        <span className="text-md">
-          <Check />
-        </span>
-      ) : (
-        <span>
-          <Copy />
-        </span>
-      )}
+      <span>{buttonText}</span>
+      <span className={iconClassName}>{isCopied ? <Check /> : <Copy />}</span>
     </button>
   );
 }

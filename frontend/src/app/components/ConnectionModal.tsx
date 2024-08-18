@@ -1,6 +1,6 @@
 "use client";
 import Close from "svg/Close";
-import CopyButton from "./ui_components/CopyButton";
+import CopyButton from "./ui_components/util/CopyButton";
 import GenericModal from "./ui_components/GenericModal";
 
 type Props = {
@@ -38,7 +38,7 @@ function ConnectionModal({
         <div>
           <div className="mb-4">
             <div className="mb-4 flex items-center justify-between">
-              <h4>Private Key</h4> <CopyButton data={wallet.privateKey} />
+              <h4>Private Key</h4> <CopyButton copyText={wallet.privateKey} />
             </div>
             <p className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 text-center outline-none">
               {wallet.privateKey}
@@ -48,7 +48,7 @@ function ConnectionModal({
           <div>
             <div className="mb-4 flex items-center justify-between">
               <h4>Account Address</h4>
-              <CopyButton data={wallet.address} />
+              <CopyButton copyText={wallet.address} />
             </div>
             <p className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 text-center outline-none">
               {wallet.address}
