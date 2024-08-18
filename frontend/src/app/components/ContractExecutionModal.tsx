@@ -31,7 +31,7 @@ function ContractExecutionModal({ account, popoverId }: Props) {
 
   const [executeStatus, setExecuteStatus] = useState<
     "execute" | "executing" | "executed" | "failed"
-  >("executed");
+  >("execute");
 
   function isValidStringArrayString(str: string): boolean {
     try {
