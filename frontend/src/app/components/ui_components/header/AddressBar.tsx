@@ -10,6 +10,7 @@ import Copy from "svg/Copy";
 import GenericModal from "../GenericModal";
 import Close from "svg/Close";
 import { useEffect, useState } from "react";
+import { handleCopyClick } from "@/app/utils/copy";
 
 const UserModal = () => {
   const { address } = useAccount();
@@ -27,12 +28,6 @@ const UserModal = () => {
 
     return () => clearTimeout(id);
   }, [isCopied]);
-
-  function handleCopyClick() {
-    if (!address) return;
-    navigator.clipboard.writeText(starkProfile?.name || address);
-    setIsCopied(true);
-  }
 
   return (
     <GenericModal
@@ -68,7 +63,12 @@ const UserModal = () => {
               )}
             </div>
             <button
-              onClick={handleCopyClick}
+              onClick={() =>
+                handleCopyClick({
+                  text: starkProfile?.name || address || "",
+                  setIsCopied: setIsCopied,
+                })
+              }
               className="flex items-center gap-2 text-sm text-yellow-primary"
             >
               <span>

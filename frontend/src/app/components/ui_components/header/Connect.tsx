@@ -157,7 +157,7 @@ const ConnectModal = () => {
   );
 };
 
-const ConnectButton = () => {
+const ConnectButton = ({ text = " Connect Wallet" }: { text?: string }) => {
   const togglePopover = ({ targetId }: { targetId: string }) => {
     const popover = document.getElementById(targetId);
     // @ts-ignore
@@ -179,7 +179,7 @@ const ConnectButton = () => {
         onClick={() => togglePopover({ targetId: "connect-modal" })}
         className="rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
       >
-        Connect Wallet
+        {text}
       </button>
       <ConnectModal />
     </>

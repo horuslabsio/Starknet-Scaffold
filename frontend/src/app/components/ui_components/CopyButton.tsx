@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import Check from "svg/Check";
+import Copy from "svg/Copy";
 
 type Props = {
   data: string;
@@ -31,14 +32,17 @@ function CopyButton({ data }: Props) {
         e.preventDefault();
         handleCopyClick();
       }}
-      className="dark:bg-black p-1 rounded-sm bg-[#333]"
+      className="rounded-full bg-[--link-card] p-1 text-yellow-primary dark:bg-black"
     >
-      <Image
-        src={isCopied ? "/assets/tick.svg" : "/assets/copy.svg"}
-        width={20}
-        height={20}
-        alt="#"
-      />
+      {isCopied ? (
+        <span className="text-md">
+          <Check />
+        </span>
+      ) : (
+        <span>
+          <Copy />
+        </span>
+      )}
     </button>
   );
 }
