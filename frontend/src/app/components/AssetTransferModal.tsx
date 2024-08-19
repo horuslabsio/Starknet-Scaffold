@@ -99,8 +99,8 @@ function AssetTransferModal({ strkBalance, ethBalance, account }: Props) {
       style={`py-16 px-[5vw] md:p-16 bg-transparent relative`}
     >
       {/* FEEDBACK UI --> */}
-      {/* <div
-        className={`absolute top-0 flex h-[3rem] w-[95vw] max-w-[30rem] items-center justify-center rounded-[12px] bg-[--background] transition-all ${sendStatus === "failed" || sendStatus === "sent" ? "" : "-translate-y-full scale-75"}`}
+      <div
+        className={`absolute top-0 flex h-[3rem] w-[90vw] max-w-[30rem] items-center justify-center rounded-[12px] bg-[--background] transition-all ${sendStatus === "failed" || sendStatus === "sent" ? "" : "-translate-y-full scale-75"}`}
       >
         {sendStatus === "failed" && (
           <p className="flex items-center justify-center gap-2 text-red-secondary">
@@ -118,7 +118,7 @@ function AssetTransferModal({ strkBalance, ethBalance, account }: Props) {
             <span>Your transfer was successful</span>
           </p>
         )}
-      </div> */}
+      </div>
       {/* <-- */}
 
       <div className="w-[90vw] max-w-[30rem] rounded-[24px] bg-[--background] px-6 py-8 text-[--headings] shadow-popover-shadow md:p-8">
@@ -233,9 +233,15 @@ function AssetTransferModal({ strkBalance, ethBalance, account }: Props) {
             id="amount"
             type="text"
             placeholder="Enter Amount"
+            inputMode="decimal"
             className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 outline-none"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d*\.?\d*$/.test(value)) {
+                setAmount(value);
+              }
+            }}
           />
 
           <button
