@@ -134,7 +134,7 @@ function ContractExecutionModal({ account }: Props) {
   return (
     <GenericModal
       popoverId={`burner-execute-popover`}
-      style={`p-16 bg-transparent`}
+      style={`py-16 px-[5vw] md:p-16 bg-transparent`}
     >
       {/* FEEDBACK UI --> */}
       <div
@@ -161,7 +161,7 @@ function ContractExecutionModal({ account }: Props) {
       </div>
       {/* <-- */}
 
-      <div className="w-[95vw] max-w-[30rem] rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
+      <div className="w-[90vw] max-w-[30rem] rounded-[24px] bg-[--background] px-6 py-8 text-[--headings] shadow-popover-shadow md:p-8">
         <div className="mb-8 flex justify-between">
           <h3 className="text-l text-[--headings]">Execute Contract</h3>
           <button
