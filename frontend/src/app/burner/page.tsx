@@ -246,8 +246,11 @@ export default function Page() {
           </div>
         )}
       </div>
-      <GenericModal style="bg-transparent p-16" popoverId="alert-popover">
-        <div className="flex h-[20rem] w-[95vw] max-w-[30rem] flex-col items-center gap-4 rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
+      <GenericModal
+        style="py-16 px-[5vw] md:p-16 bg-transparent"
+        popoverId="alert-popover"
+      >
+        <div className="flex h-[20rem] w-[90vw] max-w-[35rem] flex-col items-center rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
           <div className="flex w-full justify-end">
             <button
               // @ts-ignore
@@ -256,12 +259,16 @@ export default function Page() {
               <Close />
             </button>
           </div>
-          <div>
-            <span className="text-[6em] text-red-secondary">
-              <WarnBadge />
-            </span>
+          <div className="my-auto flex flex-col items-center gap-4">
+            <div>
+              <span className="text-[6em] text-red-secondary">
+                <WarnBadge />
+              </span>
+            </div>
+            <p className="text-center text-md">
+              Maximum of 5 burner accounts are allowed.
+            </p>
           </div>
-          <p className="text-md">Maximum of 5 burner accounts are allowed.</p>
         </div>
       </GenericModal>
     </section>
