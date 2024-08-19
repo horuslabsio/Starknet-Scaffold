@@ -47,7 +47,7 @@ const AddTokenModal = () => {
   return (
     <GenericModal popoverId="add-token-popover" style={`bg-transparent w-full`}>
       <div className="gird h-svh place-content-center">
-        <div className="mx-auto h-[98svh] max-h-[600px] w-[95vw] max-w-[30rem] overflow-scroll rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
+        <div className="mx-auto h-fit max-h-[600px] w-[95vw] max-w-[30rem] overflow-scroll rounded-[24px] bg-[--background] px-6 py-8 text-[--headings] shadow-popover-shadow md:p-8">
           <div className="mb-8 flex justify-between">
             <h3 className="text-l text-[--headings]">Add Token</h3>
 
@@ -97,7 +97,7 @@ const AddTokenModal = () => {
             />
 
             <button
-              className="w-full rounded-[12px] bg-[--headings] p-4 text-[--background] disabled:cursor-not-allowed"
+              className="w-full rounded-[12px] bg-[--headings] p-3 text-[--background] disabled:cursor-not-allowed md:p-4"
               onClick={async (e) => {
                 e.preventDefault();
                 handleAddToken();
