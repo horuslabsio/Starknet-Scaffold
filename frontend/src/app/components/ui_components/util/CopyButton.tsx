@@ -38,7 +38,7 @@ function CopyButton({
     <button
       aria-label={isCopied ? "Copied!" : "copy"}
       aria-live="assertive"
-      title={isCopied ? "Copied!" : "copy"}
+      title={isCopied ? "Copied!" : "click to copy address"}
       onClick={(e) => {
         e.preventDefault();
         handleCopyClick();

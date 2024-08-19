@@ -15,10 +15,9 @@ interface Errors {
 
 type Props = {
   account: any;
-  popoverId: string;
 };
 
-function ContractExecutionModal({ account, popoverId }: Props) {
+function ContractExecutionModal({ account }: Props) {
   // Form Data
   const [contractAddress, setContractAddress] = useState<string>("");
   const [functionName, setFunctionName] = useState<string>("");
@@ -134,7 +133,7 @@ function ContractExecutionModal({ account, popoverId }: Props) {
 
   return (
     <GenericModal
-      popoverId={`burner-execute-popover-${popoverId}`}
+      popoverId={`burner-execute-popover`}
       style={`p-16 bg-transparent`}
     >
       {/* FEEDBACK UI --> */}
@@ -167,7 +166,7 @@ function ContractExecutionModal({ account, popoverId }: Props) {
           <h3 className="text-l text-[--headings]">Execute Contract</h3>
           <button
             // @ts-ignore
-            popoverTarget={`burner-execute-popover-${popoverId}`}
+            popoverTarget={`burner-execute-popover`}
             onClick={() => {
               setExecuteStatus("execute");
               setCallData("");

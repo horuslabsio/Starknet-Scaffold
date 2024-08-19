@@ -5,7 +5,6 @@ import GenericModal from "./ui_components/GenericModal";
 
 type Props = {
   handleConnect: () => void;
-  popoverId: string;
   isConnected: boolean;
   wallet: {
     privateKey: string;
@@ -14,23 +13,18 @@ type Props = {
   };
 };
 
-function ConnectionModal({
-  handleConnect,
-  wallet,
-  popoverId,
-  isConnected,
-}: Props) {
+function ConnectionModal({ handleConnect, wallet, isConnected }: Props) {
   return (
     <GenericModal
-      popoverId={`burner-connect-popover-${popoverId}`}
-      style={`p-16 bg-transparent`}
+      popoverId={`burner-connect-popover`}
+      style={`py-16 px-[5vw] md:p-16 bg-transparent`}
     >
-      <div className="max-w-[40rem] rounded-[24px] bg-[--background] text-[--headings] shadow-popover-shadow md:px-8 md:py-16">
+      <div className="w-[90vw] max-w-[30rem] rounded-[24px] bg-[--background] px-4 py-8 text-[--headings] shadow-popover-shadow md:px-8 md:py-16 lg:max-w-[40rem]">
         <div className="mb-8 flex justify-between">
           <h3 className="text-l text-[--headings]">Connect Account</h3>
           <button
             // @ts-ignore
-            popoverTarget={`burner-connect-popover-${popoverId}`}
+            popoverTarget={`burner-connect-popover`}
           >
             <Close />
           </button>
@@ -40,9 +34,11 @@ function ConnectionModal({
             <div className="mb-4 flex items-center justify-between">
               <h4>Private Key</h4> <CopyButton copyText={wallet.privateKey} />
             </div>
-            <p className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 text-center outline-none">
-              {wallet.privateKey}
-            </p>
+            <div className="rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3">
+              <p className="no-scroll w-full overflow-scroll text-center outline-none">
+                {wallet.privateKey}
+              </p>
+            </div>
           </div>
 
           <div>
@@ -50,9 +46,11 @@ function ConnectionModal({
               <h4>Account Address</h4>
               <CopyButton copyText={wallet.address} />
             </div>
-            <p className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 text-center outline-none">
-              {wallet.address}
-            </p>
+            <div className="rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3">
+              <p className="no-scroll w-full overflow-scroll text-center outline-none">
+                {wallet.address}
+              </p>
+            </div>
           </div>
         </div>
 

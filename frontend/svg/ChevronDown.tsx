@@ -9,9 +9,9 @@ const ChevronDown = () => {
       <path
         fill="none"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="48"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="48"
         d="m112 184l144 144l144-144"
       />
     </svg>
