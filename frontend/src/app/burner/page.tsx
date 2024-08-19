@@ -120,8 +120,8 @@ export default function Page() {
     });
   };
   return (
-    <section className="container mx-auto pb-32 pt-[8rem] md:pt-[clamp(200px,25vh,650px)]">
-      <div className="py-8 text-md">
+    <section className="container mx-auto px-4 pb-32 pt-[8rem] md:pt-[clamp(200px,25vh,650px)]">
+      <div className="mx-auto w-fit py-8">
         <p className="mb-4 flex items-center gap-2">
           <span>
             <WarnBadge />
@@ -139,47 +139,34 @@ export default function Page() {
           session
         </p>
       </div>
-      <div className="mx-auto flex w-fit gap-4">
-        {!burnerWalletLoading ? (
-          wallets.length !== 0 ? (
-            <div className="flex flex-col gap-8">
-              <BurnerWallet
-                wallet={wallets[activeWallet]}
-                popoverId={`wallet-${activeWallet}`}
-                walletNumber={activeWallet + 1}
-              />
-            </div>
-          ) : (
-            <div className="grid w-[43rem] max-w-[43rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8">
-              <p>No burner wallets found</p>
-            </div>
-          )
-        ) : (
-          <div className="grid w-[43rem] max-w-[43rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8">
-            <Loading />
-          </div>
-        )}
-
-        <div className="h-fit w-[27rem] rounded-[16px] border border-[--borders] p-8">
-          <div className="mb-8 border-b border-b-[#DADADA] pb-8">
-            <h2 className="mb-8 text-l text-[--headings]">Burner wallet</h2>
+      <div className="mx-auto flex w-fit flex-col gap-4 lg:w-full lg:flex-row-reverse lg:justify-center">
+        <div className="h-fit w-[90vw] max-w-[35rem] rounded-[16px] lg:w-full lg:max-w-[27rem] lg:border lg:border-[--borders] lg:p-8">
+          <div className="lg:mb-8 lg:border-b lg:border-b-[#DADADA] lg:pb-8">
+            <h2 className="mb-8 hidden text-l text-[--headings] lg:block">
+              Burner wallet
+            </h2>
             <div className="relative">
               <button
-                disabled={!wallets.length}
+                disabled={!wallets.length || !address}
                 aria-expanded={openDropdown}
                 aria-controls="wallet-dropdown"
                 aria-haspopup="listbox"
                 onClick={() => setOpenDropdown((prev) => !prev)}
-                className="flex w-full items-center justify-center gap-8 rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-4 text-[--headings] disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex w-full items-center justify-between gap-8 rounded-[12px] border-[2px] border-solid border-[--borders] p-4 text-[--headings] disabled:cursor-not-allowed disabled:opacity-50 lg:justify-center lg:bg-[--modal-disconnect-bg]"
               >
-                <span>Wallet Account {activeWallet + 1}</span>
+                <span className="flex flex-col items-start gap-1">
+                  <span className="text-l lg:hidden">Burner wallets</span>
+                  <span className="rounded-[6px] bg-button-tertiary px-2 py-1 text-accent-secondary lg:rounded-none lg:bg-transparent lg:text-[--headings]">
+                    Wallet Account {activeWallet + 1}
+                  </span>
+                </span>
                 <span>
                   <ChevronDown />
                 </span>
               </button>
               <div
                 id="wallet-dropdown"
-                className={`absolute w-full overflow-hidden ${openDropdown ? "h-fit" : "h-0"}`}
+                className={`absolute z-10 w-full overflow-hidden ${openDropdown ? "h-fit" : "h-0"}`}
               >
                 <ul
                   role="listbox"
@@ -220,7 +207,7 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="hidden flex-col gap-4 lg:flex">
             <button
               disabled={!address}
               onClick={handleCreate}
@@ -238,25 +225,45 @@ export default function Page() {
           </div>
         </div>
 
-        <GenericModal style="bg-transparent p-16" popoverId="alert-popover">
-          <div className="flex h-[20rem] w-[95vw] max-w-[30rem] flex-col items-center gap-4 rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
-            <div className="flex w-full justify-end">
-              <button
-                // @ts-ignore
-                popoverTarget="alert-popover"
-              >
-                <Close />
-              </button>
+        {/* wallet */}
+        {!burnerWalletLoading ? (
+          wallets.length !== 0 ? (
+            <div className="flex flex-col gap-8">
+              <BurnerWallet
+                wallet={wallets[activeWallet]}
+                popoverId={`wallet-${activeWallet}`}
+                walletNumber={activeWallet + 1}
+              />
             </div>
-            <div>
-              <span className="text-[6em] text-red-secondary">
-                <WarnBadge />
-              </span>
+          ) : (
+            <div className="mx-auto grid min-h-[20rem] w-[90vw] max-w-[35rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8 lg:w-[45rem] lg:max-w-none">
+              <p>No burner wallets found</p>
             </div>
-            <p className="text-md">Maximum of 5 burner accounts are allowed.</p>
+          )
+        ) : (
+          <div className="grid min-h-[20rem] w-[90vw] max-w-[35rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8 lg:w-[45rem] lg:max-w-none">
+            <Loading />
           </div>
-        </GenericModal>
+        )}
       </div>
+      <GenericModal style="bg-transparent p-16" popoverId="alert-popover">
+        <div className="flex h-[20rem] w-[95vw] max-w-[30rem] flex-col items-center gap-4 rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
+          <div className="flex w-full justify-end">
+            <button
+              // @ts-ignore
+              popoverTarget="alert-popover"
+            >
+              <Close />
+            </button>
+          </div>
+          <div>
+            <span className="text-[6em] text-red-secondary">
+              <WarnBadge />
+            </span>
+          </div>
+          <p className="text-md">Maximum of 5 burner accounts are allowed.</p>
+        </div>
+      </GenericModal>
     </section>
   );
 }

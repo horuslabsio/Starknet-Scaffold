@@ -25,7 +25,7 @@ function ConnectionModal({
       popoverId={`burner-connect-popover-${popoverId}`}
       style={`p-16 bg-transparent`}
     >
-      <div className="max-w-[40rem] rounded-[24px] bg-[--background] px-8 py-16 text-[--headings] shadow-popover-shadow">
+      <div className="max-w-[40rem] rounded-[24px] bg-[--background] text-[--headings] shadow-popover-shadow md:px-8 md:py-16">
         <div className="mb-8 flex justify-between">
           <h3 className="text-l text-[--headings]">Connect Account</h3>
           <button

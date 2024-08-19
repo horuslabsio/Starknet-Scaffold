@@ -59,7 +59,7 @@ const Header = () => {
               <ConnectButton />
             )}
             <ThemeSwitch
-              className="absolute bottom-[-200%] left-3/4 md:left-1/2 md:grid lg:bottom-[-250%]"
+              className="absolute bottom-[-200%] left-3/4 md:grid lg:bottom-[-250%] lg:left-1/2"
               action={changeTheme}
               theme={theme}
             />
