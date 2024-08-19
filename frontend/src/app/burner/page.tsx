@@ -231,7 +231,6 @@ export default function Page() {
             <div className="flex flex-col gap-8">
               <BurnerWallet
                 wallet={wallets[activeWallet]}
-                popoverId={`wallet-${activeWallet}`}
                 walletNumber={activeWallet + 1}
               />
             </div>

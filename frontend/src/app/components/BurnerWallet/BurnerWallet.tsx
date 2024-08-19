@@ -19,11 +19,9 @@ interface IWallet {
 function BurnerWallet({
   wallet,
   walletNumber,
-  popoverId,
 }: {
   wallet: IWallet;
   walletNumber: number;
-  popoverId: string;
 }) {
   const [isCopied, setIsCopied] = useState(false);
   const [account, setAccount] = useState(undefined);
