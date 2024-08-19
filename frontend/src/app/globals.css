@@ -175,13 +175,15 @@
     }
   }
   .user-modal,
-  .transactions-modal {
+  .transactions-modal,
+  .no-scroll {
     overflow: scroll;
     scrollbar-width: none; /* Firefox */
   }
   /* Hide scrollbar for Chrome, Safari and Opera */
   .user-modal::-webkit-scrollbar,
-  .transactions-modal::-webkit-scrollbar {
+  .transactions-modal::-webkit-scrollbar,
+  .no-scroll::-webkit-scrollbar {
     display: none;
   }
 

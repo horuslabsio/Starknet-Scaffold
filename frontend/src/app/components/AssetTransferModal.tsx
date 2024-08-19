@@ -23,15 +23,9 @@ type Props = {
   strkBalance: number | undefined;
   ethBalance: number | undefined;
   account: any;
-  popoverId: string;
 };
 
-function AssetTransferModal({
-  strkBalance,
-  ethBalance,
-  account,
-  popoverId,
-}: Props) {
+function AssetTransferModal({ strkBalance, ethBalance, account }: Props) {
   // Form Data
   const [walletAddress, setWalletAddress] = useState("");
   const [amount, setAmount] = useState("");
@@ -101,7 +95,7 @@ function AssetTransferModal({
 
   return (
     <GenericModal
-      popoverId={`burner-transfer-popover-${popoverId}`}
+      popoverId={`burner-transfer-popover`}
       style={`p-16 bg-transparent relative`}
     >
       {/* FEEDBACK UI --> */}
@@ -132,7 +126,7 @@ function AssetTransferModal({
           <h3 className="text-l text-[--headings]">Send</h3>
           <button
             // @ts-ignore
-            popoverTarget={`burner-transfer-popover-${popoverId}`}
+            popoverTarget={`burner-transfer-popover`}
             onClick={() => {
               setSendStatus("send");
               setWalletAddress("");
