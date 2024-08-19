@@ -96,10 +96,10 @@ function AssetTransferModal({ strkBalance, ethBalance, account }: Props) {
   return (
     <GenericModal
       popoverId={`burner-transfer-popover`}
-      style={`p-16 bg-transparent relative`}
+      style={`py-16 px-[5vw] md:p-16 bg-transparent relative`}
     >
       {/* FEEDBACK UI --> */}
-      <div
+      {/* <div
         className={`absolute top-0 flex h-[3rem] w-[95vw] max-w-[30rem] items-center justify-center rounded-[12px] bg-[--background] transition-all ${sendStatus === "failed" || sendStatus === "sent" ? "" : "-translate-y-full scale-75"}`}
       >
         {sendStatus === "failed" && (
@@ -118,10 +118,10 @@ function AssetTransferModal({ strkBalance, ethBalance, account }: Props) {
             <span>Your transfer was successful</span>
           </p>
         )}
-      </div>
+      </div> */}
       {/* <-- */}
 
-      <div className="w-[95vw] max-w-[30rem] rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
+      <div className="w-[90vw] max-w-[30rem] rounded-[24px] bg-[--background] px-6 py-8 text-[--headings] shadow-popover-shadow md:p-8">
         <div className="mb-8 flex justify-between">
           <h3 className="text-l text-[--headings]">Send</h3>
           <button
