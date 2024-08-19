@@ -134,20 +134,6 @@ function BurnerWallet({
         </div>
       </div>
 
-      {/* 
-      <button
-        // @ts-ignore
-        popoverTarget={"burner-connect-popover"}
-      >
-        click 22
-      </button>
-      <button
-        // @ts-ignore
-        popoverTarget={"burner-execute-popover"}
-      >
-        click 33
-      </button> */}
-
       <ConnectionModal
         handleConnect={handleConnect}
         wallet={wallet}
