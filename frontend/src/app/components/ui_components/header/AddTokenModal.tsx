@@ -9,20 +9,21 @@ const AddTokenModal = () => {
 
   const [tokenAddress, setTokenAddress] = useState("");
   const [symbol, setSymbol] = useState("");
-  const [decimals, setDecimals] = useState(0);
+  const [decimals, setDecimals] = useState("");
   const [name, setName] = useState("");
 
   function handleAddToken() {
     const fetchAddToken = async () => {
       try {
-        // @ts-ignore
+        const decimalFloat = parseFloat(decimals);
+        //@ts-ignore
         const walletProvider = connector?._wallet;
         const asset = {
           type: "ERC20",
           options: {
             address: tokenAddress,
             symbol,
-            decimals,
+            decimalFloat,
             name,
           },
         };
@@ -35,7 +36,7 @@ const AddTokenModal = () => {
       } catch (err) {
         console.log(err);
       } finally {
-        setDecimals(0);
+        setDecimals("");
         setName("");
         setSymbol("");
         setTokenAddress("");
@@ -93,7 +94,13 @@ const AddTokenModal = () => {
               placeholder="0"
               className="mb-4 w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3"
               value={decimals}
-              onChange={(e) => setDecimals(parseInt(e.target.value))}
+              inputMode="decimal"
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^\d*\.?\d*$/.test(value)) {
+                  setDecimals(value);
+                }
+              }}
             />
 
             <button

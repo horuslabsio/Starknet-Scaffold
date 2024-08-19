@@ -207,11 +207,7 @@ const TransactionModal = () => {
             </div>
             <div className="transactions-modal flex max-h-[50svh] flex-col gap-4 overflow-scroll md:h-full md:max-h-[60vh]">
               {transactions.map((transaction, index) => (
-                <>
-                  <TransactionItem key={index} transaction={transaction} />
-                  <TransactionItem key={index} transaction={transaction} />
-                  <TransactionItem key={index} transaction={transaction} />
-                </>
+                <TransactionItem key={index} transaction={transaction} />
               ))}
             </div>
           </div>
