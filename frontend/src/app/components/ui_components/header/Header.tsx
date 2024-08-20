@@ -46,7 +46,6 @@ const Header = () => {
           <Link href={"/"} className="hidden w-[18.75rem] md:block">
             <img src="/assets/logo.svg" alt="logo" className="h-full w-full" />
           </Link>
-
           <Link href={"/"} className="block md:hidden">
             <img src="/assets/mobile-logo.svg" alt="" />
           </Link>
