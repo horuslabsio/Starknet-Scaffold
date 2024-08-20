@@ -43,19 +43,12 @@ const Header = () => {
     >
       <header className="rounded-[12px] bg-primary-gradient md:rounded-[32px]">
         <div className="mx-auto flex h-16 max-w-[--header-max-w] items-center justify-between px-4 md:h-28 md:px-8">
-          <div className="hidden w-[18.75rem] md:block">
-            <Link href={"/"}>
-              <img
-                src="/assets/logo.svg"
-                alt="logo"
-                className="h-full w-full"
-              />
-            </Link>
-          </div>
-
-          <div className="block md:hidden">
+          <Link href={"/"} className="hidden w-[18.75rem] md:block">
+            <img src="/assets/logo.svg" alt="logo" className="h-full w-full" />
+          </Link>
+          <Link href={"/"} className="block md:hidden">
             <img src="/assets/mobile-logo.svg" alt="" />
-          </div>
+          </Link>
           <div className="relative">
             {address ? (
               <div className="flex items-center gap-4">
@@ -66,7 +59,7 @@ const Header = () => {
               <ConnectButton />
             )}
             <ThemeSwitch
-              className="absolute bottom-[-200%] left-3/4 md:left-1/2 md:grid lg:bottom-[-250%]"
+              className="absolute bottom-[-200%] left-3/4 md:grid lg:bottom-[-250%] lg:left-1/2"
               action={changeTheme}
               theme={theme}
             />

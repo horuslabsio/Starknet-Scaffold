@@ -1,12 +1,11 @@
 "use client";
-import CopyButton from "./ui_components/CopyButton";
+import Close from "svg/Close";
+import CopyButton from "./ui_components/util/CopyButton";
 import GenericModal from "./ui_components/GenericModal";
-import { useEffect, useState } from "react";
 
 type Props = {
-  isOpen: boolean;
-  onClose: () => void;
   handleConnect: () => void;
+  isConnected: boolean;
   wallet: {
     privateKey: string;
     address: string;
@@ -14,93 +13,56 @@ type Props = {
   };
 };
 
-function ConnectionModal({ isOpen, onClose, handleConnect, wallet }: Props) {
-  // useState Variables
-  const [animate, setAnimate] = useState(false);
-
-  const closeModal = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setAnimate(false);
-    setTimeout(() => {
-      onClose();
-    }, 400);
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      setAnimate(true);
-    } else {
-      setAnimate(false);
-    }
-  }, [isOpen]);
-
+function ConnectionModal({ handleConnect, wallet, isConnected }: Props) {
   return (
     <GenericModal
-      popoverId=""
-      style={`bg-white text-white dark:bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
+      popoverId={`burner-connect-popover`}
+      style={`py-16 px-[5vw] md:p-16 bg-transparent`}
     >
-      <div className="absolute right-5 top-4">
-        <button
-          onClick={(e) => {
-            closeModal(e);
-            e.stopPropagation();
-          }}
-          className="bg-outline-grey grid h-8 w-8 place-content-center rounded-full"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+      <div className="w-[90vw] max-w-[30rem] rounded-[24px] bg-[--background] px-4 py-8 text-[--headings] shadow-popover-shadow md:px-8 md:py-16 lg:max-w-[40rem]">
+        <div className="mb-8 flex justify-between">
+          <h3 className="text-l text-[--headings]">Connect Account</h3>
+          <button
+            // @ts-ignore
+            popoverTarget={`burner-connect-popover`}
           >
-            <path
-              fill="currentColor"
-              d="m6.4 18.308l-.708-.708l5.6-5.6l-5.6-5.6l.708-.708l5.6 5.6l5.6-5.6l.708.708l-5.6 5.6l5.6 5.6l-.708.708l-5.6-5.6z"
-            />
-          </svg>
-        </button>
-      </div>
-      <h1 className="mb-2 text-[24px] font-semibold">Connect Account</h1>
-
-      <form>
-        <div className="flex flex-col gap-y-5">
-          <div className="flex flex-col gap-y-2">
-            <div className="flex items-center justify-between">
-              <h2>Private Key</h2>
-              <CopyButton data={wallet.privateKey} />
+            <Close />
+          </button>
+        </div>
+        <div>
+          <div className="mb-4">
+            <div className="mb-4 flex items-center justify-between">
+              <h4>Private Key</h4> <CopyButton copyText={wallet.privateKey} />
             </div>
-            <input
-              type="text"
-              placeholder="Enter Private Key"
-              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6] disabled:cursor-not-allowed dark:text-white"
-              value={wallet.privateKey}
-              disabled={true}
-            />
+            <div className="rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3">
+              <p className="no-scroll w-full overflow-scroll text-center outline-none">
+                {wallet.privateKey}
+              </p>
+            </div>
           </div>
 
-          <div className="flex flex-col gap-y-2">
-            <div className="flex items-center justify-between">
-              <h2>Account Address</h2>
-              <CopyButton data={wallet.address} />
+          <div>
+            <div className="mb-4 flex items-center justify-between">
+              <h4>Account Address</h4>
+              <CopyButton copyText={wallet.address} />
             </div>
-            <input
-              type="text"
-              placeholder="Enter Account Address"
-              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6] disabled:cursor-not-allowed dark:text-white"
-              value={wallet.address}
-              disabled={true}
-            />
+            <div className="rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3">
+              <p className="no-scroll w-full overflow-scroll text-center outline-none">
+                {wallet.address}
+              </p>
+            </div>
           </div>
         </div>
 
         <button
-          className="bg-primary mt-7 flex w-full items-center justify-center gap-x-2 rounded py-3 font-bold disabled:cursor-not-allowed"
+          disabled={isConnected}
+          className="mt-4 w-full rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 md:py-4"
           type="submit"
           onClick={handleConnect}
         >
-          Connect
+          {isConnected ? "Connected" : "Connect"}
         </button>
-      </form>
+      </div>
     </GenericModal>
   );
 }

@@ -77,9 +77,9 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
   }
 
   return (
-    <div className="flex items-center gap-4 rounded-[24px] border-[1px] border-solid border-[--headings] bg-transparent p-2 text-sm md:p-4">
+    <div className="flex items-center gap-4 rounded-[12px] border-[1px] border-solid border-[--headings] bg-transparent p-2 text-sm md:p-4">
       <div>
-        <span className="grid h-12 w-12 place-content-center rounded-[12px] bg-yellow-secondary text-l text-yellow-primary">
+        <span className="grid h-12 w-12 place-content-center rounded-[8px] bg-yellow-secondary text-l text-yellow-primary">
           <WarnBadge />
         </span>
 
@@ -93,9 +93,9 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
           <path
             fill="none"
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M3.85 8.62a4 4 0 0 1 4.78-4.77a4 4 0 0 1 6.74 0a4 4 0 0 1 4.78 4.78a4 4 0 0 1 0 6.74a4 4 0 0 1-4.77 4.78a4 4 0 0 1-6.75 0a4 4 0 0 1-4.78-4.77a4 4 0 0 1 0-6.76M8 12h8"
           />
         </svg> */}
@@ -149,7 +149,7 @@ const TransactionModal = () => {
         style="mt-[5rem] h-screen w-full bg-transparent backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
       >
         <div className="user-modal mx-auto flex w-full max-w-[--header-max-w] flex-col items-center py-8 md:items-end md:px-12">
-          <div className="zoom flex w-[95vw] max-w-[30rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 pt-8 shadow-popover-shadow transition-colors duration-500 ease-linear">
+          <div className="zoom flex w-[90vw] max-w-[25rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 pt-8 shadow-popover-shadow transition-colors duration-500 ease-linear md:max-w-[30rem]">
             <div className="mb-8 flex justify-between">
               <h3 className="text-l text-[--headings]">Transactions</h3>
               <button
@@ -167,7 +167,7 @@ const TransactionModal = () => {
             <div>
               <button // @ts-ignore
                 popoverTarget="transaction-history"
-                className="flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] p-4 text-[--headings]"
+                className="flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] py-[.55rem] text-[--headings] md:p-4"
               >
                 <span className="text-l">
                   <Library />
@@ -180,7 +180,7 @@ const TransactionModal = () => {
                 aria-haspopup="dialog"
                 // @ts-ignore
                 popoverTarget="add-token-popover"
-                className="w-full rounded-[12px] bg-accent-secondary p-4 text-background-primary-light"
+                className="w-full rounded-[12px] bg-accent-secondary p-3 text-background-primary-light md:p-4"
               >
                 Add Token
               </button>
@@ -194,7 +194,7 @@ const TransactionModal = () => {
         style="mx-auto mt-[5rem]  h-full w-full bg-transparent p-0 backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
       >
         <div className="mx-auto mt-8 flex max-w-[--header-max-w] flex-col items-center md:items-end">
-          <div className="w-[95vw] max-w-[30rem] rounded-[24px] bg-[--background] p-8 text-text-primary shadow-popover-shadow md:ml-auto md:mr-[3rem]">
+          <div className="w-[90vw] max-w-[25rem] rounded-[24px] bg-[--background] px-6 py-8 text-text-primary shadow-popover-shadow md:ml-auto md:mr-[3rem] md:max-w-[30rem] md:p-8">
             <div className="mb-8 flex justify-between">
               <h3 className="text-l text-[--headings]">Transaction List</h3>
               <button
@@ -205,7 +205,7 @@ const TransactionModal = () => {
                 <Close />
               </button>
             </div>
-            <div className="transactions-modal flex h-[60svh] max-h-[600px] flex-col gap-4 overflow-scroll md:h-full">
+            <div className="transactions-modal flex max-h-[50svh] flex-col gap-4 overflow-scroll md:h-full md:max-h-[60vh]">
               {transactions.map((transaction, index) => (
                 <TransactionItem key={index} transaction={transaction} />
               ))}

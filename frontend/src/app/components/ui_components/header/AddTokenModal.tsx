@@ -9,20 +9,21 @@ const AddTokenModal = () => {
 
   const [tokenAddress, setTokenAddress] = useState("");
   const [symbol, setSymbol] = useState("");
-  const [decimals, setDecimals] = useState(0);
+  const [decimals, setDecimals] = useState("");
   const [name, setName] = useState("");
 
   function handleAddToken() {
     const fetchAddToken = async () => {
       try {
-        // @ts-ignore
+        const decimalFloat = parseFloat(decimals);
+        //@ts-ignore
         const walletProvider = connector?._wallet;
         const asset = {
           type: "ERC20",
           options: {
             address: tokenAddress,
             symbol,
-            decimals,
+            decimalFloat,
             name,
           },
         };
@@ -35,7 +36,7 @@ const AddTokenModal = () => {
       } catch (err) {
         console.log(err);
       } finally {
-        setDecimals(0);
+        setDecimals("");
         setName("");
         setSymbol("");
         setTokenAddress("");
@@ -47,7 +48,7 @@ const AddTokenModal = () => {
   return (
     <GenericModal popoverId="add-token-popover" style={`bg-transparent w-full`}>
       <div className="gird h-svh place-content-center">
-        <div className="mx-auto h-[98svh] max-h-[600px] w-[95vw] max-w-[30rem] overflow-scroll rounded-[24px] bg-[--background] p-8 text-[--headings] shadow-popover-shadow">
+        <div className="mx-auto h-fit max-h-[600px] w-[95vw] max-w-[30rem] overflow-scroll rounded-[24px] bg-[--background] px-6 py-8 text-[--headings] shadow-popover-shadow md:p-8">
           <div className="mb-8 flex justify-between">
             <h3 className="text-l text-[--headings]">Add Token</h3>
 
@@ -93,11 +94,17 @@ const AddTokenModal = () => {
               placeholder="0"
               className="mb-4 w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3"
               value={decimals}
-              onChange={(e) => setDecimals(parseInt(e.target.value))}
+              inputMode="decimal"
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^\d*\.?\d*$/.test(value)) {
+                  setDecimals(value);
+                }
+              }}
             />
 
             <button
-              className="w-full rounded-[12px] bg-[--headings] p-4 text-[--background] disabled:cursor-not-allowed"
+              className="w-full rounded-[12px] bg-[--headings] p-3 text-[--background] disabled:cursor-not-allowed md:p-4"
               onClick={async (e) => {
                 e.preventDefault();
                 handleAddToken();

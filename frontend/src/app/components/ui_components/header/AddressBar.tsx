@@ -6,10 +6,10 @@ import {
 } from "@starknet-react/core";
 import Blockies from "react-blockies";
 import AccountBalance from "../AccountBalance";
-import Copy from "svg/Copy";
 import GenericModal from "../GenericModal";
 import Close from "svg/Close";
 import { useEffect, useState } from "react";
+import CopyButton from "../util/CopyButton";
 
 const UserModal = () => {
   const { address } = useAccount();
@@ -28,19 +28,13 @@ const UserModal = () => {
     return () => clearTimeout(id);
   }, [isCopied]);
 
-  function handleCopyClick() {
-    if (!address) return;
-    navigator.clipboard.writeText(starkProfile?.name || address);
-    setIsCopied(true);
-  }
-
   return (
     <GenericModal
       popoverId="user-popover"
       style="mt-[5rem] w-full bg-transparent backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem] h-screen"
     >
       <div className="user-modal mx-auto flex w-full max-w-[--header-max-w] flex-col items-center py-8 md:items-end md:px-12">
-        <div className="flex w-[95vw] max-w-[30rem] flex-col justify-between gap-4 rounded-[24px] bg-[--background] p-8 text-md text-text-primary shadow-popover-shadow transition-colors duration-500 ease-linear">
+        <div className="flex w-[90vw] max-w-[25rem] flex-col justify-between gap-4 rounded-[24px] bg-[--background] p-8 text-md text-text-primary shadow-popover-shadow transition-colors duration-500 ease-linear md:max-w-[30rem]">
           <div className="flex justify-between">
             <h3 className="text-l text-[--headings]">Connected</h3>
             <button
@@ -52,7 +46,7 @@ const UserModal = () => {
           </div>
 
           <div className="mx-auto">
-            <div className="mx-auto mb-4 h-24 w-24 overflow-clip rounded-full">
+            <div className="mx-auto mb-4 h-20 w-20 overflow-clip rounded-full md:h-24 md:w-24">
               {starkProfile?.profilePicture ? (
                 <img
                   src={starkProfile?.profilePicture}
@@ -63,25 +57,19 @@ const UserModal = () => {
                 <Blockies
                   seed={address || ""}
                   scale={12}
-                  className="mx-auto h-full w-full rounded-full"
+                  className="mx-auto h-full w-full scale-110 rounded-full md:scale-100"
                 />
               )}
             </div>
-            <button
-              onClick={handleCopyClick}
+            <CopyButton
+              copyText={starkProfile?.name || address || ""}
+              buttonText={
+                starkProfile?.name ||
+                address?.slice(0, 12).concat("...").concat(address?.slice(-5))
+              }
               className="flex items-center gap-2 text-sm text-yellow-primary"
-            >
-              <span>
-                {starkProfile?.name ||
-                  address
-                    ?.slice(0, 12)
-                    .concat("...")
-                    .concat(address?.slice(-5))}
-              </span>
-              <span className="rounded-full bg-accent-tertiary p-1">
-                <Copy />
-              </span>
-            </button>
+              iconClassName="rounded-full bg-[--link-card] p-1 text-yellow-primary dark:bg-black"
+            />
           </div>
           <div className="rounded-[12px] bg-[--modal-assets-bg] transition-colors duration-500 ease-linear">
             <AccountBalance address={address || ""} />
@@ -95,7 +83,7 @@ const UserModal = () => {
                 popover.hidePopover();
                 disconnect();
               }}
-              className="w-full rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-4 text-red-secondary"
+              className="w-full rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-3 text-red-secondary md:p-4"
             >
               Disconnect
             </button>

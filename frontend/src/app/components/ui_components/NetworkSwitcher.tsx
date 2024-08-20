@@ -49,7 +49,7 @@ export default function NetworkSwitcher() {
     <div className="relative flex w-[50%] max-w-[12rem] flex-col gap-y-3 text-[--headings] transition-all duration-500">
       <button
         role="combobox"
-        className="flex h-12 cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] px-4"
+        className="flex cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-2 md:p-3"
         onClick={() => {
           setOpen((prev) => !prev);
         }}

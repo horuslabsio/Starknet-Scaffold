@@ -1,11 +1,11 @@
 "use client";
 import GenericModal from "./ui_components/GenericModal";
-import Image from "next/image";
-import rightArr from "../../../public/assets/right-arr.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Call } from "starknet";
-import spinner from "../../../public/assets/spinner.svg";
-import toast from "react-hot-toast";
+import Close from "svg/Close";
+import WarnBadge from "svg/WarnBadge";
+import Verified from "svg/Verified";
+import Loading from "./ui_components/util/Loading";
 
 interface Errors {
   contractAddress?: boolean;
@@ -14,12 +14,10 @@ interface Errors {
 }
 
 type Props = {
-  isOpen: boolean;
-  onClose: () => void;
   account: any;
 };
 
-function ContractExecutionModal({ isOpen, onClose, account }: Props) {
+function ContractExecutionModal({ account }: Props) {
   // Form Data
   const [contractAddress, setContractAddress] = useState<string>("");
   const [functionName, setFunctionName] = useState<string>("");
@@ -30,16 +28,9 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
     callData: true,
   });
 
-  // useState Variables
-  const [animate, setAnimate] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const closeModal = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setAnimate(false);
-    setTimeout(() => {
-      onClose();
-    }, 400);
-  };
+  const [executeStatus, setExecuteStatus] = useState<
+    "execute" | "executing" | "executed" | "failed"
+  >("execute");
 
   function isValidStringArrayString(str: string): boolean {
     try {
@@ -98,14 +89,6 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
       }));
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      setAnimate(true);
-    } else {
-      setAnimate(false);
-    }
-  }, [isOpen]);
-
   async function handleExecute() {
     let success = false;
     try {
@@ -120,8 +103,7 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
         }));
         return;
       }
-
-      setLoading(true);
+      setExecuteStatus("executed");
 
       const call: Call = {
         contractAddress: contractAddress,
@@ -141,119 +123,130 @@ function ContractExecutionModal({ isOpen, onClose, account }: Props) {
         await account.waitForTransaction(transferTxHash);
 
       console.log(transactionReponse);
-      toast.success("Your contract function was executed successfully!", {
-        duration: 2000,
-      });
       success = true;
+      setExecuteStatus("executed");
     } catch (err: any) {
-      toast.error("An error occured! Please try again.", { duration: 2000 });
+      setExecuteStatus("failed");
       console.log(err.message);
-    } finally {
-      setLoading(false);
-      if (success)
-        setTimeout(() => {
-          onClose();
-        }, 400);
     }
   }
 
   return (
     <GenericModal
-      popoverId=""
-      style={`text-white bg-black relative mx-auto w-[90vw] px-5 py-4 md:h-fit md:w-[45rem]`}
+      popoverId={`burner-execute-popover`}
+      style={`py-16 px-[5vw] md:p-16 bg-transparent`}
     >
-      <div className="absolute right-5 top-4">
-        <button
-          onClick={(e) => {
-            closeModal(e);
-            e.stopPropagation();
-          }}
-          className="bg-outline-grey grid h-8 w-8 place-content-center rounded-full"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="currentColor"
-              d="m6.4 18.308l-.708-.708l5.6-5.6l-5.6-5.6l.708-.708l5.6 5.6l5.6-5.6l.708.708l-5.6 5.6l5.6 5.6l-.708.708l-5.6-5.6z"
-            />
-          </svg>
-        </button>
+      {/* FEEDBACK UI --> */}
+      <div
+        className={`absolute top-0 flex h-[3rem] w-[95vw] max-w-[30rem] items-center justify-center rounded-[12px] bg-[--background] transition-all ${executeStatus === "failed" || executeStatus === "executed" ? "" : "-translate-y-full scale-75"}`}
+      >
+        {executeStatus === "failed" && (
+          <p className="flex items-center justify-center gap-2 text-red-secondary">
+            <span className="text-l">
+              <WarnBadge />
+            </span>
+            <span>
+              Your contract function was not executed, please try again
+            </span>
+          </p>
+        )}
+        {executeStatus === "executed" && (
+          <p className="flex items-center justify-center gap-2 text-green-secondary">
+            <span className="text-l">
+              <Verified />
+            </span>
+            <span>Your contract function was executed successfully!</span>
+          </p>
+        )}
       </div>
-      <h1 className="mb-2 text-[24px] font-semibold">Execute Contract</h1>
-      <form action="">
-        <div className="flex flex-col gap-y-5">
-          <div className="flex flex-col gap-y-2">
-            <h2>Contract Address</h2>
-            <input
-              type="text"
-              placeholder="Enter Contract Address"
-              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
-              value={contractAddress}
-              onChange={(e) => setContractAddressValue(e.target.value)}
-            />
-            {errors?.contractAddress && contractAddress.length !== 0 && (
-              <p className="text-sm text-red-500">
-                Please enter a valid contract address
-              </p>
-            )}
-          </div>
+      {/* <-- */}
 
-          <div className="flex flex-col gap-y-2">
-            <h2>Function Name</h2>
-            <input
-              type="text"
-              placeholder="Enter Function Name"
-              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
-              value={functionName}
-              onChange={(e) => setFunctionNameValue(e.target.value)}
-            />
-            {errors?.functionName && (
-              <p className="text-sm text-red-500">
-                Please enter a function name
-              </p>
-            )}
-          </div>
-
-          <div className="flex flex-col gap-y-2">
-            <h2>Arguments (array format)</h2>
-            <input
-              type="text"
-              placeholder={`["value1", "value2", "value3", ... , "value(n)"]`}
-              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
-              value={callData}
-              onChange={(e) => setCallDataValue(e.target.value)}
-            />
-            {errors?.callData && callData.length !== 0 && (
-              <p className="text-sm text-red-500">
-                Please enter valid arguments in correct format
-              </p>
-            )}
-          </div>
+      <div className="w-[90vw] max-w-[30rem] rounded-[24px] bg-[--background] px-6 py-8 text-[--headings] shadow-popover-shadow md:p-8">
+        <div className="mb-8 flex justify-between">
+          <h3 className="text-l text-[--headings]">Execute Contract</h3>
+          <button
+            // @ts-ignore
+            popoverTarget={`burner-execute-popover`}
+            onClick={() => {
+              setExecuteStatus("execute");
+              setCallData("");
+              setContractAddress("");
+              setFunctionName("");
+            }}
+          >
+            <Close />
+          </button>
         </div>
 
-        <button
-          className="mt-7 flex w-full items-center justify-center gap-x-2 rounded bg-[#3b81f6] py-3 font-medium disabled:cursor-not-allowed"
-          disabled={
-            errors?.callData || errors?.contractAddress || errors?.functionName
-          }
-          onClick={async (e) => {
-            e.preventDefault();
-            await handleExecute();
-          }}
-        >
-          Execute{" "}
-          <Image
-            src={loading ? spinner : rightArr}
-            alt={loading ? "loading" : "right arrow"}
-            height={16}
-            width={16}
+        <form className="flex flex-col gap-4" action="">
+          <label htmlFor="contractAddress">Contract Address</label>
+          <input
+            id="contractAddress"
+            type="text"
+            placeholder="Enter Contract Address"
+            className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 outline-none"
+            value={contractAddress}
+            onChange={(e) => setContractAddressValue(e.target.value)}
           />
-        </button>
-      </form>
+          {errors?.contractAddress && contractAddress.length !== 0 && (
+            <p className="text-sm text-red-500">
+              Please enter a valid contract address
+            </p>
+          )}
+
+          <label htmlFor="function">Function Name</label>
+          <input
+            id="function"
+            type="text"
+            placeholder="Enter Function Name"
+            className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 outline-none"
+            value={functionName}
+            onChange={(e) => setFunctionNameValue(e.target.value)}
+          />
+          {errors?.functionName && (
+            <p className="text-sm text-red-500">Please enter a function name</p>
+          )}
+
+          <label htmlFor="value">Arguments (array format)</label>
+          <input
+            id="value"
+            type="text"
+            placeholder={`["value1", "value2", "value3", ... , "value(n)"]`}
+            className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 outline-none"
+            value={callData}
+            onChange={(e) => setCallDataValue(e.target.value)}
+          />
+          {errors?.callData && callData.length !== 0 && (
+            <p className="text-sm text-red-500">
+              Please enter valid arguments in correct format
+            </p>
+          )}
+
+          <button
+            className="w-full rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 md:py-4"
+            disabled={
+              errors?.callData ||
+              errors?.contractAddress ||
+              errors?.functionName
+            }
+            onClick={async (e) => {
+              e.preventDefault();
+              await handleExecute();
+            }}
+          >
+            {executeStatus === "executing" ? (
+              <span className="flex items-center justify-center gap-2">
+                <Loading dimension="h-[1.2rem] w-[1.2rem]" />
+                <span>Executing</span>
+              </span>
+            ) : executeStatus === "executed" ? (
+              <span>Executed</span>
+            ) : (
+              <span>Execute</span>
+            )}
+          </button>
+        </form>
+      </div>
     </GenericModal>
   );
 }

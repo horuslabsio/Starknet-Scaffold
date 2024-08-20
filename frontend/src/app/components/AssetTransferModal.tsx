@@ -1,9 +1,7 @@
 "use client";
 import GenericModal from "./ui_components/GenericModal";
 import Image from "next/image";
-import rightArr from "../../../public/assets/right-arr.svg";
-import { useEffect, useState } from "react";
-import downChevron from "../../../public/assets/down-chevron.svg";
+import { useState } from "react";
 import ethLogo from "../../../public/assets/eth.svg";
 import starknetLogo from "../../../public/assets/strk.svg";
 import {
@@ -15,48 +13,29 @@ import {
   cairo,
 } from "starknet";
 import abi from "./../../../public/abi/strk_abi.json";
-import spinner from "../../../public/assets/spinner.svg";
-import toast from "react-hot-toast";
+import Close from "svg/Close";
+import WarnBadge from "svg/WarnBadge";
+import Verified from "svg/Verified";
+import ChevronDown from "svg/ChevronDown";
+import Loading from "./ui_components/util/Loading";
 
 type Props = {
-  isOpen: boolean;
-  onClose: () => void;
   strkBalance: number | undefined;
   ethBalance: number | undefined;
   account: any;
 };
 
-function AssetTransferModal({
-  isOpen,
-  onClose,
-  strkBalance,
-  ethBalance,
-  account,
-}: Props) {
+function AssetTransferModal({ strkBalance, ethBalance, account }: Props) {
   // Form Data
   const [walletAddress, setWalletAddress] = useState("");
   const [amount, setAmount] = useState("");
 
   // useState Variables
-  const [animate, setAnimate] = useState(false);
   const [activeToken, setActiveToken] = useState("strk");
   const [assetDropDownIsOpen, setAssetDropDownIsOpen] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const closeModal = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setAnimate(false);
-    setTimeout(() => {
-      onClose();
-    }, 400);
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      setAnimate(true);
-    } else {
-      setAnimate(false);
-    }
-  }, [isOpen]);
+  const [sendStatus, setSendStatus] = useState<
+    "send" | "sending" | "sent" | "failed"
+  >("send");
 
   function onChangeToken(e: any, token: string) {
     e.preventDefault();
@@ -88,7 +67,8 @@ function AssetTransferModal({
       if (!walletAddress.length && !amount) {
         return;
       }
-      setLoading(true);
+      setSendStatus("sending");
+
       starknet_contract.connect(account);
       const toTransferTk: Uint256 = cairo.uint256(Number(amount) * 1e18);
       const { suggestedMaxFee: maxFee } = await account.estimateInvokeFee({
@@ -106,161 +86,185 @@ function AssetTransferModal({
           },
         );
       await provider.waitForTransaction(transferTxHash);
-      toast.success("Your transfer was successful!", { duration: 2000 });
+      setSendStatus("sent");
     } catch (err: any) {
-      toast.error("Your transfer was unsuccessfully", { duration: 2000 });
+      setSendStatus("failed");
       console.log(err.message);
-    } finally {
-      setLoading(false);
-      setTimeout(() => {
-        onClose();
-      }, 400);
     }
   }
 
   return (
     <GenericModal
-      popoverId=""
-      style={`relative mx-auto w-[90vw] bg-black px-5 py-4 text-white md:h-fit md:w-[45rem]`}
+      popoverId={`burner-transfer-popover`}
+      style={`py-16 px-[5vw] md:p-16 bg-transparent relative`}
     >
-      <div className="absolute right-5 top-4">
-        <button
-          onClick={(e) => {
-            closeModal(e);
-            e.stopPropagation();
-          }}
-          className="bg-outline-grey grid h-8 w-8 place-content-center rounded-full"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+      {/* FEEDBACK UI --> */}
+      <div
+        className={`absolute top-0 flex h-[3rem] w-[90vw] max-w-[30rem] items-center justify-center rounded-[12px] bg-[--background] transition-all ${sendStatus === "failed" || sendStatus === "sent" ? "" : "-translate-y-full scale-75"}`}
+      >
+        {sendStatus === "failed" && (
+          <p className="flex items-center justify-center gap-2 text-red-secondary">
+            <span className="text-l">
+              <WarnBadge />
+            </span>
+            <span>Your transfer was unsuccessful</span>
+          </p>
+        )}
+        {sendStatus === "sent" && (
+          <p className="flex items-center justify-center gap-2 text-green-secondary">
+            <span className="text-l">
+              <Verified />
+            </span>
+            <span>Your transfer was successful</span>
+          </p>
+        )}
+      </div>
+      {/* <-- */}
+
+      <div className="w-[90vw] max-w-[30rem] rounded-[24px] bg-[--background] px-6 py-8 text-[--headings] shadow-popover-shadow md:p-8">
+        <div className="mb-8 flex justify-between">
+          <h3 className="text-l text-[--headings]">Send</h3>
+          <button
+            // @ts-ignore
+            popoverTarget={`burner-transfer-popover`}
+            onClick={() => {
+              setSendStatus("send");
+              setWalletAddress("");
+              setAmount("");
+            }}
           >
-            <path
-              fill="currentColor"
-              d="m6.4 18.308l-.708-.708l5.6-5.6l-5.6-5.6l.708-.708l5.6 5.6l5.6-5.6l.708.708l-5.6 5.6l5.6 5.6l-.708.708l-5.6-5.6z"
-            />
-          </svg>
-        </button>
-      </div>
-      <h1 className="mb-2 text-[24px] font-semibold">Send</h1>
-      <h5 className="font-medium">Asset</h5>
-      <div>
-        <div
-          className="mb-5 mt-2 flex cursor-pointer items-center justify-between rounded-md bg-[#1f1f1f] px-3 py-2"
-          onClick={() => setAssetDropDownIsOpen((open) => !open)}
-        >
-          <div className="flex items-center gap-3">
-            <Image
-              src={activeToken === "strk" ? starknetLogo : ethLogo}
-              alt="Stark logo"
-              width={28}
-              height={28}
-            />
-            <div>
-              <h3 className="text-base font-medium">
-                {activeToken.toUpperCase() + " "}
-                <span className="text-sm font-normal">
-                  ({activeToken === "strk" ? "StarkNetToken" : "Ether"})
-                </span>
-              </h3>
-              {activeToken === "strk"
-                ? Number(strkBalance).toFixed(4)
-                : Number(ethBalance).toFixed(4)}
+            <Close />
+          </button>
+        </div>
+
+        <h5 className="mb-4">Asset</h5>
+        <div className="relative mb-4">
+          <div
+            className="flex items-center justify-between rounded-[12px] bg-[--modal-assets-bg] p-4 text-[--headings] transition-colors duration-500 ease-linear"
+            onClick={() => setAssetDropDownIsOpen((open) => !open)}
+          >
+            <div className="flex items-center gap-3">
+              <Image
+                src={activeToken === "strk" ? starknetLogo : ethLogo}
+                alt="Stark logo"
+                width={28}
+                height={28}
+              />
+              <div>
+                <h3 className="text-base font-medium">
+                  {activeToken.toUpperCase() + " "}
+                  <span className="text-sm font-normal">
+                    ({activeToken === "strk" ? "StarkNetToken" : "Ether"})
+                  </span>
+                </h3>
+                {activeToken === "strk"
+                  ? Number(strkBalance).toFixed(4)
+                  : Number(ethBalance).toFixed(4)}
+              </div>
             </div>
+            <ChevronDown />
           </div>
-          <Image
-            src={downChevron}
-            width={20}
-            height={20}
-            alt="drop-down"
-            className={`${
-              assetDropDownIsOpen && "-rotate-180"
-            } transition-all duration-200 ease-in`}
-          />
+          <div
+            className={`absolute left-1/2 mt-4 h-0 w-[102%] -translate-x-1/2 overflow-hidden bg-transparent ${
+              assetDropDownIsOpen ? "h-[120px]" : "h-0"
+            }`}
+          >
+            <ul
+              className={`h-fit rounded-[12px] border-2 border-solid border-[--borders] bg-[--background] transition-all duration-300 ${
+                assetDropDownIsOpen
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-[20px] opacity-0"
+              }`}
+            >
+              <li className="cursor-pointer px-5 py-3">
+                <button
+                  className="flex w-full items-center justify-between"
+                  onClick={(e) => onChangeToken(e, "strk")}
+                >
+                  <div className="flex gap-x-4">
+                    <Image
+                      src={starknetLogo}
+                      alt="Stark logo"
+                      width={28}
+                      height={28}
+                    />
+                    <div className="text-left">
+                      <h3 className="text-sm">STRK</h3>
+                      <h4 className="text-xs">StarkNet Token</h4>
+                    </div>
+                  </div>
+                </button>
+              </li>
+              <li className="cursor-pointer px-5 py-3">
+                <button
+                  className="flex w-full items-center justify-between"
+                  onClick={(e) => onChangeToken(e, "eth")}
+                >
+                  <div className="flex gap-x-4">
+                    <Image
+                      src={ethLogo}
+                      alt="ETH logo"
+                      width={28}
+                      height={28}
+                    />
+                    <div className="text-left">
+                      <h3 className="text-sm">ETH</h3>
+                      <h4 className="text-xs">Ether</h4>
+                    </div>
+                  </div>
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
-        <ul
-          className={`absolute left-5 right-5 overflow-hidden rounded-md bg-[#1f1e1e] transition-all duration-150 ease-in-out ${
-            assetDropDownIsOpen ? "h-fit" : "h-0"
-          }`}
-        >
-          <li className="cursor-pointer px-5 py-3">
-            <button
-              className="flex w-full items-center justify-between"
-              onClick={(e) => onChangeToken(e, "strk")}
-            >
-              <div className="flex gap-x-4">
-                <Image
-                  src={starknetLogo}
-                  alt="Stark logo"
-                  width={28}
-                  height={28}
-                />
-                <div className="text-left">
-                  <h3 className="text-sm">STRK</h3>
-                  <h4 className="text-xs">StarkNet Token</h4>
-                </div>
-              </div>
-            </button>
-          </li>
-          <li className="cursor-pointer px-5 py-3">
-            <button
-              className="flex w-full items-center justify-between"
-              onClick={(e) => onChangeToken(e, "eth")}
-            >
-              <div className="flex gap-x-4">
-                <Image src={ethLogo} alt="ETH logo" width={28} height={28} />
-                <div className="text-left">
-                  <h3 className="text-sm">ETH</h3>
-                  <h4 className="text-xs">Ether</h4>
-                </div>
-              </div>
-            </button>
-          </li>
-        </ul>
+        <form className="flex flex-col gap-4" action="">
+          <label htmlFor="wallet-address">Wallet Address</label>
+          <input
+            id="wallet-address"
+            type="text"
+            placeholder="Enter Wallet Address"
+            className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 outline-none"
+            value={walletAddress}
+            onChange={(e) => setWalletAddress(e.target.value)}
+          />
+
+          <label htmlFor="amount">Amount</label>
+          <input
+            id="amount"
+            type="text"
+            placeholder="Enter Amount"
+            inputMode="decimal"
+            className="w-full rounded-[8px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3 outline-none"
+            value={amount}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d*\.?\d*$/.test(value)) {
+                setAmount(value);
+              }
+            }}
+          />
+
+          <button
+            disabled={sendStatus === "sending" || !amount || !walletAddress}
+            className="w-full rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 md:py-4"
+            onClick={async (e) => {
+              e.preventDefault();
+              await handleTransfer();
+            }}
+          >
+            {sendStatus === "sending" ? (
+              <span className="flex items-center justify-center gap-2">
+                <Loading dimension="h-[1.2rem] w-[1.2rem]" />
+                <span>Sending</span>
+              </span>
+            ) : sendStatus === "sent" ? (
+              <span>Sent</span>
+            ) : (
+              <span>Send</span>
+            )}
+          </button>
+        </form>
       </div>
-      <form action="">
-        <div className="flex flex-col gap-y-5">
-          <div className="flex flex-col gap-y-2">
-            <h2>Wallet Address</h2>
-            <input
-              type="text"
-              placeholder="Enter Wallet Address"
-              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
-              value={walletAddress}
-              onChange={(e) => setWalletAddress(e.target.value)}
-            />
-          </div>
-
-          <div className="flex flex-col gap-y-2">
-            <h2>Amount</h2>
-            <input
-              type="text"
-              placeholder="Enter Amount"
-              className="w-full rounded border-[2px] p-2 text-black outline-none focus:border-[#3b81f6]"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
-          </div>
-        </div>
-
-        <button
-          className="bg-primary mt-7 flex w-full items-center justify-center gap-x-2 rounded py-3 font-medium disabled:cursor-not-allowed"
-          onClick={async (e) => {
-            e.preventDefault();
-            await handleTransfer();
-          }}
-        >
-          Send{" "}
-          <Image
-            src={loading ? spinner : rightArr}
-            alt={loading ? "loading" : "right arrow"}
-            height={16}
-            width={16}
-          />
-        </button>
-      </form>
     </GenericModal>
   );
 }
