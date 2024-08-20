@@ -1,5 +1,4 @@
 "use client";
-import cloudUploadIcon from "../../../public/assets/cloudUploadIcon.svg";
 import fileIcon from "../../../public/assets/fileIcon.svg";
 import trash from "../../../public/assets/deleteIcon.svg";
 import { useRef, useState } from "react";
@@ -15,7 +14,6 @@ import { useAccount } from "@starknet-react/core";
 import File from "svg/File";
 import Header from "../components/ui_components/header/Header";
 import Loading from "../components/ui_components/util/Loading";
-import { Divide } from "lucide-react";
 import CopyButton from "../components/ui_components/util/CopyButton";
 import Close from "svg/Close";
 
@@ -36,8 +34,6 @@ export default function Page() {
   const [contract, setContract] = useState<string | null>(null);
   const [casm, setCasm] = useState<CompiledSierraCasm | null>(null);
   const [contractClassHash, setContractClassHash] = useState("");
-  const [contractClassHashIsVisible, setContractClassHashIsVisible] =
-    useState(false);
   const { account, status, isConnected } = useAccount();
   const [classHash, setClassHash] = useState("");
   const [isDeclaring, setIsDeclaring] = useState<boolean>(false);
@@ -150,7 +146,6 @@ export default function Page() {
       }
 
       let result = await account.declare(payload);
-      setContractClassHashIsVisible(true);
       console.log("result: ", result);
       setIsDeclaring(false);
     } catch (e) {
@@ -328,10 +323,10 @@ export default function Page() {
               </div>
             </div>
           )}
-          {contractClassHashIsVisible ? (
-            <div className="flex flex-col gap-y-1 rounded-[12px] border-[1px] border-[--borders] bg-transparent px-4 py-3">
+          {contractClassHash && (
+            <div className="my-4 flex flex-col gap-y-1 rounded-[12px] border-[1px] border-[--borders] bg-transparent px-4 py-2 md:py-3">
               <div className="flex items-center justify-between">
-                <p className="text-[20px] leading-6">Declared ClassHash</p>
+                <p className="text-sm md:text-[20px] md:leading-6">ClassHash</p>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -341,8 +336,8 @@ export default function Page() {
                   <Close />
                 </button>
               </div>
-              <div className="flex items-center justify-start gap-x-3">
-                <div className="truncate rounded p-1 text-[15px]">
+              <div className="flex items-center justify-start gap-x-2 md:gap-x-3">
+                <div className="truncate rounded p-1 text-[13px] md:text-[15px]">
                   {contractClassHash
                     .slice(0, 20)
                     .concat("...")
@@ -352,15 +347,14 @@ export default function Page() {
                 <CopyButton copyText={contractClassHash} />
               </div>
             </div>
-          ) : (
-            <button
-              onClick={handleDeclare}
-              disabled={!casm || !contract || isDeclaring}
-              className="mt-6 flex w-full items-center justify-center gap-x-4 rounded-[12px] bg-accent-secondary px-4 py-2 text-base text-[#fafafa] disabled:cursor-not-allowed disabled:bg-opacity-[0.5] md:py-3 md:text-[20px] md:leading-[30px]"
-            >
-              {isDeclaring && <Loading dimension="h-5 w-5" />} Declare
-            </button>
           )}
+          <button
+            onClick={handleDeclare}
+            disabled={!casm || !contract || isDeclaring}
+            className="mt-4 flex w-full items-center justify-center gap-x-4 rounded-[12px] bg-accent-secondary px-4 py-2 text-base text-[#fafafa] disabled:cursor-not-allowed disabled:bg-opacity-[0.5] md:py-3 md:text-[20px] md:leading-[30px]"
+          >
+            {isDeclaring && <Loading dimension="h-5 w-5" />} Declare
+          </button>
         </form>
         <form
           onSubmit={handleDeploy}
@@ -439,7 +433,7 @@ export default function Page() {
           {deployedAddress ? (
             <div className="flex flex-col gap-y-1 rounded-[12px] border-[1px] border-[--borders] bg-transparent px-4 py-2 md:py-3">
               <div className="flex items-center justify-between">
-                <p className="text-sm leading-6 md:text-[20px]">
+                <p className="text-sm md:text-[20px] md:leading-6">
                   Deployed Address
                 </p>
                 <button
