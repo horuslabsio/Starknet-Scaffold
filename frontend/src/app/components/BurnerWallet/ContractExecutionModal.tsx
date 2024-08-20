@@ -1,11 +1,11 @@
 "use client";
-import GenericModal from "./ui_components/GenericModal";
 import { useState } from "react";
 import { Call } from "starknet";
 import Close from "svg/Close";
 import WarnBadge from "svg/WarnBadge";
 import Verified from "svg/Verified";
-import Loading from "./ui_components/util/Loading";
+import GenericModal from "../ui_components/GenericModal";
+import Loading from "../ui_components/util/Loading";
 
 interface Errors {
   contractAddress?: boolean;

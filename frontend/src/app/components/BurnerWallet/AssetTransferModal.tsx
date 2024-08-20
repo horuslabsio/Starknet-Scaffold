@@ -1,9 +1,9 @@
 "use client";
-import GenericModal from "./ui_components/GenericModal";
+import GenericModal from "../ui_components/GenericModal";
 import Image from "next/image";
 import { useState } from "react";
-import ethLogo from "../../../public/assets/eth.svg";
-import starknetLogo from "../../../public/assets/strk.svg";
+import ethLogo from "../../../../public/assets/eth.svg";
+import starknetLogo from "../../../../public/assets/strk.svg";
 import {
   Call,
   CallData,
@@ -12,12 +12,12 @@ import {
   Uint256,
   cairo,
 } from "starknet";
-import abi from "./../../../public/abi/strk_abi.json";
+import abi from "../../../../public/abi/strk_abi.json";
 import Close from "svg/Close";
 import WarnBadge from "svg/WarnBadge";
 import Verified from "svg/Verified";
 import ChevronDown from "svg/ChevronDown";
-import Loading from "./ui_components/util/Loading";
+import Loading from "../ui_components/util/Loading";
 
 type Props = {
   strkBalance: number | undefined;
