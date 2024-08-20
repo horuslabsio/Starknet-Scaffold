@@ -1,6 +1,5 @@
 import { useContractRead } from "@starknet-react/core";
 import Erc20Abi from "../../abi/token.abi.json";
-import RightChevron from "svg/RightChevron";
 import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utils/constant";
 import { formatCurrency } from "@/app/utils/currency";
 
@@ -46,11 +45,8 @@ function AccountBalance({ address, heading = true }: Props) {
               <p>Ethereum</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="mr-4 flex items-center">
             <p className="">{Number(ethBalance).toFixed(3)}</p>
-            <span className="text-l">
-              <RightChevron />
-            </span>
           </div>
         </div>
         <div className="flex justify-between">
@@ -63,11 +59,8 @@ function AccountBalance({ address, heading = true }: Props) {
               <p>Starknet token</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="mr-4 flex items-center">
             <p className="">{Number(strkBalance).toFixed(3)}</p>
-            <span className="text-l">
-              <RightChevron />
-            </span>
           </div>
         </div>
       </div>

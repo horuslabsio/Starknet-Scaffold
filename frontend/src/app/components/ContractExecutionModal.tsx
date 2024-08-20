@@ -103,7 +103,7 @@ function ContractExecutionModal({ account }: Props) {
         }));
         return;
       }
-      setExecuteStatus("executed");
+      setExecuteStatus("executing");
 
       const call: Call = {
         contractAddress: contractAddress,
@@ -123,7 +123,7 @@ function ContractExecutionModal({ account }: Props) {
         await account.waitForTransaction(transferTxHash);
 
       console.log(transactionReponse);
-      success = true;
+
       setExecuteStatus("executed");
     } catch (err: any) {
       setExecuteStatus("failed");
@@ -142,7 +142,7 @@ function ContractExecutionModal({ account }: Props) {
       >
         {executeStatus === "failed" && (
           <p className="flex items-center justify-center gap-2 text-red-secondary">
-            <span className="text-l">
+            <span className="text-md">
               <WarnBadge />
             </span>
             <span>
@@ -152,7 +152,7 @@ function ContractExecutionModal({ account }: Props) {
         )}
         {executeStatus === "executed" && (
           <p className="flex items-center justify-center gap-2 text-green-secondary">
-            <span className="text-l">
+            <span className="text-md">
               <Verified />
             </span>
             <span>Your contract function was executed successfully!</span>
@@ -225,6 +225,7 @@ function ContractExecutionModal({ account }: Props) {
           <button
             className="w-full rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 md:py-4"
             disabled={
+              executeStatus === "executing" ||
               errors?.callData ||
               errors?.contractAddress ||
               errors?.functionName
