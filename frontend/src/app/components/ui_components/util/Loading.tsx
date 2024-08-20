@@ -5,7 +5,7 @@ const Loading = ({
 }) => {
   return (
     <span
-      className={`inline-block ${dimension} animate-spin rounded-full border-[3px] border-[--headings] border-b-transparent`}
+      className={`inline-block ${dimension} animate-spin rounded-full border-[2px] border-[--headings] border-b-transparent`}
     ></span>
   );
 };

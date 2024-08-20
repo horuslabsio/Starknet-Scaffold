@@ -7,7 +7,7 @@ import BurnerWallet from "../components/BurnerWallet/BurnerWallet";
 import GenericModal from "../components/ui_components/GenericModal";
 import WarnBadge from "svg/WarnBadge";
 import Close from "svg/Close";
-import { ChevronDown } from "lucide-react";
+import ChevronDown from "svg/ChevronDown";
 import Loading from "../components/ui_components/util/Loading";
 import Blockies from "react-blockies";
 
@@ -139,8 +139,26 @@ export default function Page() {
           session
         </p>
       </div>
-      <div className="mx-auto flex w-fit flex-col gap-4 lg:w-full lg:flex-row-reverse lg:justify-center">
-        <div className="h-fit w-[90vw] max-w-[35rem] rounded-[16px] lg:w-full lg:max-w-[27rem] lg:border lg:border-[--borders] lg:p-8">
+      <div
+        className={`mx-auto ${chain.network === "sepolia" ? "flex" : "hidden"} w-fit flex-col gap-4 lg:w-full lg:flex-row-reverse lg:justify-center`}
+      >
+        <div className="flex h-fit w-[90vw] max-w-[35rem] flex-col rounded-[16px] lg:w-full lg:max-w-[27rem] lg:flex-col-reverse lg:border lg:border-[--borders] lg:p-8">
+          <div className="my-8 flex gap-4 lg:my-0 lg:flex-col">
+            <button
+              disabled={!address}
+              onClick={handleCreate}
+              className="w-full rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 md:py-4"
+            >
+              Generate new wallet
+            </button>
+            <button
+              disabled={!wallets.length}
+              onClick={clearWallet}
+              className="w-full rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] py-2 text-red-secondary disabled:cursor-not-allowed disabled:opacity-50 lg:p-4"
+            >
+              Clear wallet
+            </button>
+          </div>
           <div className="lg:mb-8 lg:border-b lg:border-b-[#DADADA] lg:pb-8">
             <h2 className="mb-8 hidden text-l text-[--headings] lg:block">
               Burner wallet
@@ -207,25 +225,8 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div className="hidden flex-col gap-4 lg:flex">
-            <button
-              disabled={!address}
-              onClick={handleCreate}
-              className="w-full rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 md:py-4"
-            >
-              Generate new wallet
-            </button>
-            <button
-              disabled={!wallets.length}
-              onClick={clearWallet}
-              className="w-full rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--modal-disconnect-bg] p-4 text-red-secondary disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              Clear wallet
-            </button>
-          </div>
         </div>
 
-        {/* wallet */}
         {!burnerWalletLoading ? (
           wallets.length !== 0 ? (
             <div className="flex flex-col gap-8">
