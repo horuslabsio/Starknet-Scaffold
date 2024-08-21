@@ -10,6 +10,18 @@ import ThemeSwitch from "../components/ui_components/header/ThemeSwitch";
 import Search from "svg/Search";
 import Link from "next/link";
 import useTheme from "../hooks/useTheme";
+"use client";
+import { useEffect, useState } from "react";
+import logoImage from "../../../public/assets/logo.svg";
+import { AddressBookResource } from "../types";
+import { addressBookResources, searchResources } from "../utils";
+import { useDebounce } from "../hooks";
+import Image from "next/image";
+import AddressTable from "./address-table";
+import ThemeSwitch from "../components/ui_components/header/ThemeSwitch";
+import Search from "svg/Search";
+import Link from "next/link";
+import useTheme from "../hooks/useTheme";
 
 export default function Page() {
   const { theme, changeTheme } = useTheme();
