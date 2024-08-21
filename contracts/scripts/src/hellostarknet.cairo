@@ -1,16 +1,19 @@
 use sncast_std::{
     declare, deploy, DeclareResult, DeployResult, get_nonce, DisplayContractAddress,
-    DisplayClassHash
+    DisplayClassHash,
+    FeeSettings,
+    EthFeeSettings
 };
 
 fn main() {
     let max_fee = 99999999999999999;
     let salt = 0x3;
+    let nonce = get_nonce('latest');
 
-    let declare_result = declare("HelloStarknet", Option::Some(max_fee), Option::None)
+    let declare_result = declare("HelloStarknet", FeeSettings::Eth(EthFeeSettings { max_fee: Option::Some(max_fee) }),
+    Option::Some(nonce))
         .expect('contract already declared');
 
-    let nonce = get_nonce('latest');
     let class_hash = declare_result.class_hash;
 
     println!("Class hash of the declared contract: {}", declare_result.class_hash);
@@ -20,7 +23,7 @@ fn main() {
         ArrayTrait::new(),
         Option::Some(salt),
         true,
-        Option::Some(max_fee),
+        FeeSettings::Eth(EthFeeSettings { max_fee: Option::Some(max_fee) }),
         Option::Some(nonce)
     )
         .expect('deploy failed');

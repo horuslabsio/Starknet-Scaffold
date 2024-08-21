@@ -20,11 +20,11 @@ export default function Home() {
       <section className="pt-[8rem] md:pt-[clamp(200px,25vh,650px)]">
         <div className="mx-auto flex max-w-[600px] flex-col gap-8 p-4 text-center md:max-w-[850px] md:p-8">
           <h1 className="text-2xl text-[--headings] md:text-3xl">
-            Everything you need to buidl dApps on Ethereum
+            Everything you need to buidl pixel-perfect dApps on Starknet
           </h1>
           <p className="text-md">
-            A modern clean version of Starknet-Scaffold with NextJS, Rainbowkit,
-            Wagmi and Typescript. Supports Hardhat and Foundry
+            A modern clean version of Starknet-Scaffold with NextJS, Starknetjs,
+            Starknetkit, Starknet-React and Typescript. Supports Scarb and Starknet Foundry for contract development.
           </p>
           <div className="flex items-center justify-center gap-4">
             <NetworkSwitcher />

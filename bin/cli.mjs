@@ -31,7 +31,7 @@ const installPackage = async () => {
     const packageName = await askQuestion('Enter your package name: ');
 
     // Ask for package type
-    const packageTypeChoices = ['contract_only', 'fullstack', 'debugger'];
+    const packageTypeChoices = ['contract_only', 'fullstack', 'dojo', 'debugger'];
     console.log('Available package types:');
     packageTypeChoices.forEach((type, index) => console.log(`${index + 1}. ${type}`));
 
@@ -65,7 +65,7 @@ const installPackage = async () => {
     let cleanupTasks = [];
     let excluded_files = [".git", ".github", "CONTRIBUTING.md", "bin", "burner", "website", "docs", "CNAME"];
 
-    if (packageType === "fullstack") {
+    if (packageType === "fullstack" || packageType === "dojo") {
         const FRONTEND_BASE_PATH = "frontend/src/app";
         const componentsToRemove = [
         `${FRONTEND_BASE_PATH}/burner`,
@@ -129,7 +129,10 @@ const installPackage = async () => {
 
     // install dependencies
     const npmSpinner = ora("Installing dependencies...").start();
-    if(packageType !== "contract_only") {
+    if(packageType == "dojo") {
+      await exec("npm run install --legacy-peer-deps && npm run initialize-dojo");
+    }
+    else if(packageType !== "contract_only") {
       await exec("npm run install --legacy-peer-deps");
     }
     npmSpinner.succeed();
