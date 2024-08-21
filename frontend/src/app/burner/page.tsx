@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useAccount, useNetwork } from "@starknet-react/core";
 import { Contract, RpcProvider, ec, stark } from "starknet";
-import * as Abi from "../../../public/abi/burnerWallet.json";;
+import * as Abi from "../../../public/abi/burnerWallet.json";
 import GenericModal from "../components/internal/util/GenericModal";
 import WarnBadge from "public/svg/WarnBadge";
 import Close from "public/svg/Close";
@@ -121,7 +121,7 @@ export default function Page() {
   };
   return (
     <section className="container mx-auto px-4 pb-32 pt-[8rem] md:pt-[clamp(200px,25vh,650px)]">
-      <div className="mx-auto w-fit py-8">
+      <div className="mx-auto w-fit py-8 text-[--headings]">
         <p className="mb-4 flex items-center gap-2">
           <span>
             <WarnBadge />
@@ -135,8 +135,8 @@ export default function Page() {
           <span>
             <WarnBadge />
           </span>
-          Also you can only generate a maximum of 5 burner wallets for each
-          session
+          NB: Ether is required to send assets and execute transactions on the
+          burner wallets
         </p>
       </div>
       <div
