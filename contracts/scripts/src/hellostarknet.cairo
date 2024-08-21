@@ -1,8 +1,6 @@
 use sncast_std::{
     declare, deploy, DeclareResult, DeployResult, get_nonce, DisplayContractAddress,
-    DisplayClassHash,
-    FeeSettings,
-    EthFeeSettings
+    DisplayClassHash, FeeSettings, EthFeeSettings
 };
 
 fn main() {
@@ -10,8 +8,11 @@ fn main() {
     let salt = 0x3;
     let nonce = get_nonce('latest');
 
-    let declare_result = declare("HelloStarknet", FeeSettings::Eth(EthFeeSettings { max_fee: Option::Some(max_fee) }),
-    Option::Some(nonce))
+    let declare_result = declare(
+        "HelloStarknet",
+        FeeSettings::Eth(EthFeeSettings { max_fee: Option::Some(max_fee) }),
+        Option::Some(nonce)
+    )
         .expect('contract already declared');
 
     let class_hash = declare_result.class_hash;

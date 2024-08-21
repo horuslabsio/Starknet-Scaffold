@@ -11,8 +11,6 @@ Before you begin, you need to install the following tools:
 - [Node (v18 LTS)](https://nodejs.org/en/download/)
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Git](https://git-scm.com/downloads)
-- [Scarb](https://docs.swmansion.com/scarb/docs.html)
-- [Starknet Foundry](https://foundry-rs.github.io/starknet-foundry/)
 
 ## QUICKSTART
 
@@ -23,7 +21,7 @@ git clone git@github.com:argentlabs/Starknet-Scaffold.git
 cd Starknet-Scaffold
 ```
 
-Or install using create-starknet-app (recommended). This takes in the name and boilerplate type. If you need a basic fullstack boilerplate with frontend UI components, specify the `fullstack` type, if you need just contracts specify, `contract_only`, else for full debugging suite, use `debugger`.
+Or install using create-starknet-app (recommended).
 
 PS: defaults to debugger mode, if no type is specified.
 
