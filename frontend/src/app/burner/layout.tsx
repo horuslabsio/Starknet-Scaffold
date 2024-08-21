@@ -12,7 +12,7 @@ export default function BurnerRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex min-h-[--100svh] flex-col justify-between gap-16">
+    <main className="min-h-[--100svh]">
       <Header />
       {children}
     </main>

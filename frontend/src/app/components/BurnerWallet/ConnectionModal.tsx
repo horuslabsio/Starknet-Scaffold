@@ -1,7 +1,7 @@
 "use client";
 import Close from "svg/Close";
-import CopyButton from "./ui_components/util/CopyButton";
-import GenericModal from "./ui_components/GenericModal";
+import CopyButton from "../ui_components/util/CopyButton";
+import GenericModal from "../ui_components/GenericModal";
 
 type Props = {
   handleConnect: () => void;
