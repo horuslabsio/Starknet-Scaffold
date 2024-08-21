@@ -3,10 +3,8 @@ import { useState } from "react";
 import { useConnect } from "@starknet-react/core";
 import Close from "public/svg/Close";
 import GenericModal from "../internal/util/GenericModal";
-
 const AddTokenModal = () => {
   const { connector } = useConnect();
-
   const [tokenAddress, setTokenAddress] = useState("");
   const [symbol, setSymbol] = useState("");
   const [decimals, setDecimals] = useState("");
@@ -60,7 +58,7 @@ const AddTokenModal = () => {
             </button>
           </div>
 
-          <form action="" className="flex flex-col gap-4">
+          <form action="" className="flex flex-col items-start gap-4">
             <label>Contract Address</label>
             <input
               type="text"
@@ -119,4 +117,26 @@ const AddTokenModal = () => {
   );
 };
 
-export default AddTokenModal;
+const AddToken = ({
+  text = "Add Token",
+  className = "h-12 w-[50%] max-w-[12rem] rounded-[12px] border-[2px] border-solid border-[--add-token-border] bg-background-primary-light text-accent-secondary transition-all duration-300 hover:rounded-[30px]",
+}: {
+  text?: string;
+  className?: string;
+}) => {
+  return (
+    <>
+      <button
+        aria-haspopup="dialog"
+        // @ts-ignore
+        popovertarget="add-token-popover"
+        className={className}
+      >
+        {text}
+      </button>
+      <AddTokenModal />
+    </>
+  );
+};
+
+export default AddToken;

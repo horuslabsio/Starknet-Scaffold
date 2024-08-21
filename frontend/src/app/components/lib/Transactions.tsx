@@ -1,14 +1,11 @@
 "use client";
-import Menu from "public/svg/Menu";
 import { useState } from "react";
 import Close from "public/svg/Close";
 import Library from "public/svg/Library";
-import AddTokenModal from "./AddTokenModal";
 import Blockies from "react-blockies";
 import { useAccount, useStarkProfile } from "@starknet-react/core";
 import GenericModal from "../internal/util/GenericModal";
 import WarnBadge from "public/svg/WarnBadge";
-import NetworkSwitcher from "./NetworkSwitcher";
 import { formatDate } from "../internal/helpers";
 
 export enum Status {
@@ -77,8 +74,6 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
         <span className="grid h-12 w-12 place-content-center rounded-[8px] bg-yellow-secondary text-l text-yellow-primary">
           <WarnBadge />
         </span>
-
-        
       </div>
 
       <div className="flex flex-1 flex-col gap-2 px-2 md:gap-4 md:px-4">
@@ -123,106 +118,53 @@ const TransactionModal = () => {
   const [transactions, setTransactions] = useState(testTransactions);
 
   return (
-    <>
-      <GenericModal
-        popoverId="transaction-modal"
-        style="mt-[5rem] h-screen w-full bg-transparent backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
-      >
-        <div className="user-modal mx-auto flex w-full max-w-[--header-max-w] flex-col items-center py-8 md:items-end md:px-12">
-          <div className="zoom flex w-[90vw] max-w-[25rem] flex-col gap-4 rounded-[24px] bg-[--background] p-8 pt-8 shadow-popover-shadow transition-colors duration-500 ease-linear md:max-w-[30rem]">
-            <div className="mb-8 flex justify-between">
-              <h3 className="text-l text-[--headings]">Transactions</h3>
-              <button
-                //@ts-ignore
-                popovertarget="transaction-modal"
-                className="text-[--headings]"
-              >
-                <Close />
-              </button>
-            </div>
-            <div className="flex items-center justify-between">
-              <p className="text-text-primary">Select Network</p>
-              <NetworkSwitcher />
-            </div>
-            <div>
-              <button // @ts-ignore
-                popovertarget="transaction-history"
-                className="flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] py-[.55rem] text-[--headings] md:p-4"
-              >
-                <span className="text-l">
-                  <Library />
-                </span>
-                <span>Transaction History</span>
-              </button>
-            </div>
-            <div>
-              <button
-                aria-haspopup="dialog"
-                // @ts-ignore
-                popovertarget="add-token-popover"
-                className="w-full rounded-[12px] bg-accent-secondary p-3 text-background-primary-light md:p-4"
-              >
-                Add Token
-              </button>
-            </div>
+    <GenericModal
+      popoverId="transaction-history"
+      style="mx-auto mt-[5rem]  h-full w-full bg-transparent p-0 backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
+    >
+      <div className="mx-auto mt-8 flex max-w-[--header-max-w] flex-col items-center md:items-end">
+        <div className="w-[90vw] max-w-[25rem] rounded-[24px] bg-[--background] px-6 py-8 text-text-primary shadow-popover-shadow md:ml-auto md:mr-[3rem] md:max-w-[30rem] md:p-8">
+          <div className="mb-8 flex justify-between">
+            <h3 className="text-l text-[--headings]">Transaction List</h3>
+            <button
+              //@ts-ignore
+              popovertarget="transaction-history"
+              className="text-[--headings]"
+            >
+              <Close />
+            </button>
+          </div>
+          <div className="transactions-modal flex max-h-[50svh] flex-col gap-4 overflow-scroll md:h-full md:max-h-[60vh]">
+            {transactions.map((transaction, index) => (
+              <TransactionItem key={index} transaction={transaction} />
+            ))}
           </div>
         </div>
-      </GenericModal>
-
-      <GenericModal
-        popoverId="transaction-history"
-        style="mx-auto mt-[5rem]  h-full w-full bg-transparent p-0 backdrop:mt-[5rem] md:mt-[9rem] md:backdrop:mt-[9rem]"
-      >
-        <div className="mx-auto mt-8 flex max-w-[--header-max-w] flex-col items-center md:items-end">
-          <div className="w-[90vw] max-w-[25rem] rounded-[24px] bg-[--background] px-6 py-8 text-text-primary shadow-popover-shadow md:ml-auto md:mr-[3rem] md:max-w-[30rem] md:p-8">
-            <div className="mb-8 flex justify-between">
-              <h3 className="text-l text-[--headings]">Transaction List</h3>
-              <button
-                //@ts-ignore
-                popovertarget="transaction-history"
-                className="text-[--headings]"
-              >
-                <Close />
-              </button>
-            </div>
-            <div className="transactions-modal flex max-h-[50svh] flex-col gap-4 overflow-scroll md:h-full md:max-h-[60vh]">
-              {transactions.map((transaction, index) => (
-                <TransactionItem key={index} transaction={transaction} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </GenericModal>
-    </>
+      </div>
+    </GenericModal>
   );
 };
 
-const Transactions = () => {
-  const togglePopover = ({ targetId }: { targetId: string }) => {
-    const popover = document.getElementById(targetId);
-    // @ts-ignore
-    popover.togglePopover();
-    if (popover) {
-      popover.addEventListener("toggle", () => {
-        if (popover.matches(":popover-open")) {
-          document.body.style.overflow = "hidden";
-        } else {
-          document.body.style.overflow = "";
-        }
-      });
-    }
-  };
+const Transactions = ({
+  text = "Transaction History",
+  className = "flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] py-[.55rem] text-[--headings] md:p-4",
+}: {
+  text?: string;
+  className?: string;
+}) => {
   return (
     <>
       <button
-        aria-haspopup="dialog"
-        onClick={() => togglePopover({ targetId: "transaction-modal" })}
-        className="grid h-10 w-10 place-content-center rounded-full bg-accent-secondary text-[1.5em] text-background-primary-light md:h-12 md:w-12"
+        // @ts-ignore
+        popovertarget="transaction-history"
+        className={className}
       >
-        <Menu />
+        <span className="text-l">
+          <Library />
+        </span>
+        <span>{text}</span>
       </button>
       <TransactionModal />
-      <AddTokenModal />
     </>
   );
 };

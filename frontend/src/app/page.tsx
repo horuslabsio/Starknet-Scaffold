@@ -10,6 +10,7 @@ import Link from "next/link";
 import Upright from "public/svg/Upright";
 import NetworkSwitcher from "./components/lib/NetworkSwitcher";
 import Header from "./components/internal/Header";
+import AddToken from "./components/lib/AddToken";
 
 export default function Home() {
   return (
@@ -23,19 +24,13 @@ export default function Home() {
           </h1>
           <p className="text-md">
             A modern clean version of Starknet-Scaffold with NextJS, Starknetjs,
-            Starknetkit, Starknet-React and Typescript. Supports Scarb and Starknet Foundry for contract development.
+            Starknetkit, Starknet-React and Typescript. Supports Scarb and
+            Starknet Foundry for contract development.
           </p>
+
           <div className="flex items-center justify-center gap-4">
             <NetworkSwitcher />
-
-            <button
-              aria-haspopup="dialog"
-              // @ts-ignore
-              popovertarget="add-token-popover"
-              className="h-12 w-[50%] max-w-[12rem] rounded-[12px] border-[2px] border-solid border-[--add-token-border] bg-background-primary-light text-accent-secondary transition-all duration-300 hover:rounded-[30px]"
-            >
-              Add Token
-            </button>
+            <AddToken />
           </div>
         </div>
       </section>

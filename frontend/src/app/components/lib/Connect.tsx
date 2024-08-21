@@ -161,7 +161,13 @@ const ConnectModal = () => {
   );
 };
 
-const ConnectButton = ({ text = " Connect Wallet" }: { text?: string }) => {
+const ConnectButton = ({
+  text = " Connect Wallet",
+  className = "rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4",
+}: {
+  text?: string;
+  className?: string;
+}) => {
   const togglePopover = ({ targetId }: { targetId: string }) => {
     const popover = document.getElementById(targetId);
     // @ts-ignore
@@ -181,7 +187,7 @@ const ConnectButton = ({ text = " Connect Wallet" }: { text?: string }) => {
       <button
         aria-haspopup="dialog"
         onClick={() => togglePopover({ targetId: "connect-modal" })}
-        className="rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
+        className={className}
       >
         {text}
       </button>
