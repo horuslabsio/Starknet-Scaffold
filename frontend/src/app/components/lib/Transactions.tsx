@@ -1,17 +1,15 @@
 "use client";
-import Menu from "svg/Menu";
+import Menu from "public/svg/Menu";
 import { useState } from "react";
-import GenericModal from "../GenericModal";
-import Close from "svg/Close";
-import NetworkSwitcher from "../NetworkSwitcher";
-import Library from "svg/Library";
+import Close from "public/svg/Close";
+import Library from "public/svg/Library";
 import AddTokenModal from "./AddTokenModal";
-import { CheckCircle2, Clock, AlertCircle } from "lucide-react";
-import Verified from "svg/Verified";
 import Blockies from "react-blockies";
 import { useAccount, useStarkProfile } from "@starknet-react/core";
-import WarnBadge from "svg/WarnBadge";
-import { formatDate } from "@/app/utils/date";
+import GenericModal from "../internal/util/GenericModal";
+import WarnBadge from "public/svg/WarnBadge";
+import NetworkSwitcher from "./NetworkSwitcher";
+import { formatDate } from "../internal/helpers";
 
 export enum Status {
   Accepted,
@@ -61,15 +59,12 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
 
   switch (transaction.statut) {
     case Status.Accepted:
-      Icon = CheckCircle2;
       color = "text-green-500";
       break;
     case Status.Pending:
-      Icon = Clock;
       color = "text-[#f77448]";
       break;
     case Status.Rejected:
-      Icon = AlertCircle;
       color = "text-red-500";
       break;
     default:
@@ -83,22 +78,7 @@ const TransactionItem = ({ transaction }: { transaction: Transaction }) => {
           <WarnBadge />
         </span>
 
-        {/* <Verified />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M3.85 8.62a4 4 0 0 1 4.78-4.77a4 4 0 0 1 6.74 0a4 4 0 0 1 4.78 4.78a4 4 0 0 1 0 6.74a4 4 0 0 1-4.77 4.78a4 4 0 0 1-6.75 0a4 4 0 0 1-4.78-4.77a4 4 0 0 1 0-6.76M8 12h8"
-          />
-        </svg> */}
+        
       </div>
 
       <div className="flex flex-1 flex-col gap-2 px-2 md:gap-4 md:px-4">

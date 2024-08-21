@@ -2,14 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { useAccount, useNetwork } from "@starknet-react/core";
 import { Contract, RpcProvider, ec, stark } from "starknet";
-import * as Abi from "../../../public/abi/burnerWallet.json";
-import BurnerWallet from "../components/BurnerWallet/BurnerWallet";
-import GenericModal from "../components/ui_components/GenericModal";
-import WarnBadge from "svg/WarnBadge";
-import Close from "svg/Close";
-import ChevronDown from "svg/ChevronDown";
-import Loading from "../components/ui_components/util/Loading";
+import * as Abi from "../../../public/abi/burnerWallet.json";;
+import GenericModal from "../components/internal/util/GenericModal";
+import WarnBadge from "public/svg/WarnBadge";
+import Close from "public/svg/Close";
+import ChevronDown from "public/svg/ChevronDown";
+import Loading from "../components/internal/util/Loading";
 import Blockies from "react-blockies";
+import BurnerWallet from "./BurnerWallet";
 
 type Wallet = {
   address: string;

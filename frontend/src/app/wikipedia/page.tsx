@@ -4,13 +4,23 @@ import logoImage from "../../../public/assets/logo.svg";
 import { useEffect, useState } from "react";
 import Filter from "./filter";
 import Resources from "./resources";
-import { useDebounce } from "../hooks";
-import { searchResources, wikipediaResources } from "../utils";
-import { WikipediaResource } from "../types";
-import ThemeSwitch from "../components/ui_components/header/ThemeSwitch";
-import Search from "svg/Search";
+import { useDebounce } from "../components/internal/hooks/useDebounce";
+import wikipediaResources from "../../../public/wikipedia.json"
+import Search from "public/svg/Search";
 import Link from "next/link";
-import useTheme from "../hooks/useTheme";
+import useTheme from "../components/internal/hooks/useTheme";
+import ThemeSwitch from "../components/internal/util/ThemeSwitch";
+import { searchResources } from "../components/internal/helpers";
+
+
+interface WikipediaResource {
+  id: string;
+  name: string;
+  description: string;
+  status: string;
+  url: string;
+  category: string;
+}
 
 export default function Page() {
   const { theme, changeTheme } = useTheme();

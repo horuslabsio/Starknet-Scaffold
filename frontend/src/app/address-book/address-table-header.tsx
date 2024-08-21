@@ -1,6 +1,5 @@
 import { useRouter, useSearchParams } from "next/navigation";
-import sortIcon from "../../../public/assets/sortIcon.svg";
-import Sort from "svg/Sort";
+import Sort from "public/svg/Sort";
 
 export default function AddressTableHeader() {
   const searchParams = useSearchParams();

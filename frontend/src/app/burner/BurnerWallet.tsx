@@ -4,12 +4,12 @@ import AssetTransferModal from "./AssetTransferModal";
 import ConnectionModal from "./ConnectionModal";
 import { useContractRead } from "@starknet-react/core";
 import { Account, RpcProvider } from "starknet";
-import CopyButton from "../ui_components/util/CopyButton";
-import Erc20Abi from "../../abi/token.abi.json";
+import Erc20Abi from "../../../public/abi/token.abi.json";
 import ContractExecutionModal from "./ContractExecutionModal";
-import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utils/constant";
-import { formatCurrency } from "@/app/utils/currency";
-import AccountBalance from "../ui_components/AccountBalance";
+import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/components/internal/helpers/constant";
+import { formatCurrency } from "../components/internal/helpers";
+import CopyButton from "../components/internal/util/CopyButton";
+import AccountBalance from "../components/lib/AccountBalance";
 interface IWallet {
   address: string;
   privateKey: string;
@@ -76,7 +76,7 @@ function BurnerWallet({
 
   return (
     <>
-      <div className="w-[90vw] max-w-[35rem] p-2 md:p-8 lg:w-full lg:max-w-[45rem] lg:rounded-[16px] lg:border lg:border-[--borders]">
+      <div className="w-[90vw] max-w-[35rem] p-2 md:p-8 lg:w-[45rem] lg:max-w-none lg:rounded-[16px] lg:border lg:border-[--borders]">
         <div className="mb-4 flex items-center justify-between gap-4 border-b border-b-[#DADADA] py-4 md:mb-12">
           <div className="flex flex-col md:items-center lg:flex-row lg:gap-4">
             <h2 className="mb-2 text-[--headings] md:text-l">

@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
-import Moon from "svg/Moon";
-import Sun from "svg/Sun";
+import Moon from "public/svg/Moon";
+import Sun from "public/svg/Sun";
 
 interface ThemeSwitchProps {
   theme: string;

@@ -1,6 +1,5 @@
 import { useRouter, useSearchParams } from "next/navigation";
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-
+import RightChevron from "public/svg/RightChevron";
 const PAGE_SIZE = 10;
 export default function Pagination({ count }: { count: number }) {
   const searchParams = useSearchParams();
@@ -41,7 +40,11 @@ export default function Pagination({ count }: { count: number }) {
           onClick={prevPage}
           disabled={currentPage === 1}
         >
-          <HiChevronLeft /> <span>Previous</span>
+          <span className="inline-block rotate-180">
+            <RightChevron/>
+          </span>
+
+          <span>Previous</span>
         </button>
         <button
           className="flex items-center gap-x-2 rounded-lg border-[1px] border-[#F2F2F2] px-3 py-2 disabled:cursor-not-allowed"
@@ -49,7 +52,9 @@ export default function Pagination({ count }: { count: number }) {
           disabled={currentPage === pageCount}
         >
           <span>Next</span>
-          <HiChevronRight />
+          <span>
+          <RightChevron/>
+          </span>
         </button>
       </div>
     </div>

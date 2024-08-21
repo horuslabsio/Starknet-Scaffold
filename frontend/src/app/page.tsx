@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Header from "@/app/components/ui_components/header/Header";
 import faucet from "../../public/assets/faucetBanner.svg";
 import deployer from "../../public/assets/deployerBanner.svg";
 import wikipedia from "../../public/assets/wikipediaBanner.svg";
@@ -8,14 +7,14 @@ import addressBook from "../../public/assets/addressBook.svg";
 import converter from "../../public/assets/converterBanner.svg";
 import burnerWallet from "../../public/assets/burnerWallet.svg";
 import Link from "next/link";
-import Upright from "svg/Upright";
-import NetworkSwitcher from "./components/ui_components/NetworkSwitcher";
+import Upright from "public/svg/Upright";
+import NetworkSwitcher from "./components/lib/NetworkSwitcher";
+import Header from "./components/internal/Header";
 
 export default function Home() {
   return (
     <main className="flex min-h-svh flex-col justify-between gap-16">
       <Header />
-
       {/* HERO --> */}
       <section className="pt-[8rem] md:pt-[clamp(200px,25vh,650px)]">
         <div className="mx-auto flex max-w-[600px] flex-col gap-8 p-4 text-center md:max-w-[850px] md:p-8">

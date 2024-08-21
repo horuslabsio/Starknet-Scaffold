@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
 import { useNetwork } from "@starknet-react/core";
-import Check from "svg/Check";
-import ChevronDown from "svg/ChevronDown";
+import Check from "public/svg/Check";
+import ChevronDown from "public/svg/ChevronDown";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",

@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useConnect } from "@starknet-react/core";
-import GenericModal from "../GenericModal";
-import Close from "svg/Close";
+import Close from "public/svg/Close";
+import GenericModal from "../internal/util/GenericModal";
 
 const AddTokenModal = () => {
   const { connector } = useConnect();

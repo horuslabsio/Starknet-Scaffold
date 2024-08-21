@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Connector, useConnect } from "@starknet-react/core";
-import Close from "svg/Close";
-import GenericModal from "../GenericModal";
+import Close from "public/svg/Close";
+import GenericModal from "../internal/util/GenericModal";
+
 
 const loader = ({ src }: { src: string }) => {
   return src;

@@ -1,15 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
-import logoImage from "../../../public/assets/logo.svg";
-import { AddressBookResource } from "../types";
-import { addressBookResources, searchResources } from "../utils";
-import { useDebounce } from "../hooks";
+import logoImage from "public/assets/logo.svg";
+import addressBookResources from "public/address-book.json"
+import { useDebounce } from "../components/internal/hooks/useDebounce";
 import Image from "next/image";
 import AddressTable from "./address-table";
-import ThemeSwitch from "../components/ui_components/header/ThemeSwitch";
-import Search from "svg/Search";
+import Search from "public/svg/Search";
 import Link from "next/link";
-import useTheme from "../hooks/useTheme";
+import useTheme from "../components/internal/hooks/useTheme";
+import ThemeSwitch from "../components/internal/util/ThemeSwitch";
+import { searchResources } from "../components/internal/helpers";
+
+
+export interface AddressBookResource {
+  id: string;
+  name: string;
+  description: string;
+  address: string;
+}
 
 export default function Page() {
   const { theme, changeTheme } = useTheme();
@@ -17,7 +25,6 @@ export default function Page() {
   const [filteredAddresses, setFilteredAddresses] = useState<
     AddressBookResource[]
   >([]);
-  const [openMenu] = useState(false);
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search);
 

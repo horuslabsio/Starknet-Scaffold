@@ -2,7 +2,7 @@ import CategoryButton from "./category-button";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { IoFilter } from "react-icons/io5";
-import SortBy from "~/ui_components/SortBy";
+import SortBy from "@/app/components/internal/util/SortBy";
 
 export default function Filter({
   field,
