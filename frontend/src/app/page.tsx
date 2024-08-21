@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Header from "@/app/components/ui_components/header/Header";
 import faucet from "../../public/assets/faucetBanner.svg";
@@ -12,16 +13,8 @@ import NetworkSwitcher from "./components/ui_components/NetworkSwitcher";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between py-24 md:p-24">
+    <main className="flex min-h-svh flex-col justify-between gap-16">
       <Header />
-      <Image
-        className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
-        src="/starknetlogo.png"
-        alt="Starknet Scaffold"
-        width={180}
-        height={40}
-        priority
-      />
 
       {/* HERO --> */}
       <section className="pt-[8rem] md:pt-[clamp(200px,25vh,650px)]">
@@ -33,14 +26,14 @@ export default function Home() {
             A modern clean version of Starknet-Scaffold with NextJS, Rainbowkit,
             Wagmi and Typescript. Supports Hardhat and Foundry
           </p>
-          <div className="flex justify-center gap-x-5">
+          <div className="flex items-center justify-center gap-4">
             <NetworkSwitcher />
 
             <button
               aria-haspopup="dialog"
               // @ts-ignore
               popoverTarget="add-token-popover"
-              className="add-token h-fit w-fit rounded-[12px] border-[2.5px] border-solid bg-background-primary-light px-12 py-3 text-accent-secondary"
+              className="h-12 w-[50%] max-w-[12rem] rounded-[12px] border-[2px] border-solid border-[--add-token-border] bg-background-primary-light text-accent-secondary transition-all duration-300 hover:rounded-[30px]"
             >
               Add Token
             </button>
@@ -57,7 +50,7 @@ export default function Home() {
             href="/burner"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full flex-col rounded-[16px] p-4 transition-all duration-500 hover:bg-button-secondary md:block md:pb-0"
           >
             <div className="p-4 md:absolute md:pt-8 lg:w-[40%]">
               <h2 className="mb-2 flex items-center gap-1 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -111,7 +104,7 @@ export default function Home() {
             href="/scaffold-deployer"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] px-8 pt-8 transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary md:px-4 md:pt-4"
           >
             <div className="px-4 pt-8 md:absolute">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
@@ -198,7 +191,7 @@ export default function Home() {
             href="/address-book"
             target="_blank"
             rel="noopener noreferrer"
-            className="group block h-full w-full overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary md:block"
           >
             <div className="p-4 md:absolute md:w-[50%] md:px-8 md:pt-8 lg:w-[60%]">
               <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">

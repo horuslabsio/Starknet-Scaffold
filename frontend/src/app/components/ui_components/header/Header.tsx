@@ -7,7 +7,6 @@ import Transactions from "./Transactions";
 import ConnectButton from "./Connect";
 import useTheme from "@/app/hooks/useTheme";
 import Link from "next/link";
-import Link from "next/link";
 
 const Header = () => {
   const { address } = useAccount();
