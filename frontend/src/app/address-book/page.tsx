@@ -48,7 +48,7 @@ export default function Page() {
                 />
               </Link>
               <h4 className="border-l-[1.25px] border-[#141925] px-1 py-[2px] text-xs uppercase italic leading-[14px] text-accent-secondary md:border-l-[1.75px] md:px-2 md:py-1 md:text-[24px] md:leading-7">
-                addressbook
+                address book
               </h4>
             </div>
             <ThemeSwitch className="grid" action={changeTheme} theme={theme} />
@@ -67,7 +67,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="h-full px-4 pb-6 pt-3 text-[--headings] md:px-9 md:pb-[74px] md:pt-4">
+      <div className="mx-auto h-full max-w-[--header-max-w] px-4 pb-6 pt-3 text-[--headings] md:px-9 md:pb-[74px] md:pt-4">
         <AddressTable
           addresses={
             filteredAddresses.length > 0 && search.length > 0

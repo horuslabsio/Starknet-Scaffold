@@ -34,9 +34,6 @@ const config: Config = {
         "red-secondary": "#FE4E4E",
         "yellow-primary": "#FD9332",
         "yellow-secondary": "#FFEECD",
-        "dark-hover": "#34302D",
-        "border-dark": "494949",
-        "border-light": "#eeeeee",
         "grey-light-primary": "#F9FAFB",
       },
       fontSize: {

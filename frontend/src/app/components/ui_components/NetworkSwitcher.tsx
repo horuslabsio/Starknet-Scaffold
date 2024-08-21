@@ -1,7 +1,8 @@
 "use client";
 import * as React from "react";
-import { Check, ChevronDown } from "lucide-react";
 import { useNetwork } from "@starknet-react/core";
+import Check from "svg/Check";
+import ChevronDown from "svg/ChevronDown";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",
