@@ -134,7 +134,7 @@ const TransactionModal = () => {
               <h3 className="text-l text-[--headings]">Transactions</h3>
               <button
                 //@ts-ignore
-                popoverTarget="transaction-modal"
+                popovertarget="transaction-modal"
                 className="text-[--headings]"
               >
                 <Close />
@@ -146,7 +146,7 @@ const TransactionModal = () => {
             </div>
             <div>
               <button // @ts-ignore
-                popoverTarget="transaction-history"
+                popovertarget="transaction-history"
                 className="flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] py-[.55rem] text-[--headings] md:p-4"
               >
                 <span className="text-l">
@@ -159,7 +159,7 @@ const TransactionModal = () => {
               <button
                 aria-haspopup="dialog"
                 // @ts-ignore
-                popoverTarget="add-token-popover"
+                popovertarget="add-token-popover"
                 className="w-full rounded-[12px] bg-accent-secondary p-3 text-background-primary-light md:p-4"
               >
                 Add Token
@@ -179,7 +179,7 @@ const TransactionModal = () => {
               <h3 className="text-l text-[--headings]">Transaction List</h3>
               <button
                 //@ts-ignore
-                popoverTarget="transaction-history"
+                popovertarget="transaction-history"
                 className="text-[--headings]"
               >
                 <Close />

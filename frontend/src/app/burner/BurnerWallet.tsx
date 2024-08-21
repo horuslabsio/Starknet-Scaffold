@@ -93,7 +93,7 @@ function BurnerWallet({
           </div>
           <button
             //@ts-ignore
-            popoverTarget={`burner-connect-popover`}
+            popovertarget={`burner-connect-popover`}
             disabled={+ethBalance === 0 && +strkBalance === 0}
             className="w-[11rem] rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:rounded-[12px] md:py-4"
           >
@@ -110,7 +110,7 @@ function BurnerWallet({
           <div className="flex gap-4">
             <button
               //@ts-ignore
-              popoverTarget={`burner-transfer-popover`}
+              popovertarget={`burner-transfer-popover`}
               disabled={
                 account === undefined ||
                 (+ethBalance === 0 && +strkBalance === 0)
@@ -121,7 +121,7 @@ function BurnerWallet({
             </button>
             <button
               //@ts-ignore
-              popoverTarget={`burner-execute-popover`}
+              popovertarget={`burner-execute-popover`}
               disabled={
                 account === undefined ||
                 (+ethBalance === 0 && +strkBalance === 0)

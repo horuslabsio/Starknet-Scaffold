@@ -254,7 +254,7 @@ export default function Page() {
           <div className="flex w-full justify-end">
             <button
               // @ts-ignore
-              popoverTarget="alert-popover"
+              popovertarget="alert-popover"
             >
               <Close />
             </button>

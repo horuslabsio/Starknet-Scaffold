@@ -126,7 +126,7 @@ function AssetTransferModal({ strkBalance, ethBalance, account }: Props) {
           <h3 className="text-l text-[--headings]">Send</h3>
           <button
             // @ts-ignore
-            popoverTarget={`burner-transfer-popover`}
+            popovertarget={`burner-transfer-popover`}
             onClick={() => {
               setSendStatus("send");
               setWalletAddress("");

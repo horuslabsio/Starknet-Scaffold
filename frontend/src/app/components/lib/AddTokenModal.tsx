@@ -54,7 +54,7 @@ const AddTokenModal = () => {
 
             <button
               // @ts-ignore
-              popoverTarget="add-token-popover"
+              popovertarget="add-token-popover"
             >
               <Close />
             </button>

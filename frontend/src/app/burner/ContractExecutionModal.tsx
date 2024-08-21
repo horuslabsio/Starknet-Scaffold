@@ -166,7 +166,7 @@ function ContractExecutionModal({ account }: Props) {
           <h3 className="text-l text-[--headings]">Execute Contract</h3>
           <button
             // @ts-ignore
-            popoverTarget={`burner-execute-popover`}
+            popovertarget={`burner-execute-popover`}
             onClick={() => {
               setExecuteStatus("execute");
               setCallData("");

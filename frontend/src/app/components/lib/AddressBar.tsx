@@ -39,7 +39,7 @@ const UserModal = () => {
             <h3 className="text-l text-[--headings]">Connected</h3>
             <button
               // @ts-ignore
-              popoverTarget="user-popover"
+              popovertarget="user-popover"
             >
               <Close />
             </button>

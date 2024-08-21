@@ -24,7 +24,7 @@ function ConnectionModal({ handleConnect, wallet, isConnected }: Props) {
           <h3 className="text-l text-[--headings]">Connect Account</h3>
           <button
             // @ts-ignore
-            popoverTarget={`burner-connect-popover`}
+            popovertarget={`burner-connect-popover`}
           >
             <Close />
           </button>

@@ -31,7 +31,7 @@ export default function Home() {
             <button
               aria-haspopup="dialog"
               // @ts-ignore
-              popoverTarget="add-token-popover"
+              popovertarget="add-token-popover"
               className="h-12 w-[50%] max-w-[12rem] rounded-[12px] border-[2px] border-solid border-[--add-token-border] bg-background-primary-light text-accent-secondary transition-all duration-300 hover:rounded-[30px]"
             >
               Add Token
