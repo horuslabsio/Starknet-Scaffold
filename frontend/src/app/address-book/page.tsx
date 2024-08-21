@@ -1,108 +1,81 @@
-import { Resource, columns } from "./columns";
-import { DataTable } from "./data-table";
+"use client";
+import { useEffect, useState } from "react";
+import logoImage from "../../../public/assets/logo.svg";
+import { AddressBookResource } from "../types";
+import { addressBookResources, searchResources } from "../utils";
+import { useDebounce } from "../hooks";
+import Image from "next/image";
+import AddressTable from "./address-table";
+import ThemeSwitch from "../components/ui_components/header/ThemeSwitch";
+import Search from "svg/Search";
+import Link from "next/link";
+import useTheme from "../hooks/useTheme";
 
-async function getData(): Promise<Resource[]> {
-  let counter = 0
-  return [
-    {
-      id: (counter++).toString(),
-      name: "Core contract",
-      description: "Starknet core contract on Ethereum",
-      address: "https://etherscan.io/address/0xc662c410C0ECf747543f5bA90660f6ABeBD9C8c4",
-    },
-    {
-      id: (counter++).toString(),
-      name: "Verifier address (GpsStatementVerifier)",
-      description: "Starknet Verifier address on Ethereum",
-      address: "https://etherscan.io/address/0x47312450B3Ac8b5b8e247a6bB6d523e7605bDb60",
-    },
-    {
-      id: (counter++).toString(),
-      name: "UDC",
-      description: "OpenZeppelin Universal Deployer Contract",
-      address: "https://starkscan.co/contract/0x041a78e741e5af2fec34b695679bc6891742439f7afb8484ecd7766661ad02bf",
-    },
-    {
-      id: (counter++).toString(),
-      name: "STRK",
-      description: "Stark Token",
-      address: "https://starkscan.co/contract/0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
-    },
-    {
-      id: (counter++).toString(),
-      name: "vSTRK",
-      description: "Starknet Voting Token",
-      address: "https://starkscan.co/contract/0x0782f0ddca11d9950bc3220e35ac82cf868778edb67a5e58b39838544bc4cd0f",
-    },
-    {
-      id: (counter++).toString(),
-      name: "WBTC",
-      description: "Wrapped BTC",
-      address: "https://starkscan.co/contract/0x03fe2b97c1fd336e750087d68b9b867997fd64a2661ff3ca5a7c771641e8e7ac",
-    },
-    {
-      id: (counter++).toString(),
-      name: "USDC",
-      description: "USD Coin",
-      address: "https://starkscan.co/contract/0x053c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06f3ecf368a8",
-    },
-    {
-      id: (counter++).toString(),
-      name: "USDT",
-      description: "Tether USD",
-      address: "https://starkscan.co/contract/0x068f5c6a61780768455de69077e07e89787839bf8166decfbf92b645209c0fb8",
-    },
-    {
-      id: (counter++).toString(),
-      name: "ETH",
-      description: "Ether",
-      address: "https://starkscan.co/contract/0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
-    },
-    {
-      id: (counter++).toString(),
-      name: "DAI",
-      description: "Dai Stablecoin",
-      address: "https://starkscan.co/contract/0x05574eb6b8789a91466f902c380d978e472db68170ff82a5b650b95a58ddf4ad",
-    },
-    {
-      id: (counter++).toString(),
-      name: "wstETH",
-      description: "Wrapped liquid staked Ether 2.0",
-      address: "https://starkscan.co/contract/0x42b8f0484674ca266ac5d08e4ac6a3fe65bd3129795def2dca5c34ecc5f96d2",
-    },
-    {
-      id: (counter++).toString(),
-      name: "rETH",
-      description: "Rocket Poll Eth",
-      address: "https://starkscan.co/contract/0x0319111a5037cbec2b3e638cc34a3474e2d2608299f3e62866e9cc683208c610",
-    },
-    {
-      id: (counter++).toString(),
-      name: "R",
-      description: "R Stablecoin",
-      address: "https://starkscan.co/contract/0x01fa2fb85f624600112040e1f3a848f53a37ed5a7385810063d5fe6887280333",
-    },
-    {
-      id: (counter++).toString(),
-      name: "FRAX",
-      description: "Frax",
-      address: "https://starkscan.co/contract/0x009c6b4fb13dfaa025c1383ed6190af8ed8cbb09d9588a3bb020feb152442406",
-    },
-    {
-      id: (counter++).toString(),
-      name: "UNI",
-      description: "Uniswap",
-      address: "https://starkscan.co/contract/0x049210ffc442172463f3177147c1aeaa36c51d152c1b0630f2364c300d4f48ee",
-    }
-  ];
-}
+export default function Page() {
+  const { theme, changeTheme } = useTheme();
+  const [addresses] = useState<AddressBookResource[]>(addressBookResources);
+  const [filteredAddresses, setFilteredAddresses] = useState<
+    AddressBookResource[]
+  >([]);
+  const [openMenu] = useState(false);
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search);
 
-export default async function Page() {
-  const data = await getData();
+  useEffect(() => {
+    const loadAddresses = async () => {
+      const searchResult = debouncedSearch.trim()
+        ? await searchResources({
+            resources: addresses,
+            search: debouncedSearch,
+          })
+        : [];
+      setFilteredAddresses(searchResult);
+    };
+    loadAddresses();
+  }, [debouncedSearch]);
 
   return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+    <div className="relative w-full">
+      <div className="w-full bg-[url('/assets/header-bg.svg')] bg-cover bg-[0px] bg-no-repeat px-6 py-8 md:px-24 md:py-10">
+        <div className="mx-auto max-w-[--header-max-w]">
+          <div className="relative mb-[87px] flex flex-wrap items-center justify-between md:mb-[95px]">
+            <div className="flex items-center gap-x-[3.76px] md:gap-x-[9px]">
+              <Link href={"/"}>
+                <Image
+                  src={logoImage}
+                  alt="logo"
+                  className="h-[20.5px] w-[153px] md:h-[48px] md:w-[360px]"
+                />
+              </Link>
+              <h4 className="border-l-[1.25px] border-[#141925] px-1 py-[2px] text-xs uppercase italic leading-[14px] text-accent-secondary md:border-l-[1.75px] md:px-2 md:py-1 md:text-[24px] md:leading-7">
+                address book
+              </h4>
+            </div>
+            <ThemeSwitch className="grid" action={changeTheme} theme={theme} />
+          </div>
+          <div className="relative mx-auto text-[--headings] md:w-fit">
+            <input
+              type="text"
+              className="w-full rounded-[10px] bg-[--link-card] px-4 py-3 pl-10 outline-[--borders] md:w-[800px] md:rounded-[16px] md:px-6 md:py-5 md:pl-[60px] md:text-md"
+              placeholder="Search keywords, contract addresses"
+              name="search"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-md md:text-l">
+              <Search />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="mx-auto h-full max-w-[--header-max-w] px-4 pb-6 pt-3 text-[--headings] md:px-9 md:pb-[74px] md:pt-4">
+        <AddressTable
+          addresses={
+            filteredAddresses.length > 0 && search.length > 0
+              ? filteredAddresses
+              : addresses
+          }
+        />
+      </div>
     </div>
   );
 }

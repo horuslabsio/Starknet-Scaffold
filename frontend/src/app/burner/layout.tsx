@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Header from "../components/ui_components/Header";
+import Header from "../components/ui_components/header/Header";
 
 export const metadata: Metadata = {
   title: "Starknet Scaffold",
@@ -12,7 +12,7 @@ export default function BurnerRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex min-h-screen flex-col justify-between gap-16">
+    <main className="min-h-[--100svh]">
       <Header />
       {children}
     </main>

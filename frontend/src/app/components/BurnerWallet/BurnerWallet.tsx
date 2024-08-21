@@ -1,31 +1,31 @@
 "use client";
-import { useState } from "react";
-import { createPortal } from "react-dom";
-import AssetTransferModal from "../AssetTransferModal";
-import ConnectionModal from "../ConnectionModal";
+import { useEffect, useState } from "react";
+import AssetTransferModal from "./AssetTransferModal";
+import ConnectionModal from "./ConnectionModal";
 import { useContractRead } from "@starknet-react/core";
 import { Account, RpcProvider } from "starknet";
-import CopyButton from "../ui_components/CopyButton";
+import CopyButton from "../ui_components/util/CopyButton";
 import Erc20Abi from "../../abi/token.abi.json";
-import {
-  ETH_SEPOLIA,
-  STRK_SEPOLIA,
-} from "@/app/components/ui_components/utils/constant";
-import { formatCurrency } from "@/app/components/ui_components/utils/currency";
-import ContractExecutionModal from "../ContractExecutionModal";
+import ContractExecutionModal from "./ContractExecutionModal";
+import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/utils/constant";
+import { formatCurrency } from "@/app/utils/currency";
+import AccountBalance from "../ui_components/AccountBalance";
 interface IWallet {
   address: string;
   privateKey: string;
   publicKey: string;
 }
 
-function BurnerWallet({ wallet }: { wallet: IWallet }) {
-  const [isSending, setIsSending] = useState(false);
-  const [isExecuting, setIsExecuting] = useState(false);
+function BurnerWallet({
+  wallet,
+  walletNumber,
+}: {
+  wallet: IWallet;
+  walletNumber: number;
+}) {
+  const [isCopied, setIsCopied] = useState(false);
   const [account, setAccount] = useState(undefined);
-  const [isConnecting, setIsConnecting] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
-
   const { data: eth, isLoading: ethLoading } = useContractRead({
     address: ETH_SEPOLIA,
     abi: Erc20Abi,
@@ -44,6 +44,7 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
 
   // @ts-ignore
   const ethBalance = formatCurrency(eth?.balance.low.toString());
+
   // @ts-ignore
   const strkBalance = formatCurrency(strk?.balance?.low.toString());
 
@@ -60,114 +61,91 @@ function BurnerWallet({ wallet }: { wallet: IWallet }) {
 
     setAccount(account);
     setIsConnected(true);
-    setIsConnecting(false);
+    const popover = document.getElementById(`burner-connect-popover`);
+    //@ts-ignore
+    popover.hidePopover();
   }
 
-  return (
-    <div className="rounded-lg border px-8 py-12 border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 w-full">
-      {isSending &&
-        createPortal(
-          <AssetTransferModal
-            strkBalance={strkBalance}
-            ethBalance={ethBalance}
-            isOpen={isSending}
-            onClose={() => setIsSending(false)}
-            account={account}
-          />,
-          document.body,
-        )}
-      {isExecuting &&
-        createPortal(
-          <ContractExecutionModal
-            isOpen={isExecuting}
-            onClose={() => setIsExecuting(false)}
-            account={account}
-          />,
-          document.body,
-        )}
-      {isConnecting &&
-        createPortal(
-          <ConnectionModal
-            isOpen={isConnecting}
-            onClose={() => setIsConnecting(false)}
-            handleConnect={handleConnect}
-            wallet={wallet}
-          />,
-          document.body,
-        )}
-      <h2 className="mb-[5px] text-2xl font-semibold">Burner Wallet</h2>
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setIsCopied(false);
+    }, 1500);
 
-      {ethBalance == 0 && (
-        <div>
-          <p className="mb-[40px] text-sm font-light">
-            <span className="font-medium">NB:</span> To proceed with the
-            transaction, please deposit ETH into your account.
-          </p>
-        </div>
-      )}
-      <div className="flex gap-[100px] text-2xl font-normal">
-        <div>
-          <h2>
-            ETH Balance:{" "}
-            <span className="font-medium text-xl">
-              {" "}
-              {ethLoading
-                ? "Loading..."
-                : `${Number(ethBalance).toFixed(3)}ETH`}
-            </span>
-          </h2>
-          <h2>
-            STRK Balance:{" "}
-            <span className="font-medium text-xl">
-              {strkLoading
-                ? "Loading..."
-                : `${Number(strkBalance).toFixed(3)}STRK`}
-            </span>
-          </h2>
-        </div>
-        <div className="flex items-center gap-x-4">
-          <h3>
-            {wallet.address
-              .slice(0, 7)
-              .concat("....")
-              .concat(wallet.address.slice(-6))}
-          </h3>
-          <CopyButton data={wallet.address} />
-        </div>
-      </div>
-      <div className="mt-[80px] flex  gap-[60px] justify-center">
-        {isConnected ? (
-          <>
-            {ethBalance > 0 && (
-              <button
-                className=" px-6 py-4 bg-primary text-white rounded-[5px] disabled:cursor-not-allowed w-[200px] font-semibold"
-                disabled={!eth || !strk}
-                onClick={() => setIsSending(true)}
-              >
-                SEND
-              </button>
-            )}
-            {ethBalance > 0 && (
-              <button
-                className=" px-6 py-4 bg-primary text-white rounded-[5px] w-[200px] font-semibold disabled:cursor-not-allowed"
-                disabled={!eth || !strk}
-                onClick={() => setIsExecuting(true)}
-              >
-                EXECUTE
-              </button>
-            )}
-          </>
-        ) : (
+    return () => clearTimeout(id);
+  }, [isCopied]);
+
+  return (
+    <>
+      <div className="w-[90vw] max-w-[35rem] p-2 md:p-8 lg:w-full lg:max-w-[45rem] lg:rounded-[16px] lg:border lg:border-[--borders]">
+        <div className="mb-4 flex items-center justify-between gap-4 border-b border-b-[#DADADA] py-4 md:mb-12">
+          <div className="flex flex-col md:items-center lg:flex-row lg:gap-4">
+            <h2 className="mb-2 text-[--headings] md:text-l">
+              Wallet Account {walletNumber}
+            </h2>
+            <CopyButton
+              copyText={wallet.address}
+              buttonText={wallet.address
+                ?.slice(0, 6)
+                .concat("...")
+                .concat(wallet.address?.slice(-5))}
+              className="flex items-center gap-2 rounded-[30px] bg-button-tertiary px-4 py-2 text-md text-accent-secondary md:px-6 md:py-3"
+            />
+          </div>
           <button
-            className=" px-6 py-4 bg-primary disabled:cursor-not-allowed text-white rounded-[5px] w-[200px] font-semibold"
-            onClick={() => setIsConnecting(true)}
-            disabled={!eth || !strk}
+            //@ts-ignore
+            popoverTarget={`burner-connect-popover`}
+            disabled={+ethBalance === 0 && +strkBalance === 0}
+            className="w-[11rem] rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:rounded-[12px] md:py-4"
           >
-            CONNECT
+            {isConnected ? "Connected" : "Connect"}
           </button>
-        )}
+        </div>
+        <div>
+          <div className="mb-8">
+            <h3 className="mb-4">Assets</h3>
+            <div className="rounded-[12px] bg-[--modal-assets-bg] transition-colors duration-500 ease-linear">
+              <AccountBalance heading={false} address={wallet.address || ""} />
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <button
+              //@ts-ignore
+              popoverTarget={`burner-transfer-popover`}
+              disabled={
+                account === undefined ||
+                (+ethBalance === 0 && +strkBalance === 0)
+              }
+              className="w-full rounded-[12px] bg-button-primary py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:rounded-[12px] md:py-4"
+            >
+              Send
+            </button>
+            <button
+              //@ts-ignore
+              popoverTarget={`burner-execute-popover`}
+              disabled={
+                account === undefined ||
+                (+ethBalance === 0 && +strkBalance === 0)
+              }
+              className="w-full rounded-[12px] border-[2px] border-[--headings] py-2 text-[--headings] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Execute
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <ConnectionModal
+        handleConnect={handleConnect}
+        wallet={wallet}
+        isConnected={isConnected}
+      />
+      <AssetTransferModal
+        strkBalance={strkBalance}
+        ethBalance={ethBalance}
+        account={account}
+      />
+      <ContractExecutionModal account={account} />
+    </>
   );
 }
 

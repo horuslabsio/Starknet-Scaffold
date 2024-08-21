@@ -1,18 +1,198 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-html,
-body {
-  margin: 0;
-  padding: 0;
+@font-face {
+  font-family: "coolvetica";
+  src: url("../../public/coolvetica rg.otf");
 }
 
-body {
-  box-sizing: border-box;
-}
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
+@layer base {
+  :root {
+    --foreground: #7a7a7a;
+    --background: #ffffff;
+    --table-header: #f9fafb;
+    --headings: #141925;
+    --add-token-border: #141925;
+    --backdrop: #ffffff4d;
+    --link-card: #f7f7f7;
+    --modal-assets-bg: #ffebda;
+    --modal-disconnect-bg: #f7f7f7;
+    --borders: #eeeeee;
+    --header-max-w: 2000px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground: #eaeaea;
+      --background: #1f1f1f;
+      --table-header: #332920;
+      --headings: #eaeaea;
+      --add-token-border: #141925;
+      --backdrop: transparent;
+      --link-card: #343333;
+      --modal-assets-bg: #34302d;
+      --modal-disconnect-bg: transparent;
+      --borders: #494949;
+    }
+  }
+
+  [data-theme="light"] {
+    --foreground: #7a7a7a;
+    --background: #ffffff;
+    --table-header: #f9fafb;
+    --headings: #141925;
+    --add-token-border: #141925;
+    --backdrop: #ffffff4d;
+    --link-card: #f7f7f7;
+    --modal-assets-bg: #ffebda;
+    --modal-disconnect-bg: #f7f7f7;
+    --borders: #eeeeee;
+  }
+
+  [data-theme="dark"] {
+    --foreground: #eaeaea;
+    --background: #1f1f1f;
+    --table-header: #332920;
+    --headings: #eaeaea;
+    --add-token-border: #ffffff;
+    --backdrop: transparent;
+    --link-card: #343333;
+    --modal-assets-bg: #34302d;
+    --modal-disconnect-bg: transparent;
+    --borders: #494949;
+  }
+
+  [data-header="scroll-hide"] {
+    transform: translateY(-90%);
+  }
+  [data-header="scroll-hide"] #theme-switcher {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #nav[data-header="scroll-hide"]:hover {
+    transform: translateY(0) !important;
+  }
+  /* #nav[data-header="scroll-hide"]:hover #theme-switcher {
+    opacity: 1;
+    pointer-events: all;
+  } */
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--background);
+    transition:
+      background-color 0.5s linear,
+      color 0.5s linear;
+  }
+  input {
+    font-size: 1rem;
+  }
+  .add-token {
+    border-color: var(--add-token-border);
+    transition: border-color 0.3s linear;
+  }
+  .link-card {
+    background-color: var(--link-card);
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+  }
+
+  :root {
+    --100vh: 100vh;
+    --100svh: 100svh;
+    --modal-h: 100svh;
+  }
+  @media only screen and (max-width: 1600px) {
+    html {
+      zoom: 0.8;
+    }
+    :root {
+      --100vh: calc(100vh / 0.8);
+      --100svh: calc((100svh / 0.8) - (3rem / 0.8));
+      --modal-h: calc((100vh / 0.8) - 9rem);
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    html {
+      zoom: 0.9;
+    }
+    :root {
+      --100vh: calc(100vh / 0.9);
+      --100svh: calc((100svh / 0.9) - (3rem / 0.9));
+      --modal-h: calc((100vh / 0.9) - 9rem);
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    html {
+      zoom: 1;
+    }
+    :root {
+      --100vh: 100vh;
+      --100svh: 100svh;
+      --modal-h: 90svh;
+    }
+  }
+
+  [popover] {
+    transform: translateY(10%);
+  }
+  [popover],
+  ::backdrop {
+    opacity: 0;
+
+    transition-property: opacity display overlay;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-behavior: allow-discrete;
+  }
+  [popover]:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [popover]:popover-open::backdrop {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+    background-color: var(--backdrop);
+  }
+  @starting-style {
+    [popover]:popover-open {
+      opacity: 0;
+      transform: translateY(10%);
+    }
+
+    ::backdrop::popover-open {
+      opacity: 0;
+    }
+  }
+  .user-modal,
+  .transactions-modal,
+  .no-scroll {
+    overflow: scroll;
+    scrollbar-width: none; /* Firefox */
+  }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .user-modal::-webkit-scrollbar,
+  .transactions-modal::-webkit-scrollbar,
+  .no-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .zoom {
+    zoom: 1;
+  }
+  @media only screen and (min-width: 768px) {
+    .zoom {
+      zoom: 0.9;
+    }
+  }
 }

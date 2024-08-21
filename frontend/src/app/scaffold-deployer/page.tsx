@@ -1,5 +1,4 @@
 "use client";
-import cloudUploadIcon from "../../../public/assets/cloudUploadIcon.svg";
 import fileIcon from "../../../public/assets/fileIcon.svg";
 import trash from "../../../public/assets/deleteIcon.svg";
 import { useRef, useState } from "react";
@@ -12,6 +11,11 @@ import {
   CompiledSierraCasm,
 } from "starknet";
 import { useAccount } from "@starknet-react/core";
+import File from "svg/File";
+import Header from "../components/ui_components/header/Header";
+import Loading from "../components/ui_components/util/Loading";
+import CopyButton from "../components/ui_components/util/CopyButton";
+import Close from "svg/Close";
 
 interface FileList {
   lastModified: number;
@@ -32,6 +36,8 @@ export default function Page() {
   const [contractClassHash, setContractClassHash] = useState("");
   const { account, status, isConnected } = useAccount();
   const [classHash, setClassHash] = useState("");
+  const [isDeclaring, setIsDeclaring] = useState<boolean>(false);
+  const [isDeploying, setIsDeploying] = useState<boolean>(false);
   const [deployedAddress, setDeployedAddress] = useState("");
   const [argumentsList, setArgumentsList] = useState([""]);
   const [argumentError, setArgumentError] = useState("");
@@ -50,6 +56,11 @@ export default function Page() {
       return;
     }
     setArgumentsList([...argumentsList, ""]);
+  };
+
+  const handleDeleteArgument = (index: number) => {
+    let list = argumentsList.filter((cur, i) => index !== i);
+    setArgumentsList([...list]);
   };
 
   const handleContractClassSelect = async (event: any) => {
@@ -93,11 +104,11 @@ export default function Page() {
     reader.readAsText(fileAsString); // Read file as text
   };
 
-  const handleDeleteFile = (event: any) => {
+  const handleDeleteFile = (event: any, name: string) => {
     event.preventDefault();
     console.log("e: ", event);
-    if (event.target.name == "casm") setSelectedCasm([]);
-    if (event.target.name == "sierra") setSelectedSierra([]);
+    if (name == "casm") setSelectedCasm([]);
+    if (name == "sierra") setSelectedSierra([]);
   };
 
   const handleDragOver = (event: any) => {
@@ -112,6 +123,10 @@ export default function Page() {
   const handleDeclare = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
+      setIsDeclaring(true);
+      if (!isConnected || !account) {
+        throw new Error("Connect wallet to continue");
+      }
 
       if (!contract) {
         throw new Error("No Sierra");
@@ -120,7 +135,6 @@ export default function Page() {
       if (!casm) {
         throw new Error("No CASM");
       }
-
       const payload: DeclareContractPayload = {
         contract: contract,
         classHash: contractClassHash,
@@ -131,22 +145,22 @@ export default function Page() {
         delete payload.classHash;
       }
 
-      let result;
-
-      if (account && status == "connected") {
-        await account.declare(payload);
-      } else {
-        throw new Error("Wallet not connected");
-      }
+      let result = await account.declare(payload);
       console.log("result: ", result);
+      setIsDeclaring(false);
     } catch (e) {
       console.error(e);
+    } finally {
+      setSelectedCasm([]);
+      setSelectedSierra([]);
+      setIsDeclaring(false);
     }
   };
 
   const handleDeploy = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
+      setIsDeploying(true);
       if (!classHash) {
         throw new Error("No class hash");
       }
@@ -171,193 +185,288 @@ export default function Page() {
     } finally {
       setClassHash("");
       setArgumentsList([""]);
+      setIsDeploying(false);
     }
   };
 
   const disableButton = !isConnected || !account || classHash === "";
   return (
-    <section className="flex flex-col items-center p-4 pt-20">
-      <form action="" className="flex flex-col">
-        <h1 className="text-2xl font-bold">Declare</h1>
-        {selectedSierra.length == 0 ? (
-          <div
-            className="bg-white mb-5 mt-3 flex w-[600px] flex-col items-center rounded-[5px] border-[1px] border-dashed border-[#333] pb-[90px] pt-[90px] text-center"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
-            <Image src={cloudUploadIcon} className="mb-10" alt="" />
-            <h2 className="text-black mb-2 text-[22px] font-normal">
-              Input Contract Class JSON file (Sierra)
-            </h2>
-            <input
-              type="file"
-              name="sierra"
-              onChange={async (e) => await handleContractClassSelect(e)}
-              multiple
-              style={{ display: "none" }}
-              ref={fileInputRef}
-            />
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                fileInputRef?.current.click();
-              }}
-              className="border-dark132 font-satoshi text-lg text-black rounded-lg border-[1px] border-solid px-[57px] py-[16px] font-medium"
-            >
-              Browse File
-            </button>
-          </div>
-        ) : (
-          <div className="bg-white mb-5 mt-3 flex w-[600px] items-center justify-between rounded-[20px] py-[16px] pl-8 pr-[52px]">
-            <div className="flex items-center">
-              <div className="relative flex h-[96px] w-[118px] justify-end">
-                <div className="font-satoshi text-white absolute left-0 top-[40px] z-20 min-w-[70px] rounded-lg bg-[#2ECC71] px-[4.5px] py-[1.5px] text-center text-2xl font-medium">
-                  {selectedSierra?.at(0)?.name?.split(".")[1].toUpperCase()}
+    <section className="relative w-full">
+      <Header />
+      <section className="flex w-full flex-col justify-center gap-x-[25px] p-4 pt-[100px] text-[--headings] md:flex-row md:pt-[272px]">
+        <form
+          action=""
+          className="flex w-full flex-col px-6 py-8 md:w-[670px] md:px-10"
+        >
+          <h1 className="mb-4 w-full border-b-[1px] border-b-[--borders] pb-[18px] text-[18px] md:mb-8 md:text-[24px] md:leading-7">
+            Declare
+          </h1>
+          {!selectedSierra.length ? (
+            <div>
+              <h3 className="mb-2 text-sm leading-7 md:text-[20px]">
+                Contract Class (Sierra)
+              </h3>
+              <div
+                className="flex w-full items-center justify-center gap-x-[13px] rounded-[8px] border-[1px] border-dashed border-[--borders] bg-[#F5F5F5] px-3 py-3 text-center md:py-6"
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+              >
+                <File />
+                <div>
+                  <h2 className="text-sm font-normal text-text-primary md:text-lg md:leading-[26px]">
+                    Upload Contract Class JSON File (Sierra)
+                  </h2>
+                  <input
+                    type="file"
+                    name="sierra"
+                    onChange={async (e) => await handleContractClassSelect(e)}
+                    multiple
+                    style={{ display: "none" }}
+                    ref={fileInputRef}
+                  />
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      fileInputRef?.current.click();
+                    }}
+                    className="mt-[-2px] text-sm font-medium text-[#FF7300] underline underline-offset-4 md:text-lg"
+                  >
+                    Browse File
+                  </button>
                 </div>
-                <Image src={fileIcon} className="" alt="file icon" />
-              </div>
-              <div>
-                <h3 className="text-black mb-2 text-[22px] font-medium">
-                  {selectedSierra?.at(0)?.name.split(".")[0]}
-                </h3>
               </div>
             </div>
-            <button onClick={handleDeleteFile} name="sierra">
-              <Image src={trash} alt="trash icon" />
-            </button>
-          </div>
-        )}
+          ) : (
+            <div className="flex w-full items-center justify-between rounded-[20px] bg-[#F5F5F5] px-3 py-4 md:py-[16px] md:pl-8 md:pr-[52px]">
+              <div className="flex items-center">
+                <div className="relative flex h-[70px] w-[50px] justify-end md:h-[96px] md:w-[118px]">
+                  <div className="font-satoshi absolute left-[20px] top-[38px] z-20 min-w-[70px] rounded-lg bg-[#2ECC71] px-[4.5px] py-[1.5px] text-center text-[10px] font-medium text-white md:left-[60px] md:top-[60px] md:text-[15px]">
+                    {selectedSierra?.at(0)?.name?.split(".")[1].toUpperCase()}
+                  </div>
+                  <Image src={fileIcon} className="h-full" alt="file icon" />
+                </div>
+                <div>
+                  <h3 className="mb-2 text-sm font-medium text-text-primary md:text-[20px]">
+                    {selectedSierra?.at(0)?.name.split(".")[0]}
+                  </h3>
+                </div>
+              </div>
+              <button
+                onClick={(e) => handleDeleteFile(e, "sierra")}
+                className="h-5 w-5"
+              >
+                <Image src={trash} alt="trash icon" />
+              </button>
+            </div>
+          )}
 
-        {/*  */}
-        {selectedCasm.length == 0 ? (
-          <div
-            className="bg-white mb-5 mt-3 flex w-[600px] flex-col items-center rounded-[5px] border-[1px] border-dashed border-[#333] pb-[90px] pt-[90px] text-center"
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
-            <Image src={cloudUploadIcon} className="mb-10" alt="" />
-            <h2 className="text-black mb-2 text-[22px] font-normal">
-              Input Compiled Contract Class JSON file (CASM)
-            </h2>
-            <input
-              type="file"
-              name="casm"
-              onChange={async (e) => await handleCompiledContractClassSelect(e)}
-              multiple
-              style={{ display: "none" }}
-              ref={casmRef}
-            />
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                casmRef?.current.click();
-              }}
-              className="border-dark132 font-satoshi text-lg text-black rounded-lg border-[1px] border-solid px-[57px] py-[16px] font-medium"
-            >
-              Browse File
-            </button>
-          </div>
-        ) : (
-          <div className="bg-white mb-5 mt-3 flex w-[600px] items-center justify-between rounded-[20px] py-[16px] pl-8 pr-[52px]">
-            <div className="flex items-center">
-              <div className="relative flex h-[96px] w-[118px] justify-end">
-                <div className="font-satoshi text-white absolute left-0 top-[40px] z-20 min-w-[70px] rounded-lg bg-[#2ECC71] px-[4.5px] py-[1.5px] text-center text-2xl font-medium">
-                  {selectedCasm?.at(0)?.name?.split(".")[1].toUpperCase()}
+          {/*  */}
+          {selectedCasm.length == 0 ? (
+            <div className="mt-6 border-t-[1px] border-t-[--borders] pt-4 md:mt-12 md:pt-12">
+              <h3 className="mb-2 text-sm leading-7 md:text-[20px]">
+                Compiled Contract Class (CASM)
+              </h3>
+              <div
+                className="flex w-full items-center justify-center gap-x-[13px] rounded-[8px] border-[1px] border-dashed border-[--borders] bg-[#F5F5F5] p-3 text-center md:py-6"
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+              >
+                <File />
+                <div>
+                  <h2 className="text-sm font-normal text-text-primary md:text-lg md:leading-[26px]">
+                    Upload Compiled Contract Class JSON File (CASM)
+                  </h2>
+                  <input
+                    type="file"
+                    name="casm"
+                    onChange={async (e) =>
+                      await handleCompiledContractClassSelect(e)
+                    }
+                    multiple
+                    style={{ display: "none" }}
+                    ref={casmRef}
+                  />
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      casmRef?.current.click();
+                    }}
+                    className="mt-[-2px] text-sm font-medium text-[#FF7300] underline underline-offset-4 md:text-lg"
+                  >
+                    Browse File
+                  </button>
                 </div>
-                <Image src={fileIcon} className="" alt="file icon" />
-              </div>
-              <div>
-                <h3 className="text-black mb-2 text-[22px] font-medium">
-                  {selectedCasm?.at(0)?.name.split(".")[0]}
-                </h3>
               </div>
             </div>
-            <button onClick={handleDeleteFile} name="casm">
-              <Image src={trash} alt="trash icon" />
-            </button>
-          </div>
-        )}
-        {contractClassHash && (
-          <div>
-            <p>Declared ClassHash</p>
+          ) : (
+            <div className="mt-12 border-t-[1px] border-t-[--borders] pt-12">
+              <div className="flex items-center justify-between rounded-[20px] bg-[#f5f5f5] px-3 py-4 md:py-[16px] md:pl-8 md:pr-[52px]">
+                <div className="flex items-center">
+                  <div className="relative flex h-[70px] w-[50px] justify-end md:h-[96px] md:w-[118px]">
+                    <div className="font-satoshi absolute left-[20px] top-[38px] z-20 min-w-[70px] rounded-lg bg-[#2ECC71] px-[4.5px] py-[1.5px] text-center text-[10px] font-medium text-white md:left-[60px] md:top-[60px] md:text-[15px]">
+                      {selectedCasm?.at(0)?.name?.split(".")[1].toUpperCase()}
+                    </div>
+                    <Image src={fileIcon} className="h-full" alt="file icon" />
+                  </div>
+                  <div>
+                    <h3 className="mb-2 text-sm font-medium text-text-primary md:text-[20px]">
+                      {selectedCasm?.at(0)?.name.split(".")[0]}
+                    </h3>
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => handleDeleteFile(e, "casm")}
+                  className="h-5 w-5"
+                >
+                  <Image src={trash} alt="trash icon" />
+                </button>
+              </div>
+            </div>
+          )}
+          {contractClassHash && (
+            <div className="my-4 flex flex-col gap-y-1 rounded-[12px] border-[1px] border-[--borders] bg-transparent px-4 py-2 md:py-3">
+              <div className="flex items-center justify-between">
+                <p className="text-sm md:text-[20px] md:leading-6">ClassHash</p>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setContractClassHash("");
+                  }}
+                >
+                  <Close />
+                </button>
+              </div>
+              <div className="flex items-center justify-start gap-x-2 md:gap-x-3">
+                <div className="truncate rounded p-1 text-[13px] md:text-[15px]">
+                  {contractClassHash
+                    .slice(0, 20)
+                    .concat("...")
+                    .concat(contractClassHash.slice(-10))}
+                </div>
+
+                <CopyButton copyText={contractClassHash} />
+              </div>
+            </div>
+          )}
+          <button
+            onClick={handleDeclare}
+            disabled={!casm || !contract || isDeclaring}
+            className="mt-4 flex w-full items-center justify-center gap-x-4 rounded-[12px] bg-accent-secondary px-4 py-2 text-base text-[#fafafa] disabled:cursor-not-allowed disabled:bg-opacity-[0.5] md:py-3 md:text-[20px] md:leading-[30px]"
+          >
+            {isDeclaring && <Loading dimension="h-5 w-5" />} Declare
+          </button>
+        </form>
+        <form
+          onSubmit={handleDeploy}
+          className="flex h-fit w-full flex-col rounded-2xl border-[1px] border-[--borders] px-5 py-4 md:w-[517px] md:px-10 md:py-8"
+        >
+          <h1 className="mb-4 text-lg md:mb-9 md:text-[24px] md:leading-7">
+            Deploy
+          </h1>
+          <div className="mb-4 flex flex-col gap-y-2 border-b-[1px] border-b-[--borders] pb-4 text-sm md:mb-8 md:pb-8 md:text-[20px] md:leading-6">
+            <h2 className="font-normal">Class Hash</h2>
             <input
               type="text"
-              className="text-black mb-6 mt-4 w-[600px] rounded p-3"
-              value={contractClassHash}
-              disabled
+              className="w-full rounded border-[1px] border-[--borders] bg-[#F5F5F5] px-4 py-3 text-[#141925] placeholder:text-[#7A7A7A] md:py-[14px]"
+              placeholder="Input Class Hash"
+              onChange={(e) => {
+                setClassHash(e.target.value);
+              }}
+              value={classHash}
             />
           </div>
-        )}
-        <button
-          onClick={(e) => handleDeclare(e)}
-          className="bg-primary text-white w-[200px] rounded-[5px] px-4 py-3"
-        >
-          Declare
-        </button>
-      </form>
-      <form onSubmit={handleDeploy} className="mt-12 flex flex-col">
-        <h1 className="text-2xl font-bold">Deploy</h1>
-        <input
-          type="text"
-          className="text-black mb-6 mt-4 w-[600px] rounded p-3"
-          placeholder="Input Class Hash"
-          onChange={(e) => {
-            setClassHash(e.target.value);
-          }}
-          value={classHash}
-        />
-        <div className="mb-4">
-          <h2 className="text-lg mb-2 font-bold">Constructor Arguments</h2>
-          <div className="flex flex-col gap-y-3">
-            {argumentsList.map((arg, index) => (
-              <div key={index} className="flex items-center gap-x-2">
-                <h4 className="text-base w-[120px] font-medium">
-                  Argument {index + 1}
-                </h4>
+          <div className="mb-4">
+            <h2 className="mb-2 text-sm md:text-[20px] md:leading-6">
+              Constructor Arguments
+            </h2>
+            <div className="flex flex-col gap-y-3">
+              <div className="grid grid-cols-[1fr_auto] items-center gap-x-2 text-[#141925] md:gap-x-4">
                 <input
                   type="text"
-                  value={arg}
-                  className="w-full rounded-md px-6 py-2 text-[#333]"
-                  onChange={(event) => handleInputChange(index, event)}
+                  value={argumentsList[0]}
+                  placeholder={`Argument 1`}
+                  className="w-full rounded-md border-[1px] border-[--borders] bg-[#F5F5F5] px-4 py-3 placeholder:text-[#7A7A7A] md:py-[14px]"
+                  onChange={(event) => handleInputChange(0, event)}
                 />
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAddArgument();
+                  }}
+                  disabled={argumentsList[0] === ""}
+                  className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[1px] border-[--borders] bg-[#F5F5F5] disabled:cursor-not-allowed md:h-12 md:w-12"
+                >
+                  +
+                </button>
               </div>
-            ))}
-            {argumentError === "" && (
-              <h6 className="text-red-600 text-sm">{argumentError}</h6>
-            )}
+              {argumentsList
+                .slice(1, argumentsList.length)
+                .map((arg, index) => (
+                  <div
+                    className="grid grid-cols-[1fr_auto] items-center gap-x-2 text-[#141925] md:gap-x-4"
+                    key={index}
+                  >
+                    <input
+                      type="text"
+                      value={arg}
+                      placeholder={`Argument ${index + 2}`}
+                      className="w-full rounded-md border-[1px] border-[--borders] bg-[#F5F5F5] px-4 py-3 text-[#141925] placeholder:text-[#7A7A7A] md:py-[14px]"
+                      onChange={(event) => handleInputChange(index + 1, event)}
+                    />
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleDeleteArgument(index);
+                      }}
+                      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-[1px] border-[--borders] bg-[#F5F5F5] md:h-12 md:w-12"
+                    >
+                      x
+                    </button>
+                  </div>
+                ))}
+              {argumentError === "" && (
+                <h6 className="text-sm text-red-600">{argumentError}</h6>
+              )}
+            </div>
           </div>
-        </div>
 
-        {deployedAddress && (
-          <div>
-            <p>Deployed Address</p>
-            <input
-              type="text"
-              className="text-black mb-6 mt-4 w-[600px] rounded p-3"
-              value={deployedAddress}
-              disabled
-            />
-          </div>
-        )}
+          {deployedAddress ? (
+            <div className="flex flex-col gap-y-1 rounded-[12px] border-[1px] border-[--borders] bg-transparent px-4 py-2 md:py-3">
+              <div className="flex items-center justify-between">
+                <p className="text-sm md:text-[20px] md:leading-6">
+                  Deployed Address
+                </p>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setDeployedAddress("");
+                  }}
+                >
+                  <Close />
+                </button>
+              </div>
+              <div className="flex items-center justify-start gap-x-2 md:gap-x-3">
+                <div className="truncate rounded p-1 text-[13px] md:text-[15px]">
+                  {deployedAddress
+                    .slice(0, 20)
+                    .concat("...")
+                    .concat(deployedAddress.slice(-10))}
+                </div>
 
-        <div className="flex items-center gap-x-5">
-          <button
-            type="button"
-            onClick={handleAddArgument}
-            disabled={argumentsList[argumentsList.length - 1] === ""}
-            className="bg-secondary text-white disabled:bg-slate-300 w-[250px] rounded-[5px] px-4 py-3 disabled:cursor-not-allowed"
-          >
-            Add argument
-          </button>
-          <button
-            type="submit"
-            disabled={disableButton}
-            className="bg-primary text-white disabled:bg-slate-300 w-[200px] rounded-[5px] px-4 py-3 disabled:cursor-not-allowed"
-          >
-            Deploy
-          </button>
-        </div>
-      </form>
+                <CopyButton copyText={deployedAddress} />
+              </div>
+            </div>
+          ) : (
+            <button
+              type="submit"
+              disabled={disableButton || isDeploying}
+              className="flex w-full items-center justify-center gap-4 rounded-[12px] bg-accent-secondary px-4 py-2 text-base text-[#fafafa] disabled:cursor-not-allowed disabled:border-none disabled:bg-opacity-[0.5] md:py-3 md:text-[20px] md:leading-[30px]"
+            >
+              {isDeploying && <Loading dimension="h-5 w-5" />} Deploy
+            </button>
+          )}
+        </form>
+      </section>
     </section>
   );
 }
