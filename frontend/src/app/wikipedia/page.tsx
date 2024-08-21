@@ -32,7 +32,7 @@ export default function Page() {
   }, [debouncedSearch]);
 
   return (
-    <section className="relative  w-full">
+    <section className="relative w-full">
       <div className="w-full bg-[url('/assets/header-bg.svg')] bg-cover bg-[0px] bg-no-repeat px-6 py-8 md:px-24 md:py-10">
         <div className="mx-auto max-w-[--header-max-w]">
           <div className="relative mb-[87px] flex flex-wrap items-center justify-between md:mb-[95px]">
@@ -65,7 +65,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="max-w-[--header-max-w] mx-auto grid h-full w-[100%] grid-cols-1 gap-y-6 px-6 pb-6 pt-4 md:grid-cols-[315px_1fr] md:gap-y-[54px] md:px-8 md:pb-[74px] md:pt-8 dark:text-white">
+      <div className="mx-auto grid h-full w-[100%] max-w-[--header-max-w] grid-cols-1 gap-y-6 px-6 pb-6 pt-4 md:grid-cols-[315px_1fr] md:gap-y-[54px] md:px-8 md:pb-[74px] md:pt-8 dark:text-white">
         <Filter
           field="category"
           options={[

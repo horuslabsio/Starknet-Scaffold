@@ -67,7 +67,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="max-w-[--header-max-w] mx-auto h-full px-4 pb-6 pt-3 text-[--headings] md:px-9 md:pb-[74px] md:pt-4">
+      <div className="mx-auto h-full max-w-[--header-max-w] px-4 pb-6 pt-3 text-[--headings] md:px-9 md:pb-[74px] md:pt-4">
         <AddressTable
           addresses={
             filteredAddresses.length > 0 && search.length > 0

@@ -31,13 +31,13 @@ const Wallet = ({
 
   return (
     <button
-      className="flex gap-4 items-center text-start p-[.2rem] hover:bg-outline-grey hover:rounded-[10px] transition-all cursor-pointer"
+      className="hover:bg-outline-grey flex cursor-pointer items-center gap-4 p-[.2rem] text-start transition-all hover:rounded-[10px]"
       onClick={(e) => handleConnectWallet(e)}
     >
       <div className="h-[2.2rem] w-[2.2rem] rounded-[5px]">
         {isSvg ? (
           <div
-            className="h-full w-full object-cover rounded-[5px]"
+            className="h-full w-full rounded-[5px] object-cover"
             dangerouslySetInnerHTML={{
               __html: src ?? "",
             }}
@@ -49,7 +49,7 @@ const Wallet = ({
             src={src}
             width={70}
             height={70}
-            className="h-full w-full object-cover rounded-[5px]"
+            className="h-full w-full rounded-[5px] object-cover"
           />
         )}
       </div>
