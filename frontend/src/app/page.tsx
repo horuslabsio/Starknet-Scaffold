@@ -10,7 +10,7 @@ import Link from "next/link";
 import Upright from "public/svg/Upright";
 import NetworkSwitcher from "./components/lib/NetworkSwitcher";
 import Header from "./components/internal/Header";
-import AddToken from "./components/lib/AddToken";
+import AddTokenButton from "./components/lib/AddToken";
 
 export default function Home() {
   return (
@@ -30,7 +30,7 @@ export default function Home() {
 
           <div className="flex items-center justify-center gap-4">
             <NetworkSwitcher />
-            <AddToken />
+            <AddTokenButton />
           </div>
         </div>
       </section>

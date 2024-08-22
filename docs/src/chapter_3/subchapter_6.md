@@ -1,11 +1,11 @@
-# Switch/display network
+# Network Switcher
 
-This is a dropdown component used to switch between Starknet networks (mainnet/sepolia).
+This component allows users to switch between Starknet networks (mainnet/sepolia).
 
 ## Import
 
 ```
-import NetworkSwitcher from "~/ui_components/NetworkSwitcher";
+import NetworkSwitcher from "~/app/components/lib/NetworkSwitcher";
 ```
 
 ## Usage

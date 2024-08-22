@@ -1,17 +1,17 @@
-# Display account balance
+# Account Balance
 
 This component shows the STRK and ETH balance of the connected wallet address.
 
 ## Import
 
 ```
-import AccountBalance from "~/ui_components/AccountBalance";
+import AccountBalance from "~/app/component/AccountBalance";
 ```
 
 ## Usage
 
 ```
-<AccountBalance address="0x34aA3F359A9D614239015126635CE7732c18fDF3" />
+<AccountBalance address="0x34aA3F359A9D614239015126635CE7732c18fDF3"/>
 ```
 
 ## Props

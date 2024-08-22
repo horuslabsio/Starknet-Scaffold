@@ -145,7 +145,7 @@ const TransactionModal = () => {
   );
 };
 
-const Transactions = ({
+const TransactionsButton = ({
   text = "Transaction History",
   className = "flex w-full items-center justify-center gap-2 rounded-[12px] border-[2px] border-solid border-[--headings] py-[.55rem] text-[--headings] md:p-4",
 }: {
@@ -169,4 +169,4 @@ const Transactions = ({
   );
 };
 
-export default Transactions;
+export default TransactionsButton;

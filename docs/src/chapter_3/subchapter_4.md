@@ -1,23 +1,29 @@
-# User modal
+# Add Token
 
-This modal contains a copy button for copying the address of the connected wallet, a disconnect button for disconnecting the wallet, and displays the ETH/STRK balance of the connected wallet. You can access this modal by clicking on the address bar component.
+The Add Token component enables users to add a custom token to their wallet. To successfully add a token, users need to provide the following information:
+
+- Contract Address: The contract address of the token.
+- Token Name: The name of the token.
+- Token Symbol: The token's symbol.
+- Decimals: The decimal for the token.
+
+Once all fields are filled out, users can click the Add Token button to add the custom token to their wallet.
 
 ## Import
 
 ```
-import {UserModal} from "~/ui_components/AddressBar";
+import AddTokenButton from "~/app/components/lib/AddToken";
 ```
 
 ## Usage
 
 ```
-<UserModal openConnectedModal={openConnectedModal} address="0x34aA3F359A9D614239015126635CE7732c18fDF3" closeConnectedModal={closeConnectedModal} />
+<AddTokenButton />
 ```
 
 ## Props
 
-| Prop                | Type     | Description                                                   |
-| :------------------ | :------- | :------------------------------------------------------------ |
-| openConnectedModal  | boolean  | State value prop to monitor whether the modal is open or not. |
-| address             | string   | Address in 0x\_\_\_ format.                                   |
-| closeConnectedModal | function | Function to handle the closing of the modal.                  |
+| Prop       | Type   | Description                     |
+| :--------- | :----- | :------------------------------ |
+| text?      | string | Name of the button (optional)   |
+| className? | string | CSS class for button (optional) |

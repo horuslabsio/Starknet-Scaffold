@@ -3,13 +3,10 @@ import { useEffect, useRef } from "react";
 import { useAccount } from "@starknet-react/core";
 import AddressBar from "../lib/AddressBar";
 import ThemeSwitch from "./util/ThemeSwitch";
-import Transactions from "../lib/Transactions";
 import ConnectButton from "../lib/Connect";
 import useTheme from "@/app/components/internal/hooks/useTheme";
 import Link from "next/link";
-import Menu from "./MenuButton";
 import MenuButton from "./MenuButton";
-import AddToken from "../lib/AddToken";
 
 const Header = () => {
   const { address } = useAccount();

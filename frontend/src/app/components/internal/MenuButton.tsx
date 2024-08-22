@@ -2,7 +2,7 @@ import Close from "public/svg/Close";
 import NetworkSwitcher from "../lib/NetworkSwitcher";
 import GenericModal from "./util/GenericModal";
 import Menu from "public/svg/Menu";
-import Transactions from "../lib/Transactions";
+import TransactionsButton from "../lib/Transactions";
 
 const MenuButton = () => {
   const togglePopover = ({ targetId }: { targetId: string }) => {
@@ -42,7 +42,7 @@ const MenuButton = () => {
               <NetworkSwitcher />
             </div>
             <div>
-              <Transactions />
+              <TransactionsButton />
             </div>
             <div>
               <button
