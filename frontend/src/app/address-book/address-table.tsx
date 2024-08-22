@@ -1,10 +1,10 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import Pagination from "../components/ui_components/pagination";
-import { AddressBookResource } from "../types";
 import AddressTableHeader from "./address-table-header";
 import AddressTableRow from "./address-table-row";
 import { useEffect, useState } from "react";
+import { AddressBookResource } from "./page";
+import Pagination from "../components/internal/util/pagination";
 
 function AddressTable({ addresses }: { addresses: AddressBookResource[] }) {
   const searchParams = useSearchParams();

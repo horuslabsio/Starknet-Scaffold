@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { useAccount } from "@starknet-react/core";
-import AddressBar from "./AddressBar";
-import ThemeSwitch from "./ThemeSwitch";
-import Transactions from "./Transactions";
-import ConnectButton from "./Connect";
-import useTheme from "@/app/hooks/useTheme";
+import AddressBar from "../lib/AddressBar";
+import ThemeSwitch from "./util/ThemeSwitch";
+import ConnectButton from "../lib/Connect";
+import useTheme from "@/app/components/internal/hooks/useTheme";
 import Link from "next/link";
+import MenuButton from "./MenuButton";
 
 const Header = () => {
   const { address } = useAccount();
@@ -60,7 +60,7 @@ const Header = () => {
             {address ? (
               <div className="flex items-center gap-4">
                 <AddressBar />
-                <Transactions />
+                <MenuButton />
               </div>
             ) : (
               <ConnectButton />

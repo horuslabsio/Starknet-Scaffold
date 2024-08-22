@@ -1,9 +1,9 @@
 "use client";
-import GenericModal from "../ui_components/GenericModal";
+import GenericModal from "../components/internal/util/GenericModal";
 import Image from "next/image";
 import { useState } from "react";
-import ethLogo from "../../../../public/assets/eth.svg";
-import starknetLogo from "../../../../public/assets/strk.svg";
+import ethLogo from "../../../public/assets/eth.svg";
+import starknetLogo from "../../../public/assets/strk.svg";
 import {
   Call,
   CallData,
@@ -12,12 +12,12 @@ import {
   Uint256,
   cairo,
 } from "starknet";
-import abi from "../../../../public/abi/strk_abi.json";
-import Close from "svg/Close";
-import WarnBadge from "svg/WarnBadge";
-import Verified from "svg/Verified";
-import ChevronDown from "svg/ChevronDown";
-import Loading from "../ui_components/util/Loading";
+import abi from "../../../public/abi/strk_abi.json";
+import Close from "../../../public/svg/Close";
+import WarnBadge from "../../../public/svg/WarnBadge";
+import Verified from "../../../public/svg/Verified";
+import ChevronDown from "../../../public/svg/ChevronDown";
+import Loading from "../components/internal/util/Loading";
 
 type Props = {
   strkBalance: number | undefined;
@@ -126,7 +126,7 @@ function AssetTransferModal({ strkBalance, ethBalance, account }: Props) {
           <h3 className="text-l text-[--headings]">Send</h3>
           <button
             // @ts-ignore
-            popoverTarget={`burner-transfer-popover`}
+            popovertarget={`burner-transfer-popover`}
             onClick={() => {
               setSendStatus("send");
               setWalletAddress("");

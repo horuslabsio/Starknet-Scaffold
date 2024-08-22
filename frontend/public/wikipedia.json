@@ -1,0 +1,226 @@
+[
+  {
+    "id": "0",
+    "name": "Starknet Website",
+    "description": "Official Website of Starknet.",
+    "status": "Up to date",
+    "url": "https://www.starknet.io/en",
+    "category": "official-website"
+  },
+  {
+    "id": "1",
+    "name": "Starknet Documentation",
+    "description": "Official Documentation for Starknet.",
+    "status": "Up to date",
+    "url": "https://docs.starknet.io/",
+    "category": "documentation"
+  },
+  {
+    "id": "2",
+    "name": "The Starknet Book",
+    "description": "The Starknet Book is a step-by-step guide aimed at teaching you the essentials of Starknet development. This book works hand-in-hand with the Cairo Book.",
+    "status": "Up to date",
+    "url": "https://book.starknet.io/",
+    "category": "tutorials"
+  },
+  {
+    "id": "3",
+    "name": "Starklings",
+    "description": "Interactive tutorial to get you up and running with Cairo v1 and Starknet.",
+    "status": "Up to date",
+    "url": "https://github.com/shramee/starklings-cairo1",
+    "category": "tutorials"
+  },
+  {
+    "id": "4",
+    "name": "Awesome Starknet",
+    "description": "A curated list of awesome StarkNet resources, libraries, tools and more",
+    "status": "Up to date",
+    "url": "https://github.com/keep-starknet-strange/awesome-starknet",
+    "category": "documentation"
+  },
+  {
+    "id": "5",
+    "name": "Node Guardians",
+    "description": "Cairo 1.0 interactive tutorials.",
+    "status": "Up to date",
+    "url": "https://nodeguardians.io/dev-hub?s=devhub-campaigns&sc=starting-cairo",
+    "category": "tutorials"
+  },
+  {
+    "id": "6",
+    "name": "Starknet messaging tutorial",
+    "description": "Detailed tutorial to test messaging with Anvil and Katana.",
+    "status": "Out of date",
+    "url": "https://github.com/starknet-edu/starknet-erc721",
+    "category": "tutorials"
+  },
+  {
+    "id": "7",
+    "name": "Starknet Blog Posts",
+    "description": "Official blog posts related to Starknet.",
+    "status": "Up to date",
+    "url": "https://www.starknet.io/en/content",
+    "category": "blogs"
+  },
+  {
+    "id": "8",
+    "name": "Developers Blog",
+    "description": "Official Developers Blog for Starknet.",
+    "status": "Up to date",
+    "url": "https://www.starknet.io/en/content/category/developers",
+    "category": "blogs"
+  },
+  {
+    "id": "9",
+    "name": "Starknet research hub",
+    "description": "The place to learn more about the Starknet ecosystem and stay-up-to-date with the latest news.",
+    "status": "Up to date",
+    "url": "https://starknet-research.beehiiv.com/",
+    "category": "official-website"
+  },
+  {
+    "id": "10",
+    "name": "Starknet Hardhat plugin",
+    "description": "A plugin for integrating Starknet tools into Hardhat projects.",
+    "status": "Up to date",
+    "url": "https://github.com/0xSpaceShard/starknet-hardhat-plugin",
+    "category": "plugins"
+  },
+  {
+    "id": "11",
+    "name": "STARK Math: The Journey Begins",
+    "description": "Starkware's series of blog posts explaining the theory behind STARKs.",
+    "status": "Up to date",
+    "url": "https://medium.com/starkware/stark-math-the-journey-begins-51bd2b063c71",
+    "category": "blogs"
+  },
+  {
+    "id": "12",
+    "name": "Cryptography and maths",
+    "description": "Educational resources on cryptography and maths.",
+    "status": "Up to date",
+    "url": "https://medium.com/starkware/tagged/math",
+    "category": "tutorials"
+  },
+  {
+    "id": "13",
+    "name": "Starkware verifier (StarkEx)",
+    "description": "Official Starkware verifier.",
+    "status": "Up to date",
+    "url": "https://github.com/starkware-libs/starkex-contracts",
+    "category": "documentation"
+  },
+  {
+    "id": "14",
+    "name": "STONE",
+    "description": "Prover and verifier for STARKs.",
+    "status": "Up to date",
+    "url": "https://github.com/starkware-libs/stone-prover",
+    "category": "documentation"
+  },
+  {
+    "id": "15",
+    "name": "sandstorm",
+    "description": "Cairo prover powered by miniSTARK.",
+    "status": "Up to date",
+    "url": "https://github.com/andrewmilson/sandstorm",
+    "category": "documentation"
+  },
+  {
+    "id": "16",
+    "name": "awesome-prover-mechanisms",
+    "description": "List of resources for prover mechanisms in the zkrollup ecosystem.",
+    "status": "Up to date",
+    "url": "https://github.com/niluferokay/awesome-prover-mechanisms",
+    "category": "documentation"
+  },
+  {
+    "id": "17",
+    "name": "Arithmetization I",
+    "description": "Part of Starkware's series on STARKs.",
+    "status": "Up to date",
+    "url": "https://medium.com/starkware/arithmetization-i-15c046390862",
+    "category": "blogs"
+  },
+  {
+    "id": "18",
+    "name": "Arithmetization II",
+    "description": "Part of Starkware's series on STARKs.",
+    "status": "Up to date",
+    "url": "https://medium.com/starkware/arithmetization-ii-403c3b3f4355",
+    "category": "blogs"
+  },
+  {
+    "id": "19",
+    "name": "YouTube channel",
+    "description": "Official StarkWare YouTube channel.",
+    "status": "Up to date",
+    "url": "https://www.youtube.com/@starkware_ltd",
+    "category": "community"
+  },
+  {
+    "id": "20",
+    "name": "Roadmap",
+    "description": "What’s coming next for Starknet.",
+    "status": "Up to date",
+    "url": "https://starknet.io/#roadmap",
+    "category": "official-website"
+  },
+  {
+    "id": "21",
+    "name": "SNIPs",
+    "description": "Starknet Improvement Proposals (SNIPs) repository.",
+    "status": "Up to date",
+    "url": "https://github.com/starknet-io/snips",
+    "category": "documentation"
+  },
+  {
+    "id": "22",
+    "name": "starkware-libs/cairo",
+    "description": "Official Cairo Github repository.",
+    "status": "Up to date",
+    "url": "https://github.com/starkware-libs/cairo",
+    "category": "documentation"
+  },
+  {
+    "id": "23",
+    "name": "Cairopractice",
+    "description": "Cairo blog covering various aspects of the language and its applications.",
+    "status": "Up to date",
+    "url": "https://cairopractice.com/",
+    "category": "blogs"
+  },
+  {
+    "id": "24",
+    "name": "Cairo – a Turing-complete STARK-friendly CPU architecture",
+    "description": "Whitepaper providing an in-depth look into the Cairo architecture and its STARK-friendly features.",
+    "status": "Up to date",
+    "url": "https://eprint.iacr.org/2021/1063.pdf",
+    "category": "documentation"
+  },
+  {
+    "id": "25",
+    "name": "A verified algebraic representation of Cairo program execution",
+    "description": "Proof demonstrating the soundness of Cairo's execution using the Lean proof assistant.",
+    "status": "Up to date",
+    "url": "https://arxiv.org/abs/2109.14534",
+    "category": "documentation"
+  },
+  {
+    "id": "26",
+    "name": "WTF Starknet",
+    "description": "English and Chinese tutorials covering various aspects of Starknet.",
+    "status": "Up to date",
+    "url": "https://github.com/WTFAcademy/WTF-Starknet",
+    "category": "tutorials"
+  },
+  {
+    "id": "27",
+    "name": "ethSTARK Documentation",
+    "description": "Explanation of the computational integrity of STARKs.",
+    "status": "Up to date",
+    "url": "https://docs.ethstark.com/",
+    "category": "documentation"
+  }
+]

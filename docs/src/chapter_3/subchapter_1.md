@@ -1,39 +1,41 @@
 # Connect Button
 
-A custom connect button is located in the header of the page, facilitating the connection of a user's Starknet wallet to the dapp. When clicked, a custom wallet modal appears at the center of the screen.
+The custom connect button is located in the header of the page and facilitates the connection of a user's Starknet wallet to the dapp. When clicked, it triggers a custom wallet modal that appears at the center of the screen.
 
 ## Connect Wallet Modal
 
-The connect wallet modal is a UI component that appears when the connect button is clicked. This component consists of an overlay that spans across the screen and a modal positioned at the center of the overlay. Its primary function is to allow users to select the wallet they wish to use to connect to the dapp.
+The connect wallet modal is a UI component that appears when the connect button is clicked. Its primary function is to allow users to select the wallet they wish to use to connect to the dapp.
 
-The modal is divided into two parts. The left side lists some popular Starknet wallets available for use, such as:
+The modal is divided in to sections:
 
-1. Argent X
-2. Braavos
-3. Argent Web Wallet
-4. Argent (mobile)
-5. Bitget
-6. OKX
+- Left side: Lists popular Starknet wallets available for connection, including:
 
-When any of these options are clicked, a modal from the selected wallet (if installed) opens, allowing the user to unlock their wallet and initiate the connection. If the connection is successful, the user is then redirected to the dapp.
+  1. Argent X
+  2. Braavos
+  3. Argent Web Wallet
+  4. Argent (mobile)
+  5. Bitget
+  6. OKX
 
-The right side of the modal serves to educate the user on how wallet connections work.
+When an option is clicked, the corresponding wallet's modal (if installed) opens, allowing the user to unlock their wallet and connect. Once connected, the user is redirected to the dapp.
+
+- Right side: Provides information to educate users on how wallet connections work.
 
 ## Import
 
 ```
-import ConnectModal from "~/ui_components/ConnectModal";
+import ConnectButton from "~/app/components/lib/Connect";
 ```
 
 ## Usage
 
 ```
-<ConnectModal isOpen={true} onClose={setIsOpen} />
+<ConnectButton />
 ```
 
 ## Props
 
-| Prop    | Type     | Description                                                  |
-| :------ | :------- | :----------------------------------------------------------- |
-| isOpen  | boolean  | State value prop to monitor whether the modal is open or not |
-| onClose | function | Function to handle closing the modal                         |
+| Prop       | Type   | Description                     |
+| :--------- | :----- | :------------------------------ |
+| text?      | string | Name of the button (optional)   |
+| className? | string | CSS class for button (optional) |

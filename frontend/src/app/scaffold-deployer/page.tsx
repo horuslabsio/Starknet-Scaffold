@@ -11,11 +11,11 @@ import {
   CompiledSierraCasm,
 } from "starknet";
 import { useAccount } from "@starknet-react/core";
-import File from "svg/File";
-import Header from "../components/ui_components/header/Header";
-import Loading from "../components/ui_components/util/Loading";
-import CopyButton from "../components/ui_components/util/CopyButton";
-import Close from "svg/Close";
+import File from "public/svg/File";
+import Loading from "../components/internal/util/Loading";
+import CopyButton from "../components/internal/util/CopyButton";
+import Close from "public/svg/Close";
+import Header from "../components/internal/Header";
 
 interface FileList {
   lastModified: number;
@@ -192,7 +192,7 @@ export default function Page() {
   const disableButton = !isConnected || !account || classHash === "";
   return (
     <section className="relative w-full">
-      <Header />
+      <Header/>
       <section className="flex w-full flex-col justify-center gap-x-[25px] p-4 pt-[100px] text-[--headings] md:flex-row md:pt-[272px]">
         <form
           action=""

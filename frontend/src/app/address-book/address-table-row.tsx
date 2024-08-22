@@ -1,5 +1,5 @@
-import { AddressBookResource } from "../types";
 import Link from "next/link";
+import { AddressBookResource } from "./page";
 
 export default function AddressTableRow({
   address: { name, description, address },

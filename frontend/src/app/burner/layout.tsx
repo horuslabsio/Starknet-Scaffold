@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Header from "../components/ui_components/header/Header";
+import Header from "../components/internal/Header";
 
 export const metadata: Metadata = {
   title: "Starknet Scaffold",

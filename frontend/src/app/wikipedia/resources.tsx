@@ -1,9 +1,18 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import Pagination from "~/ui_components/pagination";
 import ResourceCard from "./resource-card";
 import { useEffect, useState } from "react";
-import { WikipediaResource } from "../types";
+import Pagination from "../components/internal/util/pagination";
+
+
+interface WikipediaResource {
+  id: string;
+  name: string;
+  description: string;
+  status: string;
+  url: string;
+  category: string;
+}
 
 export default function Resources({ data }: { data: WikipediaResource[] }) {
   const searchParams = useSearchParams();

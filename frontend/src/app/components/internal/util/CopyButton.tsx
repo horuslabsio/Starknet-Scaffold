@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Check from "svg/Check";
-import Copy from "svg/Copy";
+import Check from "public/svg/Check";
+import Copy from "public/svg/Copy";
 
 type Props = {
   copyText: string;

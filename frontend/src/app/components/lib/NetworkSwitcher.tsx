@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
 import { useNetwork } from "@starknet-react/core";
-import Check from "svg/Check";
-import ChevronDown from "svg/ChevronDown";
+import Check from "public/svg/Check";
+import ChevronDown from "public/svg/ChevronDown";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: "SN_MAIN",
@@ -50,7 +50,7 @@ export default function NetworkSwitcher() {
     <div className="relative flex w-[50%] max-w-[12rem] flex-col gap-y-3 text-[--headings] transition-all duration-500">
       <button
         role="combobox"
-        className="flex cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-2 md:p-3"
+        className="flex cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3"
         onClick={() => {
           setOpen((prev) => !prev);
         }}
@@ -68,7 +68,7 @@ export default function NetworkSwitcher() {
         </span>
       </button>
       <div
-        className={`absolute left-0 top-[65px] z-[10] grid w-[250px] -translate-x-1/2 overflow-hidden rounded-xl transition-all duration-300 ease-in-out md:translate-x-0 ${
+        className={`absolute left-[60%] top-[65px] z-[10] grid w-full -translate-x-1/2 overflow-hidden rounded-xl transition-all duration-300 ease-in-out md:left-0 md:w-[250px] md:translate-x-0 ${
           open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
       >

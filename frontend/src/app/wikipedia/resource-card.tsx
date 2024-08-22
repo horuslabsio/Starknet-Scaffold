@@ -2,8 +2,8 @@
 import Image from "next/image";
 import logo from "../../../public/assets/strk.svg";
 import Link from "next/link";
-import Upright from "svg/Upright";
-import Verified from "svg/Verified";
+import Upright from "public/svg/Upright";
+import Verified from "public/svg/Verified";
 
 export default function ResourceCard({ resource }: { resource: any }) {
   return (

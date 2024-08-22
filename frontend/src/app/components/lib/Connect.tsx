@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Connector, useConnect } from "@starknet-react/core";
-import Close from "svg/Close";
-import GenericModal from "../GenericModal";
+import Close from "public/svg/Close";
+import GenericModal from "../internal/util/GenericModal";
 
 const loader = ({ src }: { src: string }) => {
   return src;
@@ -46,6 +46,7 @@ const Wallet = ({
           <Image
             alt={alt}
             loader={loader}
+            unoptimized
             src={src}
             width={70}
             height={70}
@@ -75,8 +76,8 @@ const ConnectModal = () => {
           <div className="ml-auto lg:col-span-3 lg:py-4 lg:pr-8">
             <button
               //@ts-ignore
-              popoverTarget="connect-modal"
-              popoverTargetAction="hide"
+              popovertarget="connect-modal"
+              popovertargetaction="hide"
               className="bg-outline-grey grid h-8 w-8 place-content-center rounded-full"
             >
               <Close />
@@ -109,6 +110,7 @@ const ConnectModal = () => {
                   <Image
                     alt="text"
                     loader={loader}
+                    unoptimized
                     src={
                       "https://media.istockphoto.com/id/1084096262/vector/concept-of-mobile-payments-wallet-connected-with-mobile-phone.jpg?s=612x612&w=0&k=20&c=noILf6rTUyxN41JnmeFhUmqQWiCWoXlg0zCLtcrabD4="
                     }
@@ -132,8 +134,9 @@ const ConnectModal = () => {
                   <Image
                     alt="text"
                     loader={loader}
+                    unoptimized
                     src={
-                      "https://media.licdn.com/dms/image/D4E12AQFyWdLwXcJu3Q/article-cover_image-shrink_720_1280/0/1687854784940?e=2147483647&v=beta&t=nNDH-9XEcVYcb1PAc3S78ndQze0126KPOSZmnmMERNg"
+                      "https://media.istockphoto.com/id/1084096262/vector/concept-of-mobile-payments-wallet-connected-with-mobile-phone.jpg?s=612x612&w=0&k=20&c=noILf6rTUyxN41JnmeFhUmqQWiCWoXlg0zCLtcrabD4="
                     }
                     width={100}
                     height={100}
@@ -158,7 +161,13 @@ const ConnectModal = () => {
   );
 };
 
-const ConnectButton = ({ text = " Connect Wallet" }: { text?: string }) => {
+const ConnectButton = ({
+  text = " Connect Wallet",
+  className = "rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4",
+}: {
+  text?: string;
+  className?: string;
+}) => {
   const togglePopover = ({ targetId }: { targetId: string }) => {
     const popover = document.getElementById(targetId);
     // @ts-ignore
@@ -178,7 +187,7 @@ const ConnectButton = ({ text = " Connect Wallet" }: { text?: string }) => {
       <button
         aria-haspopup="dialog"
         onClick={() => togglePopover({ targetId: "connect-modal" })}
-        className="rounded-[12px] bg-button-primary px-6 py-3 text-background-primary-light transition-all duration-300 hover:rounded-[30px] md:py-4"
+        className={className}
       >
         {text}
       </button>

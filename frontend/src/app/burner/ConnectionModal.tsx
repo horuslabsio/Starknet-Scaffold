@@ -1,7 +1,7 @@
 "use client";
-import Close from "svg/Close";
-import CopyButton from "../ui_components/util/CopyButton";
-import GenericModal from "../ui_components/GenericModal";
+import Close from "public/svg/Close";
+import GenericModal from "../components/internal/util/GenericModal";
+import CopyButton from "../components/internal/util/CopyButton";
 
 type Props = {
   handleConnect: () => void;
@@ -24,7 +24,7 @@ function ConnectionModal({ handleConnect, wallet, isConnected }: Props) {
           <h3 className="text-l text-[--headings]">Connect Account</h3>
           <button
             // @ts-ignore
-            popoverTarget={`burner-connect-popover`}
+            popovertarget={`burner-connect-popover`}
           >
             <Close />
           </button>

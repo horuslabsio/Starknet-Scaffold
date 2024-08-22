@@ -5,11 +5,11 @@ import {
   useStarkProfile,
 } from "@starknet-react/core";
 import Blockies from "react-blockies";
-import AccountBalance from "../AccountBalance";
-import GenericModal from "../GenericModal";
-import Close from "svg/Close";
+import AccountBalance from "./AccountBalance";
+import GenericModal from "../internal/util/GenericModal";
+import Close from "public/svg/Close";
 import { useEffect, useState } from "react";
-import CopyButton from "../util/CopyButton";
+import CopyButton from "../internal/util/CopyButton";
 
 const UserModal = () => {
   const { address } = useAccount();
@@ -39,7 +39,7 @@ const UserModal = () => {
             <h3 className="text-l text-[--headings]">Connected</h3>
             <button
               // @ts-ignore
-              popoverTarget="user-popover"
+              popovertarget="user-popover"
             >
               <Close />
             </button>

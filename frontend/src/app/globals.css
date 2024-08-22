@@ -72,11 +72,7 @@
   #nav[data-header="scroll-hide"]:hover {
     transform: translateY(0) !important;
   }
-  /* #nav[data-header="scroll-hide"]:hover #theme-switcher {
-    opacity: 1;
-    pointer-events: all;
-  } */
-
+  
   html,
   body {
     margin: 0;
