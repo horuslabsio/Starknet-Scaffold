@@ -227,7 +227,7 @@ export default function Home() {
           </p>
           <a href="https://t.me/+sH0ug1mZ_WtjNmM0">
             <button className="w-fit rounded-[12px] bg-background-primary-light px-12 py-3 text-accent-secondary transition-all duration-300 hover:rounded-[20px]">
-              Learn more
+              Chat
             </button>
           </a>
         </div>
