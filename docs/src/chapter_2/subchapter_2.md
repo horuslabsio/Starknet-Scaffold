@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-After setting up your project using either method, follow these steps to get your development environment running smoothly:
+After setting up your project, follow these steps to get your development environment running smoothly:
 
 1. Install the required dependencies
    
@@ -16,7 +16,9 @@ After setting up your project using either method, follow these steps to get you
    npm run install
    ```
 
-   This will download and install all the important packages specified in the `package.json` file.
+   This will download and install all the important packages specified in the `package.json` file, including Scarb, Starknet Foundry and dojo if not initially present.
+
+   **PS:** This is only necessary if you installed by cloning. All these are done automatically when you use the `create-starknet-app` executable.
 
 2. To build your Cairo contracts:
 

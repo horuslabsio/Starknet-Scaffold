@@ -9,8 +9,6 @@ Before you begin, ensure you have the following tools installed on your system:
 * [Node (v18 LTS)](https://nodejs.org/en/download/package-manager)
 * [Rust](https://www.rust-lang.org/tools/install)
 * [Git](https://git-scm.com/downloads)
-* [Scarb](https://docs.swmansion.com/scarb/download.html)
-* [Starknet Foundry](https://foundry-rs.github.io/starknet-foundry/getting-started/installation.html)
 * [Docker](https://docs.docker.com/get-docker/)
 
 ## Installation Methods
@@ -24,26 +22,25 @@ The recommended way to get started with Starknet-Scaffold is by using the `creat
 
 1. Run the executable
 
-    Open your terminal and run one of the following commands depending on your desired setup:
+    Open your terminal and run:
+    ```
+    npx create-starknet-app
+    ```
+    You'll be prompted for a project name, and a package type, enter both to proceed.
+    
+    Available package types include:
+   * **contract-only:** For a project that require just contract-related tools (no frontend).
 
-   * For a project that needs to utilize our full debugging suite:
-     ```
-     npx create-starknet-app my-app debugger
-     ```
+   * **fullstack:** For full stack projects. Provides customizable [out-of-the-box UI](../chapter_3.md) components.
 
-   * For a project that only needs customizable out-of-the-box UI components:
-     ```
-     npx create-starknet-app my-app basic
-     ```
+   * **dojo:** For gaming projects which needs access to the dojo stack.
 
-   * If you don't specify a type, it defaults to the debugger mode:
-     ```
-     npx create-starknet-app my-app
-     ```
+   * **debugger:** For projects with need to utilize the full debugging suite.
 
-    Replace `my-app` with your project name.
-
-    After running the command, follow the prompts to customize your new Starknet application.
+    Once installation is completed, navigate to the project directory:
+    ```
+    cd my-project
+    ```
 
 ### Method Two: Cloning the repository from GitHub.
 
@@ -54,7 +51,7 @@ To get started with Starknet-Scaffold via GitHub, follow these steps:
    Clone the Starknet-Scaffold repository from GitHub to your local machine. Open your terminal or command prompt and run the following command:
 
     ```
-    git clone git@github.com:argentlabs/Starknet-Scaffold.git
+    git@github.com:horuslabsio/Starknet-Scaffold.git
     ```
 
 2. Navigate to the Project Directory
@@ -64,3 +61,5 @@ To get started with Starknet-Scaffold via GitHub, follow these steps:
    ```
    cd Starknet-Scaffold
    ```
+
+**PS: The executable automatically installs Scarb and Starknet Foundry, if you do not have them installed locally.**

@@ -6,7 +6,7 @@ The custom connect button is located in the header of the page and facilitates t
 
 The connect wallet modal is a UI component that appears when the connect button is clicked. Its primary function is to allow users to select the wallet they wish to use to connect to the dapp.
 
-The modal is divided in to sections:
+The modal is divided into two sections:
 
 - Left side: Lists popular Starknet wallets available for connection, including:
 

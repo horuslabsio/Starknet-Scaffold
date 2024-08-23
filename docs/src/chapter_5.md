@@ -67,6 +67,35 @@ Confirm that Docker is installed and running to use starknet-devnet. To run devn
 npm run devnet
 ```
 
+
+## Dojo Scripts
+The `contracts` folder contains all the tools needed to write, build, test and deploy dojo projects. It is built with sozo and katana. Here are common operations you can perform on your dojo contracts.
+
+### Initialize Dojo Project
+To initialize a dojo project, from the base repository:
+```
+npm run initialize-dojo --name=<PROJECT_NAME>
+```
+
+### Build Dojo Project
+To build your dojo project, from the base repository run:
+```
+npm run build-dojo --name=<PROJECT_NAME>
+```
+
+### Deploy Katana
+To build deploy katana, from the base repository run:
+```
+npm run deploy-dojo-katana --name=<PROJECT_NAME>
+``` 
+
+### Migrate Dojo Project
+To migrate your dojo project, from the base repository run:
+```
+npm run migrate-dojo --name=<PROJECT_NAME>
+```
+
+
 ## User Interface Scripts
 
 The following are scripts from `Starknet-Scaffold` for handling the user interface.

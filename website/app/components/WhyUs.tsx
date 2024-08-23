@@ -54,10 +54,7 @@ const WhyUs = () => {
             to create, declare, and deploy smart contracts alongside build
             interactive user interfaces.
           </p>
-          <a href="https://github.com/argentlabs/Starknet-Scaffold#readme">
-            <button className="border-solid border-[#B4B4B4] border-[2px] min-w-[6rem] px-2 py-1 rounded-[8px] w-fit hover:rounded-[20px] transition-all duration-400 ">
-              Docs
-            </button>
+          <a href="https://docs.starknetscaffold.xyz" className="border-solid border-[#B4B4B4] border-[2px] min-w-[6rem] Try Online px-2 py-1 rounded-[8px] w-fit hover:rounded-[20px] transition-all duration-400"><span>Docs</span>
           </a>
         </figure>
         <div className="w-full flex flex-col gap-4">

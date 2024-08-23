@@ -2,7 +2,7 @@
 
 ## Address Bar
 
-The Address Bar displays the address of the connected account. If the connected wallet has a Starknet.id, the Address Bar will show the Starknet.id profile picture and name. If not, a Blockies-generated image representation of the connected address is displayed alongside a shortened version of the address.
+The Address Bar displays the address of the connected account. If the connected wallet has a Starknet.id, the Address Bar will display the Starknet.id pfp and name. If not, a Blockies-generated image representation of the connected address is displayed alongside a shortened version of the address.
 
 ## User Modal
 

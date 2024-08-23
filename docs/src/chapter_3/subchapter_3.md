@@ -4,10 +4,10 @@ This component displays the list of transactions performed by the connected wall
 
 Each transaction item shows the following:
 
-- Transaction status: represented by icons. The status of a transaction can be one of the following: completed, pending, or failed.
+- Transaction status: represented by icons. The status of a transaction can be one of the following: `completed`, `pending`, or `failed`.
 - User address
 - Transaction time and date
-- "See transaction": redirects the user to view the transaction on the Starkscan block explorer.
+- "See transaction": redirects the user to view the transaction on a block explorer.
 
 ## Import
 

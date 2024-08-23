@@ -124,16 +124,14 @@ const Hero = () => {
           <Link
             target="_blank"
             href="https://app.starknetscaffold.xyz"
-            className="border-solid h-[2.5rem] border-dark-font-color border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400"
-          >
-            Try Online
+            className="border-solid h-[2.5rem] border-dark-font-color grid place-content-center border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400"
+          ><span>Try Online</span>
           </Link>
           <Link
             target="_blank"
             href="https://docs.starknetscaffold.xyz"
-            className="border-solid h-[2.5rem] border-dark-font-color border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400"
-          >
-            Docs
+            className="border-solid h-[2.5rem] border-dark-font-color grid place-content-center border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400"
+          ><span>Docs</span>
           </Link>
           <Link
             target="_blank"
