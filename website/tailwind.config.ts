@@ -17,8 +17,8 @@ const config: Config = {
         Coolvetica: ["Coolvetica", "sans-serif"],
       },
       backgroundImage: {
-        "hero-image": "url('/hero-bg.svg')",
-        "footer-image": "url('/footer-bg.svg')",
+        "hero-image": "url('/hero-bg.png')",
+        "footer-image": "url('/footer-bg.png')",
         "linear-gradient":
           "linear-gradient(180deg, #FF8D4E -9.12%, #FF6734 39.7%)",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

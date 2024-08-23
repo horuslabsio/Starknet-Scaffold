@@ -38,25 +38,21 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className=" absolute w-screen top-0 left-0 z-[99] flex justify-between px-5 md:px-12 py-6">
-      <a
-        href="
-          "
-        className="inline-block w-[55vw] max-w-[300px]  md:w-[30vw]  lg:w-[20vw]"
-      >
+    <header className="max-w-[2000px]  left-1/2 -translate-x-1/2  absolute w-screen top-0 z-[99] flex justify-between px-5 md:px-12 py-6">
+      <div className="inline-block w-[55vw] max-w-[300px]  md:w-[30vw]  lg:w-[20vw]">
         <img src="/logo.svg" alt="starknet scaffold" />
-      </a>
+      </div>
 
       <button
         id="toggle-theme"
         onClick={toggleTheme}
         className="h-[10vw] w-[10vw] max-w-10 max-h-10  p-2 rounded-full  bg-[#2D2D2D] text-[#FF6734] flex justify-center items-center relative overflow-hidden"
       >
-        <span id="sun" className="text-[1.5em] md:text-[1.8em]">
+        <span id="sun" className="text-[1.2em] md:text-[1.5em]">
           <SunIcon />
         </span>
 
-        <span id="moon" className="absolute text-[1.5em] md:text-[2em]">
+        <span id="moon" className="absolute text-[1.2em] md:text-[1.5em]">
           <MoonIcon />
         </span>
       </button>

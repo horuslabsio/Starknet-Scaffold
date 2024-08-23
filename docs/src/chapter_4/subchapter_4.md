@@ -11,4 +11,4 @@ The columns of the table are:
 
 This tool also includes a search functionality to easily find resources.
 
-<img src="../public/wikipedia.png" width="100%" alt="starknet burner" />
+<img src="../public/wikipedia.png" width="100%" alt="starknet scaffold wikipedia" />

@@ -14,4 +14,4 @@ In order for the generated burner wallet to be used, it has to be connected. Aft
 
 Users have the ability to also clear the generated wallets.
 
-<img src="../public/burner.png" width="100%" alt="starknet burner" />
+<img src="../public/burner.png" width="100%" alt="starknet scaffold burner" />

@@ -26,7 +26,7 @@ const Point = ({ desc, title }: { desc: string; title: string }) => {
 
 const WhyUs = () => {
   return (
-    <section className=" p-4 md:py-16  md:px-20 ">
+    <section className="container mx-auto p-4 md:py-16  md:px-20 ">
       <h2 className="text-center">Why Starknet- Scaffold</h2>
       <div className="flex flex-col items-center gap-8 mt-8 lg:flex-row">
         <figure className="basis-full flex flex-col gap-4   rounded-[24px] p-8 bg-varying">
@@ -50,7 +50,9 @@ const WhyUs = () => {
           </div>
           <h3>From prototyping to production..</h3>
           <p className="text-[#BC988C] text-[.875em]">
-          Starknet Scaffold is designed to simplify the process for developers to create, declare, and deploy smart contracts alongside build interactive user interfaces.
+            Starknet Scaffold is designed to simplify the process for developers
+            to create, declare, and deploy smart contracts alongside build
+            interactive user interfaces.
           </p>
           <a href="https://github.com/argentlabs/Starknet-Scaffold#readme">
             <button className="border-solid border-[#B4B4B4] border-[2px] min-w-[6rem] px-2 py-1 rounded-[8px] w-fit hover:rounded-[20px] transition-all duration-400 ">

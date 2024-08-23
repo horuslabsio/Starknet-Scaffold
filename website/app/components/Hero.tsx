@@ -3,6 +3,7 @@ import GithubIcon from "../svg/GithubIcon";
 import CopyIcon from "../svg/CopyIcon";
 import { Dispatch, SetStateAction, useState } from "react";
 import CheckIcon from "../svg/CheckIcon";
+import Link from "next/link";
 
 const Hero = () => {
   const [copiedUrl, setCopiedUrl] = useState(false);
@@ -30,9 +31,9 @@ const Hero = () => {
     }
   };
   return (
-    <section className="h-screen  md:p-4">
-      <div className="bg-hero-image bg-cover bg-center w-full h-full md:rounded-lg text-dark-font-color flex flex-col gap-4 justify-center items-center text-center p-4">
-        <div className="lg:w-[55%] flex flex-col gap-4">
+    <section className="min-h-screen grid md:p-4">
+      <div className="bg-hero-image  bg-cover bg-center w-full md:rounded-lg text-dark-font-color flex flex-col gap-4 justify-center items-center text-center p-4">
+        <div className="mt-16 md:mt-0 lg:w-[55%] flex flex-col gap-4">
           <h1 className="font-bold">
             Everything you need to buidl dApps on Starknet
           </h1>
@@ -120,19 +121,30 @@ const Hero = () => {
           </button>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
-          <a href="https://app.starknetscaffold.xyz">
-            <button className="border-solid border-dark-font-color border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400">
-              Try Online
-            </button>
-          </a>
-          <a href="https://github.com/argentlabs/Starknet-Scaffold">
-            <button className="bg-dark-font-color text-white min-w-[6rem] p-[.35rem] rounded-[4px] flex justify-center items-center hover:rounded-[20px] transition-all duration-400 ">
-              <span>Github</span>
-              <span>
-                <GithubIcon />
-              </span>
-            </button>
-          </a>
+          <Link
+            target="_blank"
+            href="https://app.starknetscaffold.xyz"
+            className="border-solid h-[2.5rem] border-dark-font-color border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400"
+          >
+            Try Online
+          </Link>
+          <Link
+            target="_blank"
+            href="https://docs.starknetscaffold.xyz"
+            className="border-solid h-[2.5rem] border-dark-font-color border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400"
+          >
+            Docs
+          </Link>
+          <Link
+            target="_blank"
+            href="https://github.com/argentlabs/Starknet-Scaffold"
+            className="bg-dark-font-color h-[2.5rem] text-white min-w-[6rem] p-[.35rem] rounded-[4px] flex justify-center items-center hover:rounded-[20px] transition-all duration-400 "
+          >
+            <span>Github</span>
+            <span>
+              <GithubIcon />
+            </span>
+          </Link>
         </div>
       </div>
     </section>
