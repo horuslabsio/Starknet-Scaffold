@@ -85,10 +85,6 @@ main {
   transition: background 0.5s;
   font-weight: 400;
 }
-img {
-  width: 100%;
-  height: 100%;
-}
 
 #sun {
   will-change: transform;
