@@ -12,12 +12,12 @@ Before you begin, you need to install the following tools:
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Git](https://git-scm.com/downloads)
 
-## QUICKSTART
+## QUICK START
 
 To get started with Starknet-Scaffold, Clone this repo:
 
 ```
-git clone git@github.com:argentlabs/Starknet-Scaffold.git
+git clone git@github.com:horuslabsio/Starknet-Scaffold.git
 cd Starknet-Scaffold
 ```
 
