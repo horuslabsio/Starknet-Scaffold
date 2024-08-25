@@ -33,12 +33,12 @@ install_dojo() {
         echo "Dojo is already installed."
     else
         echo "Installing Dojo..."
-        # curl -L https://install.dojoengine.org | bash
-        # dojoup
-
         git clone https://github.com/dojoengine/dojo
         cd dojo
+        echo "Installing Sozo..."
         cargo install --path ./bin/sozo --locked --force
+        echo "Installing Katana..."
+        cargo install --path ./bin/katana --locked --force
         cd .. && rm -rf dojo
     fi
 }
