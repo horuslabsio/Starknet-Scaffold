@@ -20,7 +20,7 @@ const Footer = () => {
       </div>
       <div className="p-6">
         <p className="text-center text-[#BC988C]">
-          Built with ❤️ by Argent & Horus labs
+          Built with ❤️ by Horus labs
         </p>
       </div>
     </footer>
