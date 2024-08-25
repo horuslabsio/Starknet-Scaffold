@@ -54,11 +54,12 @@ const Hero = () => {
                 setCopied: setCopiedUrl,
               });
             }}
-            className="border-solid border-dark-font-color border-[2px] p-2 w-[90vw] max-w-[400px] md:w-fit rounded-full flex items-center   text-[.875em] gap-2 transition-all hover:bg-[#f98862]"
+            className="border-solid border-dark-font-color border-[2px] p-2 w-[90vw] max-w-[400px] md:w-fit rounded-full hover:rounded-full flex items-center text-[.875em] gap-2 transition-all hover:bg-[#f98862]"
           >
-            <span className="whitespace-nowrap  overflow-hidden text-ellipsis basis-[95%]">
-              git clone https://github.com/argentlabs/Starknet-Scaffold.git
+            <span className="basis-[95%]">
+              https://github.com/horuslabsio/Starknet-Scaffold.git
             </span>
+
             <span className=" grid grid-cols-1 grid-rows-1">
               <span
                 className={`col-start-1 row-start-1 ${
@@ -97,11 +98,9 @@ const Hero = () => {
                 setCopied: setCopiedCommand,
               });
             }}
-            className="border-solid border-dark-font-color border-[2px] p-2 rounded-full flex items-center text-[.875em] gap-2 w-[90vw] max-w-[200px] md:w-fit transition-all hover:bg-[#f98862]"
+            className="border-solid  border-dark-font-color border-[2px] p-2 rounded-full flex items-center text-[.875em] gap-2  md:w-fit transition-all hover:bg-[#f98862]"
           >
-            <span className="whitespace-nowrap  overflow-hidden text-ellipsis basis-[90%]">
-              npx create-starknet-app@latest
-            </span>
+            <span className="basis-[90%]">npx create-starknet-app@latest</span>
             <span className=" grid grid-cols-1 grid-rows-1">
               <span
                 className={`col-start-1 row-start-1 ${
@@ -125,13 +124,15 @@ const Hero = () => {
             target="_blank"
             href="https://app.starknetscaffold.xyz"
             className="border-solid h-[2.5rem] border-dark-font-color grid place-content-center border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400"
-          ><span>Try Online</span>
+          >
+            <span>Try Online</span>
           </Link>
           <Link
             target="_blank"
             href="https://docs.starknetscaffold.xyz"
             className="border-solid h-[2.5rem] border-dark-font-color grid place-content-center border-[2px] min-w-[6rem] px-2 py-1 rounded-[4px]  hover:bg-[#f98862]  hover:rounded-[20px] transition-all duration-400"
-          ><span>Docs</span>
+          >
+            <span>Docs</span>
           </Link>
           <Link
             target="_blank"
