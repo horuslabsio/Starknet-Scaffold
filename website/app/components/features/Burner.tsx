@@ -28,9 +28,7 @@ const Burner = () => {
           </span>
         </h2>
         <p className="text-[#BC988C]">
-          A simple tool for seamlessly deploying smart contracts to Starknet
-          testnet and mainnet
-        </p>
+          A simple tool for seamlessly for generating temporary wallets for use during the course of development
       </div>
     </Link>
   );
