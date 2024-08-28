@@ -34,6 +34,7 @@ Scripts exists to make your life easier! Here are available scripts and features
 | :---: | :---: |
 | Build Contract | ✅ |
 | Format Contract | ✅ |
+| Verify Contract | ✅ |
 | Run custom scripts | ✅ |
 | Generate SRC5 Interface | ✅ |
 | Prepare Account | ✅ |
@@ -91,6 +92,14 @@ Scarb comes with an in-built cairo formatter. To utilize it run:
 
 ```
 npm run format-contracts
+```
+
+#### Verify contracts
+
+To verify your smart contracts, from the base repository run:
+
+```
+npm run verify-contracts --contract-address=<CONTRACT_ADDRESS> --contract-name=<CONTRACT_NAME>
 ```
 
 #### Test contracts
