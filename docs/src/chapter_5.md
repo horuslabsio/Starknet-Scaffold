@@ -26,7 +26,7 @@ npm run test-contracts
 ### Run custom `starknet-foundry` scripts
 To run a custom starknet foundry deploy/declare/invoke script:
 ```
-npm run contract-scripts --url=<RPC_URL> --account=<ACCOUNT_NAME> <SCRIPT_NAME>
+npm run contract-scripts <SCRIPT_NAME> --url=<RPC_URL>
 ```
 
 ### Generate an SRC-5 interface ID for your contracts
@@ -38,27 +38,33 @@ npm run generate-interface <PATH_TO_INTERFACE>
 ### Prepare Account for deployment
 To prepare your account for deployment, run:
 ```
-npm run prepare-account --url=<RPC_URL> --name=<ACCOUNT_NAME>
+npm run prepare-account --url=<RPC_URL> --name=<ACCOUNT_NAME> <PROFILE_NAME>
 ```
 generates a profile which is added to scarb.toml and can be passed to other commands.
 
 ### Deploy Account
 To deploy an account:
 ```
-npm run deploy-account --profile=<MY_PROFILE> --name=<ACCOUNT_NAME> --maxfee=<MAX_FEE>
+npm run deploy-account --profile=<MY_PROFILE> --name=<ACCOUNT_NAME> --feetoken=<FEE_TOKEN> --maxfee=<MAX_FEE>
 ```
-where the profile is gotten from scarb.toml, name is the prepared account and maxfee is the specified max fee.
+where the profile is gotten from `snfoundry.toml`, name is the prepared account and maxfee is the specified max fee.
 
 ### Delete Account
 To delete an account:
 ```
-npm run delete-account --url=<RPC_URL> --name=<ACCOUNT_NAME> --network=<alpha-mainnet | alpha-goerli>
+npm run delete-account --profile=<MY_PROFILE> --accountfile=<PATH_TO_ACCOUNT_FILE> --name=<ACCOUNT_NAME> --network=<alpha-mainnet | alpha-goerli>
 ```
 
 ### Declare Contract
 To declare a Starknet contract:
 ```
-npm run delete-account --url=<RPC_URL> --name=<ACCOUNT_NAME> --network=<alpha-mainnet | alpha-goerli>
+npm run declare-contract --profile=<MY_PROFILE> --contract=<CONTRACT_NAME> --feetoken=<FEE_TOKEN>
+```
+
+### Deploy Contract
+To deploy a contract:
+```
+npm run deploy-contract --profile=<MY_PROFILE> --feetoken=<FEE_TOKEN> --class=<CONTRACT_CLASSHASH>
 ```
 
 ###  Starknet-Devnet

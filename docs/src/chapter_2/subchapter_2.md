@@ -36,6 +36,6 @@ After setting up your project, follow these steps to get your development enviro
 
 Starknet-Scaffold provides other scripts to facilitate development. We will cover more of these available scripts in the coming chapters.
 
-<img src="../public/home.png" width="100%" alt="starknet scaffold" />
+<img src="../public/homepage.png" width="100%" alt="starknet scaffold" />
 
 You now have a fully set up and running installation of Starknet-Scaffold at `https://localhost:3000`. For further customization and detailed instructions, please refer to the documentation.
