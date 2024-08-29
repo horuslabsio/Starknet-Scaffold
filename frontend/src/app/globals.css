@@ -72,7 +72,7 @@
   #nav[data-header="scroll-hide"]:hover {
     transform: translateY(0) !important;
   }
-  
+
   html,
   body {
     margin: 0;
@@ -102,12 +102,17 @@
     box-sizing: inherit;
   }
 
+  html {
+    zoom: 1;
+  }
+
   :root {
     --100vh: 100vh;
     --100svh: 100svh;
     --modal-h: 100svh;
   }
-  @media only screen and (max-width: 1600px) {
+
+  @media only screen and (max-width: 1600px) and (min-width: 768px) {
     html {
       zoom: 0.8;
     }
@@ -115,27 +120,6 @@
       --100vh: calc(100vh / 0.8);
       --100svh: calc((100svh / 0.8) - (3rem / 0.8));
       --modal-h: calc((100vh / 0.8) - 9rem);
-    }
-  }
-
-  @media only screen and (max-width: 1024px) {
-    html {
-      zoom: 0.9;
-    }
-    :root {
-      --100vh: calc(100vh / 0.9);
-      --100svh: calc((100svh / 0.9) - (3rem / 0.9));
-      --modal-h: calc((100vh / 0.9) - 9rem);
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    html {
-      zoom: 1;
-    }
-    :root {
-      --100vh: 100vh;
-      --100svh: 100svh;
-      --modal-h: 90svh;
     }
   }
 

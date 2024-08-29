@@ -140,9 +140,9 @@ export default function Page() {
         </p>
       </div>
       <div
-        className={`mx-auto ${chain.network === "sepolia" ? "flex" : "hidden"} w-fit flex-col gap-4 lg:w-full lg:flex-row-reverse lg:justify-center`}
+        className={`mx-auto ${chain.network === "sepolia" ? "flex" : "hidden"} w-fit flex-col gap-4 md:w-full lg:flex-row-reverse lg:justify-center`}
       >
-        <div className="flex h-fit w-[90vw] max-w-[35rem] flex-col rounded-[16px] lg:w-full lg:max-w-[27rem] lg:flex-col-reverse lg:border lg:border-[--borders] lg:p-8">
+        <div className="mx-auto flex h-fit w-[90vw] max-w-[35rem] flex-col rounded-[16px] md:max-w-[40rem] lg:mx-0 lg:w-full lg:max-w-[27rem] lg:flex-col-reverse lg:border lg:border-[--borders] lg:p-8">
           <div className="my-8 flex gap-4 lg:my-0 lg:flex-col">
             <button
               disabled={!address}
@@ -236,7 +236,7 @@ export default function Page() {
               />
             </div>
           ) : (
-            <div className="mx-auto grid min-h-[20rem] w-[90vw] max-w-[35rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8 lg:w-[45rem] lg:max-w-none">
+            <div className="grid min-h-[20rem] w-[90vw] max-w-[35rem] place-content-center rounded-[16px] border border-[--borders] bg-[--modal-disconnect-bg] p-8 lg:w-[45rem] lg:max-w-none">
               <p>No burner wallets found</p>
             </div>
           )
