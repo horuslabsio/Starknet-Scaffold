@@ -40,7 +40,7 @@ const Navbar = () => {
   return (
     <header className="max-w-[2000px]  left-1/2 -translate-x-1/2  absolute w-screen top-0 z-[99] flex justify-between px-5 md:px-12 py-6">
       <div className="inline-block w-[55vw] max-w-[300px]  md:w-[30vw]  lg:w-[20vw]">
-        <img src="/logo.svg" alt="starknet scaffold" />
+        <img src="/logo.png" alt="starknet scaffold" />
       </div>
 
       <button

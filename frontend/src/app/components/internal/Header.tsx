@@ -46,15 +46,15 @@ const Header = () => {
           <div className="hidden w-[18.75rem] md:block">
             <Link href={"/"}>
               <img
-                src="/assets/logo.svg"
+                src="/assets/logo.png"
                 alt="logo"
                 className="h-full w-full"
               />
             </Link>
           </div>
 
-          <Link href={"/"} className="block md:hidden">
-            <img src="/assets/mobile-logo.svg" alt="" />
+          <Link href={"/"} className="block h-[35px] w-[35px] md:hidden">
+            <img src="/assets/mobile-logo.png" alt="" />
           </Link>
           <div className="relative">
             {address ? (
