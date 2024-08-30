@@ -6,7 +6,10 @@ import { useContractRead } from "@starknet-react/core";
 import { Account, RpcProvider } from "starknet";
 import Erc20Abi from "../../../public/abi/token.abi.json";
 import ContractExecutionModal from "./ContractExecutionModal";
-import { ETH_SEPOLIA, STRK_SEPOLIA } from "@/app/components/internal/helpers/constant";
+import {
+  ETH_SEPOLIA,
+  STRK_SEPOLIA,
+} from "@/app/components/internal/helpers/constant";
 import { formatCurrency } from "../components/internal/helpers";
 import CopyButton from "../components/internal/util/CopyButton";
 import AccountBalance from "../components/lib/AccountBalance";
@@ -76,9 +79,9 @@ function BurnerWallet({
 
   return (
     <>
-      <div className="w-[90vw] max-w-[35rem] p-2 md:p-8 lg:w-[45rem] lg:max-w-none lg:rounded-[16px] lg:border lg:border-[--borders]">
+      <div className="mx-auto w-[90vw] max-w-[35rem] p-2 md:max-w-[45rem] md:p-8 lg:w-[50vw] lg:rounded-[16px] lg:border lg:border-[--borders]">
         <div className="mb-4 flex items-center justify-between gap-4 border-b border-b-[#DADADA] py-4 md:mb-12">
-          <div className="flex flex-col md:items-center lg:flex-row lg:gap-4">
+          <div className="flex flex-col md:items-center lg:flex-row lg:flex-wrap lg:gap-4">
             <h2 className="mb-2 text-[--headings] md:text-l">
               Wallet Account {walletNumber}
             </h2>
