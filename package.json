@@ -7,6 +7,7 @@
     "build-contracts": "cd contracts && scarb build",
     "test-contracts": "cd contracts && snforge test",
     "format-contracts": "cd contracts && scarb fmt",
+    "verify-contracts": "cd contracts && sncast verify --contract-address ${npm_config_contract-address} --contract-name ${npm_config_contract-name} --verifier walnut --network ${npm_config-network}",
     "contract-scripts": "cd contracts/scripts && sncast script run ${npm_config_script} --url ${npm_config_url}",
     "generate-interface": "cd contracts && src5_rs parse",
     "prepare-account": "cd contracts && sncast account create --url ${npm_config_url} --name ${npm_config_name} --add-profile",

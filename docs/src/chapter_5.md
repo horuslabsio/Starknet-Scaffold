@@ -17,6 +17,14 @@ Leverage `Scarb’s` native formatting capabilities by running:
 npm run format-contracts
 ```
 
+#### Verify contracts
+
+To verify your smart contracts, from the base repository run:
+
+```
+npm run verify-contracts --contract-address=<CONTRACT_ADDRESS> --contract-name=<CONTRACT_NAME> --network=<NETWORK>
+```
+
 ### Test contracts
 To run your Starknet Foundry tests:
 ```
