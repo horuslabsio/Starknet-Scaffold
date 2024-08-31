@@ -39,17 +39,17 @@ export default function Home() {
 
       {/* Link cards --> */}
       <section className="container mx-auto flex w-[90%] grid-cols-3 grid-rows-2 flex-col gap-4 text-text-primary md:grid md:gap-2 lg:w-[80%] lg:gap-4">
-        <div className="relative col-span-2 mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-[350px] md:max-w-none">
+        <div className="feat-link relative col-span-2 mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-[350px] md:max-w-none">
           <Link
             href="/burner"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col rounded-[16px] p-4 transition-all duration-500 hover:bg-button-secondary md:block md:pb-0"
+            className="feat-link flex h-full w-full flex-col rounded-[16px] p-4 transition-all duration-500 md:block md:pb-0"
           >
             <div className="p-4 md:absolute md:pt-8 lg:w-[40%]">
-              <h2 className="mb-2 flex items-center gap-1 text-l text-[--headings] group-hover:text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-1 text-l text-[--headings]">
                 <span>Scaffold Burner Wallet</span>
-                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                <span className="arrow transition-all duration-500">
                   <Upright />
                 </span>
               </h2>
@@ -64,17 +64,17 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="group relative mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-[350px] md:max-h-none md:max-w-none">
+        <div className="feat-link relative mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-[350px] md:max-h-none md:max-w-none">
           <Link
             href="https://starknet-faucet.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500"
           >
             <div className="px-8 pt-8 md:absolute">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings]">
                 <span>Scaffold Faucet</span>
-                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                <span className="arrow transition-all duration-500">
                   <Upright />
                 </span>
               </h2>
@@ -93,17 +93,17 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative row-span-2 mx-auto h-full max-h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:max-h-none md:max-w-none">
+        <div className="feat-link relative row-span-2 mx-auto h-full max-h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:max-h-none md:max-w-none">
           <Link
             href="/scaffold-deployer"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary md:px-4 md:pt-4"
+            className="flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 md:px-4 md:pt-4"
           >
             <div className="px-4 pt-8 md:absolute">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings]">
                 <span>Scaffold Deployer</span>
-                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                <span className="arrow transition-all duration-500">
                   <Upright />
                 </span>
               </h2>
@@ -122,17 +122,17 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px] md:max-w-none">
+        <div className="feat-link relative mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px] md:max-w-none">
           <Link
             href="/wikipedia"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500"
           >
             <div className="p-4 md:absolute md:px-8 md:pt-8">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings]">
                 <span>Scaffold Wikipedia</span>
-                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                <span className="arrow transition-all duration-500">
                   <Upright />
                 </span>
               </h2>
@@ -151,17 +151,17 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative mx-auto h-full max-h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px] md:max-w-none">
+        <div className="feat-link relative mx-auto h-full max-h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-h-none md:min-h-[300px] md:max-w-none">
           <Link
             href="https://www.stark-utils.xyz/converter"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500 hover:bg-button-secondary"
+            className="group flex h-full w-full flex-col justify-between overflow-hidden rounded-[16px] transition-all duration-500"
           >
             <div className="p-4 md:absolute md:px-8 md:pt-8">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings]">
                 <span>Stark Converter</span>
-                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                <span className="arrow transition-all duration-500">
                   <Upright />
                 </span>
               </h2>
@@ -180,17 +180,17 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative col-span-2 mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-w-none">
+        <div className="feat-link relative col-span-2 mx-auto h-[280px] w-full max-w-[500px] overflow-clip rounded-[16px] bg-[--link-card] md:h-full md:max-w-none">
           <Link
             href="/address-book"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 hover:bg-button-secondary md:block"
+            className="flex h-full w-full flex-col justify-between rounded-[16px] transition-all duration-500 md:block"
           >
             <div className="p-4 md:absolute md:w-[50%] md:px-8 md:pt-8 lg:w-[60%]">
-              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings] group-hover:text-accent-secondary">
+              <h2 className="mb-2 flex items-center gap-2 text-l text-[--headings]">
                 <span>Address Book</span>
-                <span className="transition-all duration-500 group-hover:-translate-y-1">
+                <span className="arrow transition-all duration-500">
                   <Upright />
                 </span>
               </h2>
