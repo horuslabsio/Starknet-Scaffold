@@ -2,8 +2,9 @@ import { Metadata } from "next";
 import Header from "../components/internal/Header";
 
 export const metadata: Metadata = {
-  title: "Starknet Scaffold",
-  description: "Created with love",
+  title: "Burner Wallet | Starknet Scaffold",
+  description:
+    "Access the Starknet Scaffold's burner wallet. The Burner wallet tool enables users to generate temporary wallets for use during the course of development.",
 };
 
 export default function BurnerRootLayout({

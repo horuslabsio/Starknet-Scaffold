@@ -225,10 +225,11 @@ export default function Home() {
             issue on our Github if there&apos;s a new feature you&apos;ll like
             to see
           </p>
-          <a href="https://t.me/+sH0ug1mZ_WtjNmM0">
-            <button className="w-fit rounded-[12px] bg-background-primary-light px-12 py-3 text-accent-secondary transition-all duration-300 hover:rounded-[20px]">
-              Chat
-            </button>
+          <a
+            className="w-fit rounded-[12px] bg-background-primary-light px-12 py-3 text-accent-secondary transition-all duration-300 hover:rounded-[20px]"
+            href="https://t.me/+sH0ug1mZ_WtjNmM0"
+          >
+            Chat
           </a>
         </div>
       </div>

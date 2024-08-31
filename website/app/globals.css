@@ -1,7 +1,11 @@
-@import url("https://fonts.cdnfonts.com/css/coolvetica-2");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "coolvetica";
+  src: url("../public/coolvetica\ rg.otf");
+}
 
 :root {
   --foreground-rgb: 20, 25, 37;

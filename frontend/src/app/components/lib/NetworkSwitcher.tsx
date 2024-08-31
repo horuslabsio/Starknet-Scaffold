@@ -50,6 +50,8 @@ export default function NetworkSwitcher() {
     <div className="relative flex w-[50%] max-w-[12rem] flex-col gap-y-3 text-[--headings] transition-all duration-500">
       <button
         role="combobox"
+        aria-expanded={open}
+        aria-controls="network-listbox"
         className="flex cursor-pointer items-center justify-between rounded-[12px] border-[2px] border-solid border-[--borders] bg-[--link-card] p-3"
         onClick={() => {
           setOpen((prev) => !prev);
@@ -68,6 +70,8 @@ export default function NetworkSwitcher() {
         </span>
       </button>
       <div
+        id="network-listbox"
+        role="listbox"
         className={`absolute left-[60%] top-[65px] z-[10] grid w-full -translate-x-1/2 overflow-hidden rounded-xl transition-all duration-300 ease-in-out md:left-0 md:w-[250px] md:translate-x-0 ${
           open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
@@ -79,6 +83,8 @@ export default function NetworkSwitcher() {
                 className="flex w-full cursor-pointer items-center rounded-xl px-4 py-3"
                 key={network.value}
                 value={network.value}
+                role="option"
+                tabIndex={open ? 0 : -1}
                 onClick={() => {
                   switchNetwork(network.value, network.label);
                   setOpen(false);
