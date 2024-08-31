@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import logoImage from "public/assets/logo.svg";
-import addressBookResources from "public/address-book.json"
+import logoImage from "public/assets/logo.png";
+import addressBookResources from "public/address-book.json";
 import { useDebounce } from "../components/internal/hooks/useDebounce";
 import Image from "next/image";
 import AddressTable from "./address-table";
@@ -10,7 +10,6 @@ import Link from "next/link";
 import useTheme from "../components/internal/hooks/useTheme";
 import ThemeSwitch from "../components/internal/util/ThemeSwitch";
 import { searchResources } from "../components/internal/helpers";
-
 
 export interface AddressBookResource {
   id: string;
