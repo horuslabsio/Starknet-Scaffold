@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Starknet Scaffold",
-  description: "From prototyping to production",
+  description:
+    "An open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet. Move from prototyping to production-grade apps seamlessly.",
+  openGraph: {
+    title: "Starknet Scaffold",
+    description:
+      "An open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet.",
+    url: "https://www.starknetscaffold.xyz/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Starknet Scaffold",
+    description:
+      "An open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet.",
+  },
 };
 
 export default function RootLayout({

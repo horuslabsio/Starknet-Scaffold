@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Starknet Scaffold",
-  description: "Created with love",
+  title: "Deployer | Starknet Scaffold",
+  description:
+    "The scaffold deployer is a simple tool for seamlessly declaring and deploying smart contracts to Starknet testnet and mainnet.",
 };
 
 export default function ScaffoldDeployerRootLayout({

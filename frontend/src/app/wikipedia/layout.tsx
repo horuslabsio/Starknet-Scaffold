@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Starknet Scaffold",
-  description: "Created with love",
+  title: "Wikipedia | Starknet Scaffold",
+  description:
+    "Access the Starknet Scaffold's integrated Wikipedia. A collection of Starknet and Cairo learning resources within the ecosystem",
 };
 
 export default function WikipediaRootLayout({

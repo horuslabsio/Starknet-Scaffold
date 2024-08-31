@@ -5,7 +5,20 @@
   font-family: "coolvetica";
   src: url("../../public/coolvetica rg.otf");
 }
-
+@layer components {
+  .feat-link:focus-within a,
+  .feat-link:hover a {
+    background-color: #ffebda;
+  }
+  .feat-link:focus-within h2,
+  .feat-link:hover h2 {
+    color: #141925;
+  }
+  .feat-link:focus-within .arrow,
+  .feat-link:hover .arrow {
+    transform: translateY(-0.25rem);
+  }
+}
 @layer base {
   :root {
     --foreground: #7a7a7a;
