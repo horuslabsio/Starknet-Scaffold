@@ -14,8 +14,8 @@ import CopyButton from "../internal/util/CopyButton";
 const UserModal = () => {
   const { address } = useAccount();
   const { disconnect } = useDisconnect();
-
   const [isCopied, setIsCopied] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const { data: starkProfile } = useStarkProfile({
     address,
   });
@@ -47,11 +47,12 @@ const UserModal = () => {
 
           <div className="mx-auto">
             <div className="mx-auto mb-4 h-20 w-20 overflow-clip rounded-full md:h-24 md:w-24">
-              {starkProfile?.profilePicture ? (
+              {!imageError && starkProfile?.profilePicture ? (
                 <img
                   src={starkProfile?.profilePicture}
                   className="w-full rounded-full"
                   alt="starknet profile"
+                  onError={() => setImageError(true)}
                 />
               ) : (
                 <Blockies
@@ -99,7 +100,7 @@ const AddressBar = () => {
   const { data: starkProfile } = useStarkProfile({
     address,
   });
-
+  const [imageError, setImageError] = useState(false);
   if (!address) {
     return null;
   }
@@ -128,11 +129,14 @@ const AddressBar = () => {
       >
         {
           <span className="flex items-center">
-            {starkProfile?.profilePicture ? (
+            {!imageError && starkProfile?.profilePicture ? (
               <img
-                src={starkProfile?.profilePicture}
+                src={starkProfile.profilePicture}
                 className="mr-2 h-8 w-8 rounded-full"
                 alt="starknet profile"
+                onError={() => {
+                  setImageError(true);
+                }}
               />
             ) : (
               <Blockies seed={address} className="mr-2 h-8 w-8 rounded-full" />
