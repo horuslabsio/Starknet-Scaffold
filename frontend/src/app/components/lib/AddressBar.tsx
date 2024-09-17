@@ -14,19 +14,10 @@ import CopyButton from "../internal/util/CopyButton";
 const UserModal = () => {
   const { address } = useAccount();
   const { disconnect } = useDisconnect();
-  const [isCopied, setIsCopied] = useState(false);
   const [imageError, setImageError] = useState(false);
   const { data: starkProfile } = useStarkProfile({
     address,
   });
-
-  useEffect(() => {
-    const id = setTimeout(() => {
-      setIsCopied(false);
-    }, 1500);
-
-    return () => clearTimeout(id);
-  }, [isCopied]);
 
   return (
     <GenericModal
