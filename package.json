@@ -25,8 +25,8 @@
     "build-ui": "cd frontend && npm run build",
     "initialize-kakarot": "rm -rf kakarot && mkdir kakarot && cd kakarot && git clone https://github.com/kkrt-labs/build-on-kakarot.git",
     "setup-kakarot": "cd kakarot/build-on-kakarot && make setup",
-    "start-kakarot": "cd kakarot/build-on-kakarot && make start"
-
+    "start-kakarot": "cd kakarot/build-on-kakarot && make start",
+    "deploy-kakarot-l1-messaging-contracts": "cd kakarot/build-on-kakarot && make deploy-l1"
   },
   "repository": {
     "type": "git",
