@@ -23,7 +23,9 @@
     "start": "cd frontend && npm run dev",
     "install": "cd scripts && bash install_tools.sh && cd ../frontend && npm install --legacy-peer-deps",
     "build-ui": "cd frontend && npm run build",
-    "initialize-kakarot": "rm -rf kakarot && mkdir kakarot && cd kakarot && git clone https://github.com/kkrt-labs/build-on-kakarot.git"
+    "initialize-kakarot": "rm -rf kakarot && mkdir kakarot && cd kakarot && git clone https://github.com/kkrt-labs/build-on-kakarot.git",
+    "setup-kakarot": "cd kakarot/build-on-kakarot && make setup"
+
   },
   "repository": {
     "type": "git",
