@@ -27,6 +27,18 @@ install_starknet_foundry() {
 
 }
 
+# Install Foundry
+install_foundry() {
+    if command_exists forge; then
+        echo "Foundry is already installed."
+    else
+        echo "Installing Foundry..."
+        curl -L https://foundry.paradigm.xyz | sh
+        foundryup
+    fi
+
+}
+
 # Install Dojo
 install_dojo() {
     if command_exists dojoup; then
