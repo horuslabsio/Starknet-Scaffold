@@ -15,7 +15,7 @@ const rm = promisify(fs.rm);
 // Initialize readline interface
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
 // Function to ask questions in the terminal
@@ -28,19 +28,29 @@ let projectPath;
 const installPackage = async () => {
   try {
     // Ask for package name
-    const packageName = await askQuestion('Enter your package name: ');
+    const packageName = await askQuestion("Enter your package name: ");
 
     // Ask for package type
-    const packageTypeChoices = ['contract_only', 'fullstack', 'dojo', 'debugger'];
-    console.log('Available package types:');
-    packageTypeChoices.forEach((type, index) => console.log(`${index + 1}. ${type}`));
+    const packageTypeChoices = [
+      "contract_only",
+      "fullstack",
+      "dojo",
+      "debugger",
+      "kakarot",
+    ];
+    console.log("Available package types:");
+    packageTypeChoices.forEach((type, index) =>
+      console.log(`${index + 1}. ${type}`)
+    );
 
     let packageType;
     while (!packageType) {
-      const packageTypeChoice = await askQuestion('Select the package type (1-3): ');
+      const packageTypeChoice = await askQuestion(
+        "Select the package type (1-4): "
+      );
       packageType = packageTypeChoices[parseInt(packageTypeChoice) - 1];
       if (!packageType) {
-        console.log('Invalid choice. Please select a valid package type.');
+        console.log("Invalid choice. Please select a valid package type.");
       }
     }
 
@@ -49,11 +59,12 @@ const installPackage = async () => {
     projectPath = path.join(currentPath, packageName);
 
     if (fs.existsSync(projectPath)) {
-        console.log(`The file ${projectName} already exist in the current directory, please give it another name.`);
-        process.exit(1);
-      }
-      else {
-        fs.mkdirSync(projectPath);
+      console.log(
+        `The file ${projectName} already exist in the current directory, please give it another name.`
+      );
+      process.exit(1);
+    } else {
+      fs.mkdirSync(projectPath);
     }
 
     // Clone the repository
@@ -63,11 +74,24 @@ const installPackage = async () => {
     gitSpinner.succeed();
 
     let cleanupTasks = [];
-    let excluded_files = [".git", ".github", "CONTRIBUTING.md", "bin", "burner", "website", "docs", "CNAME"];
+    let excluded_files = [
+      ".git",
+      ".github",
+      "CONTRIBUTING.md",
+      "bin",
+      "burner",
+      "website",
+      "docs",
+      "CNAME",
+    ];
 
-    if (packageType === "fullstack" || packageType === "dojo") {
-        const FRONTEND_BASE_PATH = "frontend/src/app";
-        const componentsToRemove = [
+    if (
+      packageType === "fullstack" ||
+      packageType === "dojo" ||
+      packageType === "kakarot"
+    ) {
+      const FRONTEND_BASE_PATH = "frontend/src/app";
+      const componentsToRemove = [
         `${FRONTEND_BASE_PATH}/burner`,
         `${FRONTEND_BASE_PATH}/wikipedia`,
         `${FRONTEND_BASE_PATH}/scaffold-deployer`,
@@ -78,49 +102,45 @@ const installPackage = async () => {
         `${FRONTEND_BASE_PATH}/components/AssetTransferModal.tsx`,
         `${FRONTEND_BASE_PATH}/components/ConnectionModal.tsx`,
         `${FRONTEND_BASE_PATH}/components/ContractExecutionModal.tsx`,
-        ];
-        cleanupTasks.push(
+      ];
+      cleanupTasks.push(
         ...componentsToRemove.map((comp) =>
-            rm(path.join(projectPath, comp), {
+          rm(path.join(projectPath, comp), {
             recursive: true,
             force: true,
-            }),
+          })
         ),
         ...excluded_files.map((comp) =>
-            rm(path.join(projectPath, comp), {
+          rm(path.join(projectPath, comp), {
             recursive: true,
             force: true,
-            }),
-        ),
+          })
+        )
       );
-    } 
-    else if (packageType == "contract_only") {
+    } else if (packageType == "contract_only") {
       let componentsToRemove = [...excluded_files, "frontend", ".editorconfig"];
       cleanupTasks.push(
         ...componentsToRemove.map((comp) =>
           rm(path.join(projectPath, comp), {
-          recursive: true,
-          force: true,
-          }),
-      ),
-      )
-    }
-    else {
-      cleanupTasks.push(
-        ...excluded_files.map((comp) =>
-            rm(path.join(projectPath, comp), {
             recursive: true,
             force: true,
-            }),
-        ),
+          })
+        )
+      );
+    } else {
+      cleanupTasks.push(
+        ...excluded_files.map((comp) =>
+          rm(path.join(projectPath, comp), {
+            recursive: true,
+            force: true,
+          })
+        )
       );
     }
 
     // remove useless files
     const cleanSpinner = ora("Removing useless files").start();
-    await Promise.all([
-        ...cleanupTasks,
-    ]);
+    await Promise.all([...cleanupTasks]);
 
     process.chdir(projectPath);
     // remove the packages needed for cli
@@ -129,10 +149,15 @@ const installPackage = async () => {
 
     // install dependencies
     const npmSpinner = ora("Installing dependencies...").start();
-    if(packageType == "dojo") {
-      await exec("npm run install --legacy-peer-deps && npm run initialize-dojo");
-    }
-    else if(packageType !== "contract_only") {
+    if (packageType == "dojo") {
+      await exec(
+        "npm run install --legacy-peer-deps && npm run initialize-dojo"
+      );
+    } else if (packageType !== "kakarot") {
+      await exec(
+        "npm run install --legacy-peer-deps && npm run initialize-kakarot"
+      );
+    } else if (packageType !== "contract_only") {
       await exec("npm run install --legacy-peer-deps");
     }
     npmSpinner.succeed();
@@ -141,7 +166,6 @@ const installPackage = async () => {
     console.log("You can now run the scaffold with:");
     console.log(`    cd ${packageName}`);
     console.log(`    npm run start`);
-
   } catch (err) {
     // clean up in case of error, so the user does not have to do it manually
     fs.rmSync(projectPath, { recursive: true, force: true });
