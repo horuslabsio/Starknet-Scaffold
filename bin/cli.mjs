@@ -34,8 +34,8 @@ const installPackage = async () => {
     const packageTypeChoices = [
       "contract_only",
       "fullstack",
-      "dojo",
       "debugger",
+      "dojo",
       "kakarot",
     ];
     console.log("Available package types:");
