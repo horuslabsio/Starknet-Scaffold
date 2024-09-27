@@ -23,11 +23,11 @@
     "start": "cd frontend && npm run dev",
     "install": "cd scripts && bash install_tools.sh && cd ../frontend && npm install --legacy-peer-deps",
     "build-ui": "cd frontend && npm run build",
-    "initialize-kakarot": "rm -rf contracts && mkdir contracts && cd contracts && git clone https://github.com/kkrt-labs/build-on-kakarot.git && cp -r build-on-kakarot/* ./ && rm -rf .github && rm -rf .trunk && rm -rf build-on-kakarot",
-    "setup-kakarot": "cd contracts && make setup",
+    "initialize-kakarot": "rm -rf contracts && mkdir contracts && cd contracts && git clone https://github.com/kkrt-labs/build-on-kakarot.git && cp -r build-on-kakarot/. ./ && rm -rf .github && rm -rf .trunk && rm -rf build-on-kakarot && git init",
+    "setup-kakarot": "cd contracts && make setup", 
     "start-kakarot": "cd contracts && make start",
     "deploy-kakarot-l1-messaging-contracts": "cd contracts && make deploy-l1",
-    "deploy-kakarot-evm-contract": "cd contracts && forge create solidity_contracts/src/${npm_contract_path} --private-key $PRIVATE_KEY"
+    "deploy-kakarot-evm-contract": "cd contracts && forge create ${npm_config_contract_path} --rpc-url ${npm_config_rpc_url} --private-key ${npm_config_private_key}"
   },
   "repository": {
     "type": "git",
