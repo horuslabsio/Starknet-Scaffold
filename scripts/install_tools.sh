@@ -1,3 +1,4 @@
+# Main function to call installation scripts
 #!/bin/bash
 
 # Function to check if a command exists
@@ -7,11 +8,18 @@ command_exists () {
 
 # Install Scarb
 install_scarb() {
-    if command_exists scarb; then
-        echo "Scarb is already installed."
-    else
-        echo "Installing Scarb..."
-        curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh
+    local version=$1
+
+    if [ -n "$version" ]; then
+        echo "Installing Scarb $version..."
+        curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh -s -- -v $version
+    else 
+        if command_exists scarb; then
+            echo "Scarb is already installed."
+        else
+            echo "Installing Scarb latest..."
+            curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh
+        fi
     fi
 }
 
@@ -57,11 +65,50 @@ install_dojo() {
 
 # Main function to call installation scripts
 main() {
-    install_scarb
-    install_starknet_foundry
-    install_dojo
+    # Default versions (empty means latest)
+    local scarb_version=""
+    local starknet_foundry_version=""
+    local dojo_version=""
+    local foundry_version=""
+
+    # Parse the arguments
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --scarb)
+                shift
+                scarb_version=$1
+                shift
+                ;;
+            --starknet-foundry)
+                shift
+                starknet_foundry_version=$1
+                shift
+                ;;
+            --dojo)
+                shift
+                dojo_version=$1
+                shift
+                ;;
+            --foundry)
+                shift
+                foundry_version=$1
+                shift
+                ;;
+            *)
+                echo "Unknown argument: $1"
+                echo "Available options: --scarb [version], --starknet-foundry [version], --dojo [version], --foundry [version]"
+                exit 1
+                ;;
+        esac
+    done
+
+    # Install all packages, using the specified version or default to latest
+    install_scarb "$scarb_version"
+    install_starknet_foundry "$starknet_foundry_version"
+    install_dojo "$dojo_version"
+    install_foundry "$foundry_version"
 
     echo "Installation complete!"
 }
 
-main
+main "$@"
