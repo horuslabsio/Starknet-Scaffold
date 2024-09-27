@@ -7,7 +7,7 @@ edition = "2023_11"
 
 [dependencies]
 sncast_std = { git = "https://github.com/foundry-rs/starknet-foundry", tag = "v0.31.0" }
-starknet = "2.8.2"
+starknet = "2.8.3"
 contracts = { path = "../" }
 
 [lib]
