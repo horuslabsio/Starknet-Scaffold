@@ -110,5 +110,5 @@ source = "git+https://github.com/foundry-rs/starknet-foundry?tag=v0.31.0#72ea785
 
 [[package]]
 name = "snforge_std"
-version = "0.27.0"
-source = "git+https://github.com/foundry-rs/starknet-foundry?tag=v0.27.0#2d99b7c00678ef0363881ee0273550c44a9263de"
+version = "0.31.0"
+source = "git+https://github.com/foundry-rs/starknet-foundry?tag=v0.31.0#2d99b7c00678ef0363881ee0273550c44a9263de"
