@@ -153,7 +153,7 @@ const installPackage = async () => {
       await exec(
         "npm run install --legacy-peer-deps && npm run initialize-dojo"
       );
-    } else if (packageType !== "kakarot") {
+    } else if (packageType == "kakarot") {
       await exec(
         "npm run install --legacy-peer-deps && npm run initialize-kakarot"
       );
