@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 import ora from "ora";
 
-const git_repo = "https://github.com/horuslabsio/Starknet-Scaffold";
+const git_repo = "https://github.com/EjembiEmmanuel/Starknet-Scaffold.git";
 
 // convert libs to promises
 const exec = promisify(cp.exec);
@@ -46,7 +46,7 @@ const installPackage = async () => {
     let packageType;
     while (!packageType) {
       const packageTypeChoice = await askQuestion(
-        "Select the package type (1-4): "
+        "Select the package type (1-5): "
       );
       packageType = packageTypeChoices[parseInt(packageTypeChoice) - 1];
       if (!packageType) {
@@ -154,8 +154,14 @@ const installPackage = async () => {
         "npm run install --legacy-peer-deps && npm run initialize-dojo"
       );
     } else if (packageType == "kakarot") {
+      await exec("npm run initialize-kakarot");
+
+      const tool_versions = await getVersionsFromToolFile(
+        path.join(projectPath, "/contracts/cairo_contracts/.tool-versions")
+      );
+
       await exec(
-        "npm run install --legacy-peer-deps && npm run initialize-kakarot"
+        `npm run install --scarb-version=${tool_versions.scarb} --legacy-peer-deps`
       );
     } else if (packageType !== "contract_only") {
       await exec("npm run install --legacy-peer-deps");
@@ -174,5 +180,34 @@ const installPackage = async () => {
     rl.close();
   }
 };
+
+/**
+ * Reads the .tool-versions file and returns the versions of packages.
+ * @param {string} filePath - The path to the .tool-versions file.
+ * @returns {Promise<Object>} - A promise that resolves to an object containing package names and their versions.
+ */
+function getVersionsFromToolFile(filePath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        return reject(err);
+      }
+
+      const versions = {};
+      const lines = data.trim().split("\n");
+
+      for (const line of lines) {
+        const [packageName, version] = line
+          .split(" ")
+          .map((item) => item.trim());
+        if (packageName && version) {
+          versions[packageName] = version;
+        }
+      }
+
+      resolve(versions);
+    });
+  });
+}
 
 installPackage();
