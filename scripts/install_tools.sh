@@ -23,6 +23,17 @@ install_scarb() {
     fi
 }
 
+# Install Starkli
+install_starkli() {
+    if command_exists starkliup; then
+        echo "Starkli is already installed."
+    else
+        echo "Installing Starkli..."
+        curl https://get.starkli.sh | sh
+        starkliup
+    fi
+}
+
 # Install Starknet-Foundry
 install_starknet_foundry() {
     if command_exists snforge; then
