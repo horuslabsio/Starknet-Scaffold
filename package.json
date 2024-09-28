@@ -28,7 +28,8 @@
     "start-kakarot": "cd contracts && make start",
     "deploy-kakarot-l1-messaging-contracts": "cd contracts && make deploy-l1",
     "deploy-kakarot-evm-contract": "cd contracts && forge create ${npm_config_contract_path} --rpc-url ${npm_config_rpc_url} --private-key ${npm_config_private_key}",
-    "build-kakarot-cairo-contracts": "cd contracts/cairo_contracts && scarb build"
+    "build-kakarot-cairo-contracts": "cd contracts/cairo_contracts && scarb build",
+    "declare-kakarot-cairo-contract": "cd contracts && starkli declare ${npm_config_class_file} --account ${npm_config_account} --key-store ${npm_config_keystore} --rpc ${npm_config_rpc}"
   },
   "repository": {
     "type": "git",
