@@ -78,6 +78,7 @@ install_dojo() {
 main() {
     # Default versions (empty means latest)
     local scarb_version=""
+    local starkli_version=""
     local starknet_foundry_version=""
     local dojo_version=""
     local foundry_version=""
@@ -88,6 +89,11 @@ main() {
             --scarb)
                 shift
                 scarb_version=$1
+                shift
+                ;;
+            --starkli)
+                shift
+                starkli_version=$1
                 shift
                 ;;
             --starknet-foundry)
@@ -115,6 +121,7 @@ main() {
 
     # Install all packages, using the specified version or default to latest
     install_scarb "$scarb_version"
+    install_starkli "$starkli_version"
     install_starknet_foundry "$starknet_foundry_version"
     install_dojo "$dojo_version"
     install_foundry "$foundry_version"
