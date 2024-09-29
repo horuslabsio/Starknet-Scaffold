@@ -30,6 +30,14 @@ install_starkli() {
     else
         echo "Installing Starkli..."
         curl https://get.starkli.sh | sh
+
+        # Reload the shell to make starkliup available in the current session
+        if [ -f "$HOME/.bashrc" ]; then
+            source "$HOME/.bashrc"
+        elif [ -f "$HOME/.zshrc" ]; then
+            source "$HOME/.zshrc"
+        fi
+
         starkliup
     fi
 }
