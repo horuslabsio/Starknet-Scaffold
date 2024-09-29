@@ -30,15 +30,6 @@ install_starkli() {
     else
         echo "Installing Starkli..."
         curl https://get.starkli.sh | sh
-
-        # Reload the shell to make starkliup available in the current session
-        if [ -f "$HOME/.bashrc" ]; then
-            source "$HOME/.bashrc"
-        elif [ -f "$HOME/.zshrc" ]; then
-            source "$HOME/.zshrc"
-        fi
-
-        starkliup
     fi
 }
 
@@ -49,7 +40,6 @@ install_starknet_foundry() {
     else
         echo "Installing Starknet-Foundry..."
         curl -L https://raw.githubusercontent.com/foundry-rs/starknet-foundry/master/scripts/install.sh | sh
-        snfoundryup
     fi
 
 }
@@ -61,7 +51,6 @@ install_foundry() {
     else
         echo "Installing Foundry..."
         curl -L https://foundry.paradigm.xyz | sh
-        foundryup
     fi
 
 }

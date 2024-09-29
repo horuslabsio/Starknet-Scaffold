@@ -163,8 +163,6 @@ const installPackage = async () => {
       await exec(
         `npm run install --scarb-version=${tool_versions.scarb} --legacy-peer-deps`
       );
-
-      await exec(`npm run install-tools`);
     } else if (packageType !== "contract_only") {
       await exec("npm run install --legacy-peer-deps");
     }
