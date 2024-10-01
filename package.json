@@ -21,7 +21,7 @@
     "migrate-dojo": "cd contracts/${npm_config_name} && sozo migrate apply",
     "devnet": "sh ./devnet/start.sh",
     "start": "cd frontend && npm run dev",
-    "install": "cd scripts && bash install_tools.sh --scarb ${npm_config_scarb_version} --starkli ${npm_config_starkli_version} --starknet-foundry ${npm_config_starknet_foundry_version} --foundry ${npm_config_foundry_version} --dojo ${npm_config_dojo_version} && npm run install-tools && cd ../frontend && npm install --legacy-peer-deps",
+    "install": "cd scripts && bash install_tools.sh --scarb ${npm_config_scarb_version} --starkli ${npm_config_starkli_version} --starknet-foundry ${npm_config_starknet_foundry_version} --foundry ${npm_config_foundry_version} --dojo ${npm_config_dojo_version} && cd ../frontend && npm install --legacy-peer-deps",
     "install-tools": "snfoundryup && foundryup",
     "build-ui": "cd frontend && npm run build",
     "initialize-kakarot": "rm -rf contracts && mkdir contracts && cd contracts && git clone https://github.com/kkrt-labs/build-on-kakarot.git && cp -r build-on-kakarot/. ./ && rm -rf .github && rm -rf .trunk && rm -rf build-on-kakarot && git init",
