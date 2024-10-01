@@ -30,6 +30,7 @@ install_starknet_foundry() {
     else
         echo "Installing Starknet-Foundry..."
         curl -L https://raw.githubusercontent.com/foundry-rs/starknet-foundry/master/scripts/install.sh | sh
+        snfoundryup
     fi
 
 }
@@ -41,6 +42,7 @@ install_foundry() {
     else
         echo "Installing Foundry..."
         curl -L https://foundry.paradigm.xyz | sh
+        foundryup
     fi
 
 }
