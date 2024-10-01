@@ -156,6 +156,8 @@ const installPackage = async () => {
     } else if (packageType == "kakarot") {
       await exec("npm run initialize-kakarot");
 
+      await exec("npm run setup-kakarot");
+
       const tool_versions = await getVersionsFromToolFile(
         path.join(projectPath, "/contracts/cairo_contracts/.tool-versions")
       );
@@ -163,6 +165,8 @@ const installPackage = async () => {
       await exec(
         `npm run install --scarb-version=${tool_versions.scarb} --legacy-peer-deps`
       );
+
+      await exec("npm run install-tools");
     } else if (packageType !== "contract_only") {
       await exec("npm run install --legacy-peer-deps");
     }
@@ -171,7 +175,12 @@ const installPackage = async () => {
     console.log("The installation is done!");
     console.log("You can now run the scaffold with:");
     console.log(`    cd ${packageName}`);
-    console.log(`    npm run start`);
+
+    if (packageType == "kakarot") {
+      console.log(`    npm run start-kakarot`);
+    } else {
+      console.log(`    npm run start`);
+    }
   } catch (err) {
     // clean up in case of error, so the user does not have to do it manually
     fs.rmSync(projectPath, { recursive: true, force: true });
