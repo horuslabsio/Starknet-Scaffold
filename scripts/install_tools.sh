@@ -103,8 +103,8 @@ main() {
     # Install all packages, using the specified version or default to latest
     install_scarb "$scarb_version"
     install_starknet_foundry "$starknet_foundry_version"
-    install_dojo "$dojo_version"
     install_foundry "$foundry_version"
+    install_dojo "$dojo_version"
 
     echo "Installation complete!"
 }
