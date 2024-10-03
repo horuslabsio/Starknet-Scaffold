@@ -4,7 +4,7 @@ use contracts::{IHelloStarknetDispatcher, IHelloStarknetDispatcherTrait};
 
 #[test]
 fn test_balance() {
-    let contract = match declare("HelloStarknet").unwrap(){
+    let contract = match declare("HelloStarknet").unwrap() {
         DeclareResult::Success(class) => class,
         DeclareResult::AlreadyDeclared(class) => class,
     };
