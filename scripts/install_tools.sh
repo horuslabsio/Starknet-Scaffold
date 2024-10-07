@@ -41,7 +41,7 @@ install_foundry() {
         echo "Foundry is already installed."
     else
         echo "Installing Foundry..."
-        curl -L https://foundry.paradigm.xyz | sh
+        curl -L https://foundry.paradigm.xyz | bash
         foundryup
     fi
 
