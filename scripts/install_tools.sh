@@ -49,17 +49,20 @@ install_foundry() {
 
 # Install Dojo
 install_dojo() {
-    if command_exists dojoup; then
-        echo "Dojo is already installed."
-    else
-        echo "Installing Dojo..."
-        git clone https://github.com/dojoengine/dojo
-        cd dojo
-        echo "Installing Sozo..."
-        cargo install --path ./bin/sozo --locked --force
-        echo "Installing Katana..."
-        cargo install --path ./bin/katana --locked --force
-        cd .. && rm -rf dojo
+    local version=$1
+
+    curl -L https://install.dojoengine.org | bash
+
+    if [ -n "$version" ]; then
+        echo "Installing Dojo $version..."
+        dojoup --version $version
+    else 
+        if command_exists dojoup; then
+            echo "Dojo is already installed."
+        else
+            echo "Installing Dojo latest..."
+            dojoup --version $version
+        fi
     fi
 }
 

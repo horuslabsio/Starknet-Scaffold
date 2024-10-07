@@ -7,6 +7,7 @@ import path from "path";
 import ora from "ora";
 
 const git_repo = "https://github.com/EjembiEmmanuel/Starknet-Scaffold.git";
+const dojo_starter = "https://github.com/dojoengine/dojo-starter.git";
 
 // convert libs to promises
 const exec = promisify(cp.exec);
@@ -151,8 +152,21 @@ const installPackage = async () => {
     const npmSpinner = ora("Installing dependencies...").start();
     if (packageType == "dojo") {
       await exec(
-        "npm run install --legacy-peer-deps && npm run initialize-dojo"
+        `git clone --depth 1 ${dojo_starter} ${projectPath}/dojo-starter --quiet`
       );
+
+      const dojo_version = getDojoVersion(
+        path.join(projectPath, "/dojo-starter/Scarb.toml")
+      );
+
+      await exec(
+        `npm run install --dojo-version=${dojo_version} --legacy-peer-deps && npm run initialize-dojo`
+      );
+
+      fs.rmSync(path.join(projectPath, "/dojo-starter"), {
+        recursive: true,
+        force: true,
+      });
     } else if (packageType == "kakarot") {
       await exec("npm run initialize-kakarot");
 
@@ -217,6 +231,28 @@ function getVersionsFromToolFile(filePath) {
       resolve(versions);
     });
   });
+}
+
+/**
+ * Reads the Scarb.toml file and returns the versions of dojo
+ * @param {string} filePath - The path to the Scarb.toml file.
+ * @returns {string} - A string corresponding to the dojo version.
+ */
+function getDojoVersion(filePath) {
+  const tomlContent = fs.readFileSync(filePath, "utf-8");
+
+  // Use a regular expression to match the Dojo version tag
+  const dojoVersionMatch = tomlContent.match(
+    /dojo\s*=\s*{[^}]*tag\s*=\s*"v([\d\w\.\-]+)"/
+  );
+
+  // Check if the match was found and return the version with 'v' prefix
+  if (dojoVersionMatch && dojoVersionMatch[1]) {
+    return dojoVersionMatch[1];
+  }
+
+  // Return null if no version found
+  return null;
 }
 
 installPackage();
