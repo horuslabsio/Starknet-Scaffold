@@ -159,7 +159,7 @@ const installPackage = async () => {
       await exec("npm run setup-kakarot");
 
       const tool_versions = await getVersionsFromToolFile(
-        path.join(projectPath, "/contracts/cairo_contracts/.tool-versions")
+        path.join(projectPath, "/contracts/.tool-versions")
       );
 
       await exec(

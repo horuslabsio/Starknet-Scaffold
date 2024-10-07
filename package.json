@@ -24,12 +24,11 @@
     "install": "cd scripts && bash install_tools.sh --scarb ${npm_config_scarb_version:-''} --starknet-foundry ${npm_config_starknet_foundry_version:-''} --foundry ${npm_config_foundry_version:-''} --dojo ${npm_config_dojo_version:-''} && cd ../frontend && npm install --legacy-peer-deps",
     "install-tools": "snfoundryup && foundryup",
     "build-ui": "cd frontend && npm run build",
-    "initialize-kakarot": "rm -rf contracts && mkdir contracts && cd contracts && git clone https://github.com/kkrt-labs/build-on-kakarot.git && cp -r build-on-kakarot/. ./ && rm -rf .github && rm -rf .trunk && rm -rf build-on-kakarot && git init",
-    "setup-kakarot": "cd contracts && make setup", 
-    "start-kakarot": "cd contracts && make start",
-    "deploy-kakarot-l1-messaging-contracts": "cd contracts && make deploy-l1",
-    "deploy-kakarot-evm-contract": "cd contracts && forge create ${npm_config_contract_path} --rpc-url ${npm_config_rpc_url} --private-key ${npm_config_private_key}",
-    "build-kakarot-cairo-contracts": "cd contracts/cairo_contracts && scarb build"
+    "initialize-kakarot": "git clone https://github.com/kkrt-labs/build-on-kakarot.git && rm -rf contracts && mkdir contracts && mv -r build-on-kakarot/cairo_contracts ./contracts && mkdir kakarot && mv -r build-on-kakarot/. ./kakarot && cd kakarot && rm -rf .github && rm -rf .trunk && git init && cd .. && rm -rf build-on-kakarot",
+    "setup-kakarot": "cd kakarot && make setup", 
+    "start-kakarot": "cd kakarot && make start",
+    "deploy-kakarot-l1-messaging-contracts": "cd kakarot && make deploy-l1",
+    "deploy-kakarot-evm-contract": "cd kakarot && forge create ${npm_config_contract_path} --rpc-url ${npm_config_rpc_url} --private-key ${npm_config_private_key}"
   },
   "repository": {
     "type": "git",
