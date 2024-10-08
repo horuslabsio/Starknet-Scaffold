@@ -50,8 +50,11 @@ install_foundry() {
 # Install Dojo
 install_dojo() {
     local version=$1
+    local dojo_install_dir="$HOME/.dojo/bin"
 
     curl -L https://install.dojoengine.org | bash
+
+    export PATH="$PATH:$dojo_install_dir"
 
     if [ -n "$version" ]; then
         echo "Installing Dojo $version..."
