@@ -61,7 +61,7 @@ install_dojo() {
             echo "Dojo is already installed."
         else
             echo "Installing Dojo latest..."
-            dojoup --version $version
+            dojoup
         fi
     fi
 }

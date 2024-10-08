@@ -160,8 +160,10 @@ const installPackage = async () => {
       );
 
       await exec(
-        `npm run install --dojo-version=${dojo_version} --legacy-peer-deps && npm run initialize-dojo`
+        `npm run install --dojo-version=${dojo_version} --legacy-peer-deps`
       );
+
+      await exec("npm run initialize-dojo");
 
       fs.rmSync(path.join(projectPath, "/dojo-starter"), {
         recursive: true,
