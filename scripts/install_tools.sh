@@ -33,7 +33,7 @@ install_starknet_foundry() {
         echo "Installing Starknet-Foundry $version..."
         snfoundryup --version $version
     else 
-        if command_exists snfoundryup; then
+        if command_exists sncast && command_exists snforge; then
             echo "Starknet-Foundry is already installed."
         else
             echo "Installing Starknet-Foundry latest..."
