@@ -25,14 +25,21 @@ install_scarb() {
 
 # Install Starknet-Foundry
 install_starknet_foundry() {
-    if command_exists snforge; then
-        echo "Starknet-Foundry is already installed."
-    else
-        echo "Installing Starknet-Foundry..."
-        curl -L https://raw.githubusercontent.com/foundry-rs/starknet-foundry/master/scripts/install.sh | sh
-        snfoundryup
-    fi
+    local version=$1
 
+    curl -L https://raw.githubusercontent.com/foundry-rs/starknet-foundry/master/scripts/install.sh | sh
+
+    if [ -n "$version" ]; then
+        echo "Installing Starknet-Foundry $version..."
+        snfoundryup --version $version
+    else 
+        if command_exists snfoundryup; then
+            echo "Starknet-Foundry is already installed."
+        else
+            echo "Installing Starknet-Foundry latest..."
+            snfoundryup
+        fi
+    fi
 }
 
 # Install Foundry
