@@ -46,15 +46,20 @@ install_starknet_foundry() {
 install_foundry() {
     local foundry_install_dir="$HOME/.foundry/bin"
 
-    if command_exists forge; then
-        echo "Foundry is already installed."
-    else
-        echo "Installing Foundry..."
-        curl -L https://foundry.paradigm.xyz | bash
-        export PATH="$PATH:$foundry_install_dir"
-        foundryup
-    fi
+    curl -L https://foundry.paradigm.xyz | bash
+    export PATH="$PATH:$foundry_install_dir"
 
+    if [ -n "$version" ]; then
+        echo "Installing Foundry $version..."
+        foundryup --version $version
+    else 
+        if command_exists forge; then
+            echo "Foundry is already installed."
+        else
+            echo "Installing Foundry latest..."
+            foundryup
+        fi
+    fi
 }
 
 # Install Dojo
