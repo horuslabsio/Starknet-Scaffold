@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 import ora from "ora";
 
-const git_repo = "https://github.com/EjembiEmmanuel/Starknet-Scaffold.git";
+const git_repo = "https://github.com/horuslabsio/Starknet-Scaffold.git";
 const dojo_starter = "https://github.com/dojoengine/dojo-starter.git";
 
 // convert libs to promises
