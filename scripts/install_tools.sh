@@ -1,3 +1,4 @@
+# Main function to call installation scripts
 #!/bin/bash
 
 # Function to check if a command exists
@@ -7,49 +8,128 @@ command_exists () {
 
 # Install Scarb
 install_scarb() {
-    if command_exists scarb; then
-        echo "Scarb is already installed."
-    else
-        echo "Installing Scarb..."
-        curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh
+    local version=$1
+
+    if [ -n "$version" ]; then
+        echo "Installing Scarb $version..."
+        curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh -s -- -v $version
+    else 
+        if command_exists scarb; then
+            echo "Scarb is already installed."
+        else
+            echo "Installing Scarb latest..."
+            curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh
+        fi
     fi
 }
 
 # Install Starknet-Foundry
 install_starknet_foundry() {
-    if command_exists snforge; then
-        echo "Starknet-Foundry is already installed."
-    else
-        echo "Installing Starknet-Foundry..."
-        curl -L https://raw.githubusercontent.com/foundry-rs/starknet-foundry/master/scripts/install.sh | sh
-        snfoundryup
-    fi
+    local version=$1
 
+    curl -L https://raw.githubusercontent.com/foundry-rs/starknet-foundry/master/scripts/install.sh | sh
+
+    if [ -n "$version" ]; then
+        echo "Installing Starknet-Foundry $version..."
+        snfoundryup --version $version
+    else 
+        if command_exists sncast && command_exists snforge; then
+            echo "Starknet-Foundry is already installed."
+        else
+            echo "Installing Starknet-Foundry latest..."
+            snfoundryup
+        fi
+    fi
+}
+
+# Install Foundry
+install_foundry() {
+    local foundry_install_dir="$HOME/.foundry/bin"
+
+    curl -L https://foundry.paradigm.xyz | bash
+    export PATH="$PATH:$foundry_install_dir"
+
+    if [ -n "$version" ]; then
+        echo "Installing Foundry $version..."
+        foundryup --version $version
+    else 
+        if command_exists forge; then
+            echo "Foundry is already installed."
+        else
+            echo "Installing Foundry latest..."
+            foundryup
+        fi
+    fi
 }
 
 # Install Dojo
 install_dojo() {
-    if command_exists dojoup; then
-        echo "Dojo is already installed."
-    else
-        echo "Installing Dojo..."
-        git clone https://github.com/dojoengine/dojo
-        cd dojo
-        echo "Installing Sozo..."
-        cargo install --path ./bin/sozo --locked --force
-        echo "Installing Katana..."
-        cargo install --path ./bin/katana --locked --force
-        cd .. && rm -rf dojo
+    local version=$1
+    local dojo_install_dir="$HOME/.dojo/bin"
+
+    curl -L https://install.dojoengine.org | bash
+
+    export PATH="$PATH:$dojo_install_dir"
+
+    if [ -n "$version" ]; then
+        echo "Installing Dojo $version..."
+        dojoup --version $version
+    else 
+        if command_exists dojoup; then
+            echo "Dojo is already installed."
+        else
+            echo "Installing Dojo latest..."
+            dojoup
+        fi
     fi
 }
 
 # Main function to call installation scripts
 main() {
-    install_scarb
-    install_starknet_foundry
-    install_dojo
+    # Default versions (empty means latest)
+    local scarb_version=""
+    local starknet_foundry_version=""
+    local dojo_version=""
+    local foundry_version=""
+
+    # Parse the arguments
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --scarb)
+                shift
+                scarb_version=$1
+                shift
+                ;;
+            --starknet-foundry)
+                shift
+                starknet_foundry_version=$1
+                shift
+                ;;
+            --dojo)
+                shift
+                dojo_version=$1
+                shift
+                ;;
+            --foundry)
+                shift
+                foundry_version=$1
+                shift
+                ;;
+            *)
+                echo "Unknown argument: $1"
+                echo "Available options: --scarb [version], --starknet-foundry [version], --dojo [version], --foundry [version]"
+                exit 1
+                ;;
+        esac
+    done
+
+    # Install all packages, using the specified version or default to latest
+    install_scarb "$scarb_version"
+    install_starknet_foundry "$starknet_foundry_version"
+    install_foundry "$foundry_version"
+    install_dojo "$dojo_version"
 
     echo "Installation complete!"
 }
 
-main
+main "$@"

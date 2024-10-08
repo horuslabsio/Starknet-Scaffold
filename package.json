@@ -21,8 +21,14 @@
     "migrate-dojo": "cd contracts/${npm_config_name} && sozo migrate apply",
     "devnet": "sh ./devnet/start.sh",
     "start": "cd frontend && npm run dev",
-    "install": "cd scripts && bash install_tools.sh && cd ../frontend && npm install --legacy-peer-deps",
-    "build-ui": "cd frontend && npm run build"
+    "install": "cd scripts && bash install_tools.sh --scarb ${npm_config_scarb_version:-''} --starknet-foundry ${npm_config_starknet_foundry_version:-''} --foundry ${npm_config_foundry_version:-''} --dojo ${npm_config_dojo_version:-''} && cd ../frontend && npm install --legacy-peer-deps",
+    "install-tools": "snfoundryup && foundryup",
+    "build-ui": "cd frontend && npm run build",
+    "initialize-kakarot": "git clone https://github.com/kkrt-labs/build-on-kakarot.git && rm -rf contracts && mkdir contracts && cp -r build-on-kakarot/cairo_contracts/. ./contracts && mkdir kakarot && cp -r build-on-kakarot/. ./kakarot && cd kakarot && rm -rf cairo_contracts && rm -rf .github && rm -rf .trunk && git init && cd .. && rm -rf build-on-kakarot",
+    "setup-kakarot": "cd kakarot && make setup", 
+    "start-kakarot": "cd kakarot && make start",
+    "deploy-kakarot-l1-messaging-contracts": "cd kakarot && make deploy-l1",
+    "deploy-kakarot-evm-contract": "cd kakarot && forge create ${npm_config_contract_path} --rpc-url ${npm_config_rpc_url} --private-key ${npm_config_private_key}"
   },
   "repository": {
     "type": "git",
