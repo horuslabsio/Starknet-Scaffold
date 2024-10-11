@@ -53,27 +53,31 @@ generates a profile which is added to scarb.toml and can be passed to other comm
 ### Deploy Account
 To deploy an account:
 ```
-npm run deploy-account --profile=<MY_PROFILE> --name=<ACCOUNT_NAME> --feetoken=<FEE_TOKEN> --maxfee=<MAX_FEE>
+npm run deploy-account --profile=<MY_PROFILE> --name=<ACCOUNT_NAME> --fee-token=<FEE_TOKEN> --max-fee=<MAX_FEE>
 ```
 where the profile is gotten from `snfoundry.toml`, name is the prepared account and maxfee is the specified max fee.
 
 ### Delete Account
 To delete an account:
 ```
-npm run delete-account --profile=<MY_PROFILE> --accountfile=<PATH_TO_ACCOUNT_FILE> --name=<ACCOUNT_NAME> --network=<alpha-mainnet | alpha-goerli>
+npm run delete-account --profile=<MY_PROFILE> --account-file=<PATH_TO_ACCOUNT_FILE> --name=<ACCOUNT_NAME> --network=<alpha-mainnet | alpha-goerli>
 ```
 
 ### Declare Contract
 To declare a Starknet contract:
 ```
-npm run declare-contract --profile=<MY_PROFILE> --contract=<CONTRACT_NAME> --feetoken=<FEE_TOKEN>
+npm run declare-contract --profile=<MY_PROFILE> --keystore=<PATH_TO_KEYSTORE_FILE> --account=<PATH_TO_ACCOUNT_FILE> --contract-name=<CONTRACT_NAME> --url=<RPC_URL> --fee-token=<FEE_TOKEN>
 ```
+
+when `profile` is specified, `keystore`, `account` and `url` are not needed. But when `profile` is not specified, all three of them need to be provided. 
 
 ### Deploy Contract
 To deploy a contract:
 ```
-npm run deploy-contract --profile=<MY_PROFILE> --feetoken=<FEE_TOKEN> --class=<CONTRACT_CLASSHASH>
+npm run deploy-contract --profile=<MY_PROFILE> --keystore=<PATH_TO_KEYSTORE_FILE> --account=<PATH_TO_ACCOUNT_FILE>  --feetoken=<FEE_TOKEN> --class=<CONTRACT_CLASSHASH> --url=<RPC_URL>
 ```
+
+when `profile` is specified, `keystore`, `account` and `url` are not needed. But when `profile` is not specified, all three of them need to be provided.
 
 ###  Starknet-Devnet
 Confirm that Docker is installed and running to use starknet-devnet. To run devnet:
