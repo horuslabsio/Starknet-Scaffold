@@ -151,6 +151,12 @@ To deploy a Cairo contract using keystore, from the base repository run:
 npm run keystore-deploy-contract --keystore=<PATH_TO_KEYSTORE_FILE> --account=<PATH_TO_ACCOUNTS_FILE> --url=<RPC_URL> --fee-token=<FEE_TOKEN> --class-hash=<CLASS_HASH>
 ```
 
+### Whitelist Contract
+To whitelist a contract, from the base repository run:
+```
+npm run whitelist-contract --contract-address=<CONTRACT_ADDRESS>
+```
+
 ## User Interface Scripts
 
 The following are scripts from `Starknet-Scaffold` for handling the user interface.
