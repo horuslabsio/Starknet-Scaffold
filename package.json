@@ -1,6 +1,6 @@
 {
-  "name": "create-starknet-app",
-  "version": "0.5.0",
+  "name": "test-create-starknet-app",
+  "version": "0.5.5",
   "description": "An open-source starknet development stack",
   "bin": "./bin/cli.mjs",
   "scripts": {
@@ -30,7 +30,8 @@
     "deploy-kakarot-l1-messaging-contracts-local": "cd kakarot && make deploy-l1",
     "deploy-kakarot-evm-contract": "cd kakarot && forge create ${npm_config_contract_path} $(test -n \"$npm_config_constructor_args\" && echo --constructor-args $npm_config_constructor_args) --rpc-url ${npm_config_rpc_url} --private-key ${npm_config_private_key}",
     "keystore-declare-contract": "cd contracts && sncast --keystore ${npm_config_keystore} --account ${npm_config_account} declare --contract-name ${npm_config_contract_name} --url ${npm_config_url} --fee-token ${npm_config_fee_token}",
-    "keystore-deploy-contract": "cd contracts && sncast --keystore ${npm_config_keystore} --account ${npm_config_account} deploy --url ${npm_config_url} --fee-token ${npm_config_fee_token} --class-hash ${npm_config_class_hash}"
+    "keystore-deploy-contract": "cd contracts && sncast --keystore ${npm_config_keystore} --account ${npm_config_account} deploy --url ${npm_config_url} --fee-token ${npm_config_fee_token} --class-hash ${npm_config_class_hash}",
+    "whitelist-contract": "cd kakarot && make whitelist-contract CONTRACT_ADDRESS=${npm_config_contract_address}"
   },
   "repository": {
     "type": "git",
