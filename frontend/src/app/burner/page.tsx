@@ -58,10 +58,14 @@ export default function Page() {
       TransactionHash.transaction_hash,
     );
 
+    const address: string = result.events?.at(0).from_address;
+    const formattedAddress =
+      "0x" + address.replace(/^0x/, "").padStart(64, "0");
+
     return {
       privateKey,
       publicKey,
-      address: result.events?.at(0).from_address,
+      address: formattedAddress,
     };
   };
 
