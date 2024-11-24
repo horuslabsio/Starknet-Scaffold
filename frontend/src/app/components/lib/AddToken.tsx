@@ -1,14 +1,50 @@
 "use client";
-import { useState } from "react";
-import { useConnect } from "@starknet-react/core";
+import { useEffect, useState } from "react";
+import { useConnect, useContractRead } from "@starknet-react/core";
+import { shortString } from "starknet";
 import Close from "public/svg/Close";
 import GenericModal from "../internal/util/GenericModal";
+import { erc20MetadataAbi } from "@/app/common/abis/erc20-metadata";
+
 const AddTokenModal = () => {
   const { connector } = useConnect();
   const [tokenAddress, setTokenAddress] = useState("");
   const [symbol, setSymbol] = useState("");
   const [decimals, setDecimals] = useState("");
   const [name, setName] = useState("");
+
+  const { data: tokenName } = useContractRead({
+    abi: erc20MetadataAbi,
+    functionName: "name",
+    address: tokenAddress,
+    args: [],
+  });
+
+  const { data: tokenSymbol } = useContractRead({
+    abi: erc20MetadataAbi,
+    functionName: "symbol",
+    address: tokenAddress,
+    args: [],
+  });
+
+  const { data: tokenDecimals } = useContractRead({
+    abi: erc20MetadataAbi,
+    functionName: "decimals",
+    address: tokenAddress,
+    args: [],
+  });
+
+  useEffect(() => {
+    tokenName
+      ? setName(shortString.decodeShortString(tokenName.toString()))
+      : setName("");
+
+    tokenSymbol
+      ? setSymbol(shortString.decodeShortString(tokenSymbol.toString()))
+      : setSymbol("");
+
+    tokenDecimals ? setDecimals(tokenDecimals.toString()) : setDecimals("");
+  }, [tokenName, tokenSymbol, tokenDecimals]);
 
   function handleAddToken() {
     const fetchAddToken = async () => {
