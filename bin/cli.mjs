@@ -37,7 +37,6 @@ const installPackage = async () => {
       "fullstack",
       "debugger",
       "dojo",
-      "kakarot",
     ];
     console.log("Available package types:");
     packageTypeChoices.forEach((type, index) =>
@@ -47,7 +46,7 @@ const installPackage = async () => {
     let packageType;
     while (!packageType) {
       const packageTypeChoice = await askQuestion(
-        "Select the package type (1-5): "
+        `Select the package type (1-${packageTypeChoices.length}): `
       );
       packageType = packageTypeChoices[parseInt(packageTypeChoice) - 1];
       if (!packageType) {
@@ -86,11 +85,7 @@ const installPackage = async () => {
       "CNAME",
     ];
 
-    if (
-      packageType === "fullstack" ||
-      packageType === "dojo" ||
-      packageType === "kakarot"
-    ) {
+    if (packageType === "fullstack" || packageType === "dojo") {
       const FRONTEND_BASE_PATH = "frontend/src/app";
       const componentsToRemove = [
         `${FRONTEND_BASE_PATH}/burner`,
@@ -169,18 +164,6 @@ const installPackage = async () => {
         recursive: true,
         force: true,
       });
-    } else if (packageType == "kakarot") {
-      await exec("npm run initialize-kakarot");
-
-      await exec("npm run setup-kakarot");
-
-      const tool_versions = await getVersionsFromToolFile(
-        path.join(projectPath, "/contracts/.tool-versions")
-      );
-
-      await exec(
-        `npm run install --scarb-version=${tool_versions.scarb} --legacy-peer-deps`
-      );
     } else if (packageType !== "contract_only") {
       await exec("npm run install --legacy-peer-deps");
     }
@@ -190,9 +173,7 @@ const installPackage = async () => {
     console.log("You can now run the scaffold with:");
     console.log(`    cd ${packageName}`);
 
-    if (packageType == "kakarot") {
-      console.log(`    npm run start-kakarot`);
-    } else if (packageType == "contract_only") {
+    if (packageType == "contract_only") {
       console.log(`    npm run devnet`);
     } else {
       console.log(`    npm run start`);
