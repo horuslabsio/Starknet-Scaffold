@@ -8,9 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: software-mansion/setup-scarb@v1
+        with:
+          scarb-version: "2.8.2"
+
       - uses: foundry-rs/setup-snfoundry@v3
         with:
           starknet-foundry-version: 0.31.0
+
       - name: Run cairo tests
         run: cd contracts && snforge test
