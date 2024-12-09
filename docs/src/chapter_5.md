@@ -108,55 +108,6 @@ To migrate your dojo project, from the base repository run:
 npm run migrate-dojo --name=<PROJECT_NAME>
 ```
 
-## Kakarot Scripts
-Below are npm scripts provided by `Starknet-Scaffold` for your Kakarot development.
-
-### Setup Kakarot
-To setup Kakarot, from the base repository run:
-```
-npm run setup-kakarot
-```
-
-### Start Kakarot
-To start Kakarot, from the base repository run:
-```
-npm run start-kakarot
-```
-
-### Deploy Kakarot L1 Messaging Contracts to Local RPC
-To deploy Kakarot l1 messaging contracts locally, from the base repository run:
-```
-npm run deploy-kakarot-l1-messaging-contracts-local
-```
-
-### Deploy Kakarot EVM Contract
-To deploy a Kakarot EVM contract, from the base repository run:
-```
-npm run deploy-kakarot-evm-contract --contract-path=<PATH_TO_CONTRACT> --rpc-url=<RPC_URL> --private-key=<PRIVATE_KEY>
-```
-If you need to specify constructor args, run:
-```
-npm run deploy-kakarot-evm-contract --contract-path=<PATH_TO_CONTRACT> --constructor-args=<CONSTRUCTOR_ARGS> --rpc-url=<RPC_URL> --private-key=<PRIVATE_KEY>
-```
-
-### Declare Cairo Contract Using Keystore
-To declare a Cairo contract using keystore, from the base repository run:
-```
-npm run keystore-declare-contract --keystore=<PATH_TO_KEYSTORE_FILE> --account=<PATH_TO_ACCOUNTS_FILE> --contract-name=<CONTRACT_NAME> --url=<RPC_URL> --fee-token=<FEE_TOKEN>
-```
-
-### Deploy Cairo Contract Using Keystore
-To deploy a Cairo contract using keystore, from the base repository run:
-```
-npm run keystore-deploy-contract --keystore=<PATH_TO_KEYSTORE_FILE> --account=<PATH_TO_ACCOUNTS_FILE> --url=<RPC_URL> --fee-token=<FEE_TOKEN> --class-hash=<CLASS_HASH>
-```
-
-### Whitelist Contract
-To whitelist a contract, from the base repository run:
-```
-npm run whitelist-contract --contract-address=<CONTRACT_ADDRESS>
-```
-
 ## User Interface Scripts
 
 The following are scripts from `Starknet-Scaffold` for handling the user interface.
