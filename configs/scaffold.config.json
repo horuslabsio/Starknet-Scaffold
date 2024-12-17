@@ -1,0 +1,8 @@
+{
+  "url": "https://free-rpc.nethermind.io/sepolia-juno/",
+  "feeToken": "eth",
+  "account": {
+    "name": "scaffold",
+    "profile": "scaffold-deployer"
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "name": "create-starknet-app",
-  "version": "0.6.0",
+  "name": "test-create-starknet-app",
+  "version": "0.5.8",
   "description": "An open-source starknet development stack",
   "bin": "./bin/cli.mjs",
   "scripts": {
@@ -10,7 +10,7 @@
     "verify-contracts": "cd contracts && sncast verify --contract-address ${npm_config_contract_address} --contract-name ${npm_config_contract_name} --verifier walnut --network ${npm_config_network}",
     "contract-scripts": "cd contracts/scripts && sncast script run ${npm_config_script} --url ${npm_config_url}",
     "generate-interface": "cd contracts && src5_rs parse",
-    "prepare-account": "cd contracts && sncast account create --url ${npm_config_url} --name ${npm_config_name} --add-profile",
+    "prepare-account": "node scaffold_scripts/prepare-account.js",
     "deploy-account": "cd contracts && sncast --profile ${npm_config_profile} account deploy --name ${npm_config_name} --fee-token ${npm_config_fee_token} --max-fee ${npm_config_max_fee}",
     "delete-account": "cd contracts && sncast --profile ${npm_config_profile} --accounts-file ${npm_config_accounts_file} account delete --name ${npm_config_name} --network ${npm_config_network}",
     "declare-contract": "cd contracts && sncast --profile ${npm_config_profile} declare --contract-name ${npm_config_contract_name} --fee-token ${npm_config_fee_token}",
