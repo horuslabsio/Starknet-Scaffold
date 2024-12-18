@@ -1,0 +1,12 @@
+{
+  "devnet": {},
+  "sepolia": {
+    "HelloStarknet": {
+      "contract": "HelloStarknet",
+      "classHash": "0x659beca87b6eb6621573f9155f15f970caf513d419ba46b545b29439e0045c6",
+      "constructorArgs": [],
+      "address": ""
+    }
+  },
+  "mainnet": {}
+}

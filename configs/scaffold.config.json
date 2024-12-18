@@ -1,0 +1,13 @@
+{
+  "network": "sepolia",
+  "url": "https://free-rpc.nethermind.io/sepolia-juno/",
+  "feeToken": "eth",
+  "maxFee": 894843045483,
+  "account": {
+    "name": "scaffold",
+    "profile": "scaffold"
+  },
+  "contracts": [
+    "HelloStarknet"
+  ]
+}
