@@ -1,6 +1,5 @@
 use sncast_std::{
-    declare, deploy, DeclareResult, DeployResult, get_nonce, DisplayContractAddress,
-    DisplayClassHash, FeeSettings, EthFeeSettings
+    declare, deploy, DeclareResultTrait, get_nonce, FeeSettings, EthFeeSettings
 };
 
 fn main() {
@@ -15,12 +14,12 @@ fn main() {
     )
         .expect('contract already declared');
 
-    let class_hash = declare_result.class_hash;
+    let class_hash = declare_result.class_hash();
 
-    println!("Class hash of the declared contract: {}", declare_result.class_hash);
+    println!("Class hash of the declared contract: {:?}", declare_result.class_hash());
 
     let deploy_result = deploy(
-        class_hash,
+        *class_hash,
         ArrayTrait::new(),
         Option::Some(salt),
         true,
@@ -29,5 +28,5 @@ fn main() {
     )
         .expect('deploy failed');
 
-    println!("Deployed the contract to address: {}", deploy_result.contract_address);
+    println!("Deployed the contract to address: {:?}", deploy_result.contract_address);
 }

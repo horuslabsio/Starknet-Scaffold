@@ -1,5 +1,4 @@
-use core::starknet::SyscallResultTrait;
-use snforge_std::{declare, ContractClassTrait, DeclareResultTrait, DeclareResult};
+use snforge_std::{declare, ContractClassTrait, DeclareResult};
 use contracts::{IHelloStarknetDispatcher, IHelloStarknetDispatcherTrait};
 
 #[test]
