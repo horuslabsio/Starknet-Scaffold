@@ -1,18 +1,25 @@
 [package]
 name = "contracts"
 version = "0.1.0"
+edition = "2023_11"
 
 [dependencies]
-starknet = "2.8.2"
-snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry", tag = "v0.31.0" }
-openzeppelin = { git = "https://github.com/OpenZeppelin/cairo-contracts.git", tag = "v0.15.0" }
+starknet = "2.9.2"
+openzeppelin_access = "0.20.0"
+openzeppelin_token = "0.20.0"
+
+[dev-dependencies]
+openzeppelin_utils = "0.20.0"
+snforge_std = "0.36.0"
 
 [[target.starknet-contract]]
 casm = true
 sierra = true
 
 [tool.fmt]
-sort-module-level-items = false
+sort-module-level-items = true
 
-[tool.snforge]
-exit_first = false
+[[tool.snforge.fork]]
+name = "SEPOLIA_LATEST"
+url = "https://starknet-sepolia.public.blastapi.io/rpc/v0_7"
+block_id.tag = "latest"

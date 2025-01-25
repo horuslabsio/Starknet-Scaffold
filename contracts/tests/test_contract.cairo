@@ -1,6 +1,5 @@
-use core::starknet::SyscallResultTrait;
-use snforge_std::{declare, ContractClassTrait, DeclareResultTrait, DeclareResult};
 use contracts::{IHelloStarknetDispatcher, IHelloStarknetDispatcherTrait};
+use snforge_std::{ContractClassTrait, DeclareResult, declare};
 
 #[test]
 fn test_balance() {
