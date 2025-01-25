@@ -1,6 +1,4 @@
-use sncast_std::{
-    declare, deploy, DeclareResultTrait, get_nonce, FeeSettings, EthFeeSettings
-};
+use sncast_std::{DeclareResultTrait, EthFeeSettings, FeeSettings, declare, deploy, get_nonce};
 
 fn main() {
     let max_fee = 99999999999999999;
@@ -10,7 +8,7 @@ fn main() {
     let declare_result = declare(
         "HelloStarknet",
         FeeSettings::Eth(EthFeeSettings { max_fee: Option::Some(max_fee) }),
-        Option::Some(nonce)
+        Option::Some(nonce),
     )
         .expect('contract already declared');
 
@@ -24,7 +22,7 @@ fn main() {
         Option::Some(salt),
         true,
         FeeSettings::Eth(EthFeeSettings { max_fee: Option::Some(max_fee) }),
-        Option::Some(nonce)
+        Option::Some(nonce),
     )
         .expect('deploy failed');
 

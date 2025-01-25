@@ -1,5 +1,5 @@
-use snforge_std::{declare, ContractClassTrait, DeclareResult};
 use contracts::{IHelloStarknetDispatcher, IHelloStarknetDispatcherTrait};
+use snforge_std::{ContractClassTrait, DeclareResult, declare};
 
 #[test]
 fn test_balance() {
