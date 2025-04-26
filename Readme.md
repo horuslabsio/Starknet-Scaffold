@@ -1,5 +1,6 @@
 # 🏗 STARKNET-SCAFFOLD
 
+
 # DEPRECATED
  This project has been deprecated and is no longer actively maintained. We recommend using  [Scaffold-stark-2](https://github.com/Scaffold-Stark/scaffold-stark-2).
 
