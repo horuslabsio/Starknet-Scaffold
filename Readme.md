@@ -1,5 +1,10 @@
 # 🏗 STARKNET-SCAFFOLD
 
+
+# DEPRECATED
+ This project has been deprecated and is no longer actively maintained. We recommend using  [Scaffold-stark-2](https://github.com/Scaffold-Stark/scaffold-stark-2).
+
+
 🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on Starknet. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
 
 ⚙️ Built using NextJS, Starknet.js, Starknet-React, Starknetkit, Typescript, Scarb, and Starknet-Foundry.
